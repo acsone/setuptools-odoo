@@ -87,7 +87,7 @@ def prepare(odoo_version=None,
         'packages': setuptools.find_packages(os.path.join(addon_dir, src_dir)),
         'package_dir': {'': src_dir},
         'package_data': {addon_fullname: ['static/description/*']},  # TODO
-        'namespace_packages': ['openerp', 'openerp.addons'],
+        'namespace_packages': ['openerp.addons'],
         'zip_safe': False,
         # TODO: keywords, classifiers, authors, install_requires
     }
