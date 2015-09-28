@@ -18,7 +18,7 @@ setuptools.setup(
         'Operating System :: POSIX',
         'Programming Language :: Python :: 2.7',
     ],
-    licence='LGPLv3+',
+    license='LGPLv3+',
     author='ACSONE SA/NV',
     author_email='info@acsone.eu',
     url='http://github.com/acsone/setuptools-odoo',
