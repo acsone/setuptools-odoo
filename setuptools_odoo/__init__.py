@@ -37,10 +37,8 @@ def _make_src(addon_dir, addon_name, src_dir='src'):
     module_link = os.path.join(addons_dir, addon_name)
     if not os.path.isdir(addons_dir):
         os.makedirs(addons_dir)
-    open(os.path.join(openerp_dir, '__init__.py'), 'w').\
-        write("__import__('pkg_resources').declare_namespace(__name__)\n")
-    open(os.path.join(addons_dir, '__init__.py'), 'w').\
-        write("__import__('pkg_resources').declare_namespace(__name__)\n")
+    open(os.path.join(openerp_dir, '__init__.py'), 'w').write("\n")
+    open(os.path.join(addons_dir, '__init__.py'), 'w').write("\n")
     if not os.path.exists(module_link):
         os.symlink(os.path.relpath(addon_dir, addons_dir), module_link)
 
@@ -87,7 +85,7 @@ def prepare(odoo_version=None,
         'packages': setuptools.find_packages(os.path.join(addon_dir, src_dir)),
         'package_dir': {'': src_dir},
         'package_data': {addon_fullname: ['static/description/*']},  # TODO
-        'namespace_packages': ['openerp.addons'],
+        'namespace_packages': ['openerp', 'openerp.addons'],
         'zip_safe': False,
         # TODO: keywords, classifiers, authors, install_requires
     }
