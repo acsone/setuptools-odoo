@@ -37,10 +37,14 @@ def _make_src(addon_dir, addon_name, src_dir='src'):
     module_link = os.path.join(addons_dir, addon_name)
     if not os.path.isdir(addons_dir):
         os.makedirs(addons_dir)
+    # declare openerp and openerp.addons as namespace packages
+    # this works in combination with https://github.com/odoo/odoo/pull/8758
     open(os.path.join(openerp_dir, '__init__.py'), 'w').\
         write("__import__('pkg_resources').declare_namespace(__name__)\n")
     open(os.path.join(addons_dir, '__init__.py'), 'w').\
         write("__import__('pkg_resources').declare_namespace(__name__)\n")
+    # symlink to the main module directory so we have a canonical structure:
+    # openerp/addons/addon_name/...
     if not os.path.exists(module_link):
         os.symlink(os.path.relpath(addon_dir, addons_dir), module_link)
 
