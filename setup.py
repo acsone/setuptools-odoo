@@ -23,4 +23,5 @@ setuptools.setup(
     author_email='info@acsone.eu',
     url='http://github.com/acsone/setuptools-odoo',
     packages=['setuptools_odoo'],
+    install_requires=['setuptools>=18.3.2'],
 )
