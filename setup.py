@@ -15,7 +15,7 @@ setuptools.setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: '
             'GNU Lesser General Public License v3 (LGPLv3)',
-        'Operating System :: POSIX',
+        'Operating System :: POSIX',  # because we use symlinks
         'Programming Language :: Python :: 2.7',
     ],
     license='LGPLv3',
@@ -30,7 +30,8 @@ setuptools.setup(
     ],
     entry_points={
         'console_scripts': [
-            "odoo-server-autodiscover=odoo_server_autodiscover:main",
+            "odoo-server-autodiscover="
+            "setuptools_odoo.odoo_server_autodiscover:main",
         ],
     }
 )
