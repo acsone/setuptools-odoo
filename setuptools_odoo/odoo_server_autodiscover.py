@@ -22,6 +22,12 @@ patch obsolete in the future.
 import os
 
 import openerp
+from openerp.tools.parse_version import parse_version
+
+
+version = openerp.cli.server.__version__
+if parse_version(version) < parse_version('8.0'):
+    raise RuntimeError("Unsupported Odoo version %s" % version)
 
 
 initialize_sys_path_orig = openerp.modules.module.initialize_sys_path
