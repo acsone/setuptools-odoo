@@ -10,12 +10,12 @@ import setuptools
 
 ODOO_VERSION_INFO = {
     '8.0': {
-        'name_prefix': 'odoo',
+        'name_prefix': 'odoo-addon',
         'odoo_dep': 'odoo>=8.<9',
         'default_namespace': 'odoo_addons',
     },
     '9.0': {
-        'name_prefix': 'odoo',
+        'name_prefix': 'odoo-addon',
         'odoo_dep': 'odoo>=9.<10',
         'default_namespace': 'odoo_addons',
     },
