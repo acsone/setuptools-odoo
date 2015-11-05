@@ -7,17 +7,21 @@ import inspect
 import os
 import setuptools
 
+from . import base_addons
+
 
 ODOO_VERSION_INFO = {
     '8.0': {
         'name_prefix': 'odoo-addon',
-        'odoo_dep': 'odoo>=8.<9',
         'default_namespace': 'odoo_addons',
+        'odoo_dep': 'odoo>=8,<9',
+        'base_addons': base_addons.odoo8,
     },
     '9.0': {
         'name_prefix': 'odoo-addon',
-        'odoo_dep': 'odoo>=9.<10',
         'default_namespace': 'odoo_addons',
+        'odoo_dep': 'odoo>=9,<10',
+        'base_addons': base_addons.odoo9,
     },
 }
 
@@ -86,6 +90,22 @@ def _get_long_description(addon_dir, manifest):
         return manifest.get('description')
 
 
+def _get_pkg_name(odoo_version_info, name):
+    name_prefix = odoo_version_info['name_prefix']
+    return name_prefix + '-' + name
+
+
+def _get_install_requires(odoo_version_info, manifest):
+    # TODO: external_dependencies['python']
+    install_requires = [odoo_version_info['odoo_dep']]
+    base_addons = odoo_version_info['base_addons']
+    for depend in manifest.get('depends', []):
+        if depend in base_addons:
+            continue
+        install_requires.append(_get_pkg_name(odoo_version_info, depend))
+    return install_requires
+
+
 def prepare(addon_dir=None, addon_name=None,
             namespace=None, src_dir='src',
             make_src=True):
@@ -103,13 +123,12 @@ def prepare(addon_dir=None, addon_name=None,
     manifest = _read_manifest(addon_dir)
     version, odoo_version = _get_version(manifest)
     odoo_version_info = ODOO_VERSION_INFO[odoo_version]
-    name_prefix = odoo_version_info['name_prefix']
     if not namespace:
         namespace = odoo_version_info['default_namespace']
     if make_src:
         _make_src(addon_dir, addon_name, namespace, src_dir)
-    return {
-        'name': name_prefix + '-' + addon_name,
+    setup_keywords = {
+        'name': _get_pkg_name(odoo_version_info, addon_name),
         'version': version,
         'description': _get_description(manifest),
         'long_description': _get_long_description(addon_dir, manifest),
@@ -120,5 +139,8 @@ def prepare(addon_dir=None, addon_name=None,
         'package_data': {addon_fullname: ['static/description/*']},  # TODO
         'namespace_packages': [namespace],  # TODO parent namespaces
         'zip_safe': False,
-        # TODO: keywords, classifiers, authors, install_requires
+        'install_requires': _get_install_requires(odoo_version_info, manifest),
+        # TODO: keywords, classifiers, authors
     }
+    # import pprint; pprint.pprint(setup_keywords)
+    return setup_keywords
