@@ -16,12 +16,14 @@ ODOO_VERSION_INFO = {
         'default_namespace': 'odoo_addons',
         'odoo_dep': 'odoo>=8,<9',
         'base_addons': base_addons.odoo8,
+        'addon_dep_version': '>=8,<9',
     },
     '9.0': {
         'name_prefix': 'odoo-addon',
         'default_namespace': 'odoo_addons',
         'odoo_dep': 'odoo>=9,<10',
         'base_addons': base_addons.odoo9,
+        'addon_dep_version': '>=9,<10',
     },
 }
 
@@ -98,11 +100,14 @@ def _get_pkg_name(odoo_version_info, name):
 def _get_install_requires(odoo_version_info, manifest):
     # TODO: external_dependencies['python']
     install_requires = [odoo_version_info['odoo_dep']]
+    addon_dep_version = odoo_version_info['addon_dep_version']
     base_addons = odoo_version_info['base_addons']
     for depend in manifest.get('depends', []):
         if depend in base_addons:
             continue
-        install_requires.append(_get_pkg_name(odoo_version_info, depend))
+        install_require = _get_pkg_name(odoo_version_info, depend) + \
+            addon_dep_version
+        install_requires.append(install_require)
     return install_requires
 
 
