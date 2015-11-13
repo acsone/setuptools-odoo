@@ -124,7 +124,7 @@ def prepare(addon_dir=None, addon_name=None,
         addon_dir = os.path.dirname(os.path.abspath(caller_module.__file__))
     if not addon_name:
         addon_name = os.path.basename(os.path.abspath(addon_dir))
-    addon_fullname = 'openerp.addons.' + addon_name
+    addon_fullname = namespace + '.' + addon_name
     manifest = _read_manifest(addon_dir)
     version, odoo_version = _get_version(manifest)
     odoo_version_info = ODOO_VERSION_INFO[odoo_version]
@@ -141,7 +141,8 @@ def prepare(addon_dir=None, addon_name=None,
         'license': manifest.get('license'),
         'packages': setuptools.find_packages(os.path.join(addon_dir, src_dir)),
         'package_dir': {'': src_dir},
-        'package_data': {addon_fullname: ['static/description/*']},  # TODO
+        'include_package_data': True,
+        'exclude_package_data': {addon_fullname: [src_dir+'/*']},
         'namespace_packages': [namespace],  # TODO parent namespaces
         'zip_safe': False,
         'install_requires': _get_install_requires(odoo_version_info, manifest),

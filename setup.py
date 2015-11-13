@@ -25,6 +25,10 @@ setuptools.setup(
     packages=[
         'setuptools_odoo'
     ],
+    install_requires=[
+        'setuptools',
+        'setuptools-git',
+    ],
     entry_points={
         'console_scripts': [
             "odoo-server-autodiscover="
