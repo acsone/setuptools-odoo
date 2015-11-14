@@ -16,13 +16,15 @@ next to the ``__openerp__.py`` file:
     import setuptools
     import setuptools_odoo
 
-    setup_keywords = setuptools_odoo.prepare()
+    setup_keywords = setuptools_odoo.prepare(addon_name=<addon_name>)
     setuptools.setup(**setup_keywords)
 
-Then, the addon can be deployed with usual ``setup.py`` commands such as::
+Then, the addon can be deployed and packaged with usual ``setup.py``
+commands such as::
 
     python setup.py install
     python setup.py develop
+    python setup.py bdist_wheel
 
 To run Odoo so it automatically discovers addons installed with this
 method, start Odoo using ``odoo-server-autodiscover`` provided in this package.

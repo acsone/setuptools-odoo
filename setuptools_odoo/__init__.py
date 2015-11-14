@@ -3,7 +3,6 @@
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
 import ast
-import inspect
 import os
 import setuptools
 
@@ -14,14 +13,14 @@ from . import external_dependencies
 ODOO_VERSION_INFO = {
     '8.0': {
         'name_prefix': 'odoo-addon',
-        'default_namespace': 'odoo_addons',
+        'addons_namespace': 'odoo_addons',
         'odoo_dep': 'odoo>=8,<9',
         'base_addons': base_addons.odoo8,
         'addon_dep_version': '>=8,<9',
     },
     '9.0': {
         'name_prefix': 'odoo-addon',
-        'default_namespace': 'odoo_addons',
+        'addons_namespace': 'odoo_addons',
         'odoo_dep': 'odoo>=9,<10',
         'base_addons': base_addons.odoo9,
         'addon_dep_version': '>=9,<10',
@@ -123,24 +122,16 @@ def _get_install_requires(odoo_version_info, manifest):
     return install_requires
 
 
-def prepare(addon_dir=None, addon_name=None,
-            namespace=None, src_dir='src',
-            make_src=True):
+def prepare(addon_name, addon_dir='.', src_dir='src', make_src=True):
     """ prepare setuptools.setup() keyword arguments for an odoo addon
 
     Most setup metadata is obtained from the __openerp__.py manifest.
     """
-    if not addon_dir:
-        # find addon directory from caller module (normally setup.py)
-        caller_module = inspect.getmodule(inspect.stack()[1][0])
-        addon_dir = os.path.dirname(os.path.abspath(caller_module.__file__))
-    if not addon_name:
-        addon_name = os.path.basename(os.path.abspath(addon_dir))
+    addon_dir = os.path.abspath(addon_dir)
     manifest = _read_manifest(addon_dir)
     version, odoo_version = _get_version(addon_dir, manifest)
     odoo_version_info = ODOO_VERSION_INFO[odoo_version]
-    if not namespace:
-        namespace = odoo_version_info['default_namespace']
+    namespace = odoo_version_info['addons_namespace']
     addon_fullname = namespace + '.' + addon_name
     if make_src:
         _make_src(addon_dir, addon_name, namespace, src_dir)
