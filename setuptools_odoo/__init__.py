@@ -48,7 +48,7 @@ def _make_src(addon_dir, addon_name, namespace, src_dir):
     # this works in combination with https://github.com/odoo/odoo/pull/8758
     # if namespace is 'openerp.addons' or in combination with XXX if namespace
     # is 'odoo_addons'
-    full_namespace_dir = os.path.join(addon_dir, src_dir)
+    full_namespace_dir = src_dir
     for namespace_dir in namespace_dirs:
         full_namespace_dir = os.path.join(full_namespace_dir, namespace_dir)
         if not os.path.isdir(full_namespace_dir):
@@ -149,7 +149,7 @@ def prepare(addon_dir=None, addon_name=None,
         'long_description': _get_long_description(addon_dir, manifest),
         'url': manifest.get('website'),
         'license': manifest.get('license'),
-        'packages': setuptools.find_packages(os.path.join(addon_dir, src_dir)),
+        'packages': setuptools.find_packages(src_dir),
         'package_dir': {'': src_dir},
         'include_package_data': True,
         'exclude_package_data': {addon_fullname: [src_dir+'/*']},
