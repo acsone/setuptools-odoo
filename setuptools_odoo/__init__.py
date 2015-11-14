@@ -3,11 +3,8 @@
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
 import ast
-import distutils
 import inspect
 import os
-import pprint
-
 import setuptools
 
 from . import base_addons
@@ -158,6 +155,5 @@ def prepare(addon_dir=None, addon_name=None,
         'install_requires': _get_install_requires(odoo_version_info, manifest),
         # TODO: keywords, classifiers, authors
     }
-    distutils.log.info("setuptools_odoo default keywords: %s",
-                       pprint.pformat(setup_keywords))
+    # import pprint; pprint.pprint(setup_keywords)
     return setup_keywords
