@@ -8,6 +8,7 @@ import os
 import setuptools
 
 from . import base_addons
+from . import external_dependencies
 
 
 ODOO_VERSION_INFO = {
@@ -99,8 +100,9 @@ def _get_pkg_name(odoo_version_info, name):
 
 
 def _get_install_requires(odoo_version_info, manifest):
-    # TODO: external_dependencies['python']
+    # dependency on Odoo
     install_requires = [odoo_version_info['odoo_dep']]
+    # dependencies on other addons (except Odoo official addons)
     addon_dep_version = odoo_version_info['addon_dep_version']
     base_addons = odoo_version_info['base_addons']
     for depend in manifest.get('depends', []):
@@ -109,6 +111,10 @@ def _get_install_requires(odoo_version_info, manifest):
         install_require = _get_pkg_name(odoo_version_info, depend) + \
             addon_dep_version
         install_requires.append(install_require)
+    # python external_dependencies
+    for dep in manifest.get('external_dependencies', {}).get('python', []):
+        dep = external_dependencies.EXTERNAL_DEPENDENCIES_MAP.get(dep, dep)
+        install_requires.append(dep)
     return install_requires
 
 
