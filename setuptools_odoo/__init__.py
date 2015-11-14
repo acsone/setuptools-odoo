@@ -39,12 +39,17 @@ def _make_src(addon_dir, addon_name, namespace, src_dir):
 
     If you structure the addon source code according to the real package
     structure (ie odoo_addons/addon_name) this is not necessary.
+
+    Caveat: this symlinked structure which include a loop confuses
+    setup.py sdist and bdist, but is fine for setup.py bdist_wheel and develop,
+    so this is sufficient.  If this is an issue for you, put your setup.py
+    outside of the addon directory so there is no symlink loop.
     """
     namespace_dirs = namespace.split('.')
     # declare namespace packages
     # this works in combination with https://github.com/odoo/odoo/pull/8758
-    # if namespace is 'openerp.addons' or in combination with XXX if namespace
-    # is 'odoo_addons'
+    # if namespace is 'openerp.addons' or in combination with the included
+    # odoo-server-autodiscover script if namespace is 'odoo_addons'
     full_namespace_dir = src_dir
     for namespace_dir in namespace_dirs:
         full_namespace_dir = os.path.join(full_namespace_dir, namespace_dir)
