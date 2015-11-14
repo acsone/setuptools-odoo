@@ -28,6 +28,7 @@ setuptools.setup(
     install_requires=[
         'setuptools',
         'setuptools-git',
+        'wheel',
     ],
     entry_points={
         'console_scripts': [
