@@ -28,17 +28,16 @@ ODOO_VERSION_INFO = {
 }
 
 
-def _make_src(addon_dir, addon_name, namespace='openerp.addons', src_dir='src'):
-    """ create a 'src' directory containing the canonical module
-    structure in it's namespace package, symlinking to the module directory
+def _make_src(addon_dir, addon_name, namespace, src_dir):
+    """ create a src_dir directory containing the canonical module
+    structure in it's namespace package, symlinking to the addon directory
 
     This is to make sure namespace packages are declared properly
     and 'setup.py develop' works, working around
     https://bitbucket.org/pypa/setuptools/issues/230
 
     If you structure the addon source code according to the real package
-    structure (eg openerp/addons/modulename, odoo_addons/modulename),
-    this is not necessary.
+    structure (ie odoo_addons/addon_name) this is not necessary.
     """
     namespace_dirs = namespace.split('.')
     # declare namespace packages
@@ -52,7 +51,7 @@ def _make_src(addon_dir, addon_name, namespace='openerp.addons', src_dir='src'):
             os.makedirs(full_namespace_dir)
         open(os.path.join(full_namespace_dir, '__init__.py'), 'w').\
             write("__import__('pkg_resources').declare_namespace(__name__)\n")
-    # symlink to the main module directory so we have a canonical structure:
+    # symlink to the main addon directory so we have a canonical structure:
     # namespace/addon_name/...
     module_link = os.path.join(full_namespace_dir, addon_name)
     if not os.path.exists(module_link):
@@ -64,19 +63,21 @@ def _read_manifest(addon_dir):
         manifest_path = os.path.join(addon_dir, manifest_name)
         if os.path.isfile(manifest_path):
             return ast.literal_eval(open(manifest_path).read())
-    raise RuntimeError("no Odoo manifest found")
+    raise RuntimeError("no Odoo manifest found in %s" % addon_dir)
 
 
-def _get_version(manifest):
+def _get_version(addon_dir, manifest):
     version = manifest.get('version')
     if not version:
-        raise RuntimeError("No version in manifest")
+        raise RuntimeError("No version in manifest in %s" % addon_dir)
     if len(version.split('.')) < 5:
         raise RuntimeError("Version in manifest must have at least "
-                           "5 components and start with the Odoo series number")
+                           "5 components and start with "
+                           "the Odoo series number in %s" % addon_dir)
     odoo_version = '.'.join(version.split('.')[:2])
     if odoo_version not in ODOO_VERSION_INFO:
-        raise RuntimeError("Unsupported odoo version '%s'" % odoo_version)
+        raise RuntimeError("Unsupported odoo version '%s' in %s" %
+                           (odoo_version, addon_dir))
     return version, odoo_version
 
 
@@ -125,7 +126,7 @@ def prepare(addon_dir=None, addon_name=None,
     if not addon_name:
         addon_name = os.path.basename(os.path.abspath(addon_dir))
     manifest = _read_manifest(addon_dir)
-    version, odoo_version = _get_version(manifest)
+    version, odoo_version = _get_version(addon_dir, manifest)
     odoo_version_info = ODOO_VERSION_INFO[odoo_version]
     if not namespace:
         namespace = odoo_version_info['default_namespace']

@@ -6,7 +6,7 @@ import setuptools
 
 setuptools.setup(
     name='setuptools-odoo',
-    version='0.2.1',
+    version='0.3.0',
     description='A library to help package Odoo addons with setuptools',
     long_description=open('README.rst').read(),
     classifiers=[
@@ -23,7 +23,7 @@ setuptools.setup(
     author_email='info@acsone.eu',
     url='http://github.com/acsone/setuptools-odoo',
     packages=[
-        'setuptools_odoo'
+        'setuptools_odoo',
     ],
     install_requires=[
         'setuptools',
