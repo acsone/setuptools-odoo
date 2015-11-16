@@ -63,12 +63,26 @@ def _make_src(addon_dir, addon_name, namespace, src_dir):
         os.symlink(os.path.relpath(addon_dir, full_namespace_dir), module_link)
 
 
-def _read_manifest(addon_dir):
+def _get_manifest_path(addon_dir):
     for manifest_name in ('__odoo__.py', '__openerp__.py', '__terp__.py'):
         manifest_path = os.path.join(addon_dir, manifest_name)
         if os.path.isfile(manifest_path):
-            return ast.literal_eval(open(manifest_path).read())
-    raise RuntimeError("no Odoo manifest found in %s" % addon_dir)
+            return manifest_path
+
+
+def _read_manifest(addon_dir):
+    manifest_path = _get_manifest_path(addon_dir)
+    if not manifest_path:
+        raise RuntimeError("no Odoo manifest found in %s" % addon_dir)
+    return ast.literal_eval(open(manifest_path).read())
+
+
+def _is_installable(addon_dir):
+    try:
+        manifest = _read_manifest(addon_dir)
+        return manifest.get('installable', True)
+    except:
+        return False
 
 
 def _get_version(addon_dir, manifest):
@@ -83,10 +97,11 @@ def _get_version(addon_dir, manifest):
     if odoo_version not in ODOO_VERSION_INFO:
         raise RuntimeError("Unsupported odoo version '%s' in %s" %
                            (odoo_version, addon_dir))
-    return version, odoo_version
+    odoo_version_info = ODOO_VERSION_INFO[odoo_version]
+    return version, odoo_version_info
 
 
-def _get_description(manifest):
+def _get_description(addon_dir, manifest):
     return manifest.get('summary', '').strip() or manifest.get('name').strip()
 
 
@@ -103,7 +118,7 @@ def _get_pkg_name(odoo_version_info, name):
     return name_prefix + '-' + name
 
 
-def _get_install_requires(odoo_version_info, manifest):
+def _get_install_requires(odoo_version_info, manifest, no_depends=[]):
     # dependency on Odoo
     install_requires = [odoo_version_info['odoo_dep']]
     # dependencies on other addons (except Odoo official addons)
@@ -112,6 +127,8 @@ def _get_install_requires(odoo_version_info, manifest):
     for depend in manifest.get('depends', []):
         if depend in base_addons:
             continue
+        if depend in no_depends:
+            continue
         install_require = _get_pkg_name(odoo_version_info, depend) + \
             addon_dep_version
         install_requires.append(install_require)
@@ -119,7 +136,30 @@ def _get_install_requires(odoo_version_info, manifest):
     for dep in manifest.get('external_dependencies', {}).get('python', []):
         dep = external_dependencies.EXTERNAL_DEPENDENCIES_MAP.get(dep, dep)
         install_requires.append(dep)
-    return install_requires
+    return sorted(install_requires)
+
+
+def get_install_requires(addon_dir, no_depends=[]):
+    """ Get the list of requirements for an addon """
+    manifest = _read_manifest(addon_dir)
+    version, odoo_version_info = _get_version(addon_dir, manifest)
+    return _get_install_requires(odoo_version_info, manifest, no_depends)
+
+
+def get_install_requires_addons_dir(addons_dir):
+    """ Get the list of requirements for an addons directory """
+    addon_dirs = []
+    addons = os.listdir(addons_dir)
+    for addon in addons:
+        addon_dir = os.path.join(addons_dir, addon)
+        if _is_installable(addon_dir):
+            addon_dirs.append(addon_dir)
+    install_requires = set()
+    for addon_dir in addon_dirs:
+        if _is_installable(addon_dir):
+            r = get_install_requires(addon_dir, no_depends=addons)
+            install_requires.update(r)
+    return sorted(install_requires)
 
 
 def prepare(addon_name, addon_dir='.', src_dir='src', make_src=True):
@@ -129,8 +169,7 @@ def prepare(addon_name, addon_dir='.', src_dir='src', make_src=True):
     """
     addon_dir = os.path.abspath(addon_dir)
     manifest = _read_manifest(addon_dir)
-    version, odoo_version = _get_version(addon_dir, manifest)
-    odoo_version_info = ODOO_VERSION_INFO[odoo_version]
+    version, odoo_version_info = _get_version(addon_dir, manifest)
     namespace = odoo_version_info['addons_namespace']
     addon_fullname = namespace + '.' + addon_name
     if make_src:
@@ -138,7 +177,7 @@ def prepare(addon_name, addon_dir='.', src_dir='src', make_src=True):
     setup_keywords = {
         'name': _get_pkg_name(odoo_version_info, addon_name),
         'version': version,
-        'description': _get_description(manifest),
+        'description': _get_description(addon_dir, manifest),
         'long_description': _get_long_description(addon_dir, manifest),
         'url': manifest.get('website'),
         'license': manifest.get('license'),

@@ -35,5 +35,6 @@ setuptools.setup(
             "odoo-server-autodiscover="
             "setuptools_odoo.odoo_server_autodiscover:main",
         ],
-    }
+    },
+    test_suite='tests',
 )
