@@ -30,11 +30,5 @@ setuptools.setup(
         'setuptools-git',
         'wheel',
     ],
-    entry_points={
-        'console_scripts': [
-            "odoo-server-autodiscover="
-            "setuptools_odoo.odoo_server_autodiscover:main",
-        ],
-    },
     test_suite='tests',
 )
