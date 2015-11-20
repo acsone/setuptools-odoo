@@ -6,7 +6,7 @@
 setuptools-odoo
 ===============
 
-A lirary to help package Odoo addons with setuptools.
+A library to help packaging Odoo addons with setuptools.
 
 To use it, create a file name ``setup.py`` in the addon directory,
 next to the ``__openerp__.py`` file:
