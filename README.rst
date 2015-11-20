@@ -20,13 +20,20 @@ next to the ``__openerp__.py`` file:
     setuptools.setup(**setup_keywords)
 
 Then, the addon can be deployed and packaged with usual ``setup.py``
-commands such as::
+or `pip`` commands such as:
+
+  .. code:: shell
 
     python setup.py install
     python setup.py develop
     python setup.py bdist_wheel
+    pip install .
+    pip install -e .
+    pip install odoo-addon-<addon name>
 
 To run Odoo so it automatically discovers addons installed with this
-method, start Odoo using ``odoo-server-autodiscover`` provided in this package.
+method, start Odoo using the ``odoo-server-autodiscover`` or
+``odoo-autodiscover.py`` scripts provided in the `odoo-autodiscover
+<https://github.com/acsone/odoo-autodiscover>`_ package.
 
 It is of course highly recommanded to run all this inside a virtualenv.
