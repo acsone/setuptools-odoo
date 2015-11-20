@@ -37,3 +37,10 @@ method, start Odoo using the ``odoo-server-autodiscover`` or
 <https://github.com/acsone/odoo-autodiscover>`_ package.
 
 It is of course highly recommanded to run all this inside a virtualenv.
+
+Credits
+-------
+
+Author:
+
+  * Stéphane Bidoul (ACSONE)
