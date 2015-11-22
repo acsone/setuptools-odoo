@@ -9,7 +9,9 @@ setuptools-odoo
 A library to help packaging Odoo addons with setuptools.
 
 To be packaged with this library, the addon source code must have the 
-following structure (assuming the addon is named ``<addon_name>``)::
+following structure (assuming the addon is named ``<addon_name>``):
+
+  .. code::
 
     setup.py
     odoo_addons/
@@ -78,7 +80,9 @@ setuptools-odoo-make-default helper script
 Since reusable addons are generally not structured using the namespace
 package but instead collected in a directory with each subdirectory containing 
 an addon, this package provides the ``setuptools-odoo-make-default`` script which
-creates a ``setup.py`` for each addon according to the following structure::
+creates a ``setup.py`` for each addon according to the following structure:
+
+  .. code::
 
     setup/
     setup/addon1/
@@ -102,7 +106,9 @@ Helper API
 When creating a customer project containing several addons that are intended 
 to be deployed together and not being depended upon by other addons, this package
 provide an API to enumerate all dependencies of a set of addons, allowing the 
-creation of the following project structure::
+creation of the following project structure:
+
+  .. code::
 
     TODO
 
