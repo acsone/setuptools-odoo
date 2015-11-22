@@ -6,7 +6,7 @@ import setuptools
 
 setuptools.setup(
     name='setuptools-odoo',
-    version='0.5.0',
+    version='0.6.0',
     description='A library to help package Odoo addons with setuptools',
     long_description=open('README.rst').read(),
     classifiers=[
@@ -28,7 +28,12 @@ setuptools.setup(
     install_requires=[
         'setuptools',
         'setuptools-git',
-        'wheel',
     ],
     test_suite='tests',
+    entry_points={
+        'console_scripts': [
+            "setuptools-odoo-make-default="
+            "setuptools_odoo.make_default_setup:main",
+        ]
+    },
 )
