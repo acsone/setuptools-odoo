@@ -6,4 +6,5 @@
 # to actual python package names
 EXTERNAL_DEPENDENCIES_MAP = {
     'dateutil': 'python-dateutil',
+    'coda': 'pycoda',
 }

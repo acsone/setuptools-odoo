@@ -6,13 +6,14 @@ import argparse
 import os
 
 
-from . import ADDONS_NAMESPACE, is_installable_addon
+from .core import ADDONS_NAMESPACE, is_installable_addon
 
 SETUP_PY = """import setuptools
-import setuptools_odoo
 
-setup_keywords = setuptools_odoo.prepare('{addon_name}')
-setuptools.setup(**setup_keywords)
+setuptools.setup(
+    setup_requires=['setuptools-odoo'],
+    odoo_addon=True,
+)
 """
 
 INIT_PY = """__import__('pkg_resources').declare_namespace(__name__)

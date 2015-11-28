@@ -6,7 +6,7 @@ import setuptools
 
 setuptools.setup(
     name='setuptools-odoo',
-    version='0.6.0',
+    version='0.7.0',
     description='A library to help package Odoo addons with setuptools',
     long_description=open('README.rst').read(),
     classifiers=[
@@ -34,6 +34,10 @@ setuptools.setup(
         'console_scripts': [
             "setuptools-odoo-make-default="
             "setuptools_odoo.make_default_setup:main",
-        ]
+        ],
+        "distutils.setup_keywords": [
+            "odoo_addon = setuptools_odoo.setup_keywords:odoo_addon",
+            "odoo_addons = setuptools_odoo.setup_keywords:odoo_addons",
+        ],
     },
 )

@@ -8,6 +8,9 @@ setuptools-odoo
 
 A library to help packaging Odoo addons with setuptools.
 
+Packaging a single addon
+------------------------
+
 To be packaged with this library, the addon source code must have the 
 following structure (assuming the addon is named ``<addon_name>``):
 
@@ -21,7 +24,7 @@ following structure (assuming the addon is named ``<addon_name>``):
     odoo_addons/<addon_name>/...
 
 where ``odoo_addons/__init__.py`` is a standard python namespace 
-package ``__init__.py``:
+package declaration ``__init__.py``:
 
   .. code:: python
 
@@ -32,13 +35,14 @@ and where setup.py has the following content:
   .. code:: python
 
     import setuptools
-    import setuptools_odoo
 
-    setup_keywords = setuptools_odoo.prepare('<addon_name>')
-    setuptools.setup(**setup_keywords)
+    setuptools.setup(
+        setup_requires=['setuptools-odoo'],
+        odoo_addon=True,
+    )
 
-in which ``setup_keywords`` is generated from the addon manifest file 
-(``__openerp__.py``) and contains:
+The usual setup() keyword arguments are computed automatically from the 
+Odoo manifest file (``__openerp__.py``) and contain:
 
   * ``name``: the package name, ``odoo-addon-<addon_name>``
   * ``version``: the ``version`` key from the manifest
@@ -74,6 +78,52 @@ method, start Odoo using the ``odoo-server-autodiscover`` or
 
 It is of course highly recommanded to run all this inside a virtualenv.
 
+Packaging a multiple addons
+---------------------------
+
+Addons that are intended to be reused or depended upon by other addons
+MUST be packaged individually.  When preparing a project for a specific customer, 
+it is common to prepare a collection of addons that are not intended to be 
+depended upon by addons outside of the project. setuptools-odoo provides
+tools to help you do that.
+
+To be packaged with this library, your project must be structured according
+to the following structure (assuming the addon is named ``<addon_name>``):
+
+  .. code::
+
+    setup.py
+    odoo_addons/
+    odoo_addons/__init__.py
+    odoo_addons/<addon1_name>/
+    odoo_addons/<addon1_name>/__openerp__.py
+    odoo_addons/<addon1_name>/...
+    odoo_addons/<addon2_name>/
+    odoo_addons/<addon2_name>/__openerp__.py
+    odoo_addons/<addon2_name>/...
+
+where setup.py has the following content:
+
+  .. code:: python
+
+    import setuptools
+
+    setuptools.setup(
+        name='<your project pakcage name>',
+        version='<your version>',
+        # ...any other setup() keyword
+        setup_requires=['setuptools-odoo'],
+        odoo_addons=True,
+    )
+
+The ``install_requires`` argument will be populated automatically by inspecting the
+manifests of the addons, adding dependencies on Odoo, any addon not found
+in the addons directory, and external python dependencies.
+
+Specifying odoo_addons=True is the same as specifying odoo_addons='odoo_addons'.
+If your odoo_addons namespace package directory is located elsewhere, say in 'src',
+you can specify it using odoo_addons='src/odoo_addons'.
+
 setuptools-odoo-make-default helper script
 ------------------------------------------
 
@@ -89,24 +139,21 @@ creates a ``setup.py`` for each addon according to the following structure:
     setup/addon1/setup.py
     setup/addon1/odoo_addons/
     setup/addon1/odoo_addons/__init__.py
-    setup/addon1/odoo_addons/addon1 -> ../../../addon1
+    setup/addon1/odoo_addons/<addon1-name> -> ../../../<addon1-name>
     setup/addon2/odoo_addons/
     setup/addon2/odoo_addons/__init__.py
-    setup/addon2/odoo_addons/addon1 -> ../../../addon2
-    addon1/
-    addon1/__openerp__.py
-    addon1/...
-    addon2/
-    addon2/__openerp__.py
-    addon2/...
+    setup/addon2/odoo_addons/<addon2-name> -> ../../../<addon2-name>
+    <addon1-name>/
+    <addon1-name>/__openerp__.py
+    <addon1-name>/...
+    <addon2-name>/
+    <addon2-name>/__openerp__.py
+    <addon2-name>/...
 
 Helper API
 ----------
 
-When creating a customer project containing several addons that are intended 
-to be deployed together and not being depended upon by other addons, this package
-provide an API to enumerate all dependencies of a set of addons, allowing the 
-creation of the following project structure:
+setuptools-odoo exposes the following public API.
 
   .. code::
 
