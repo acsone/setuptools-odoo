@@ -17,14 +17,14 @@ ADDONS_NAMESPACE = 'odoo_addons'
 
 ODOO_VERSION_INFO = {
     '8.0': {
-        'odoo_dep': 'odoo>=8,<9',
+        'odoo_dep': 'odoo>=8.0a,<9.0a',
         'base_addons': base_addons.odoo8,
-        'addon_dep_version': '>=8,<9',
+        'addon_dep_version': '>=8.0a,<9.0a',
     },
     '9.0': {
-        'odoo_dep': 'odoo>=9,<10',
+        'odoo_dep': 'odoo>=9.0a,<9.1a',
         'base_addons': base_addons.odoo9,
-        'addon_dep_version': '>=9,<10',
+        'addon_dep_version': '>=9.0a,<9.1a',
     },
 }
 
