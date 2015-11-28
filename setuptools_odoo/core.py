@@ -22,7 +22,7 @@ ODOO_VERSION_INFO = {
         'addon_dep_version': '>=8,<9',
     },
     '9.0': {
-        'dep': 'odoo>=9,<10',
+        'odoo_dep': 'odoo>=9,<10',
         'base_addons': base_addons.odoo9,
         'addon_dep_version': '>=9,<10',
     },
