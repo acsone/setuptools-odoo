@@ -161,7 +161,7 @@ def prepare_odoo_addon():
 def prepare_odoo_addons():
     addons_dir = ADDONS_NAMESPACE
     setup_keywords = {
-        'packages': find_packages(),
+        'packages': setuptools.find_packages(),
         'include_package_data': True,
         'namespace_packages': [ADDONS_NAMESPACE],
         'zip_safe': False,
