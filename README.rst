@@ -1,6 +1,10 @@
 .. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
    :alt: License: LGPL-3
+.. image:: https://travis-ci.org/acsone/setuptools-odoo.svg?branch=master
+   :target: https://travis-ci.org/acsone/setuptools-odoo
+.. image:: https://coveralls.io/repos/acsone/setuptools-odoo/badge.png?branch=master 
+   :target: https://coveralls.io/r/acsone/setuptools-odoo?branch=master
 
 ===============
 setuptools-odoo

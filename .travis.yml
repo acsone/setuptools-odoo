@@ -1,4 +1,18 @@
+sudo: false
+cache: pip
 language: python
+
 python:
   - "2.7"
-script: nosetests
+
+install:
+  - pip install .
+  - pip install coverall
+  - pip install flake8
+
+script:
+  - flake8 . --exclude=__init__.py
+  - coverage run --source setuptools_odoo setup.py test
+
+after_success:
+  - coveralls
