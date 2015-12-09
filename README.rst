@@ -149,16 +149,16 @@ creates a ``setup.py`` for each addon according to the following structure:
     setup/addon1/setup.py
     setup/addon1/odoo_addons/
     setup/addon1/odoo_addons/__init__.py
-    setup/addon1/odoo_addons/<addon1-name> -> ../../../<addon1-name>
+    setup/addon1/odoo_addons/<addon1_name> -> ../../../<addon1_name>
     setup/addon2/odoo_addons/
     setup/addon2/odoo_addons/__init__.py
-    setup/addon2/odoo_addons/<addon2-name> -> ../../../<addon2-name>
-    <addon1-name>/
-    <addon1-name>/__openerp__.py
-    <addon1-name>/...
-    <addon2-name>/
-    <addon2-name>/__openerp__.py
-    <addon2-name>/...
+    setup/addon2/odoo_addons/<addon2_name> -> ../../../<addon2_name>
+    <addon1_name>/
+    <addon1_name>/__openerp__.py
+    <addon1_name>/...
+    <addon2_name>/
+    <addon2_name>/__openerp__.py
+    <addon2_name>/...
 
 Helper API
 ----------
