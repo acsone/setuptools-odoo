@@ -131,7 +131,8 @@ def prepare_odoo_addon():
     addons = [a for a in addons
               if os.path.isdir(os.path.realpath(os.path.join(addons_dir, a)))]
     if len(addons) != 1:
-        raise DistutilsSetupError('%s must contain exactly one Odoo addon dir' %
+        raise DistutilsSetupError('%s must contain exactly one '
+                                  'Odoo addon dir' %
                                   os.path.abspath(addons_dir))
     addon_name = addons[0]
     addon_dir = os.path.join(ADDONS_NAMESPACE, addon_name)
