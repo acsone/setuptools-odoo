@@ -78,8 +78,8 @@ method, start Odoo using the ``odoo-server-autodiscover`` or
 
 It is of course highly recommanded to run all this inside a virtualenv.
 
-Packaging a multiple addons
----------------------------
+Packaging multiple addons
+-------------------------
 
 Addons that are intended to be reused or depended upon by other addons
 MUST be packaged individually.  When preparing a project for a specific customer, 
@@ -109,16 +109,22 @@ where setup.py has the following content:
     import setuptools
 
     setuptools.setup(
-        name='<your project pakcage name>',
+        name='<your project package name>',
         version='<your version>',
         # ...any other setup() keyword
         setup_requires=['setuptools-odoo'],
         odoo_addons=True,
     )
 
-The ``install_requires`` argument will be populated automatically by inspecting the
-manifests of the addons, adding dependencies on Odoo, any addon not found
-in the addons directory, and external python dependencies.
+The following setup() keyword arguments are computed automatically from the 
+Odoo manifest files (``__openerp__.py``) and contain:
+
+  * ``packages``: autodetected packages
+  * ``namespace_packages``: ``['odoo_addons']``
+  * ``zip_safe``: ``False``
+  * ``include_package_data``: ``True``
+  * ``install_requires``: dependencies on Odoo, any depending addon not found
+    in the addons directory, and external python dependencies.
 
 Specifying odoo_addons=True is the same as specifying odoo_addons='odoo_addons'.
 If your odoo_addons namespace package directory is located elsewhere, say in 'src',
