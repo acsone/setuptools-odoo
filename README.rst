@@ -167,7 +167,7 @@ setuptools-odoo exposes the following public API.
 
   .. code::
 
-    TODO
+    TODO...
 
 Credits
 -------
