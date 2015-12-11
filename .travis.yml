@@ -8,11 +8,10 @@ python:
 install:
   - pip install .
   - pip install coveralls
-  - pip install flake8
+  - pip install pytest pytest-cov pytest-flake8
 
 script:
-  - flake8 . --exclude=__init__.py
-  - coverage run --source setuptools_odoo setup.py test
+  - py.test --cov=setuptools_odoo --flake8
 
 after_success:
   - coveralls
