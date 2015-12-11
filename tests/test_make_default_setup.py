@@ -6,7 +6,7 @@ import os
 import shutil
 import unittest
 
-from setuptools_odoo.make_default_setup import make_default_setup_addons_dir
+from setuptools_odoo import make_default_setup
 
 from . import DATA_DIR
 
@@ -28,7 +28,7 @@ class TestMakeDefaultSetup(unittest.TestCase):
     def test1(self):
         expected_dir = os.path.join(DATA_DIR, 'setup_reusable_addons')
         generated_dir = os.path.join(DATA_DIR, 'setup')
-        make_default_setup_addons_dir(DATA_DIR, False)
+        make_default_setup.main(['--addons-dir', DATA_DIR, '-f'])
         dc = filecmp.dircmp(expected_dir, generated_dir)
         self._assert_no_diff(dc)
         shutil.rmtree(generated_dir)
