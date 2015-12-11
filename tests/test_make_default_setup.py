@@ -1,0 +1,38 @@
+# -*- coding: utf-8 -*-
+# © 2015 ACSONE SA/NV
+# License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
+import filecmp
+import os
+import shutil
+import unittest
+
+from setuptools_odoo.make_default_setup import make_default_setup_addons_dir
+
+from . import DATA_DIR
+
+
+class TestMakeDefaultSetup(unittest.TestCase):
+
+    def _assert_no_diff(self, dc):
+        def _filter(l):
+            return [i for i in l if not i.endswith('.pyc')]
+        self.assertFalse(_filter(dc.left_only),
+                         "missing %s in %s" % (dc.left_only, dc.right))
+        self.assertFalse(_filter(dc.right_only),
+                         "unexpected %s in %s" % (dc.right_only, dc.right))
+        self.assertFalse(_filter(dc.diff_files),
+                         "differing %s in %s" % (dc.diff_files, dc.right))
+        for sub_dc in dc.subdirs.values():
+            self._assert_no_diff(sub_dc)
+
+    def test1(self):
+        expected_dir = os.path.join(DATA_DIR, 'setup_reusable_addons')
+        generated_dir = os.path.join(DATA_DIR, 'setup')
+        make_default_setup_addons_dir(DATA_DIR, False)
+        dc = filecmp.dircmp(expected_dir, generated_dir)
+        self._assert_no_diff(dc)
+        shutil.rmtree(generated_dir)
+
+
+if __name__ == '__main__':
+    unittest.main()
