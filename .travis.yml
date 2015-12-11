@@ -1,5 +1,4 @@
 sudo: false
-cache: pip
 language: python
 
 python:
@@ -8,7 +7,7 @@ python:
 install:
   - pip install .
   - pip install coveralls
-  - pip install pytest pytest-cov pytest-flake8
+  - pip install "pytest>=2.8" pytest-cov pytest-flake8
 
 script:
   - py.test --cov=setuptools_odoo --flake8
