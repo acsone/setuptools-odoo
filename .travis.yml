@@ -5,9 +5,9 @@ python:
   - "2.7"
 
 install:
-  - pip install .
+  - pip install -e .  # it seems we need -e to enable coverage of setup.py calls
   - pip install coveralls
-  - pip install "pytest>=2.8" pytest-cov pytest-flake8
+  - pip install pytest pytest-cov pytest-flake8
 
 script:
   - py.test --cov=setuptools_odoo --flake8
