@@ -5,12 +5,10 @@ python:
   - "2.7"
 
 install:
-  - pip install -e .  # it seems we need -e to enable coverage of setup.py calls
-  - pip install coveralls
-  - pip install pytest pytest-cov pytest-flake8
+  - pip install tox
 
 script:
-  - py.test --cov=setuptools_odoo --flake8
+  - tox
 
 after_success:
   - coveralls
