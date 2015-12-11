@@ -156,7 +156,7 @@ def prepare_odoo_addon():
         # TODO: keywords, classifiers, authors
     }
     # import pprint; pprint.pprint(setup_keywords)
-    return setup_keywords
+    return {k: v for k, v in setup_keywords.items() if v is not None}
 
 
 def prepare_odoo_addons():
@@ -169,4 +169,4 @@ def prepare_odoo_addons():
         'install_requires': get_install_requires_odoo_addons(addons_dir),
     }
     # import pprint; pprint.pprint(setup_keywords)
-    return setup_keywords
+    return {k: v for k, v in setup_keywords.items() if v is not None}

@@ -1,13 +1,16 @@
+# -*- coding: utf-8 -*-
+# © 2015 ACSONE SA/NV
+# License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 import os
 import unittest
 
 import setuptools_odoo
 
-
-DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+from . import DATA_DIR
 
 
 class TestInstallRequires(unittest.TestCase):
+    """ Test the install_requires... public api """
 
     def test_addons_dir(self):
         r = setuptools_odoo.get_install_requires_odoo_addons(DATA_DIR)
