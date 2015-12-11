@@ -13,7 +13,7 @@ from . import DATA_DIR, working_directory_keeper
 
 
 class TestPrepare(unittest.TestCase):
-    """ Test the prepare... internal api """
+    """ Test the prepare... public api """
 
     def test_addon1(self):
         addon_dir = os.path.join(DATA_DIR, 'setup_reusable_addons', 'addon1')
