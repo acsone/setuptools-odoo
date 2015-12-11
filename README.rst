@@ -3,8 +3,8 @@
    :alt: License: LGPL-3
 .. image:: https://travis-ci.org/acsone/setuptools-odoo.svg?branch=master
    :target: https://travis-ci.org/acsone/setuptools-odoo
-.. image:: https://coveralls.io/repos/acsone/setuptools-odoo/badge.png?branch=master 
-   :target: https://coveralls.io/r/acsone/setuptools-odoo?branch=master
+.. image:: https://coveralls.io/repos/acsone/setuptools-odoo/badge.svg?branch=master&service=github 
+   :target: https://coveralls.io/github/acsone/setuptools-odoo?branch=master
 
 ===============
 setuptools-odoo
