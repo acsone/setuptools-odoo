@@ -4,21 +4,30 @@
 
 import ast
 import os
-from distutils.core import DistutilsSetupError
+
+MANIFEST_NAMES = ('__openerp__.py', '__odoo__.py', '__terp__.py')
+
+
+class NoManifestFound(Exception):
+    pass
 
 
 def get_manifest_path(addon_dir):
-    for manifest_name in ('__odoo__.py', '__openerp__.py', '__terp__.py'):
+    for manifest_name in MANIFEST_NAMES:
         manifest_path = os.path.join(addon_dir, manifest_name)
         if os.path.isfile(manifest_path):
             return manifest_path
 
 
+def parse_manifest(s):
+    return ast.literal_eval(s)
+
+
 def read_manifest(addon_dir):
     manifest_path = get_manifest_path(addon_dir)
     if not manifest_path:
-        raise DistutilsSetupError("no Odoo manifest found in %s" % addon_dir)
-    return ast.literal_eval(open(manifest_path).read())
+        raise NoManifestFound("no Odoo manifest found in %s" % addon_dir)
+    return parse_manifest(open(manifest_path).read())
 
 
 def is_installable_addon(addon_dir):

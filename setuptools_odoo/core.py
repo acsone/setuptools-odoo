@@ -9,6 +9,7 @@ from distutils.core import DistutilsSetupError
 from . import base_addons
 from . import external_dependencies
 from .manifest import read_manifest, is_installable_addon
+from .git_postversion import get_git_postversion
 
 
 ADDON_PKG_NAME_PREFIX = 'odoo-addon-'
@@ -42,6 +43,7 @@ def _get_version(addon_dir, manifest):
         raise DistutilsSetupError("Unsupported odoo version '%s' in %s" %
                                   (odoo_version, addon_dir))
     odoo_version_info = ODOO_VERSION_INFO[odoo_version]
+    version = get_git_postversion(addon_dir)
     return version, odoo_version_info
 
 
