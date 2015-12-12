@@ -48,7 +48,7 @@ class TestPrepare(unittest.TestCase):
                 'name': 'odoo-addon-addon2',
                 'namespace_packages': ['odoo_addons'],
                 'packages': ['odoo_addons'],
-                'version': '8.0.1.0.0',
+                'version': '8.0.1.0.1',
                 'zip_safe': False,
             })
 
