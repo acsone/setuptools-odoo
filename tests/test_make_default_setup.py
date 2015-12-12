@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # © 2015 ACSONE SA/NV
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
+
 import filecmp
 import os
 import shutil
@@ -15,7 +16,9 @@ class TestMakeDefaultSetup(unittest.TestCase):
 
     def _assert_no_diff(self, dc):
         def _filter(l):
-            return [i for i in l if not i.endswith('.pyc')]
+            return [i for i in l
+                    if not i.endswith('.pyc')
+                    and not i.endswith('.egg-info')]
         self.assertFalse(_filter(dc.left_only),
                          "missing %s in %s" % (dc.left_only, dc.right))
         self.assertFalse(_filter(dc.right_only),
