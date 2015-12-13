@@ -77,19 +77,28 @@ def get_git_postversion(addon_dir):
     If the last change to the addon correspond to the version number in the
     manifest it is used as is for the python package version. Otherwise a
     counter is incremented for each commit and resulting version number has
-    the following form: [8|9].0.x.y.z.devN.sha1, N being the number of git
+    the following form: [8|9].0.x.y.z.1devN, N being the number of git
     commits since the version change.
+
+    Note: we use .1devN because:
+    * pip ignores .postN  by design (https://github.com/pypa/pip/issues/2872)
+    * x.y.z.devN is anterior to x.y.z
+
+    Note: we don't put the sha1 of the commit in the version number because
+    this is not PEP 440 compliant and is therefore misinterpreted by pip.
     """
-    SHA_UNCOMMITTED = '0'
     addon_dir = os.path.realpath(addon_dir)
     last_version = read_manifest(addon_dir).get('version')
     last_version_parsed = parse_version(last_version)
     if not is_git_controlled(addon_dir):
         return last_version
-    last_sha = None
-    count = 0
     if get_git_uncommitted(addon_dir):
-        last_sha = SHA_UNCOMMITTED
+        uncommitted = True
+        count = 1
+    else:
+        uncommitted = False
+        count = 0
+    last_sha = None
     for sha in git_log_iterator(addon_dir):
         try:
             manifest = read_manifest_from_sha(sha, addon_dir)
@@ -103,7 +112,18 @@ def get_git_postversion(addon_dir):
             last_sha = sha
         else:
             count += 1
-    if count or last_sha == SHA_UNCOMMITTED:
-        return last_version + ".1dev%s.%s" % (count, last_sha)
-    else:
+    if not count:
         return last_version
+    if uncommitted:
+        if last_sha:
+            return last_version + ".1dev%s" % count
+        else:
+            return last_version + ".dev1"
+    else:
+        if last_sha:
+            return last_version + ".1dev%s" % count
+        else:
+            # if everything is committed, the last commit
+            # must have the same version as current,
+            # so last_sha must be set and we'll never reach this branch
+            pass

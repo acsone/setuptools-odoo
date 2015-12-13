@@ -170,13 +170,13 @@ git log of the addon subtree.
 If the last change to the addon corresponds to the version number in the manifest,
 it is used as is for the python package version. Otherwise a counter
 is incremented for each commit and the resulting version number has the following
-form: [8|9].0.x.y.z.1devN.sha1 [1], N being the number of git commits since
+form: [8|9].0.x.y.z.1devN [1], N being the number of git commits since
 the version change.
 
 This scheme is compliant with the accepted python versioning scheme documented
 in `PEP 440 <https://www.python.org/dev/peps/pep-0440/#developmental-releases>`_.
 
-Note: for pip to use developmental version, it must be invoked with the --pre
+Note: for pip to install a developmental version, it must be invoked with the --pre
 option.
 
 Helper API
@@ -197,4 +197,4 @@ Author:
 
 .. [1] The weird 1 prefix in the .1devN scheme is used because .postN are ignored by
    pip (`issue 2872 <https://github.com/pypa/pip/issues/2872>`_), and x.y.z.devN is
-   considered anterior to x.y.z. When pip resolves the issue, we may switch to .postN.
+   considered anterior to x.y.z.
