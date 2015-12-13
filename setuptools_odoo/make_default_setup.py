@@ -56,7 +56,7 @@ def make_default_setup_addons_dir(addons_dir, force):
         make_default_setup_addon(addon_setup_dir, addon_dir, force)
 
 
-def main(args):
+def main(args=None):
     parser = argparse.ArgumentParser(
         description='Generate default setup.py for all addons in an '
                     'Odoo addons directory'
