@@ -104,6 +104,6 @@ def get_git_postversion(addon_dir):
         else:
             count += 1
     if count or last_sha == SHA_UNCOMMITTED:
-        return last_version + ".dev%s.%s" % (count, last_sha)
+        return last_version + ".1dev%s.%s" % (count, last_sha)
     else:
         return last_version
