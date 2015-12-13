@@ -13,12 +13,12 @@ from .core import (
 def _set_dist_keywords(dist, setup_keywords):
     # got this trick from pbr
     for key, val in setup_keywords.items():
-        if hasattr(dist.metadata, 'set_' + key):
-            getattr(dist.metadata, 'set_' + key)(val)
-        elif hasattr(dist.metadata, key):
-            setattr(dist.metadata, key, val)
+        if hasattr(dist.metadata, key):
+            if getattr(dist.metadata, key) is None:
+                setattr(dist.metadata, key, val)
         elif hasattr(dist, key):
-            setattr(dist, key, val)
+            if getattr(dist, key) is None:
+                setattr(dist, key, val)
         else:
             msg = 'Unknown distribution option: %s' % repr(key)
             warnings.warn(msg)
