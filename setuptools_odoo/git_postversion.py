@@ -71,16 +71,16 @@ def read_manifest_from_sha(sha, addon_dir):
 
 
 def get_git_postversion(addon_dir):
-    """ return the addon version number, with a post version increment
+    """ return the addon version number, with a developmental version increment
     if there were git commits in the addon_dir after the last version change.
 
     If the last change to the addon correspond to the version number in the
     manifest it is used as is for the python package version. Otherwise a
     counter is incremented for each commit and resulting version number has
-    the following form: [8|9].0.x.y.z.postN-sha1, N being the number of git
+    the following form: [8|9].0.x.y.z.devN.sha1, N being the number of git
     commits since the version change.
     """
-    UNCOMMITTED = 'draft'
+    SHA_UNCOMMITTED = '0'
     addon_dir = os.path.realpath(addon_dir)
     last_version = read_manifest(addon_dir).get('version')
     last_version_parsed = parse_version(last_version)
@@ -89,7 +89,7 @@ def get_git_postversion(addon_dir):
     last_sha = None
     count = 0
     if get_git_uncommitted(addon_dir):
-        last_sha = UNCOMMITTED
+        last_sha = SHA_UNCOMMITTED
     for sha in git_log_iterator(addon_dir):
         try:
             manifest = read_manifest_from_sha(sha, addon_dir)
@@ -103,7 +103,7 @@ def get_git_postversion(addon_dir):
             last_sha = sha
         else:
             count += 1
-    if count or last_sha == UNCOMMITTED:
-        return last_version + ".post%s-%s" % (count, last_sha)
+    if count or last_sha == SHA_UNCOMMITTED:
+        return last_version + ".dev%s.%s" % (count, last_sha)
     else:
         return last_version

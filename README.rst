@@ -165,13 +165,19 @@ Versioning
 
 setuptools-odoo does it best to detect if an addon has changed compared
 to the version indicated in it's manifest. To this end it explores the
-git log for the addon subtree.
+git log of the addon subtree.
 
 If the last change to the addon corresponds to the version number in the manifest,
 it is used as is for the python package version. Otherwise a counter
 is incremented for each commit and the resulting version number has the following
-form: [8|9].0.x.y.z.postN-sha1, N being the number of git commits since
+form: [8|9].0.x.y.z.devN.sha1, N being the number of git commits since
 the version change.
+
+This scheme is compliant with the accepted python versioning scheme documented
+in `PEP 440 <https://www.python.org/dev/peps/pep-0440/#developmental-releases>`_.
+
+Note: for pip to use developmental version, it must be invoked with the --pre
+option.
 
 Helper API
 ----------
