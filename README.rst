@@ -167,9 +167,9 @@ setuptools-odoo does it best to detect if an addon has changed compared
 to the version indicated in it's manifest. To this end it explores the
 git log for the addon subtree.
 
-If the last change to the addon correspond to the version number in the manifest
+If the last change to the addon corresponds to the version number in the manifest,
 it is used as is for the python package version. Otherwise a counter
-is incremented for each commit and resulting version number has the following
+is incremented for each commit and the resulting version number has the following
 form: [8|9].0.x.y.z.postN-sha1, N being the number of git commits since
 the version change.
 
