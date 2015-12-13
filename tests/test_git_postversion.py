@@ -17,7 +17,7 @@ class TestGitPostversion(unittest.TestCase):
         """ addon1 has 1 commit after version 8.0.1.0.0 """
         addon1_dir = os.path.join(DATA_DIR, 'addon1')
         version = git_postversion.get_git_postversion(addon1_dir)
-        assert version == '8.0.1.0.0.1dev1'
+        assert version == '8.0.1.0.0.99.dev1'
 
     def test_addon2(self):
         """ addon2 has not changed since 8.0.1.0.1 """
@@ -47,7 +47,7 @@ class TestGitPostversion(unittest.TestCase):
             open(manifest_path, "w").write(manifest.replace("summary",
                                                             "great summary"))
             version = git_postversion.get_git_postversion(addon1_dir)
-            assert version == '8.0.1.0.0.1dev2'
+            assert version == '8.0.1.0.0.99.dev2'
         finally:
             open(manifest_path, "w").write(manifest)
 

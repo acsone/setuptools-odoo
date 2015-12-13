@@ -80,7 +80,7 @@ def get_git_postversion(addon_dir):
     the following form: [8|9].0.x.y.z.1devN, N being the number of git
     commits since the version change.
 
-    Note: we use .1devN because:
+    Note: we use .99.devN because:
     * pip ignores .postN  by design (https://github.com/pypa/pip/issues/2872)
     * x.y.z.devN is anterior to x.y.z
 
@@ -114,16 +114,11 @@ def get_git_postversion(addon_dir):
             count += 1
     if not count:
         return last_version
+    if last_sha:
+        return last_version + ".99.dev%s" % count
     if uncommitted:
-        if last_sha:
-            return last_version + ".1dev%s" % count
-        else:
-            return last_version + ".dev1"
-    else:
-        if last_sha:
-            return last_version + ".1dev%s" % count
-        else:
-            # if everything is committed, the last commit
-            # must have the same version as current,
-            # so last_sha must be set and we'll never reach this branch
-            pass
+        return last_version + ".dev1"
+    # if everything is committed, the last commit
+    # must have the same version as current,
+    # so last_sha must be set and we'll never reach this branch
+    return last_version
