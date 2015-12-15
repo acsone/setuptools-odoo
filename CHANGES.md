@@ -2,6 +2,9 @@
 ### Added
 - make_pkg_name public api to convert an addon name to a python 
   package name
+- make_pkg_requirement public api to obtain a valid package requirement
+  for a given addon (same as make_pkg_name but includes requirement
+  for the correct Odoo series)
 
 ### Fixed
 - crash in case a previous commit had a bad `__openerp__.py`

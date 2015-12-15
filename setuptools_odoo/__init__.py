@@ -9,6 +9,7 @@ from .core import (
     get_install_requires_odoo_addon,
     get_install_requires_odoo_addons,
     make_pkg_name,
+    make_pkg_requirement,
 )
 
 
@@ -18,4 +19,5 @@ __all__ = [
     get_install_requires_odoo_addon.__name__,
     get_install_requires_odoo_addons.__name__,
     make_pkg_name.__name__,
+    make_pkg_requirement.__name__,
 ]

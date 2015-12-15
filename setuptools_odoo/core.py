@@ -63,6 +63,14 @@ def make_pkg_name(addon_name):
     return ADDON_PKG_NAME_PREFIX + addon_name
 
 
+def make_pkg_requirement(addon_dir):
+    manifest = read_manifest(addon_dir)
+    addon_name = os.path.basename(addon_dir)
+    version, odoo_version_info = _get_version(addon_dir, manifest)
+    addon_dep_version = odoo_version_info['addon_dep_version']
+    return make_pkg_name(addon_name) + addon_dep_version
+
+
 def _get_install_requires(odoo_version_info, manifest, no_depends=[]):
     # dependency on Odoo
     install_requires = [odoo_version_info['odoo_dep']]

@@ -8,6 +8,7 @@ from setuptools_odoo.core import (
     prepare_odoo_addon,
     prepare_odoo_addons,
     make_pkg_name,
+    make_pkg_requirement,
 )
 
 from . import DATA_DIR, working_directory_keeper
@@ -19,6 +20,11 @@ class TestPrepare(unittest.TestCase):
     def test_make_pkg_name(self):
         pkg_name = make_pkg_name('addon1')
         self.assertEquals(pkg_name, 'odoo-addon-addon1')
+
+    def test_make_pkg_requirement(self):
+        addon_dir = os.path.join(DATA_DIR, 'addon1')
+        requirement = make_pkg_requirement(addon_dir)
+        self.assertEquals(requirement, 'odoo-addon-addon1>=8.0a,<9.0a')
 
     def test_addon1(self):
         addon_dir = os.path.join(DATA_DIR, 'setup_reusable_addons', 'addon1')
