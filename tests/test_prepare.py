@@ -7,6 +7,7 @@ import unittest
 from setuptools_odoo.core import (
     prepare_odoo_addon,
     prepare_odoo_addons,
+    make_pkg_name,
 )
 
 from . import DATA_DIR, working_directory_keeper
@@ -14,6 +15,10 @@ from . import DATA_DIR, working_directory_keeper
 
 class TestPrepare(unittest.TestCase):
     """ Test the prepare... public api """
+
+    def test_make_pkg_name(self):
+        pkg_name = make_pkg_name('addon1')
+        self.assertEquals(pkg_name, 'odoo-addon-addon1')
 
     def test_addon1(self):
         addon_dir = os.path.join(DATA_DIR, 'setup_reusable_addons', 'addon1')

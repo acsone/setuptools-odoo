@@ -59,8 +59,8 @@ def _get_long_description(addon_dir, manifest):
         return manifest.get('description')
 
 
-def _get_pkg_name(name):
-    return ADDON_PKG_NAME_PREFIX + name
+def make_pkg_name(addon_name):
+    return ADDON_PKG_NAME_PREFIX + addon_name
 
 
 def _get_install_requires(odoo_version_info, manifest, no_depends=[]):
@@ -74,7 +74,7 @@ def _get_install_requires(odoo_version_info, manifest, no_depends=[]):
             continue
         if depend in no_depends:
             continue
-        install_require = _get_pkg_name(depend) + addon_dep_version
+        install_require = make_pkg_name(depend) + addon_dep_version
         install_requires.append(install_require)
     # python external_dependencies
     for dep in manifest.get('external_dependencies', {}).get('python', []):
@@ -122,7 +122,7 @@ def prepare_odoo_addon():
     manifest = read_manifest(addon_dir)
     version, odoo_version_info = _get_version(addon_dir, manifest)
     setup_keywords = {
-        'name': _get_pkg_name(addon_name),
+        'name': make_pkg_name(addon_name),
         'version': version,
         'description': _get_description(addon_dir, manifest),
         'long_description': _get_long_description(addon_dir, manifest),
