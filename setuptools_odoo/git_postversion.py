@@ -65,9 +65,13 @@ def read_manifest_from_sha(sha, addon_dir):
             s = _run_git_command_bytes(['show', sha + ':' + manifest_path],
                                        cwd=git_root)
         except subprocess.CalledProcessError:
-            continue
-        return parse_manifest(s)
-    raise NoManifestFound("no manifest found is %s:%s" % (sha, addon_dir))
+            break
+        try:
+            return parse_manifest(s)
+        except:
+            # invalid manifest
+            break
+    raise NoManifestFound("no manifest found in %s:%s" % (sha, addon_dir))
 
 
 def get_git_postversion(addon_dir):
