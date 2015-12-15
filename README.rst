@@ -140,7 +140,7 @@ setuptools-odoo-make-default helper script
 Since reusable addons are generally not structured using the namespace
 package but instead collected in a directory with each subdirectory containing 
 an addon, this package provides the ``setuptools-odoo-make-default`` script which
-creates a ``setup.py`` for each addon according to the following structure:
+creates a default ``setup.py`` for each addon according to the following structure:
 
   .. code::
 
@@ -150,6 +150,7 @@ creates a ``setup.py`` for each addon according to the following structure:
     setup/addon1/odoo_addons/
     setup/addon1/odoo_addons/__init__.py
     setup/addon1/odoo_addons/<addon1_name> -> ../../../<addon1_name>
+    setup/addon2/setup.py
     setup/addon2/odoo_addons/
     setup/addon2/odoo_addons/__init__.py
     setup/addon2/odoo_addons/<addon2_name> -> ../../../<addon2_name>
@@ -163,7 +164,7 @@ creates a ``setup.py`` for each addon according to the following structure:
 Versioning
 ----------
 
-setuptools-odoo does it best to detect if an addon has changed compared
+setuptools-odoo does its best to detect if an addon has changed compared
 to the version indicated in it's manifest. To this end it explores the
 git log of the addon subtree.
 
