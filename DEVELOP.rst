@@ -1,3 +1,8 @@
+How to run tests
+================
+
+* run ``tox`` (if not installed ``apt-get install tox``)
+
 How to release
 ==============
 
@@ -5,6 +10,7 @@ How to release
 * update changelog in CHANGES.rst
 * python setup.py check --restructuredtext
 * commit everything
+* make sure tests pass!
 * git tag <version>
 * git push --tags
 * python setup.py sdist bdist_wheel
