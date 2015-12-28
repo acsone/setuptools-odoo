@@ -1,3 +1,6 @@
+setuptools-odoo
+===============
+
 .. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
    :alt: License: LGPL-3
@@ -8,14 +11,10 @@
 .. image:: https://coveralls.io/repos/acsone/setuptools-odoo/badge.svg?branch=master&service=github
    :target: https://coveralls.io/github/acsone/setuptools-odoo?branch=master
 
-===============
-setuptools-odoo
-===============
-
 A library to help packaging Odoo addons with setuptools.
 
 Packaging a single addon
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 To be packaged with this library, the addon source code must have the
 following structure (assuming the addon is named ``<addon_name>``):
@@ -85,7 +84,7 @@ method, start Odoo using the ``odoo-server-autodiscover`` or
 It is of course highly recommanded to run all this inside a virtualenv.
 
 Packaging multiple addons
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Addons that are intended to be reused or depended upon by other addons
 MUST be packaged individually.  When preparing a project for a specific customer,
@@ -137,7 +136,7 @@ If your odoo_addons namespace package directory is located elsewhere, say in 'sr
 you can specify it using odoo_addons='src/odoo_addons'.
 
 setuptools-odoo-make-default helper script
-------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Since reusable addons are generally not structured using the namespace
 package but instead collected in a directory with each subdirectory containing
@@ -164,7 +163,7 @@ creates a default ``setup.py`` for each addon according to the following structu
     <addon2_name>/...
 
 Versioning
-----------
+~~~~~~~~~~
 
 setuptools-odoo does its best to detect if an addon has changed compared
 to the version indicated in it's manifest. To this end it explores the
@@ -183,7 +182,7 @@ Note: for pip to install a developmental version, it must be invoked with the --
 option.
 
 Helper API
-----------
+~~~~~~~~~~
 
 setuptools-odoo exposes the following public API.
 
@@ -192,7 +191,7 @@ setuptools-odoo exposes the following public API.
     TODO...
 
 Credits
--------
+~~~~~~~
 
 Author:
 
