@@ -3,7 +3,7 @@
    :alt: License: LGPL-3
 .. image:: https://travis-ci.org/acsone/setuptools-odoo.svg?branch=master
    :target: https://travis-ci.org/acsone/setuptools-odoo
-.. image:: https://coveralls.io/repos/acsone/setuptools-odoo/badge.svg?branch=master&service=github 
+.. image:: https://coveralls.io/repos/acsone/setuptools-odoo/badge.svg?branch=master&service=github
    :target: https://coveralls.io/github/acsone/setuptools-odoo?branch=master
 
 ===============
@@ -15,7 +15,7 @@ A library to help packaging Odoo addons with setuptools.
 Packaging a single addon
 ------------------------
 
-To be packaged with this library, the addon source code must have the 
+To be packaged with this library, the addon source code must have the
 following structure (assuming the addon is named ``<addon_name>``):
 
   .. code::
@@ -27,7 +27,7 @@ following structure (assuming the addon is named ``<addon_name>``):
     odoo_addons/<addon_name>/__openerp__.py
     odoo_addons/<addon_name>/...
 
-where ``odoo_addons/__init__.py`` is a standard python namespace 
+where ``odoo_addons/__init__.py`` is a standard python namespace
 package declaration ``__init__.py``:
 
   .. code:: python
@@ -45,7 +45,7 @@ and where setup.py has the following content:
         odoo_addon=True,
     )
 
-The usual setup() keyword arguments are computed automatically from the 
+The usual setup() keyword arguments are computed automatically from the
 Odoo manifest file (``__openerp__.py``) and contain:
 
   * ``name``: the package name, ``odoo-addon-<addon_name>``
@@ -86,8 +86,8 @@ Packaging multiple addons
 -------------------------
 
 Addons that are intended to be reused or depended upon by other addons
-MUST be packaged individually.  When preparing a project for a specific customer, 
-it is common to prepare a collection of addons that are not intended to be 
+MUST be packaged individually.  When preparing a project for a specific customer,
+it is common to prepare a collection of addons that are not intended to be
 depended upon by addons outside of the project. setuptools-odoo provides
 tools to help you do that.
 
@@ -120,7 +120,7 @@ where setup.py has the following content:
         odoo_addons=True,
     )
 
-The following setup() keyword arguments are computed automatically from the 
+The following setup() keyword arguments are computed automatically from the
 Odoo manifest files (``__openerp__.py``) and contain:
 
   * ``packages``: autodetected packages
@@ -138,7 +138,7 @@ setuptools-odoo-make-default helper script
 ------------------------------------------
 
 Since reusable addons are generally not structured using the namespace
-package but instead collected in a directory with each subdirectory containing 
+package but instead collected in a directory with each subdirectory containing
 an addon, this package provides the ``setuptools-odoo-make-default`` script which
 creates a default ``setup.py`` for each addon according to the following structure:
 
@@ -196,6 +196,11 @@ Author:
 
   * Stéphane Bidoul (ACSONE)
 
+Many thanks to Daniel Reis who cleared the path, and Laurent Mignon who convinced
+me it was possible to do it using standard Python setup tools and had the idea of
+the odoo_addons namespace package.
+
+
 .. [1] The weird 99 prefix in the .99.devN scheme is used because .postN are ignored by
-   pip (as `specified in PEP 440 <https://www.python.org/dev/peps/pep-0440/#exclusive-ordered-comparison>`_), 
+   pip (as `specified in PEP 440 <https://www.python.org/dev/peps/pep-0440/#exclusive-ordered-comparison>`_),
    and x.y.z.devN is considered anterior to x.y.z.
