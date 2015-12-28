@@ -5,6 +5,10 @@
 # map names of common python external dependencies in Odoo manifest files
 # to actual python package names
 EXTERNAL_DEPENDENCIES_MAP = {
-    'dateutil': 'python-dateutil',
+    'Asterisk': 'py-Asterisk',
     'coda': 'pycoda',
+    'cups': 'pycups',
+    'dateutil': 'python-dateutil',
+    'ldap': 'python-ldap',
+    'serial': 'pyserial',
 }
