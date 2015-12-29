@@ -30,7 +30,8 @@ def is_git_controlled(path):
 
 
 def get_git_uncommitted(path):
-    r = _run_git_command_exit_code(['diff', '--quiet', '--exit-code', path])
+    r = _run_git_command_exit_code(['diff', '--quiet', '--exit-code', '.'],
+                                   cwd=path)
     return r != 0
 
 
