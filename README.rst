@@ -11,7 +11,18 @@ setuptools-odoo
 .. image:: https://coveralls.io/repos/acsone/setuptools-odoo/badge.svg?branch=master&service=github
    :target: https://coveralls.io/github/acsone/setuptools-odoo?branch=master
 
-A library to help packaging Odoo addons with setuptools.
+``setuptools-odoo`` is a library to help packaging Odoo addons with setuptools.
+It mainly populate the usual ``setup.py`` keywords from the Odoo manifest files.
+
+Together with `odoo-autodiscover
+<https://pypi.python.org/pypi/odoo-autodiscover>`_, it constitutes
+the foundation to package and distribute
+Odoo addons using standard python infrastructure (ie
+`setuptools <https://pypi.python.org/pypi/setuptools>`_,
+`pip <https://pypi.python.org/pypi/pip>`_,
+`wheel <https://pypi.python.org/pypi/wheel>`_,
+and `pypi <https://pypi.python.org>`_).
+
 
 Packaging a single addon
 ~~~~~~~~~~~~~~~~~~~~~~~~
