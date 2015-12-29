@@ -47,7 +47,7 @@ def git_log_iterator(path):
         lines = _run_git_command_lines(['log', '--oneline',
                                         '-n', str(N),
                                         '--skip', str(count),
-                                        '--', path])
+                                        '--', '.'], cwd=path)
         for line in lines:
             sha = line.split(' ', 1)[0]
             count += 1

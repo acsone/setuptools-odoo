@@ -3,6 +3,8 @@ Changes
 
 (unreleased)
 ------------
+- [FIX] fix postversioning when running outside git directory
+
 - [IMP] additional mappings for python external dependencies
 
 - [ADD] make_pkg_name public api to convert an addon name to a python 
