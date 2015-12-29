@@ -208,7 +208,7 @@ Credits
 
 Author:
 
-  * Stéphane Bidoul (ACSONE)
+  * Stéphane Bidoul (`ACSONE <http://acsone.eu/`_)
 
 Many thanks to Daniel Reis who cleared the path, and Laurent Mignon who convinced
 me it was possible to do it using standard Python setup tools and had the idea of

@@ -9,13 +9,16 @@ setuptools.setup(
     name='setuptools-odoo',
     version='1.0.0b1',
     description='A library to help package Odoo addons with setuptools',
-    long_description=open('README.rst').read(),
+    long_description='\n'.join((
+        open('README.rst').read(),
+        open('CHANGES.rst').read(),
+    )),
     classifiers=[
         'Development Status :: 4 - Beta',
         'Framework :: Odoo',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: '
-            'GNU Lesser General Public License v3 (LGPLv3)',
+        'GNU Lesser General Public License v3 (LGPLv3)',
         'Operating System :: POSIX',  # because we use symlinks
         'Programming Language :: Python :: 2.7',
     ],
