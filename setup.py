@@ -15,7 +15,6 @@ setuptools.setup(
     )),
     classifiers=[
         'Development Status :: 4 - Beta',
-        'Framework :: Odoo',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: '
         'GNU Lesser General Public License v3 (LGPLv3)',
