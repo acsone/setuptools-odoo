@@ -4,7 +4,7 @@ setuptools-odoo
 .. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
    :alt: License: LGPL-3
-.. image:: https://badge.fury.io/py/setuptools-odoo.svg?
+.. image:: https://badge.fury.io/py/setuptools-odoo.svg
     :target: http://badge.fury.io/py/setuptools-odoo
 .. image:: https://travis-ci.org/acsone/setuptools-odoo.svg?branch=master
    :target: https://travis-ci.org/acsone/setuptools-odoo
@@ -79,7 +79,7 @@ or ``pip`` commands such as:
 To run Odoo so it automatically discovers addons installed with this
 method, start Odoo using the ``odoo-server-autodiscover`` or
 ``odoo-autodiscover.py`` scripts provided in the `odoo-autodiscover
-<https://github.com/acsone/odoo-autodiscover>`_ package.
+<https://pypi.python.org/pypi/odoo-autodiscover>`_ package.
 
 It is of course highly recommanded to run all this inside a virtualenv.
 
@@ -172,11 +172,16 @@ git log of the addon subtree.
 If the last change to the addon corresponds to the version number in the manifest,
 it is used as is for the python package version. Otherwise a counter
 is incremented for each commit and the resulting version number has the following
-form: [8|9].0.x.y.z.99.devN [1], N being the number of git commits since
+form: [8|9].0.x.y.z.99.devN, N being the number of git commits since
 the version change.
 
 This scheme is compliant with the accepted python versioning scheme documented
 in `PEP 440 <https://www.python.org/dev/peps/pep-0440/#developmental-releases>`_.
+
+The 99 suffix is there to make sure it is considered as posterior to x.y.z.
+(.postN is ignored by pip, as `specified in PEP 440
+<https://www.python.org/dev/peps/pep-0440/#exclusive-ordered-comparison>`_,
+and x.y.z.devN is considered anterior to x.y.z.).
 
 Note: for pip to install a developmental version, it must be invoked with the --pre
 option.
@@ -190,6 +195,14 @@ setuptools-odoo exposes the following public API.
 
     TODO...
 
+Useful links
+~~~~~~~~~~~~
+
+* pypi page: https://pypi.python.org/pypi/setuptools-odoo
+* code repository: https://github.com/acsone/setuptools-odoo
+* report issues at: https://github.com/acsone/setuptools-odoo/issues
+* see also odoo-autodiscover: https://pypi.python.org/pypi/odoo-autodiscover
+
 Credits
 ~~~~~~~
 
@@ -201,7 +214,3 @@ Many thanks to Daniel Reis who cleared the path, and Laurent Mignon who convince
 me it was possible to do it using standard Python setup tools and had the idea of
 the odoo_addons namespace package.
 
-
-.. [1] The weird 99 prefix in the .99.devN scheme is used because .postN are ignored by
-   pip (as `specified in PEP 440 <https://www.python.org/dev/peps/pep-0440/#exclusive-ordered-comparison>`_),
-   and x.y.z.devN is considered anterior to x.y.z.
