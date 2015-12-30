@@ -1,8 +1,8 @@
 Changes
 ~~~~~~~
 
-1.0.0.beta1 (2015-12-29)
-------------------------
+1.0.0b1 (2015-12-29)
+--------------------
 - [FIX] fix postversioning when running outside git directory
 
 - [IMP] additional mappings for python external dependencies
