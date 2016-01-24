@@ -1,6 +1,12 @@
 Changes
 ~~~~~~~
 
+1.0.0b2 (unreleased)
+--------------------
+- [ADD] mechanism to override dependencies, to allow addon authors to
+  require minimal versions of dependent odoo addons, and to control external
+  python dependencies
+
 1.0.0b1 (2015-12-29)
 --------------------
 - [FIX] fix postversioning when running outside git directory

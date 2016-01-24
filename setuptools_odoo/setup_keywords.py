@@ -24,11 +24,28 @@ def _set_dist_keywords(dist, setup_keywords):
             warnings.warn(msg)
 
 
+def _parse_options(value):
+    depends_override = {}
+    external_dependencies_override = {}
+    if isinstance(value, dict):
+        depends_override = value.get('depends', {})
+        external_dependencies_override = value.get('external_dependencies', {})
+    return depends_override, external_dependencies_override
+
+
 def odoo_addon(dist, attr, value):
-    setup_keywords = prepare_odoo_addon()
+    depends_override, external_dependencies_override = _parse_options(value)
+    setup_keywords = prepare_odoo_addon(
+        depends_override=depends_override,
+        external_dependencies_override=external_dependencies_override,
+    )
     _set_dist_keywords(dist, setup_keywords)
 
 
 def odoo_addons(dist, attr, value):
-    setup_keywords = prepare_odoo_addons()
+    depends_override, external_dependencies_override = _parse_options(value)
+    setup_keywords = prepare_odoo_addons(
+        depends_override=depends_override,
+        external_dependencies_override=external_dependencies_override,
+    )
     _set_dist_keywords(dist, setup_keywords)

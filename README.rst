@@ -142,9 +142,42 @@ Odoo manifest files (``__openerp__.py``) and contain:
   * ``install_requires``: dependencies on Odoo, any depending addon not found
     in the addons directory, and external python dependencies.
 
-Specifying odoo_addons=True is the same as specifying odoo_addons='odoo_addons'.
-If your odoo_addons namespace package directory is located elsewhere, say in 'src',
-you can specify it using odoo_addons='src/odoo_addons'.
+Controlling setuptools-odoo behaviour
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It is possible to use a dictionary instead of ``True`` for the ``odoo_addon``
+and ``odoo_addons`` keywords, in order to control their behaviour.
+
+The following keys are supported:
+
+  * ``depends``, used to precisely control odoo addons dependencies. Its value
+    must be a dictionary mapping addon names to a package requirement string.
+  * ``external_dependencies``, used to precisely controll python external
+    dependencies. Its value must be a dictionary with one ``python`` key, with
+    value a dictionary mapping python external dependencies to python package
+    requirement strings.
+
+For instance, if your module requires at least version 8.0.3.2.0 of
+the connector addon, as well as at least version 0.5.5 of py-Asterisk,
+your setup.py would look like this:
+
+  .. code:: python
+
+    import setuptools
+
+    setuptools.setup(
+        setup_requires=['setuptools-odoo'],
+        odoo_addon={
+            'depends': {
+                'connector': 'odoo-addon-connector>=8.0.3.2.0,<9.0a',
+            },
+            'external_dependencies': {
+                'python': {
+                    'Asterisk': 'py-Asterisk>=0.5.5',
+                },
+            },
+        },
+    )
 
 setuptools-odoo-make-default helper script
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

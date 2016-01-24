@@ -19,6 +19,10 @@ class TestMakeDefaultSetup(unittest.TestCase):
             return [i for i in l
                     if not i.endswith('.pyc') and
                     not i.endswith('.egg-info')]
+        if dc.right.endswith('addon4'):
+            # in addon4, we have a customized
+            # setup.py to test depends and external_dependencies overrides
+            return
         self.assertFalse(_filter(dc.left_only),
                          "missing %s in %s" % (dc.left_only, dc.right))
         self.assertFalse(_filter(dc.right_only),
@@ -33,8 +37,10 @@ class TestMakeDefaultSetup(unittest.TestCase):
         generated_dir = os.path.join(DATA_DIR, 'setup')
         make_default_setup.main(['--addons-dir', DATA_DIR, '-f'])
         dc = filecmp.dircmp(expected_dir, generated_dir)
-        self._assert_no_diff(dc)
-        shutil.rmtree(generated_dir)
+        try:
+            self._assert_no_diff(dc)
+        finally:
+            shutil.rmtree(generated_dir)
 
 
 if __name__ == '__main__':

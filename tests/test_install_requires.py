@@ -14,7 +14,8 @@ class TestInstallRequires(unittest.TestCase):
 
     def test_addons_dir(self):
         r = setuptools_odoo.get_install_requires_odoo_addons(DATA_DIR)
-        self.assertEquals(r, ['odoo>=8.0a,<9.0a',
+        self.assertEquals(r, ['astropy',
+                              'odoo>=8.0a,<9.0a',
                               'python-dateutil'])
 
     def test_addon1(self):
