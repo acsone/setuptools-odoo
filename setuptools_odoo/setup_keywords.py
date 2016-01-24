@@ -28,8 +28,10 @@ def _parse_options(value):
     depends_override = {}
     external_dependencies_override = {}
     if isinstance(value, dict):
-        depends_override = value.get('depends', {})
-        external_dependencies_override = value.get('external_dependencies', {})
+        depends_override = \
+            value.get('depends_override', {})
+        external_dependencies_override = \
+            value.get('external_dependencies_override', {})
     return depends_override, external_dependencies_override
 
 

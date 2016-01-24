@@ -150,12 +150,13 @@ and ``odoo_addons`` keywords, in order to control their behaviour.
 
 The following keys are supported:
 
-  * ``depends``, used to precisely control odoo addons dependencies. Its value
-    must be a dictionary mapping addon names to a package requirement string.
-  * ``external_dependencies``, used to precisely controll python external
-    dependencies. Its value must be a dictionary with one ``python`` key, with
-    value a dictionary mapping python external dependencies to python package
-    requirement strings.
+  * ``depends_override``, used to precisely control odoo addons dependencies.
+    Its value must be a dictionary mapping addon names to a package
+    requirement string.
+  * ``external_dependencies_override``, used to precisely controll python
+    external dependencies. Its value must be a dictionary with one ``python``
+    key, with value a dictionary mapping python external dependencies to
+    python package requirement strings.
 
 For instance, if your module requires at least version 8.0.3.2.0 of
 the connector addon, as well as at least version 0.5.5 of py-Asterisk,
@@ -168,10 +169,10 @@ your setup.py would look like this:
     setuptools.setup(
         setup_requires=['setuptools-odoo'],
         odoo_addon={
-            'depends': {
+            'depends_override': {
                 'connector': 'odoo-addon-connector>=8.0.3.2.0,<9.0a',
             },
-            'external_dependencies': {
+            'external_dependencies_override': {
                 'python': {
                     'Asterisk': 'py-Asterisk>=0.5.5',
                 },
