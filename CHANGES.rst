@@ -1,7 +1,7 @@
 Changes
 ~~~~~~~
 
-1.0.0b2 (unreleased)
+1.0.0b2 (2016-01-26)
 --------------------
 - [ADD] mechanism to override dependencies, to allow addon authors to
   require minimal versions of dependent odoo addons, and to control external

@@ -7,7 +7,7 @@ import setuptools
 
 setuptools.setup(
     name='setuptools-odoo',
-    version='1.0.0b2.dev1',
+    version='1.0.0b2',
     description='A library to help package Odoo addons with setuptools',
     long_description='\n'.join((
         open('README.rst').read(),
