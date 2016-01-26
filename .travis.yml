@@ -7,6 +7,8 @@ python:
 install:
   - pip install tox
   - pip install coveralls
+  # some tests work on the git history so we need all of it!
+  - git fetch --unshallow
 
 script:
   - tox
