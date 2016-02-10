@@ -93,7 +93,7 @@ def get_git_postversion(addon_dir):
     this is not PEP 440 compliant and is therefore misinterpreted by pip.
     """
     addon_dir = os.path.realpath(addon_dir)
-    last_version = read_manifest(addon_dir).get('version')
+    last_version = read_manifest(addon_dir).get('version', '0.0.0')
     last_version_parsed = parse_version(last_version)
     if not is_git_controlled(addon_dir):
         return last_version
@@ -109,7 +109,7 @@ def get_git_postversion(addon_dir):
             manifest = read_manifest_from_sha(sha, addon_dir)
         except NoManifestFound:
             break
-        version = manifest.get('version')
+        version = manifest.get('version', '0.0.0')
         version_parsed = parse_version(version)
         if version_parsed != last_version_parsed:
             break
