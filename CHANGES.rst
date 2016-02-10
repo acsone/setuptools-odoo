@@ -1,7 +1,7 @@
 Changes
 ~~~~~~~
 
-1.0.0b3 (unreleased)
+1.0.0b3 (2016-02-10)
 --------------------
 - [ADD] mechanism to specify which Odoo version to use in dependencies
   (8.0, 9.0) in case some addons to be packaged have non-standard version
