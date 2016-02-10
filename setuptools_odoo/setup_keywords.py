@@ -27,6 +27,7 @@ def _set_dist_keywords(dist, setup_keywords):
 def _parse_options(value):
     depends_override = {}
     external_dependencies_override = {}
+    odoo_version_override = None
     if isinstance(value, dict):
         depends_override = \
             value.get('depends_override', {})

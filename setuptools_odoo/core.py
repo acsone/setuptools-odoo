@@ -69,7 +69,7 @@ def make_pkg_name(addon_name):
     return ADDON_PKG_NAME_PREFIX + addon_name
 
 
-def make_pkg_requirement(addon_dir, odoo_version_override):
+def make_pkg_requirement(addon_dir, odoo_version_override=None):
     manifest = read_manifest(addon_dir)
     addon_name = os.path.basename(addon_dir)
     version, odoo_version_info = _get_version(addon_dir,
