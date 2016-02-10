@@ -5,6 +5,7 @@
 import os
 import setuptools
 from distutils.core import DistutilsSetupError
+from warnings import warn
 
 from . import base_addons
 from . import external_dependencies
@@ -30,18 +31,23 @@ ODOO_VERSION_INFO = {
 }
 
 
-def _get_version(addon_dir, manifest):
+def _get_version(addon_dir, manifest, odoo_version_override=None):
     version = manifest.get('version')
     if not version:
-        raise DistutilsSetupError("No version in manifest in %s" % addon_dir)
-    if len(version.split('.')) < 5:
-        raise DistutilsSetupError("Version in manifest must have at least "
-                                  "5 components and start with "
-                                  "the Odoo series number in %s" % addon_dir)
-    odoo_version = '.'.join(version.split('.')[:2])
-    if odoo_version not in ODOO_VERSION_INFO:
-        raise DistutilsSetupError("Unsupported odoo version '%s' in %s" %
-                                  (odoo_version, addon_dir))
+        warn("No version in manifest in %s" % addon_dir)
+        version = '0.0.0'
+    if not odoo_version_override:
+        if len(version.split('.')) < 5:
+            raise DistutilsSetupError("Version in manifest must have at least "
+                                      "5 components and start with "
+                                      "the Odoo series number in %s" %
+                                      addon_dir)
+        odoo_version = '.'.join(version.split('.')[:2])
+        if odoo_version not in ODOO_VERSION_INFO:
+            raise DistutilsSetupError("Unsupported odoo version '%s' in %s" %
+                                      (odoo_version, addon_dir))
+    else:
+        odoo_version = odoo_version_override
     odoo_version_info = ODOO_VERSION_INFO[odoo_version]
     version = get_git_postversion(addon_dir)
     return version, odoo_version_info
@@ -63,10 +69,12 @@ def make_pkg_name(addon_name):
     return ADDON_PKG_NAME_PREFIX + addon_name
 
 
-def make_pkg_requirement(addon_dir):
+def make_pkg_requirement(addon_dir, odoo_version_override):
     manifest = read_manifest(addon_dir)
     addon_name = os.path.basename(addon_dir)
-    version, odoo_version_info = _get_version(addon_dir, manifest)
+    version, odoo_version_info = _get_version(addon_dir,
+                                              manifest,
+                                              odoo_version_override)
     addon_dep_version = odoo_version_info['addon_dep_version']
     return make_pkg_name(addon_name) + addon_dep_version
 
@@ -104,10 +112,13 @@ def _get_install_requires(odoo_version_info,
 def get_install_requires_odoo_addon(addon_dir,
                                     no_depends=[],
                                     depends_override={},
-                                    external_dependencies_override={}):
+                                    external_dependencies_override={},
+                                    odoo_version_override=None):
     """ Get the list of requirements for an addon """
     manifest = read_manifest(addon_dir)
-    version, odoo_version_info = _get_version(addon_dir, manifest)
+    version, odoo_version_info = _get_version(addon_dir,
+                                              manifest,
+                                              odoo_version_override)
     return _get_install_requires(odoo_version_info,
                                  manifest,
                                  no_depends,
@@ -117,7 +128,8 @@ def get_install_requires_odoo_addon(addon_dir,
 
 def get_install_requires_odoo_addons(addons_dir,
                                      depends_override={},
-                                     external_dependencies_override={}):
+                                     external_dependencies_override={},
+                                     odoo_version_override=None):
     """ Get the list of requirements for a directory containing addons """
     addon_dirs = []
     addons = os.listdir(addons_dir)
@@ -131,14 +143,16 @@ def get_install_requires_odoo_addons(addons_dir,
             addon_dir,
             no_depends=addons,
             depends_override=depends_override,
-            external_dependencies_override=external_dependencies_override
+            external_dependencies_override=external_dependencies_override,
+            odoo_version_override=odoo_version_override,
         )
         install_requires.update(r)
     return sorted(install_requires)
 
 
 def prepare_odoo_addon(depends_override={},
-                       external_dependencies_override={}):
+                       external_dependencies_override={},
+                       odoo_version_override=None):
     addons_dir = ADDONS_NAMESPACE
     addons = os.listdir(addons_dir)
     addons = [a for a in addons
@@ -153,11 +167,14 @@ def prepare_odoo_addon(depends_override={},
         raise DistutilsSetupError('%s is not an installable Odoo addon' %
                                   addon_dir)
     manifest = read_manifest(addon_dir)
-    version, odoo_version_info = _get_version(addon_dir, manifest)
+    version, odoo_version_info = _get_version(addon_dir,
+                                              manifest,
+                                              odoo_version_override)
     install_requires = get_install_requires_odoo_addon(
         addon_dir,
         depends_override=depends_override,
         external_dependencies_override=external_dependencies_override,
+        odoo_version_override=odoo_version_override,
     )
     setup_keywords = {
         'name': make_pkg_name(addon_name),
@@ -178,12 +195,14 @@ def prepare_odoo_addon(depends_override={},
 
 
 def prepare_odoo_addons(depends_override={},
-                        external_dependencies_override={}):
+                        external_dependencies_override={},
+                        odoo_version_override=None):
     addons_dir = ADDONS_NAMESPACE
     install_requires = get_install_requires_odoo_addons(
         addons_dir,
         depends_override=depends_override,
         external_dependencies_override=external_dependencies_override,
+        odoo_version_override=odoo_version_override,
     )
     setup_keywords = {
         'packages': setuptools.find_packages(),

@@ -153,10 +153,14 @@ The following keys are supported:
   * ``depends_override``, used to precisely control odoo addons dependencies.
     Its value must be a dictionary mapping addon names to a package
     requirement string.
-  * ``external_dependencies_override``, used to precisely controll python
+  * ``external_dependencies_override``, used to precisely control python
     external dependencies. Its value must be a dictionary with one ``python``
     key, with value a dictionary mapping python external dependencies to
     python package requirement strings.
+  * ``odoo_version_override``, used to specify which Odoo series to use
+    (8.0, 9.0, etc) in case an addon version does not start with the Odoo
+    series number. Use this only as a last resort, if you have no way to 
+    correct the addon version in its manifest.
 
 For instance, if your module requires at least version 8.0.3.2.0 of
 the connector addon, as well as at least version 0.5.5 of py-Asterisk,

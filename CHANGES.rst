@@ -1,6 +1,14 @@
 Changes
 ~~~~~~~
 
+1.0.0b3 (unreleased)
+--------------------
+- [ADD] mechanism to specify which Odoo version to use in dependencies
+  (8.0, 9.0) in case some addons to be packaged have non-standard version
+  numbers
+- [ADD] support for addons without version number in their manifest 
+  (unfortunately there are some in the wild...)
+
 1.0.0b2 (2016-01-26)
 --------------------
 - [ADD] mechanism to override dependencies, to allow addon authors to

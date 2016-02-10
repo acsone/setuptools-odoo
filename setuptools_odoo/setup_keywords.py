@@ -32,22 +32,32 @@ def _parse_options(value):
             value.get('depends_override', {})
         external_dependencies_override = \
             value.get('external_dependencies_override', {})
-    return depends_override, external_dependencies_override
+        odoo_version_override = \
+            value.get('odoo_version_override')
+    return (
+        depends_override,
+        external_dependencies_override,
+        odoo_version_override,
+    )
 
 
 def odoo_addon(dist, attr, value):
-    depends_override, external_dependencies_override = _parse_options(value)
+    depends_override, external_dependencies_override, odoo_version_override = \
+        _parse_options(value)
     setup_keywords = prepare_odoo_addon(
         depends_override=depends_override,
         external_dependencies_override=external_dependencies_override,
+        odoo_version_override=odoo_version_override,
     )
     _set_dist_keywords(dist, setup_keywords)
 
 
 def odoo_addons(dist, attr, value):
-    depends_override, external_dependencies_override = _parse_options(value)
+    depends_override, external_dependencies_override, odoo_version_override = \
+        _parse_options(value)
     setup_keywords = prepare_odoo_addons(
         depends_override=depends_override,
         external_dependencies_override=external_dependencies_override,
+        odoo_version_override=odoo_version_override,
     )
     _set_dist_keywords(dist, setup_keywords)
