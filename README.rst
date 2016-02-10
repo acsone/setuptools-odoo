@@ -104,7 +104,7 @@ depended upon by addons outside of the project. setuptools-odoo provides
 tools to help you do that.
 
 To be packaged with this library, your project must be structured according
-to the following structure (assuming the addon is named ``<addon_name>``):
+to the following structure:
 
   .. code::
 
