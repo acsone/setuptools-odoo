@@ -1,6 +1,10 @@
 Changes
 ~~~~~~~
 
+1.0.0b4 (unreleased)
+--------------------
+- 
+
 1.0.0b3 (2016-02-10)
 --------------------
 - [ADD] mechanism to specify which Odoo version to use in dependencies
