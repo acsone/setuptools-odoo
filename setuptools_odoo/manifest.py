@@ -30,9 +30,12 @@ def read_manifest(addon_dir):
     return parse_manifest(open(manifest_path).read())
 
 
-def is_installable_addon(addon_dir):
+def is_installable_addon(addon_dir, unless_auto_installable=False):
     try:
         manifest = read_manifest(addon_dir)
-        return manifest.get('installable', True)
+        r = manifest.get('installable', True)
+        if unless_auto_installable:
+            r = r and not manifest.get('auto_install', False)
+        return r
     except:
         return False

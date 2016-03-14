@@ -156,16 +156,14 @@ def prepare_odoo_addon(depends_override={},
     addons_dir = ADDONS_NAMESPACE
     addons = os.listdir(addons_dir)
     addons = [a for a in addons
-              if os.path.isdir(os.path.realpath(os.path.join(addons_dir, a)))]
+              if is_installable_addon(os.path.join(addons_dir, a),
+                                      unless_auto_installable=True)]
     if len(addons) != 1:
         raise DistutilsSetupError('%s must contain exactly one '
-                                  'Odoo addon dir' %
+                                  'installable Odoo addon dir' %
                                   os.path.abspath(addons_dir))
     addon_name = addons[0]
     addon_dir = os.path.join(ADDONS_NAMESPACE, addon_name)
-    if not is_installable_addon(addon_dir):
-        raise DistutilsSetupError('%s is not an installable Odoo addon' %
-                                  addon_dir)
     manifest = read_manifest(addon_dir)
     version, odoo_version_info = _get_version(addon_dir,
                                               manifest,
