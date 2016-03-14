@@ -3,7 +3,13 @@ Changes
 
 1.0.0b4 (unreleased)
 --------------------
-- 
+- [ADD] setuptools-odoo-make-default now ignores addons listed
+  in .setuptools-odoo-make-default-ignore; this is useful when
+  some addons are manually included in another package (such as
+  autoinstallable glue modules)
+- [ADD] setuptools-odoo-make-default now generates README and
+  .setuptools-odoo-make-default-ignore files at the root of
+  the setup directory
 
 1.0.0b3 (2016-02-10)
 --------------------

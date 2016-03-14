@@ -19,6 +19,26 @@ setuptools.setup(
 INIT_PY = """__import__('pkg_resources').declare_namespace(__name__)
 """
 
+README = """To learn more about this directory, please visit
+https://pypi.python.org/pypi/setuptools-odoo
+"""
+
+IGNORE = """# addons listed in this file are ignored by
+# setuptools-odoo-make-default (one addon per line)
+"""
+
+IGNORE_FILENAME = '.setuptools-odoo-make-default-ignore'
+
+
+def _load_ignore_file(ignore_path):
+    ignore = set()
+    if os.path.exists(ignore_path):
+        for line in open(ignore_path):
+            if line.startswith('#'):
+                continue
+            ignore.add(line.strip())
+    return ignore
+
 
 def make_default_setup_addon(addon_setup_dir, addon_dir, force):
     addon_name = os.path.basename(os.path.realpath(addon_dir))
@@ -46,7 +66,19 @@ def make_default_setup_addons_dir(addons_dir, force):
     addons_setup_dir = os.path.join(addons_dir, 'setup')
     if not os.path.exists(addons_setup_dir):
         os.mkdir(addons_setup_dir)
+    readme_path = os.path.join(addons_setup_dir, 'README')
+    if not os.path.exists(readme_path):
+        with open(readme_path, "w") as f:
+            f.write(README)
+    ignore_path = os.path.join(addons_setup_dir, IGNORE_FILENAME)
+    if not os.path.exists(ignore_path):
+        with open(ignore_path, "w") as f:
+            f.write(IGNORE)
+    ignore = _load_ignore_file(ignore_path)
+    print ignore
     for addon_name in os.listdir(addons_dir):
+        if addon_name in ignore:
+            continue
         addon_dir = os.path.join(addons_dir, addon_name)
         if not is_installable_addon(addon_dir):
             continue
