@@ -75,7 +75,6 @@ def make_default_setup_addons_dir(addons_dir, force):
         with open(ignore_path, "w") as f:
             f.write(IGNORE)
     ignore = _load_ignore_file(ignore_path)
-    print ignore
     for addon_name in os.listdir(addons_dir):
         if addon_name in ignore:
             continue
