@@ -11,4 +11,5 @@ EXTERNAL_DEPENDENCIES_MAP = {
     'dateutil': 'python-dateutil',
     'ldap': 'python-ldap',
     'serial': 'pyserial',
+    'Crypto.Cipher.DES3': 'pycrypto',
 }
