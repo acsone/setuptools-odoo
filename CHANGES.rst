@@ -1,8 +1,13 @@
 Changes
 ~~~~~~~
 
-1.0.0b4 (unreleased)
+.. Future (?)
+.. ----------
+.. - 
+
+1.0.0b4 (2016-04-06)
 --------------------
+- [UPD] pycrypto in external dependencies map
 - [ADD] setuptools-odoo-make-default now ignores addons listed
   in .setuptools-odoo-make-default-ignore; this is useful when
   some addons are manually included in another package (such as
