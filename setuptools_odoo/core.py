@@ -154,18 +154,18 @@ def prepare_odoo_addon(depends_override={},
                        external_dependencies_override={},
                        odoo_version_override=None):
     addons_dir = ADDONS_NAMESPACE
-    addons = os.listdir(addons_dir)
+    potential_addons = os.listdir(addons_dir)
     # list installable addons, except auto-installable ones
     # in case we want to combine an addon and it's glue modules
     # in a package named after the main addon
-    addons = [a for a in addons
+    addons = [a for a in potential_addons
               if is_installable_addon(os.path.join(addons_dir, a),
                                       unless_auto_installable=True)]
     if len(addons) == 0:
         # if no addon is found, it may mean we are trying to package
         # a single module that is marked auto-install, so let's try
         # listing all installable modules
-        addons = [a for a in addons
+        addons = [a for a in potential_addons
                   if is_installable_addon(os.path.join(addons_dir, a))]
     if len(addons) != 1:
         raise DistutilsSetupError('%s must contain exactly one '
