@@ -74,6 +74,19 @@ class TestSetupKeywords(unittest.TestCase):
         finally:
             shutil.rmtree(egg_info_dir)
 
+    def test_odoo_addon5(self):
+        addon5_dir = os.path.join(DATA_DIR, 'setup_reusable_addons', 'addon5')
+        subprocess.check_call([sys.executable, 'setup.py', 'egg_info'],
+                              cwd=addon5_dir)
+        egg_info_dir = os.path.join(addon5_dir,
+                                    'odoo_addon_addon5.egg-info')
+        assert os.path.isdir(egg_info_dir)
+        try:
+            dist = pkg_resources.find_distributions(addon5_dir).next()
+            self.assertEquals(dist.key, 'odoo-addon-addon5')
+        finally:
+            shutil.rmtree(egg_info_dir)
+
     def test_custom_project(self):
         project_dir = os.path.join(DATA_DIR, 'setup_custom_project')
         subprocess.check_call([sys.executable, 'setup.py', 'egg_info'],
