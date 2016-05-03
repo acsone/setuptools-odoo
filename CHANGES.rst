@@ -5,6 +5,11 @@ Changes
 .. ----------
 .. - 
 
+1.0.0b5 (2016-05-03)
+--------------------
+- [FIX] fix bug of previous release that prevented the packaging
+  of a single auto_install addon
+
 1.0.0b4 (2016-04-06)
 --------------------
 - [UPD] pycrypto in external dependencies map
