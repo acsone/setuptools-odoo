@@ -5,6 +5,12 @@ Changes
 .. ----------
 .. - 
 
+1.0.0b6 (????-??-??)
+--------------------
+- [IMP] allow None as value for depends_override to disable
+  the addition of an addon present in __openerp__.py 'depends'
+  key to setup.py 'install_requires'.
+
 1.0.0b5 (2016-05-03)
 --------------------
 - [FIX] fix bug of previous release that prevented the packaging

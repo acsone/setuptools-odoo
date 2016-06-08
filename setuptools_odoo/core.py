@@ -98,7 +98,8 @@ def _get_install_requires(odoo_version_info,
             install_require = depends_override[depend]
         else:
             install_require = make_pkg_name(depend) + addon_dep_version
-        install_requires.append(install_require)
+        if install_require:
+            install_requires.append(install_require)
     # python external_dependencies
     for dep in manifest.get('external_dependencies', {}).get('python', []):
         if dep in external_dependencies_override.get('python', {}):
