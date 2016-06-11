@@ -3,11 +3,12 @@
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
 import os
-import pkg_resources
 import shutil
 import subprocess
 import sys
 import unittest
+
+import pkg_resources
 
 from . import DATA_DIR
 
@@ -95,6 +96,11 @@ class TestSetupKeywords(unittest.TestCase):
                                     'test_custom_project.egg-info')
         assert os.path.isdir(egg_info_dir)
         dist = pkg_resources.find_distributions(project_dir).next()
+        self.assertEquals(dist.requires(),
+                          [pkg_resources.Requirement.parse(r) for r in
+                           ['pyflakes',
+                            'odoo>=8.0a,<9.0a',
+                            'python-dateutil']])
         self.assertFalse(dist.has_metadata('not-zip-safe'))
         shutil.rmtree(egg_info_dir)
 

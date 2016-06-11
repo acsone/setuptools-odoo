@@ -3,10 +3,15 @@ Changes
 
 .. Future (?)
 .. ----------
-.. - 
+.. -
 
 1.0.0b6 (????-??-??)
 --------------------
+- [IMP] the odoo_addon and odoo_addons keyword now extend
+  list keywords such as install_requires if they are present
+  in setup.py (previously, it left them alone); this is useful
+  to create a package that contains odoo addons in addition to
+  other python packages
 - [IMP] allow None as value for depends_override to disable
   the addition of an addon present in __openerp__.py 'depends'
   key to setup.py 'install_requires'.

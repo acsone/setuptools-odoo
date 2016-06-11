@@ -10,15 +10,25 @@ from .core import (
 )
 
 
+def _set_dist_keyword(dist, key, val):
+    v = getattr(dist, key)
+    if v is None:
+        # not set in setup.py, use what we get from __openerp__.py
+        setattr(dist, key, val)
+    elif isinstance(v, list):
+        # list set in setup.py, extend with what we get from __openerp__.py
+        # (for install_requires, etc)
+        assert isinstance(val, list)
+        v.extend(val)
+
+
 def _set_dist_keywords(dist, setup_keywords):
     # got this trick from pbr
     for key, val in setup_keywords.items():
         if hasattr(dist.metadata, key):
-            if getattr(dist.metadata, key) is None:
-                setattr(dist.metadata, key, val)
+            _set_dist_keyword(dist.metadata, key, val)
         elif hasattr(dist, key):
-            if getattr(dist, key) is None:
-                setattr(dist, key, val)
+            _set_dist_keyword(dist, key, val)
         else:
             msg = 'Unknown distribution option: %s' % repr(key)
             warnings.warn(msg)
