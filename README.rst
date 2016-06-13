@@ -1,7 +1,7 @@
 setuptools-odoo
 ===============
 
-.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
+.. image:: https://img.shields.io/badge/license-LGPL--3-blue.svg
    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
    :alt: License: LGPL-3
 .. image:: https://badge.fury.io/py/setuptools-odoo.svg
@@ -67,7 +67,7 @@ Odoo manifest file (``__openerp__.py``) and contain:
   * ``long_description``: the content of the ``README.rst`` file if it exists,
     otherwise the ``description`` key from the manifest
   * ``url``: the ``website`` key from the manifest
-  * ``licence``: the ``license`` key from the manifest
+  * ``license``: the ``license`` key from the manifest
   * ``packages``: autodetected packages
   * ``namespace_packages``: ``['odoo_addons']``
   * ``zip_safe``: ``False``
