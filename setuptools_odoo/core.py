@@ -19,9 +19,9 @@ ADDONS_NAMESPACE = 'odoo_addons'
 
 ODOO_VERSION_INFO = {
     '7.0': {
-        'odoo_dep': 'odoo>=7.0a,<8.0a',
+        'odoo_dep': 'openerp>=7.0a,<8.0a',
         'base_addons': base_addons.odoo7,
-        'addon_dep_version': '>=7.0a,<7.0a',
+        'addon_dep_version': '>=7.0a,<8.0a',
     },
     '8.0': {
         'odoo_dep': 'odoo>=8.0a,<9.0a',
