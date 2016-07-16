@@ -17,6 +17,7 @@ Changes
   key to setup.py 'install_requires'.
 - [IMP] check Odoo version support in presence of
   odoo_version_override too.
+- [ADD] preliminary OpenErp 7.0 support
 
 1.0.0b5 (2016-05-03)
 --------------------
