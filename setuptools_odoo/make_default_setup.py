@@ -12,7 +12,7 @@ SETUP_PY = """import setuptools
 
 setuptools.setup(
     setup_requires=['setuptools-odoo'],
-    odoo_addon=True,
+    odoo_addon={odoo_addon},
 )
 """
 
@@ -40,12 +40,16 @@ def _load_ignore_file(ignore_path):
     return ignore
 
 
-def make_default_setup_addon(addon_setup_dir, addon_dir, force):
+def make_default_setup_addon(addon_setup_dir, addon_dir, force,
+                             odoo_version_override):
     addon_name = os.path.basename(os.path.realpath(addon_dir))
     setup_path = os.path.join(addon_setup_dir, 'setup.py')
+    odoo_addon = 'True'
+    if odoo_version_override:
+        odoo_addon = "{'odoo_version_override': '%s'}" % odoo_version_override
     if not os.path.exists(setup_path) or force:
         with open(setup_path, 'w') as f:
-            f.write(SETUP_PY.format(addon_name=addon_name))
+            f.write(SETUP_PY.format(odoo_addon=odoo_addon))
     odoo_addons_path = os.path.join(addon_setup_dir, ADDONS_NAMESPACE)
     if not os.path.exists(odoo_addons_path):
         os.mkdir(odoo_addons_path)
@@ -62,7 +66,8 @@ def make_default_setup_addon(addon_setup_dir, addon_dir, force):
         os.symlink(os.path.relpath(addon_dir, odoo_addons_path), link_path)
 
 
-def make_default_setup_addons_dir(addons_dir, force):
+def make_default_setup_addons_dir(addons_dir, force,
+                                  odoo_version_override):
     addons_setup_dir = os.path.join(addons_dir, 'setup')
     if not os.path.exists(addons_setup_dir):
         os.mkdir(addons_setup_dir)
@@ -84,7 +89,8 @@ def make_default_setup_addons_dir(addons_dir, force):
         addon_setup_dir = os.path.join(addons_setup_dir, addon_name)
         if not os.path.exists(addon_setup_dir):
             os.mkdir(addon_setup_dir)
-        make_default_setup_addon(addon_setup_dir, addon_dir, force)
+        make_default_setup_addon(addon_setup_dir, addon_dir, force,
+                                 odoo_version_override)
 
 
 def main(args=None):
@@ -94,8 +100,13 @@ def main(args=None):
     )
     parser.add_argument('--addons-dir', '-d', required=True)
     parser.add_argument('--force', '-f', action='store_true')
+    parser.add_argument('--odoo-version-override',
+                        help="Force Odoo version for situations where some "
+                             "addons versions do not start with the odoo "
+                             "version")
     args = parser.parse_args(args)
-    make_default_setup_addons_dir(args.addons_dir, args.force)
+    make_default_setup_addons_dir(args.addons_dir, args.force,
+                                  args.odoo_version_override)
 
 
 if __name__ == '__main__':
