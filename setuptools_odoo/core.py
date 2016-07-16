@@ -55,6 +55,8 @@ def _get_version(addon_dir, manifest, odoo_version_override=None):
                                   (odoo_version, addon_dir))
     odoo_version_info = ODOO_VERSION_INFO[odoo_version]
     version = get_git_postversion(addon_dir)
+    if not version.startswith(odoo_version + '.'):
+        version = odoo_version + '.' + version
     return version, odoo_version_info
 
 
