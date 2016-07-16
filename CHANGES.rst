@@ -18,6 +18,8 @@ Changes
 - [IMP] check Odoo version support in presence of
   odoo_version_override too.
 - [ADD] preliminary OpenErp 7.0 support
+- [ADD] --odoo-version-override to setuptools-odoo-make-default
+  to use when there is no practical way to normalize addons versions
 
 1.0.0b5 (2016-05-03)
 --------------------
