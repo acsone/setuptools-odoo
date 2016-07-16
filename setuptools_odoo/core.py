@@ -48,11 +48,11 @@ def _get_version(addon_dir, manifest, odoo_version_override=None):
                                       "the Odoo series number in %s" %
                                       addon_dir)
         odoo_version = '.'.join(version.split('.')[:2])
-        if odoo_version not in ODOO_VERSION_INFO:
-            raise DistutilsSetupError("Unsupported odoo version '%s' in %s" %
-                                      (odoo_version, addon_dir))
     else:
         odoo_version = odoo_version_override
+    if odoo_version not in ODOO_VERSION_INFO:
+        raise DistutilsSetupError("Unsupported odoo version '%s' in %s" %
+                                  (odoo_version, addon_dir))
     odoo_version_info = ODOO_VERSION_INFO[odoo_version]
     version = get_git_postversion(addon_dir)
     return version, odoo_version_info
