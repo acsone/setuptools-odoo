@@ -6,6 +6,7 @@ They are therefore considered as installed as soon as the 'odoo' dependency
 is satisfied. """
 
 openerp7 = {
+    'base',
     'account',
     'account_accountant',
     'account_analytic_analysis',
