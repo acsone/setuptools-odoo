@@ -12,7 +12,7 @@ setuptools-odoo
    :target: https://coveralls.io/github/acsone/setuptools-odoo?branch=master
 
 ``setuptools-odoo`` is a library to help packaging Odoo addons with setuptools.
-It mainly populate the usual ``setup.py`` keywords from the Odoo manifest files.
+It mainly populates the usual ``setup.py`` keywords from the Odoo manifest files.
 
 Together with `odoo-autodiscover
 <https://pypi.python.org/pypi/odoo-autodiscover>`_, it constitutes
@@ -262,4 +262,3 @@ Author:
 Many thanks to Daniel Reis who cleared the path, and Laurent Mignon who convinced
 me it was possible to do it using standard Python setup tools and had the idea of
 the odoo_addons namespace package.
-
