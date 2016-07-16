@@ -5,7 +5,7 @@
 They are therefore considered as installed as soon as the 'odoo' dependency
 is satisfied. """
 
-odoo7 = {
+openerp7 = {
     'account',
     'account_accountant',
     'account_analytic_analysis',
