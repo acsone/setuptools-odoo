@@ -7,6 +7,7 @@ Changes
 
 1.0.0b6 (????-??-??)
 --------------------
+- [UPD] Refresh base addons list for odoo 9c
 - [IMP] the odoo_addon and odoo_addons keyword now extend
   list keywords such as install_requires if they are present
   in setup.py (previously, it left them alone); this is useful
