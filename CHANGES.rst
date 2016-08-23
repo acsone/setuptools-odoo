@@ -5,6 +5,10 @@ Changes
 .. ----------
 .. -
 
+1.0.0b7 (????-??-??)
+--------------------
+- ...
+
 1.0.0b6 (2016-08-23)
 --------------------
 - [IMP] the odoo_addon and odoo_addons keyword now extend
