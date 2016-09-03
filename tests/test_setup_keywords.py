@@ -21,11 +21,11 @@ class TestSetupKeywords(unittest.TestCase):
         subprocess.check_call([sys.executable, 'setup.py', 'egg_info'],
                               cwd=addon1_dir)
         egg_info_dir = os.path.join(addon1_dir,
-                                    'odoo_addon_addon1.egg-info')
+                                    'odoo8_addon_addon1.egg-info')
         assert os.path.isdir(egg_info_dir)
         try:
             dist = pkg_resources.find_distributions(addon1_dir).next()
-            self.assertEquals(dist.key, 'odoo-addon-addon1')
+            self.assertEquals(dist.key, 'odoo8-addon-addon1')
             self.assertEquals(dist.requires(),
                               [pkg_resources.Requirement.parse(r) for r in
                                ['odoo>=8.0a,<9.0a']])
@@ -39,14 +39,14 @@ class TestSetupKeywords(unittest.TestCase):
         subprocess.check_call([sys.executable, 'setup.py', 'egg_info'],
                               cwd=addon2_dir)
         egg_info_dir = os.path.join(addon2_dir,
-                                    'odoo_addon_addon2.egg-info')
+                                    'odoo8_addon_addon2.egg-info')
         assert os.path.isdir(egg_info_dir)
         try:
             dist = pkg_resources.find_distributions(addon2_dir).next()
-            self.assertEquals(dist.key, 'odoo-addon-addon2')
+            self.assertEquals(dist.key, 'odoo8-addon-addon2')
             self.assertEquals(dist.requires(),
                               [pkg_resources.Requirement.parse(r) for r in
-                               ['odoo-addon-addon1>=8.0a,<9.0a',
+                               ['odoo8-addon-addon1',
                                 'odoo>=8.0a,<9.0a',
                                 'python-dateutil']])
             self.assertTrue(dist.has_metadata('not-zip-safe'))
@@ -59,15 +59,15 @@ class TestSetupKeywords(unittest.TestCase):
         subprocess.check_call([sys.executable, 'setup.py', 'egg_info'],
                               cwd=addon4_dir)
         egg_info_dir = os.path.join(addon4_dir,
-                                    'odoo_addon_addon4.egg-info')
+                                    'odoo8_addon_addon4.egg-info')
         assert os.path.isdir(egg_info_dir)
         try:
             dist = pkg_resources.find_distributions(addon4_dir).next()
-            self.assertEquals(dist.key, 'odoo-addon-addon4')
+            self.assertEquals(dist.key, 'odoo8-addon-addon4')
             self.assertEquals(dist.requires(),
                               [pkg_resources.Requirement.parse(r) for r in
                                ['astropy>=1.0',
-                                'odoo-addon-addon1>=8.0.3.0.0,<9.0a',
+                                'odoo8-addon-addon1>=8.0.3.0.0',
                                 'odoo>=8.0a,<9.0a',
                                 'python-dateutil']])
             self.assertTrue(dist.has_metadata('not-zip-safe'))
@@ -80,11 +80,11 @@ class TestSetupKeywords(unittest.TestCase):
         subprocess.check_call([sys.executable, 'setup.py', 'egg_info'],
                               cwd=addon5_dir)
         egg_info_dir = os.path.join(addon5_dir,
-                                    'odoo_addon_addon5.egg-info')
+                                    'odoo8_addon_addon5.egg-info')
         assert os.path.isdir(egg_info_dir)
         try:
             dist = pkg_resources.find_distributions(addon5_dir).next()
-            self.assertEquals(dist.key, 'odoo-addon-addon5')
+            self.assertEquals(dist.key, 'odoo8-addon-addon5')
         finally:
             shutil.rmtree(egg_info_dir)
 

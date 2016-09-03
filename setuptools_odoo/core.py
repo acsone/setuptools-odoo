@@ -19,20 +19,20 @@ ODOO_VERSION_INFO = {
     '7.0': {
         'odoo_dep': 'openerp>=7.0a,<8.0a',
         'base_addons': base_addons.openerp7,
-        'addon_dep_version': '>=7.0a,<8.0a',
-        'pkg_name_pfx': 'openerp-addon-',
+        'addon_dep_version': '',
+        'pkg_name_pfx': 'openerp7-addon-',
     },
     '8.0': {
         'odoo_dep': 'odoo>=8.0a,<9.0a',
         'base_addons': base_addons.odoo8,
-        'addon_dep_version': '>=8.0a,<9.0a',
-        'pkg_name_pfx': 'odoo-addon-',
+        'addon_dep_version': '',
+        'pkg_name_pfx': 'odoo8-addon-',
     },
     '9.0': {
         'odoo_dep': 'odoo>=9.0a,<9.1a',
         'base_addons': base_addons.odoo9,
-        'addon_dep_version': '>=9.0a,<9.1a',
-        'pkg_name_pfx': 'odoo-addon-',
+        'addon_dep_version': '',
+        'pkg_name_pfx': 'odoo9-addon-',
     },
 }
 

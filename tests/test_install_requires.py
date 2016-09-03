@@ -26,7 +26,7 @@ class TestInstallRequires(unittest.TestCase):
     def test_addon2(self):
         addon_dir = os.path.join(DATA_DIR, 'addon2')
         r = setuptools_odoo.get_install_requires_odoo_addon(addon_dir)
-        self.assertEquals(r, ['odoo-addon-addon1>=8.0a,<9.0a',
+        self.assertEquals(r, ['odoo8-addon-addon1',
                               'odoo>=8.0a,<9.0a',
                               'python-dateutil'])
 

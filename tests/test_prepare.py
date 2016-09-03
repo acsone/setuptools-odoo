@@ -20,12 +20,12 @@ class TestPrepare(unittest.TestCase):
 
     def test_make_pkg_name(self):
         pkg_name = make_pkg_name(ODOO_VERSION_INFO['8.0'], 'addon1', False)
-        self.assertEquals(pkg_name, 'odoo-addon-addon1')
+        self.assertEquals(pkg_name, 'odoo8-addon-addon1')
 
     def test_make_pkg_requirement(self):
         addon_dir = os.path.join(DATA_DIR, 'addon1')
         requirement = make_pkg_requirement(addon_dir)
-        self.assertEquals(requirement, 'odoo-addon-addon1>=8.0a,<9.0a')
+        self.assertEquals(requirement, 'odoo8-addon-addon1')
 
     def test_addon1(self):
         addon_dir = os.path.join(DATA_DIR, 'setup_reusable_addons', 'addon1')
@@ -38,7 +38,7 @@ class TestPrepare(unittest.TestCase):
                 'install_requires': ['odoo>=8.0a,<9.0a'],
                 'license': 'AGPL-3',
                 'long_description': 'addon 1 readme content\n',
-                'name': 'odoo-addon-addon1',
+                'name': 'odoo8-addon-addon1',
                 'namespace_packages': ['odoo_addons'],
                 'packages': ['odoo_addons'],
                 'url': 'https://acsone.eu/',
@@ -54,10 +54,10 @@ class TestPrepare(unittest.TestCase):
             self.assertEquals(keywords, {
                 'description': 'addon 2 summary',
                 'include_package_data': True,
-                'install_requires': ['odoo-addon-addon1>=8.0a,<9.0a',
+                'install_requires': ['odoo8-addon-addon1',
                                      'odoo>=8.0a,<9.0a',
                                      'python-dateutil'],
-                'name': 'odoo-addon-addon2',
+                'name': 'odoo8-addon-addon2',
                 'namespace_packages': ['odoo_addons'],
                 'packages': ['odoo_addons'],
                 'version': '8.0.1.0.1',

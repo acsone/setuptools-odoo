@@ -60,7 +60,7 @@ and where setup.py has the following content:
 The usual setup() keyword arguments are computed automatically from the
 Odoo manifest file (``__openerp__.py``) and contain:
 
-  * ``name``: the package name, ``odoo-addon-<addon_name>``
+  * ``name``: the package name, ``odoo<series>-addon-<addon_name>``
   * ``version``: the ``version`` key from the manifest
   * ``description``: the ``summary`` key from the manifest if it exists otherwise
     the ``name`` key from the manifest
@@ -85,7 +85,7 @@ or ``pip`` commands such as:
     python setup.py bdist_wheel
     pip install .
     pip install -e .
-    pip install odoo-addon-<addon name>
+    pip install odoo<8|9>-addon-<addon name>
 
 To run Odoo so it automatically discovers addons installed with this
 method, start Odoo using the ``odoo-server-autodiscover`` or
@@ -174,7 +174,7 @@ your setup.py would look like this:
         setup_requires=['setuptools-odoo'],
         odoo_addon={
             'depends_override': {
-                'connector': 'odoo-addon-connector>=8.0.3.2.0,<9.0a',
+                'connector': 'odoo8-addon-connector>=8.0.3.2.0',
             },
             'external_dependencies_override': {
                 'python': {
