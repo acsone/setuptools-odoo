@@ -13,8 +13,6 @@ from .manifest import read_manifest, is_installable_addon
 from .git_postversion import get_git_postversion
 
 
-ADDON_PKG_NAME_PREFIX = 'odoo-addon-'
-
 ADDONS_NAMESPACE = 'odoo_addons'
 
 ODOO_VERSION_INFO = {
@@ -22,16 +20,19 @@ ODOO_VERSION_INFO = {
         'odoo_dep': 'openerp>=7.0a,<8.0a',
         'base_addons': base_addons.openerp7,
         'addon_dep_version': '>=7.0a,<8.0a',
+        'pkg_name_pfx': 'odoo-addon-',
     },
     '8.0': {
         'odoo_dep': 'odoo>=8.0a,<9.0a',
         'base_addons': base_addons.odoo8,
         'addon_dep_version': '>=8.0a,<9.0a',
+        'pkg_name_pfx': 'odoo-addon-',
     },
     '9.0': {
         'odoo_dep': 'odoo>=9.0a,<9.1a',
         'base_addons': base_addons.odoo9,
         'addon_dep_version': '>=9.0a,<9.1a',
+        'pkg_name_pfx': 'odoo-addon-',
     },
 }
 
@@ -72,8 +73,11 @@ def _get_long_description(addon_dir, manifest):
         return manifest.get('description')
 
 
-def make_pkg_name(addon_name):
-    return ADDON_PKG_NAME_PREFIX + addon_name
+def make_pkg_name(odoo_version_info, addon_name, with_version):
+    name = odoo_version_info['pkg_name_pfx'] + addon_name
+    if with_version:
+        name += odoo_version_info['addon_dep_version']
+    return name
 
 
 def make_pkg_requirement(addon_dir, odoo_version_override=None):
@@ -82,8 +86,7 @@ def make_pkg_requirement(addon_dir, odoo_version_override=None):
     version, odoo_version_info = _get_version(addon_dir,
                                               manifest,
                                               odoo_version_override)
-    addon_dep_version = odoo_version_info['addon_dep_version']
-    return make_pkg_name(addon_name) + addon_dep_version
+    return make_pkg_name(odoo_version_info, addon_name, True)
 
 
 def _get_install_requires(odoo_version_info,
@@ -94,7 +97,6 @@ def _get_install_requires(odoo_version_info,
     # dependency on Odoo
     install_requires = [odoo_version_info['odoo_dep']]
     # dependencies on other addons (except Odoo official addons)
-    addon_dep_version = odoo_version_info['addon_dep_version']
     base_addons = odoo_version_info['base_addons']
     for depend in manifest.get('depends', []):
         if depend in base_addons:
@@ -104,7 +106,7 @@ def _get_install_requires(odoo_version_info,
         if depend in depends_override:
             install_require = depends_override[depend]
         else:
-            install_require = make_pkg_name(depend) + addon_dep_version
+            install_require = make_pkg_name(odoo_version_info, depend, True)
         if install_require:
             install_requires.append(install_require)
     # python external_dependencies
@@ -192,7 +194,7 @@ def prepare_odoo_addon(depends_override={},
         odoo_version_override=odoo_version_override,
     )
     setup_keywords = {
-        'name': make_pkg_name(addon_name),
+        'name': make_pkg_name(odoo_version_info, addon_name, False),
         'version': version,
         'description': _get_description(addon_dir, manifest),
         'long_description': _get_long_description(addon_dir, manifest),
