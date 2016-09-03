@@ -20,7 +20,7 @@ ODOO_VERSION_INFO = {
         'odoo_dep': 'openerp>=7.0a,<8.0a',
         'base_addons': base_addons.openerp7,
         'addon_dep_version': '>=7.0a,<8.0a',
-        'pkg_name_pfx': 'odoo-addon-',
+        'pkg_name_pfx': 'openerp-addon-',
     },
     '8.0': {
         'odoo_dep': 'odoo>=8.0a,<9.0a',
