@@ -12,6 +12,12 @@ from . import external_dependencies
 from .manifest import read_manifest, is_installable_addon
 from .git_postversion import get_git_postversion
 
+LEGACY_MODE = os.environ.get('SETUPTOOLS_ODOO_LEGACY_MODE')
+
+if LEGACY_MODE:
+    warn('SETUPTOOLS_ODOO_LEGACY_MODE support will be removed in '
+         'setuptools-odoo 1.1.0. Please switch to the '
+         'new package naming scheme.')
 
 ADDONS_NAMESPACE = 'odoo_addons'
 
@@ -19,20 +25,23 @@ ODOO_VERSION_INFO = {
     '7.0': {
         'odoo_dep': 'openerp>=7.0a,<8.0a',
         'base_addons': base_addons.openerp7,
-        'addon_dep_version': '',
-        'pkg_name_pfx': 'openerp7-addon-',
+        'addon_dep_version': '' if not LEGACY_MODE else '>=7.0a,<8.0a',
+        'pkg_name_pfx': ('openerp7-addon-'
+                         if not LEGACY_MODE else 'openerp-addon-'),
     },
     '8.0': {
         'odoo_dep': 'odoo>=8.0a,<9.0a',
         'base_addons': base_addons.odoo8,
-        'addon_dep_version': '',
-        'pkg_name_pfx': 'odoo8-addon-',
+        'addon_dep_version': '' if not LEGACY_MODE else '>=8.0a,<9.0a',
+        'pkg_name_pfx': ('odoo8-addon-'
+                         if not LEGACY_MODE else 'odoo-addon-'),
     },
     '9.0': {
         'odoo_dep': 'odoo>=9.0a,<9.1a',
         'base_addons': base_addons.odoo9,
-        'addon_dep_version': '',
-        'pkg_name_pfx': 'odoo9-addon-',
+        'addon_dep_version': '' if not LEGACY_MODE else '>=9.0a,<9.1a',
+        'pkg_name_pfx': ('odoo9-addon-'
+                         if not LEGACY_MODE else 'odoo-addon-'),
     },
 }
 
