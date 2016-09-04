@@ -100,9 +100,8 @@ def _get_install_requires(odoo_version_info,
     # dependency on Odoo
     install_requires = [odoo_version_info['odoo_dep']]
     # dependencies on other addons (except Odoo official addons)
-    base_addons = odoo_version_info['base_addons']
     for depend in manifest.get('depends', []):
-        if depend in base_addons:
+        if depend in odoo_version_info['base_addons']:
             continue
         if depend in no_depends:
             continue
