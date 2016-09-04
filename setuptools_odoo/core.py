@@ -37,7 +37,8 @@ ODOO_VERSION_INFO = {
 }
 
 
-def _get_version(addon_dir, manifest, odoo_version_override=None):
+def _get_version(addon_dir, manifest, odoo_version_override=None,
+                 git_post_version=True):
     version = manifest.get('version')
     if not version:
         warn("No version in manifest in %s" % addon_dir)
@@ -55,7 +56,8 @@ def _get_version(addon_dir, manifest, odoo_version_override=None):
         raise DistutilsSetupError("Unsupported odoo version '%s' in %s" %
                                   (odoo_version, addon_dir))
     odoo_version_info = ODOO_VERSION_INFO[odoo_version]
-    version = get_git_postversion(addon_dir)
+    if git_post_version:
+        version = get_git_postversion(addon_dir)
     if not version.startswith(odoo_version + '.'):
         version = odoo_version + '.' + version
     return version, odoo_version_info
@@ -83,9 +85,10 @@ def make_pkg_name(odoo_version_info, addon_name, with_version):
 def make_pkg_requirement(addon_dir, odoo_version_override=None):
     manifest = read_manifest(addon_dir)
     addon_name = os.path.basename(addon_dir)
-    version, odoo_version_info = _get_version(addon_dir,
-                                              manifest,
-                                              odoo_version_override)
+    _, odoo_version_info = _get_version(addon_dir,
+                                        manifest,
+                                        odoo_version_override,
+                                        git_post_version=False)
     return make_pkg_name(odoo_version_info, addon_name, True)
 
 
@@ -126,9 +129,10 @@ def get_install_requires_odoo_addon(addon_dir,
                                     odoo_version_override=None):
     """ Get the list of requirements for an addon """
     manifest = read_manifest(addon_dir)
-    version, odoo_version_info = _get_version(addon_dir,
-                                              manifest,
-                                              odoo_version_override)
+    _, odoo_version_info = _get_version(addon_dir,
+                                        manifest,
+                                        odoo_version_override,
+                                        git_post_version=False)
     return _get_install_requires(odoo_version_info,
                                  manifest,
                                  no_depends,
@@ -186,7 +190,8 @@ def prepare_odoo_addon(depends_override={},
     manifest = read_manifest(addon_dir)
     version, odoo_version_info = _get_version(addon_dir,
                                               manifest,
-                                              odoo_version_override)
+                                              odoo_version_override,
+                                              git_post_version=True)
     install_requires = get_install_requires_odoo_addon(
         addon_dir,
         depends_override=depends_override,
