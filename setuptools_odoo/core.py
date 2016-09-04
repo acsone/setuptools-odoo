@@ -67,7 +67,7 @@ def _get_version(addon_dir, manifest, odoo_version_override=None,
     odoo_version_info = ODOO_VERSION_INFO[odoo_version]
     if git_post_version:
         version = get_git_postversion(addon_dir)
-    if not version.startswith(odoo_version + '.'):
+    if LEGACY_MODE and not version.startswith(odoo_version + '.'):
         version = odoo_version + '.' + version
     return version, odoo_version_info
 
