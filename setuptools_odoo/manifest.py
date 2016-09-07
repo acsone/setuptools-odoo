@@ -5,7 +5,7 @@
 import ast
 import os
 
-MANIFEST_NAMES = ('__openerp__.py', '__odoo__.py', '__terp__.py')
+MANIFEST_NAMES = ('__openerp__.py', '__manifest__.py', '__terp__.py')
 
 
 class NoManifestFound(Exception):

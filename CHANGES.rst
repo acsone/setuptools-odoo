@@ -7,7 +7,8 @@ Changes
 
 1.0.0b7 (????-??-??)
 --------------------
-- ...
+- [IMP] add __manifest__.py support for Odoo 10,
+  drop __odoo__.py support which never was supported by Odoo.
 
 1.0.0b6 (2016-08-23)
 --------------------
