@@ -16,7 +16,7 @@ setuptools.setup(
 )
 """
 
-INIT_PY = """__import__('pkg_resources').declare_namespace(__name__)
+NS_INIT_PY = """__import__('pkg_resources').declare_namespace(__name__)
 """
 
 README = """To learn more about this directory, please visit
@@ -40,6 +40,18 @@ def _load_ignore_file(ignore_path):
     return ignore
 
 
+def make_ns_pkg_dirs(root, pkgs, force):
+    for pkg in pkgs.split('.'):
+        root = os.path.join(root, pkg)
+        if not os.path.isdir(root):
+            os.mkdir(root)
+        init_path = os.path.join(root, '__init__.py')
+        if not os.path.exists(init_path) or force:
+            with open(init_path, 'w') as f:
+                f.write(NS_INIT_PY)
+    return root
+
+
 def make_default_setup_addon(addon_setup_dir, addon_dir, force,
                              odoo_version_override):
     addon_name = os.path.basename(os.path.realpath(addon_dir))
@@ -50,13 +62,8 @@ def make_default_setup_addon(addon_setup_dir, addon_dir, force,
     if not os.path.exists(setup_path) or force:
         with open(setup_path, 'w') as f:
             f.write(SETUP_PY.format(odoo_addon=odoo_addon))
-    odoo_addons_path = os.path.join(addon_setup_dir, ADDONS_NAMESPACE)
-    if not os.path.exists(odoo_addons_path):
-        os.mkdir(odoo_addons_path)
-    init_path = os.path.join(odoo_addons_path, '__init__.py')
-    if not os.path.exists(init_path) or force:
-        with open(init_path, 'w') as f:
-            f.write(INIT_PY)
+    odoo_addons_path = make_ns_pkg_dirs(
+        addon_setup_dir, ADDONS_NAMESPACE, force)
     link_path = os.path.join(odoo_addons_path, addon_name)
     # symlink to the main addon directory so we have a canonical structure:
     # odoo_addons/addon_name/...

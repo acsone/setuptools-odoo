@@ -5,6 +5,7 @@
 import filecmp
 import os
 import shutil
+import tempfile
 import unittest
 
 from setuptools_odoo import make_default_setup
@@ -42,6 +43,29 @@ class TestMakeDefaultSetup(unittest.TestCase):
         finally:
             shutil.rmtree(generated_dir)
 
+    def test_make_ns_pkg_dirs_1(self):
+        opj = os.path.join
+        tmpdir = tempfile.mkdtemp()
+        try:
+            d = make_default_setup.make_ns_pkg_dirs(
+                tmpdir, 'odoo_addons', False)
+            self.assertEqual(d, opj(tmpdir, 'odoo_addons'))
+            self.assertTrue(os.path.isdir(d))
+            self.assertTrue(os.path.isfile(opj(d, '__init__.py')))
+        finally:
+            shutil.rmtree(tmpdir)
+
+    def test_make_ns_pkg_dirs_2(self):
+        opj = os.path.join
+        tmpdir = tempfile.mkdtemp()
+        try:
+            d = make_default_setup.make_ns_pkg_dirs(
+                tmpdir, 'odoo.addons', False)
+            self.assertEqual(d, opj(tmpdir, 'odoo', 'addons'))
+            self.assertTrue(os.path.isdir(d))
+            self.assertTrue(os.path.isfile(opj(d, '__init__.py')))
+        finally:
+            shutil.rmtree(tmpdir)
 
 if __name__ == '__main__':
     unittest.main()
