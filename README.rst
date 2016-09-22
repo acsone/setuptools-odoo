@@ -23,6 +23,21 @@ Odoo addons using standard python infrastructure (ie
 `wheel <https://pypi.python.org/pypi/wheel>`_,
 and `pypi <https://pypi.python.org>`_).
 
+.. warning:: BACKWARD INCOMPATIBLE CHANGE
+
+   From version 1.0.0b7 onwards, the package name structure is
+   ``odoo<series>-addon-<addon_name>``. Before it was ``odoo-addon-<addon_name>``.
+   This backward-incompatible change was necessary to enable easier
+   publishing to pypi or other wheelhouses as discussed in `issue 6
+   <https://github.com/acsone/setuptools-odoo/issues/6>`_.
+
+   If you need to continue working with the previous
+   naming scheme for some time, set the following environment
+   variable ``SETUPTOOLS_ODOO_LEGACY_MODE=1``. This legacy scheme will
+   be supported until version 1.1.
+
+   It is highly recommanded to remove ``.eggs`` and ``*.egg-info``
+   directories from editable source directories before using this new version.
 
 Packaging a single addon
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -159,7 +174,7 @@ The following keys are supported:
     python package requirement strings.
   * ``odoo_version_override``, used to specify which Odoo series to use
     (8.0, 9.0, etc) in case an addon version does not start with the Odoo
-    series number. Use this only as a last resort, if you have no way to 
+    series number. Use this only as a last resort, if you have no way to
     correct the addon version in its manifest.
 
 For instance, if your module requires at least version 8.0.3.2.0 of
@@ -242,7 +257,8 @@ setuptools-odoo exposes the following public API.
 
   .. code::
 
-    TODO...
+    TODO. Should you have a use case for using the setuptools-odoo internals,
+    get in touch so we can review your needs and expose a clean API.
 
 Useful links
 ~~~~~~~~~~~~

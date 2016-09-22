@@ -5,10 +5,10 @@ Changes
 .. ----------
 .. -
 
-1.0.0b7 (????-??-??)
+1.0.0b7 (2016-09-22)
 --------------------
 - [IMP] add __manifest__.py support for Odoo 10,
-  drop __odoo__.py support which never was supported by Odoo.
+  drop __odoo__.py support which has never been supported by Odoo.
 - [IMP] BREAKING: package names are now constructed along the
   following scheme: odoo{series}-addon-{addon_name} where series
   is 8 or 9.
