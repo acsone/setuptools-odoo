@@ -19,8 +19,6 @@ if LEGACY_MODE:
          'setuptools-odoo 1.1.0. Please switch to the '
          'new package naming scheme.')
 
-ADDONS_NAMESPACE = 'odoo_addons'
-
 ODOO_VERSION_INFO = {
     '7.0': {
         'odoo_dep': 'openerp>=7.0a,<8.0a',
@@ -28,6 +26,7 @@ ODOO_VERSION_INFO = {
         'addon_dep_version': '' if not LEGACY_MODE else '>=7.0a,<8.0a',
         'pkg_name_pfx': ('openerp7-addon-'
                          if not LEGACY_MODE else 'openerp-addon-'),
+        'addons_ns': 'openerp_addons',
     },
     '8.0': {
         'odoo_dep': 'odoo>=8.0a,<9.0a',
@@ -35,6 +34,7 @@ ODOO_VERSION_INFO = {
         'addon_dep_version': '' if not LEGACY_MODE else '>=8.0a,<9.0a',
         'pkg_name_pfx': ('odoo8-addon-'
                          if not LEGACY_MODE else 'odoo-addon-'),
+        'addons_ns': 'odoo_addons',
     },
     '9.0': {
         'odoo_dep': 'odoo>=9.0a,<9.1a',
@@ -42,6 +42,14 @@ ODOO_VERSION_INFO = {
         'addon_dep_version': '' if not LEGACY_MODE else '>=9.0a,<9.1a',
         'pkg_name_pfx': ('odoo9-addon-'
                          if not LEGACY_MODE else 'odoo-addon-'),
+        'addons_ns': 'odoo_addons',
+    },
+    '10.0': {
+        'odoo_dep': 'odoo>=10.0a,<10.1a',
+        'base_addons': base_addons.odoo9,  # TODO FIXME
+        'addon_dep_version': '',
+        'pkg_name_pfx': 'odoo10-addon-',
+        'addons_ns': 'odoo.addons',
     },
 }
 
@@ -172,10 +180,28 @@ def get_install_requires_odoo_addons(addons_dir,
     return sorted(install_requires)
 
 
+def _find_addons_dir():
+    """ Try to find the addons dir / namespace package
+
+    Returns addons_dir, addons_ns
+    """
+    res = set()
+    for odoo_version_info in ODOO_VERSION_INFO.values():
+        addons_ns = odoo_version_info['addons_ns']
+        addons_dir = os.path.join(*addons_ns.split('.'))
+        if os.path.isfile(os.path.join(addons_dir, '__init__.py')):
+            res.add((addons_dir, addons_ns))
+    if len(res) == 0:
+        raise RuntimeError("No addons namespace found.")
+    if len(res) > 1:
+        raise RuntimeError("More than one addons namespace found.")
+    return res.pop()
+
+
 def prepare_odoo_addon(depends_override={},
                        external_dependencies_override={},
                        odoo_version_override=None):
-    addons_dir = ADDONS_NAMESPACE
+    addons_dir, addons_ns = _find_addons_dir()
     potential_addons = os.listdir(addons_dir)
     # list installable addons, except auto-installable ones
     # in case we want to combine an addon and it's glue modules
@@ -194,7 +220,7 @@ def prepare_odoo_addon(depends_override={},
                                   'installable Odoo addon dir' %
                                   os.path.abspath(addons_dir))
     addon_name = addons[0]
-    addon_dir = os.path.join(ADDONS_NAMESPACE, addon_name)
+    addon_dir = os.path.join(addons_dir, addon_name)
     manifest = read_manifest(addon_dir)
     version, odoo_version_info = _get_version(addon_dir,
                                               manifest,
@@ -215,7 +241,7 @@ def prepare_odoo_addon(depends_override={},
         'license': manifest.get('license'),
         'packages': setuptools.find_packages(),
         'include_package_data': True,
-        'namespace_packages': [ADDONS_NAMESPACE],
+        'namespace_packages': [addons_ns],
         'zip_safe': False,
         'install_requires': install_requires,
         # TODO: keywords, classifiers, authors
@@ -227,7 +253,7 @@ def prepare_odoo_addon(depends_override={},
 def prepare_odoo_addons(depends_override={},
                         external_dependencies_override={},
                         odoo_version_override=None):
-    addons_dir = ADDONS_NAMESPACE
+    addons_dir, addons_ns = _find_addons_dir()
     install_requires = get_install_requires_odoo_addons(
         addons_dir,
         depends_override=depends_override,
@@ -237,7 +263,7 @@ def prepare_odoo_addons(depends_override={},
     setup_keywords = {
         'packages': setuptools.find_packages(),
         'include_package_data': True,
-        'namespace_packages': [ADDONS_NAMESPACE],
+        'namespace_packages': [addons_ns],
         'zip_safe': False,
         'install_requires': install_requires,
     }

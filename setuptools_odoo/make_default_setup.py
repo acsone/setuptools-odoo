@@ -6,7 +6,8 @@ import argparse
 import os
 
 
-from .core import ADDONS_NAMESPACE, is_installable_addon
+from .core import is_installable_addon, _get_version
+from .manifest import read_manifest
 
 SETUP_PY = """import setuptools
 
@@ -54,6 +55,11 @@ def make_ns_pkg_dirs(root, pkgs, force):
 
 def make_default_setup_addon(addon_setup_dir, addon_dir, force,
                              odoo_version_override):
+    manifest = read_manifest(addon_dir)
+    _, odoo_version_info = _get_version(addon_dir,
+                                        manifest,
+                                        odoo_version_override,
+                                        git_post_version=False)
     addon_name = os.path.basename(os.path.realpath(addon_dir))
     setup_path = os.path.join(addon_setup_dir, 'setup.py')
     odoo_addon = 'True'
@@ -63,7 +69,7 @@ def make_default_setup_addon(addon_setup_dir, addon_dir, force,
         with open(setup_path, 'w') as f:
             f.write(SETUP_PY.format(odoo_addon=odoo_addon))
     odoo_addons_path = make_ns_pkg_dirs(
-        addon_setup_dir, ADDONS_NAMESPACE, force)
+        addon_setup_dir, odoo_version_info['addons_ns'], force)
     link_path = os.path.join(odoo_addons_path, addon_name)
     # symlink to the main addon directory so we have a canonical structure:
     # odoo_addons/addon_name/...

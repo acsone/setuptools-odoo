@@ -5,6 +5,10 @@ Changes
 .. ----------
 .. -
 
+1.0.0b8 (2016-10-??)
+--------------------
+- [IMP] Odoo 10.0 support with addons in the odoo.addons namespace.
+
 1.0.0b7 (2016-09-22)
 --------------------
 - [IMP] add __manifest__.py support for Odoo 10,
