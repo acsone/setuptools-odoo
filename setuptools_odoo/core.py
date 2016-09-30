@@ -45,7 +45,7 @@ ODOO_VERSION_INFO = {
         'addons_ns': 'odoo_addons',
     },
     '10.0': {
-        'odoo_dep': 'odoo>=10.0a,<10.1a',
+        'odoo_dep': None,
         'base_addons': base_addons.odoo10,
         'addon_dep_version': '',
         'pkg_name_pfx': 'odoo10-addon-',
@@ -114,8 +114,11 @@ def _get_install_requires(odoo_version_info,
                           no_depends=[],
                           depends_override={},
                           external_dependencies_override={}):
+    install_requires = []
     # dependency on Odoo
-    install_requires = [odoo_version_info['odoo_dep']]
+    odoo_dep = odoo_version_info['odoo_dep']
+    if odoo_dep:
+        install_requires.append(odoo_dep)
     # dependencies on other addons (except Odoo official addons)
     for depend in manifest.get('depends', []):
         if depend in odoo_version_info['base_addons']:
