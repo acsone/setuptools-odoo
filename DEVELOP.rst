@@ -9,6 +9,10 @@ How to run tests
 How to build the documentation
 ------------------------------
 
+Documentation is built automatically at http://setuptools-odoo.readthedocs.io/.
+
+To build it locally:
+
 * pip install sphinx
 * cd docs
 * make html
