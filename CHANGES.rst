@@ -8,6 +8,7 @@ Changes
 1.0.0b8 (2016-10-??)
 --------------------
 - [IMP] Odoo 10.0 support with addons in the odoo.addons namespace.
+- [IMP] update base addons list for Odoo 9.0 and 10.0rc1
 
 1.0.0b7 (2016-09-22)
 --------------------
