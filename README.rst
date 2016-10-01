@@ -13,6 +13,7 @@ setuptools-odoo
 
 ``setuptools-odoo`` is a library to help packaging Odoo addons with setuptools.
 It mainly populates the usual ``setup.py`` keywords from the Odoo manifest files.
+
 It enables the packaging and distribution of
 Odoo addons using standard python infrastructure (ie
 `setuptools <https://pypi.python.org/pypi/setuptools>`_,
@@ -36,14 +37,14 @@ and `pypi <https://pypi.python.org>`_).
   It is highly recommanded to remove ``.eggs`` and ``*.egg-info``
   directories from editable source directories before using this new version.
 
+.. contents::
+
 .. Note:: The documentation below applies to Odoo 10+
 
   Odoo 8 and 9 are supported too, with the help of `odoo-autodiscover
   <https://pypi.python.org/pypi/odoo-autodiscover>`_. You must replace
   in the text below ``odoo.addons`` (the namespace) and ``odoo/addons``
   (the directory) by ``odoo_addons``.
-
-.. contents::
 
 Packaging a single addon
 ~~~~~~~~~~~~~~~~~~~~~~~~

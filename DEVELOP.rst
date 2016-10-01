@@ -1,10 +1,20 @@
+Developer instructions
+~~~~~~~~~~~~~~~~~~~~~~
+
 How to run tests
-================
+----------------
 
 * run ``tox`` (if not installed ``apt-get install tox``)
 
+How to build the documentation
+------------------------------
+
+* pip install sphinx
+* cd docs
+* make html
+
 How to release
-==============
+--------------
 
 * update version in setup.py
 * update changelog in CHANGES.rst
