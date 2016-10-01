@@ -183,6 +183,16 @@ def get_install_requires_odoo_addons(addons_dir,
     return sorted(install_requires)
 
 
+def _ns_to_namespace_packages(ns):
+    res = []
+    for part in ns.split('.'):
+        if res:
+            res.append(res[-1] + '.' + part)
+        else:
+            res.append(part)
+    return res
+
+
 def _find_addons_dir():
     """ Try to find the addons dir / namespace package
 
@@ -244,7 +254,7 @@ def prepare_odoo_addon(depends_override={},
         'license': manifest.get('license'),
         'packages': setuptools.find_packages(),
         'include_package_data': True,
-        'namespace_packages': [addons_ns],
+        'namespace_packages': _ns_to_namespace_packages(addons_ns),
         'zip_safe': False,
         'install_requires': install_requires,
         # TODO: keywords, classifiers, authors
@@ -266,7 +276,7 @@ def prepare_odoo_addons(depends_override={},
     setup_keywords = {
         'packages': setuptools.find_packages(),
         'include_package_data': True,
-        'namespace_packages': [addons_ns],
+        'namespace_packages': _ns_to_namespace_packages(addons_ns),
         'zip_safe': False,
         'install_requires': install_requires,
     }
