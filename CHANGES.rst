@@ -15,7 +15,7 @@ Changes
   drop __odoo__.py support which has never been supported by Odoo.
 - [IMP] BREAKING: package names are now constructed along the
   following scheme: odoo{series}-addon-{addon_name} where series
-  is 8 or 9.
+  is 8, 9 or 10.
 
 1.0.0b6 (2016-08-23)
 --------------------
