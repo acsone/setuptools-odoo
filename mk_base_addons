@@ -1,0 +1,9 @@
+#!/usr/bin/env python
+""" Run this in an Odoo addons directory to generate a list
+    that is easy to include in setuptools_odoo/base_addons.py
+"""
+import os
+
+for d in sorted(os.listdir('.')):
+    if os.path.isdir(d) and d != 'setup' and not d.startswith('.'):
+        print "    '{}',".format(d)
