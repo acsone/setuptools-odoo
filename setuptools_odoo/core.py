@@ -230,8 +230,8 @@ def prepare_odoo_addon(depends_override={},
                   if is_installable_addon(os.path.join(addons_dir, a))]
     if len(addons) != 1:
         raise DistutilsSetupError('%s must contain exactly one '
-                                  'installable Odoo addon dir' %
-                                  os.path.abspath(addons_dir))
+                                  'installable Odoo addon dir, found %s' %
+                                  (os.path.abspath(addons_dir), addons))
     addon_name = addons[0]
     addon_dir = os.path.join(addons_dir, addon_name)
     manifest = read_manifest(addon_dir)
