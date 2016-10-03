@@ -284,6 +284,7 @@ Useful links
 ~~~~~~~~~~~~
 
 - pypi page: https://pypi.python.org/pypi/setuptools-odoo
+- documentation: https://setuptools-odoo.readthedocs.io
 - code repository: https://github.com/acsone/setuptools-odoo
 - report issues at: https://github.com/acsone/setuptools-odoo/issues
 - see also odoo-autodiscover: https://pypi.python.org/pypi/odoo-autodiscover 
