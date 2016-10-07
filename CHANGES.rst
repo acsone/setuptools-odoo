@@ -5,6 +5,11 @@ Changes
 .. ----------
 .. -
 
+1.0.0rc2 (2016-10-07)
+---------------------
+- [IMP] 10.0 addons now depend on the specific Odoo version again
+  (>=10.0, <10.1dev)
+
 1.0.0rc1 (2016-10-03)
 ---------------------
 - [IMP] Odoo 10.0 support with addons in the odoo.addons namespace.
