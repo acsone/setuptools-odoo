@@ -45,7 +45,7 @@ ODOO_VERSION_INFO = {
         'addons_ns': 'odoo_addons',
     },
     '10.0': {
-        'odoo_dep': None,
+        'odoo_dep': 'odoo>=10.0,<10.1dev',
         'base_addons': base_addons.odoo10,
         'addon_dep_version': '',
         'pkg_name_pfx': 'odoo10-addon-',
