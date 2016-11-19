@@ -5,6 +5,15 @@ Changes
 .. ----------
 .. -
 
+1.0.0rc3 (unreleased)
+---------------------
+- [FIX] git based automatic postversioning was not working
+  in situations where the manifest was renamed (eg when
+  renaming ``__openerp__.py`` to ``__manifest__.py``)
+- [IMP] support author email: since the Odoo manifest has
+  no such concept this is currently just a special case
+  when OCA is in the authors
+
 1.0.0rc2 (2016-10-07)
 ---------------------
 - [IMP] 10.0 addons now depend on the specific Odoo version again
