@@ -47,7 +47,7 @@ class TestGitPostversion(unittest.TestCase):
             open(manifest_path, "w").write(manifest.replace("summary",
                                                             "great summary"))
             version = git_postversion.get_git_postversion(addon1_dir)
-            assert version == '8.0.1.0.0.99.dev2'
+            assert version == '8.0.1.0.0.99.dev3'
         finally:
             open(manifest_path, "w").write(manifest)
 
