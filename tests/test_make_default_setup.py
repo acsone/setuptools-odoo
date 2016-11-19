@@ -67,5 +67,6 @@ class TestMakeDefaultSetup(unittest.TestCase):
         finally:
             shutil.rmtree(tmpdir)
 
+
 if __name__ == '__main__':
     unittest.main()
