@@ -66,7 +66,7 @@ def read_manifest_from_sha(sha, addon_dir):
             s = _run_git_command_bytes(['show', sha + ':' + manifest_path],
                                        cwd=git_root)
         except subprocess.CalledProcessError:
-            break
+            continue
         try:
             return parse_manifest(s)
         except:
