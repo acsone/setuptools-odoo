@@ -14,10 +14,10 @@ from . import DATA_DIR
 class TestGitPostversion(unittest.TestCase):
 
     def test_addon1(self):
-        """ addon1 has 1 commit after version 8.0.1.0.0 """
+        """ addon1 has 2 commit after version 8.0.1.0.0 """
         addon1_dir = os.path.join(DATA_DIR, 'addon1')
         version = git_postversion.get_git_postversion(addon1_dir)
-        assert version == '8.0.1.0.0.99.dev1'
+        assert version == '8.0.1.0.0.99.dev2'
 
     def test_addon2(self):
         """ addon2 has not changed since 8.0.1.0.1 """

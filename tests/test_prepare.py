@@ -28,11 +28,14 @@ class TestPrepare(unittest.TestCase):
         self.assertEquals(requirement, 'odoo8-addon-addon1')
 
     def test_addon1(self):
+        self.maxDiff = None
         addon_dir = os.path.join(DATA_DIR, 'setup_reusable_addons', 'addon1')
         with working_directory_keeper:
             os.chdir(addon_dir)
             keywords = prepare_odoo_addon()
             self.assertEquals(keywords, {
+                'author': 'ACSONE SA/NV, Odoo Community Association (OCA)',
+                'author_email': 'support@odoo-community.org',
                 'description': 'addon 1 summary',
                 'include_package_data': True,
                 'install_requires': ['odoo>=8.0a,<9.0a'],
@@ -42,7 +45,7 @@ class TestPrepare(unittest.TestCase):
                 'namespace_packages': ['odoo_addons'],
                 'packages': ['odoo_addons'],
                 'url': 'https://acsone.eu/',
-                'version': '8.0.1.0.0.99.dev1',
+                'version': '8.0.1.0.0.99.dev2',
                 'zip_safe': False,
             })
 

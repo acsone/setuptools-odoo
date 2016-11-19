@@ -92,6 +92,16 @@ def _get_long_description(addon_dir, manifest):
         return manifest.get('description')
 
 
+def _get_author(manifest):
+    return manifest.get('author')
+
+
+def _get_author_email(manifest):
+    author = _get_author(manifest)
+    if author and 'Odoo Community Association (OCA)' in author:
+        return 'support@odoo-community.org'
+
+
 def make_pkg_name(odoo_version_info, addon_name, with_version):
     name = odoo_version_info['pkg_name_pfx'] + addon_name
     if with_version:
@@ -257,7 +267,9 @@ def prepare_odoo_addon(depends_override={},
         'namespace_packages': _ns_to_namespace_packages(addons_ns),
         'zip_safe': False,
         'install_requires': install_requires,
-        # TODO: keywords, classifiers, authors
+        'author': _get_author(manifest),
+        'author_email': _get_author_email(manifest),
+        # TODO: keywords, classifiers
     }
     # import pprint; pprint.pprint(setup_keywords)
     return {k: v for k, v in setup_keywords.items() if v is not None}

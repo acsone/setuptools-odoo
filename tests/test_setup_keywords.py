@@ -30,7 +30,7 @@ class TestSetupKeywords(unittest.TestCase):
                               [pkg_resources.Requirement.parse(r) for r in
                                ['odoo>=8.0a,<9.0a']])
             self.assertTrue(dist.has_metadata('not-zip-safe'))
-            self.assertEquals(dist.version, "8.0.1.0.0.99.dev1")
+            self.assertEquals(dist.version, "8.0.1.0.0.99.dev2")
         finally:
             shutil.rmtree(egg_info_dir)
 
