@@ -203,7 +203,7 @@ your setup.py would look like this:
         setup_requires=['setuptools-odoo'],
         odoo_addon={
             'depends_override': {
-                'connector': 'odoo8-addon-connector>=10.0.3.2.0',
+                'connector': 'odoo10-addon-connector>=10.0.3.2.0',
             },
             'external_dependencies_override': {
                 'python': {
