@@ -13,6 +13,7 @@ Documentation is built automatically at http://setuptools-odoo.readthedocs.io/.
 
 To build it locally:
 
+* pip install -e .
 * pip install sphinx
 * cd docs
 * make html
@@ -20,15 +21,11 @@ To build it locally:
 How to release
 --------------
 
-* update version in setup.py
-* update changelog in CHANGES.rst
+* update changelog in CHANGES.rst, referring to the next version
 * python setup.py check --restructuredtext
 * commit everything
 * make sure tests pass!
-* git tag <version>
+* git tag <version>, where <version> is PEP 440 compliant
 * git push --tags
 * python setup.py sdist bdist_wheel
 * twine upload
-* increment version (last digit + .dev)
-* add unreleased line on top of CHANGES.rst
-* git commit and push

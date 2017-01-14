@@ -7,7 +7,7 @@ import setuptools
 
 setuptools.setup(
     name='setuptools-odoo',
-    version='1.0.0rc3.dev0',
+    use_scm_version=True,
     description='A library to help package Odoo addons with setuptools',
     long_description='\n'.join((
         open('README.rst').read(),
@@ -31,6 +31,9 @@ setuptools.setup(
     install_requires=[
         'setuptools',
         'setuptools-git',
+    ],
+    setup_requires=[
+        'setuptools_scm'
     ],
     test_suite='tests',
     entry_points={
