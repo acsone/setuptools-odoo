@@ -5,7 +5,7 @@ Changes
 .. ----------
 .. -
 
-1.0.0rc3 (unreleased)
+1.0.0rc3 (2017-01-14)
 ---------------------
 - [FIX] git based automatic postversioning was not working
   in situations where the manifest was renamed (eg when
