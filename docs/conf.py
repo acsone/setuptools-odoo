@@ -21,6 +21,7 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 from datetime import date
+from pkg_resources import get_distribution
 
 # -- General configuration ------------------------------------------------
 
@@ -60,7 +61,6 @@ author = u'Stéphane Bidoul (ACSONE)'
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
-from pkg_resources import get_distribution
 release = get_distribution('setuptools-odoo').version
 version = '.'.join(release.split('.')[:2])
 
