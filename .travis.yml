@@ -15,3 +15,14 @@ script:
 
 after_success:
   - coveralls
+
+deploy:
+  provider: pypi
+  user: acsbidoul
+  password:
+    secure: yhZ4NU2E76ytzVNVhIB7FgE/kpbvzE5zXucKOzCE/W3BlYn+bg2qeWXjAjKghe3wN2TwpHiQVMv9R4EXfGWIAS4myQRfv+mAuAIV07AFM1r1kjcrSz13J5NMpNHbhh+8mHC3VBgu/HGFiORAGu396W/BhbkyyUb9ZNS8tzXWuSIqEz1V5A3ZTJBypG3ROvXLArRJ4G9nssDDDhzQW9q2MnWzSUqBVm6vp2g3EBNDJtBBrVTXDgT9RpI1pcCeoKm2qidDPnjiTCWdtYV5CBnj8p2Q15oKdG8ccN04PGRThARnNzG3/A+Z0RlHdOh7bOfNc3sPXy3OrTvj7qKDBS51TjrfWxR5hxtc0NfMMBSShBZ50m0QRCqzkPI1wJeDESVLflA+HT+W89L/tERo/HR4NwIF1ap0nurrBq7g/8Vq9tWLffOJBa6db4GX9wTStcPwbL/PqQ80H1Y+5yn+nKVtwYA1jwBPy9MMovKLYMKjpUn4IVrGlmfHHpXPAPIBQaNnekN0uEvTszbki7YZpLnxNqCFjXN11cGBwX6hJ6N/C6ZAK151eWGrjFFmJ34U3Qe0PoCRIzYTH7g47vvawvUQRO3zQDzM4GLZ0rtf1x1TTkH+D1o5oI1iQ8XVNuIxsm2XwDF6pnFlf7/9DDR3GY3UmmLg+D3Ph3FjE23uxO77Ejg=
+  distributions: "sdist bdist_wheel"
+  on:
+    repo: acsone/setuptools-odoo
+    branch: master
+    tags: true

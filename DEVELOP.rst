@@ -27,5 +27,5 @@ How to release
 * make sure tests pass!
 * git tag <version>, where <version> is PEP 440 compliant
 * git push --tags
-* python setup.py sdist bdist_wheel
-* twine upload
+
+Uploading of tagged versions to pypi will be taken care of by travis.
