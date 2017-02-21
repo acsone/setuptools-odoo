@@ -5,6 +5,11 @@ Changes
 .. ----------
 .. -
 
+1.0.0rc4 (2017-02-21)
+---------------------
+- [FIX] avoid setuptools-git version 1.2 as it is broken for
+  our use case
+
 1.0.0rc3 (2017-01-14)
 ---------------------
 - [FIX] git based automatic postversioning was not working
