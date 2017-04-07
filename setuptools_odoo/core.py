@@ -269,7 +269,12 @@ def prepare_odoo_addon(depends_override={},
         'install_requires': install_requires,
         'author': _get_author(manifest),
         'author_email': _get_author_email(manifest),
-        # TODO: keywords, classifiers
+        'classifiers': [
+            'Programming Language :: Python :: 2.7',
+            'Framework :: Odoo',
+        ],
+        # TODO: more classifiers: licence, development status, ...
+        # TODO: keywords
     }
     # import pprint; pprint.pprint(setup_keywords)
     return {k: v for k, v in setup_keywords.items() if v is not None}
