@@ -3,6 +3,9 @@
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 import os
 import unittest
+from distutils.core import DistutilsSetupError
+
+import pytest
 
 from setuptools_odoo.core import (
     prepare_odoo_addon,
@@ -66,6 +69,14 @@ class TestPrepare(unittest.TestCase):
                 'version': '8.0.1.0.1',
                 'zip_safe': False,
             })
+
+    def test_addon6_bad_website(self):
+        addon_dir = os.path.join(DATA_DIR, 'setup_reusable_addons', 'addon6')
+        with working_directory_keeper:
+            os.chdir(addon_dir)
+            with pytest.raises(DistutilsSetupError) as excinfo:
+                keywords = prepare_odoo_addon()
+            assert 'not a valid url' in str(excinfo.value)
 
     def test_addons_dir(self):
         addons_dir = os.path.join(DATA_DIR, 'setup_custom_project')

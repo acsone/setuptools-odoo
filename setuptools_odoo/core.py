@@ -7,6 +7,8 @@ import setuptools
 from distutils.core import DistutilsSetupError
 from warnings import warn
 
+import rfc3986
+
 from . import base_addons
 from . import external_dependencies
 from .manifest import read_manifest, is_installable_addon
@@ -255,12 +257,18 @@ def prepare_odoo_addon(depends_override={},
         external_dependencies_override=external_dependencies_override,
         odoo_version_override=odoo_version_override,
     )
+    url = manifest.get('website') or None
+    if url:
+        uri = rfc3986.uri_reference(url)
+        if not uri.is_valid(require_scheme=True, require_authority=True):
+            raise DistutilsSetupError('%s is not a valid url in %s' %
+                                      (url, addon_dir))
     setup_keywords = {
         'name': make_pkg_name(odoo_version_info, addon_name, False),
         'version': version,
         'description': _get_description(addon_dir, manifest),
         'long_description': _get_long_description(addon_dir, manifest),
-        'url': manifest.get('website'),
+        'url': url,
         'license': manifest.get('license'),
         'packages': setuptools.find_packages(),
         'include_package_data': True,

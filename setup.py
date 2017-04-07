@@ -30,6 +30,7 @@ setuptools.setup(
         'setuptools_odoo',
     ],
     install_requires=[
+        'rfc3986',
         'setuptools',
         'setuptools-git!=1.2',
     ],
