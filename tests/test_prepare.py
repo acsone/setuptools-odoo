@@ -36,6 +36,10 @@ class TestPrepare(unittest.TestCase):
             self.assertEquals(keywords, {
                 'author': 'ACSONE SA/NV, Odoo Community Association (OCA)',
                 'author_email': 'support@odoo-community.org',
+                'classifiers': [
+                    'Programming Language :: Python :: 2.7',
+                    'Framework :: Odoo',
+                ],
                 'description': 'addon 1 summary',
                 'include_package_data': True,
                 'install_requires': ['odoo>=8.0a,<9.0a'],
@@ -55,6 +59,10 @@ class TestPrepare(unittest.TestCase):
             os.chdir(addon_dir)
             keywords = prepare_odoo_addon()
             self.assertEquals(keywords, {
+                'classifiers': [
+                    'Programming Language :: Python :: 2.7',
+                    'Framework :: Odoo',
+                ],
                 'description': 'addon 2 summary',
                 'include_package_data': True,
                 'install_requires': ['odoo8-addon-addon1',

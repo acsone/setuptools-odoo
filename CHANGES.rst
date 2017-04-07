@@ -5,6 +5,10 @@ Changes
 .. ----------
 .. -
 
+1.0.0 (2017-04-07)
+------------------
+- [ADD] support the brand new Framework :: Odoo classifier
+
 1.0.0rc4 (2017-02-21)
 ---------------------
 - [FIX] avoid setuptools-git version 1.2 as it is broken for
