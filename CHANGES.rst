@@ -5,7 +5,7 @@ Changes
 .. ----------
 .. -
 
-1.0.1 (2017-??-??)
+1.0.1 (2017-04-08)
 ------------------
 - [ADD] add license classifier for the licenses commonly used in OCA
 
