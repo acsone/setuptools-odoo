@@ -5,6 +5,10 @@ Changes
 .. ----------
 .. -
 
+1.0.2 (2017-??-??)
+------------------
+- [IMP] use setuptools-scm instead of setuptools-git for finding files
+
 1.0.1 (2017-04-08)
 ------------------
 - [ADD] add license classifier for the licenses commonly used in OCA

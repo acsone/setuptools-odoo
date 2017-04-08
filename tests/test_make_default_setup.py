@@ -19,7 +19,8 @@ class TestMakeDefaultSetup(unittest.TestCase):
         def _filter(l):
             return [i for i in l
                     if not i.endswith('.pyc') and
-                    not i.endswith('.egg-info')]
+                    not i.endswith('.egg-info') and
+                    not i.endswith('.eggs')]
         if dc.right.endswith('addon4'):
             # in addon4, we have a customized
             # setup.py to test depends and external_dependencies overrides

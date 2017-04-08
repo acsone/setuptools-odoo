@@ -31,7 +31,7 @@ setuptools.setup(
     ],
     install_requires=[
         'setuptools',
-        'setuptools-git!=1.2',
+        'setuptools_scm',
     ],
     setup_requires=[
         'setuptools_scm'
