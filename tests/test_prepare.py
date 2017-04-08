@@ -39,6 +39,8 @@ class TestPrepare(unittest.TestCase):
                 'classifiers': [
                     'Programming Language :: Python :: 2.7',
                     'Framework :: Odoo',
+                    'License :: OSI Approved :: '
+                    'GNU Affero General Public License v3',
                 ],
                 'description': 'addon 1 summary',
                 'include_package_data': True,

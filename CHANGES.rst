@@ -5,6 +5,10 @@ Changes
 .. ----------
 .. -
 
+1.0.1 (2017-??-??)
+------------------
+- [ADD] add license classifier for the licenses commonly used in OCA
+
 1.0.0 (2017-04-07)
 ------------------
 - [ADD] support the brand new Framework :: Odoo classifier

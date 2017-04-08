@@ -221,6 +221,52 @@ def _find_addons_dir():
     return res.pop()
 
 
+def _make_classifiers(manifest):
+    classifiers = [
+        'Programming Language :: Python :: 2.7',
+        'Framework :: Odoo',
+    ]
+    # commonly used licenses in OCA
+    LICENSES = {
+        'agpl-3':
+            'License :: OSI Approved :: '
+            'GNU Affero General Public License v3',
+        'agpl-3 or any later version':
+            'License :: OSI Approved :: '
+            'GNU Affero General Public License v3 or later (AGPLv3+)',
+        'gpl-2':
+            'License :: OSI Approved :: '
+            'GNU General Public License v2 (GPLv2)',
+        'gpl-2 or any later version':
+            'License :: OSI Approved :: '
+            'GNU General Public License v2 or later (GPLv2+)',
+        'gpl-3':
+            'License :: OSI Approved :: '
+            'GNU General Public License v3 (GPLv3)',
+        'gpl-3 or any later version':
+            'License :: OSI Approved :: '
+            'GNU General Public License v3 or later (GPLv3+)',
+        'lgpl-2':
+            'License :: OSI Approved :: '
+            'GNU Lesser General Public License v2 (LGPLv2)',
+        'lgpl-2 or any later version':
+            'License :: OSI Approved :: '
+            'GNU Lesser General Public License v2 or later (LGPLv2+)',
+        'lgpl-3':
+            'License :: OSI Approved :: '
+            'GNU Lesser General Public License v3 (LGPLv3)',
+        'lgpl-3 or any later version':
+            'License :: OSI Approved :: '
+            'GNU Lesser General Public License v3 or later (LGPLv3+)',
+    }
+    license = manifest.get('license')
+    if license:
+        license_classifier = LICENSES.get(license.lower())
+        if license_classifier:
+            classifiers.append(license_classifier)
+    return classifiers
+
+
 def prepare_odoo_addon(depends_override={},
                        external_dependencies_override={},
                        odoo_version_override=None):
@@ -269,11 +315,8 @@ def prepare_odoo_addon(depends_override={},
         'install_requires': install_requires,
         'author': _get_author(manifest),
         'author_email': _get_author_email(manifest),
-        'classifiers': [
-            'Programming Language :: Python :: 2.7',
-            'Framework :: Odoo',
-        ],
-        # TODO: more classifiers: licence, development status, ...
+        'classifiers': _make_classifiers(manifest)
+        # TODO: more classifiers: development status, ...
         # TODO: keywords
     }
     # import pprint; pprint.pprint(setup_keywords)
