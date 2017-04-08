@@ -19,7 +19,9 @@ def _set_dist_keyword(dist, key, val):
         # list set in setup.py, extend with what we get from __openerp__.py
         # (for install_requires, classifiers, etc)
         assert isinstance(val, list)
-        v.extend(val)
+        for item in val:
+            if item not in v:
+                v.append(item)
 
 
 def _set_dist_keywords(dist, setup_keywords):
