@@ -7,7 +7,6 @@ Changes
 
 1.0.2 (2017-??-??)
 ------------------
-- [IMP] use setuptools-scm instead of setuptools-git for finding files
 - [IMP] update base addons list for Odoo 10.0
 - [IMP] when setuptools extends a list-type keyword, prevent duplicate items
 

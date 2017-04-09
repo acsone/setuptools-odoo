@@ -2,11 +2,14 @@
 # Copyright © 2015 ACSONE SA/NV
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
+import glob
 import os
 import shutil
 import subprocess
 import sys
+import tempfile
 import unittest
+from zipfile import ZipFile
 
 import pkg_resources
 
@@ -87,6 +90,50 @@ class TestSetupKeywords(unittest.TestCase):
             self.assertEquals(dist.key, 'odoo8-addon-addon5')
         finally:
             shutil.rmtree(egg_info_dir)
+
+    def test_odoo_addon5_wheel(self):
+        addon5_dir = os.path.join(DATA_DIR, 'setup_reusable_addons', 'addon5')
+        # add a file that is not under git control
+        notingit_fname = os.path.join(
+            addon5_dir, 'odoo_addons', 'addon5', 'data', 'notingit.xml')
+        with open(notingit_fname, 'w') as f:
+            f.write('<stuff/>')
+        self.assertTrue(os.path.isfile(notingit_fname))
+        try:
+            bdist_dir = tempfile.mkdtemp()
+            assert os.path.isdir(bdist_dir)
+            try:
+                dist_dir = tempfile.mkdtemp()
+                assert os.path.isdir(dist_dir)
+                try:
+                    subprocess.check_call([sys.executable,
+                                           'setup.py', 'bdist_wheel',
+                                           '-b', bdist_dir, '-d', dist_dir],
+                                          cwd=addon5_dir)
+                    wheel_fname = glob.glob(os.path.join(dist_dir, '*.whl'))[0]
+                    with ZipFile(wheel_fname) as zf:
+                        namelist = zf.namelist()
+                        assert 'odoo_addons/addon5/__openerp__.py' \
+                            in namelist
+                        # some non python file was included because #
+                        # it is under git control
+                        assert 'odoo_addons/addon5/data/somedata.xml' \
+                            in namelist
+                        # this file is not under git control,
+                        # so its not in the wheel
+                        assert 'odoo_addons/addon5/data/notingit.xml' \
+                            not in namelist
+                finally:
+                    shutil.rmtree(dist_dir)
+                    shutil.rmtree(os.path.join(
+                        addon5_dir, 'build'))
+                    shutil.rmtree(os.path.join(
+                        addon5_dir, 'odoo8_addon_addon5.egg-info'))
+            finally:
+                if os.path.isdir(bdist_dir):
+                    shutil.rmtree(bdist_dir)
+        finally:
+            os.unlink(notingit_fname)
 
     def test_custom_project(self):
         project_dir = os.path.join(DATA_DIR, 'setup_custom_project')
