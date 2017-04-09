@@ -34,7 +34,7 @@ setuptools.setup(
         'setuptools-git!=1.2',
     ],
     setup_requires=[
-        'setuptools_scm'
+        'setuptools-scm',
     ],
     test_suite='tests',
     entry_points={
