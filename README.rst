@@ -39,12 +39,22 @@ and `pypi <https://pypi.python.org>`_).
 
 .. contents::
 
-.. Note:: The documentation below applies to Odoo 10+
+Requirements
+~~~~~~~~~~~~
 
-  Odoo 8 and 9 are supported too, with the help of `odoo-autodiscover
-  <https://pypi.python.org/pypi/odoo-autodiscover>`_. You must replace
-  in the text below ``odoo.addons`` (the namespace) and ``odoo/addons``
-  (the directory) by ``odoo_addons``.
+The following prerequisites apply:
+
+  * Odoo version 8, 9 or 10 are supported. The documentation below applies
+    to Odoo 10.  Odoo 8 and 9 are supported too, with the help of `odoo-autodiscover
+    <https://pypi.python.org/pypi/odoo-autodiscover>`_. You must replace
+    in the text below ``odoo.addons`` (the namespace) and ``odoo/addons``
+    (the directory) by ``odoo_addons``.
+  * To install addons packaged with this tool, any pip version that
+    supports the wheel package format should work (ie pip >= 1.4).
+  * For any advanced use such as installing from source, installing from
+    git, packaging wheels etc, you need a recent version of pip (>= 9.0.1).
+    You also need setuptools < 31 or apply `this Odoo patch
+    <https://github.com/odoo/odoo/pull/15718>`_.
 
 Packaging a single addon
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -107,9 +117,16 @@ or ``pip`` commands such as:
     python setup.py install
     python setup.py develop
     python setup.py bdist_wheel
-    pip install .
-    pip install -e .
     pip install odoo<8|9|10>-addon-<addon name>
+    pip install -e .
+    pip install -e git+https://github.com/OCA/<repo>/<addon>#egg=odoo<8|9|10>-addon-<addon name>\&subdirectory=setup/<addon name>
+
+.. note::
+
+   When using pip to install from source, the `-e` option is important
+   because of `pip issue #3500 <https://github.com/pypa/pip/issues/3500>`_.
+   The `-e` option has the huge advantage of letting `pip freeze` produce
+   meaningful output.
 
 For Odoo 10, simply run Odoo normally with the ``odoo`` command. The
 addons-path will be automatically populated with all places providing
