@@ -9,6 +9,7 @@ Changes
 ------------------
 - [IMP] update base addons list for Odoo 10.0
 - [IMP] when setuptools extends a list-type keyword, prevent duplicate items
+- [IMP] make tests pass with python 3
 
 1.0.1 (2017-04-08)
 ------------------
