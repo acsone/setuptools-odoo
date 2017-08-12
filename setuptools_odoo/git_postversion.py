@@ -16,7 +16,8 @@ def _run_git_command_exit_code(args, cwd=None):
 
 
 def _run_git_command_bytes(args, cwd=None):
-    output = subprocess.check_output(['git'] + args, cwd=cwd)
+    output = subprocess.check_output(
+        ['git'] + args, cwd=cwd, universal_newlines=True)
     return output.strip()
 
 

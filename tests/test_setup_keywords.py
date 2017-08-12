@@ -27,7 +27,7 @@ class TestSetupKeywords(unittest.TestCase):
                                     'odoo8_addon_addon1.egg-info')
         assert os.path.isdir(egg_info_dir)
         try:
-            dist = pkg_resources.find_distributions(addon1_dir).next()
+            dist = next(pkg_resources.find_distributions(addon1_dir))
             self.assertEquals(dist.key, 'odoo8-addon-addon1')
             self.assertEquals(dist.requires(),
                               [pkg_resources.Requirement.parse(r) for r in
@@ -45,7 +45,7 @@ class TestSetupKeywords(unittest.TestCase):
                                     'odoo8_addon_addon2.egg-info')
         assert os.path.isdir(egg_info_dir)
         try:
-            dist = pkg_resources.find_distributions(addon2_dir).next()
+            dist = next(pkg_resources.find_distributions(addon2_dir))
             self.assertEquals(dist.key, 'odoo8-addon-addon2')
             self.assertEquals(dist.requires(),
                               [pkg_resources.Requirement.parse(r) for r in
@@ -65,7 +65,7 @@ class TestSetupKeywords(unittest.TestCase):
                                     'odoo8_addon_addon4.egg-info')
         assert os.path.isdir(egg_info_dir)
         try:
-            dist = pkg_resources.find_distributions(addon4_dir).next()
+            dist = next(pkg_resources.find_distributions(addon4_dir))
             self.assertEquals(dist.key, 'odoo8-addon-addon4')
             self.assertEquals(dist.requires(),
                               [pkg_resources.Requirement.parse(r) for r in
@@ -86,7 +86,7 @@ class TestSetupKeywords(unittest.TestCase):
                                     'odoo8_addon_addon5.egg-info')
         assert os.path.isdir(egg_info_dir)
         try:
-            dist = pkg_resources.find_distributions(addon5_dir).next()
+            dist = next(pkg_resources.find_distributions(addon5_dir))
             self.assertEquals(dist.key, 'odoo8-addon-addon5')
         finally:
             shutil.rmtree(egg_info_dir)
@@ -142,7 +142,7 @@ class TestSetupKeywords(unittest.TestCase):
         egg_info_dir = os.path.join(project_dir,
                                     'test_custom_project.egg-info')
         assert os.path.isdir(egg_info_dir)
-        dist = pkg_resources.find_distributions(project_dir).next()
+        dist = next(pkg_resources.find_distributions(project_dir))
         self.assertEquals(dist.requires(),
                           [pkg_resources.Requirement.parse(r) for r in
                            ['pyflakes',
