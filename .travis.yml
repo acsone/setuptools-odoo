@@ -5,7 +5,7 @@ python:
   - "2.7"
 
 install:
-  - pip install tox
+  - pip install tox-travis
   - pip install coveralls
   # some tests work on the git history so we need all of it!
   - git fetch --unshallow
