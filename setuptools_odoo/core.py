@@ -27,6 +27,7 @@ ODOO_VERSION_INFO = {
         'pkg_name_pfx': ('openerp7-addon-'
                          if not LEGACY_MODE else 'openerp-addon-'),
         'addons_ns': 'openerp_addons',
+        'namespace_packages': ['openerp_addons'],
     },
     '8.0': {
         'odoo_dep': 'odoo>=8.0a,<9.0a',
@@ -35,6 +36,7 @@ ODOO_VERSION_INFO = {
         'pkg_name_pfx': ('odoo8-addon-'
                          if not LEGACY_MODE else 'odoo-addon-'),
         'addons_ns': 'odoo_addons',
+        'namespace_packages': ['odoo_addons'],
     },
     '9.0': {
         'odoo_dep': 'odoo>=9.0a,<9.1a',
@@ -43,6 +45,7 @@ ODOO_VERSION_INFO = {
         'pkg_name_pfx': ('odoo9-addon-'
                          if not LEGACY_MODE else 'odoo-addon-'),
         'addons_ns': 'odoo_addons',
+        'namespace_packages': ['odoo_addons'],
     },
     '10.0': {
         'odoo_dep': 'odoo>=10.0,<10.1dev',
@@ -50,12 +53,42 @@ ODOO_VERSION_INFO = {
         'addon_dep_version': '',
         'pkg_name_pfx': 'odoo10-addon-',
         'addons_ns': 'odoo.addons',
+        'namespace_packages': ['odoo', 'odoo.addons'],
+    },
+    '11.0': {
+        'odoo_dep': 'odoo>=11.0a,<10.1dev',
+        'base_addons': base_addons.odoo11,
+        'addon_dep_version': '',
+        'pkg_name_pfx': 'odoo11-addon-',
+        'addons_ns': 'odoo.addons',
+        'namespace_packages': None,
     },
 }
 
 
+def _get_odoo_version_info(addons_dir, odoo_version_override=None):
+    """ Detect Odoo version from an addons directory """
+    odoo_version_info = None
+    addons = os.listdir(addons_dir)
+    for addon in addons:
+        addon_dir = os.path.join(addons_dir, addon)
+        if is_installable_addon(addon_dir):
+            manifest = read_manifest(addon_dir)
+            _, addon_odoo_version_info = _get_version(
+                addon_dir, manifest, odoo_version_override,
+                git_post_version=False)
+            if odoo_version_info is not None and \
+                    odoo_version_info != addon_odoo_version_info:
+                raise DistutilsSetupError("Not all addons are for the same "
+                                          "odoo version in %s (error detected "
+                                          "in %s)" % (addons_dir, addon))
+            odoo_version_info = addon_odoo_version_info
+    return odoo_version_info
+
+
 def _get_version(addon_dir, manifest, odoo_version_override=None,
                  git_post_version=True):
+    """ Get addon version information from an addon directory """
     version = manifest.get('version')
     if not version:
         warn("No version in manifest in %s" % addon_dir)
@@ -193,16 +226,6 @@ def get_install_requires_odoo_addons(addons_dir,
     return sorted(install_requires)
 
 
-def _ns_to_namespace_packages(ns):
-    res = []
-    for part in ns.split('.'):
-        if res:
-            res.append(res[-1] + '.' + part)
-        else:
-            res.append(part)
-    return res
-
-
 def _find_addons_dir():
     """ Try to find the addons dir / namespace package
 
@@ -310,7 +333,7 @@ def prepare_odoo_addon(depends_override={},
         'license': manifest.get('license'),
         'packages': setuptools.find_packages(),
         'include_package_data': True,
-        'namespace_packages': _ns_to_namespace_packages(addons_ns),
+        'namespace_packages': odoo_version_info['namespace_packages'],
         'zip_safe': False,
         'install_requires': install_requires,
         'author': _get_author(manifest),
@@ -327,6 +350,8 @@ def prepare_odoo_addons(depends_override={},
                         external_dependencies_override={},
                         odoo_version_override=None):
     addons_dir, addons_ns = _find_addons_dir()
+    odoo_version_info = _get_odoo_version_info(
+        addons_dir, odoo_version_override)
     install_requires = get_install_requires_odoo_addons(
         addons_dir,
         depends_override=depends_override,
@@ -336,7 +361,7 @@ def prepare_odoo_addons(depends_override={},
     setup_keywords = {
         'packages': setuptools.find_packages(),
         'include_package_data': True,
-        'namespace_packages': _ns_to_namespace_packages(addons_ns),
+        'namespace_packages': odoo_version_info['namespace_packages'],
         'zip_safe': False,
         'install_requires': install_requires,
     }
