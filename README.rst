@@ -44,16 +44,13 @@ Requirements
 
 The following prerequisites apply:
 
-  * Odoo version 8, 9 or 10 are supported. The documentation below applies
-    to Odoo 10.  Odoo 8 and 9 are supported too, with the help of `odoo-autodiscover
-    <https://pypi.python.org/pypi/odoo-autodiscover>`_. You must replace
-    in the text below ``odoo.addons`` (the namespace) and ``odoo/addons``
-    (the directory) by ``odoo_addons``.
+  * Odoo version 8, 9 and 10 are supported (see notes in the documentation 
+    for implementation differences).
   * To install addons packaged with this tool, any pip version that
     supports the wheel package format should work (ie pip >= 1.4).
   * For any advanced use such as installing from source, installing from
     git, packaging wheels etc, you need a recent version of pip (>= 9.0.1).
-    You also need setuptools < 31 or apply `this Odoo patch
+  * For Odoo 10, you also need setuptools < 31 or apply `this Odoo patch
     <https://github.com/odoo/odoo/pull/15718>`_.
 
 Packaging a single addon
@@ -64,6 +61,7 @@ following structure (assuming the addon is named ``<addon_name>``):
 
   .. code::
 
+    # Odoo 10
     setup.py
     odoo/
     odoo/__init__.py
@@ -73,8 +71,17 @@ following structure (assuming the addon is named ``<addon_name>``):
     odoo/addons/<addon_name>/__manifest__.py
     odoo/addons/<addon_name>/...
 
-where ``odoo/__init__.py`` and ``odoo/addons/__init__.py`` are
-standard python namespace package declaration ``__init__.py``:
+    # Odoo 8, 9
+    setup.py
+    odoo_addons/
+    odoo_addons/__init__.py
+    odoo_addons/<addon_name>/
+    odoo_addons/<addon_name>/__openerp__.py
+    odoo_addons/<addon_name>/...
+
+where ``odoo/__init__.py``, ``odoo/addons/__init__.py``,
+and ``odoo_addons/__init__.py`` are standard python namespace package 
+declaration ``__init__.py``:
 
   .. code:: python
 
@@ -92,7 +99,7 @@ and where setup.py has the following content:
     )
 
 The usual setup() keyword arguments are computed automatically from the
-Odoo manifest file (``__manifest__.py``) and contain:
+Odoo manifest file (``__manifest__.py`` or ``__openerp__.py``) and contain:
 
   * ``name``: the package name, ``odoo<series>-addon-<addon_name>``
   * ``version``: the ``version`` key from the manifest
@@ -103,11 +110,13 @@ Odoo manifest file (``__manifest__.py``) and contain:
   * ``url``: the ``website`` key from the manifest
   * ``license``: the ``license`` key from the manifest
   * ``packages``: autodetected packages
-  * ``namespace_packages``: ``['odoo', 'odoo.addons']``
+  * ``namespace_packages``: ``['odoo', 'odoo.addons']`` (Odoo 10) or
+    ``['odoo_addons']`` (Odoo 8, 9)
   * ``zip_safe``: ``False``
   * ``include_package_data``: ``True``
   * ``install_requires``: dependencies to Odoo, other addons (except official
-    odoo addons, which are brought by the Odoo dependency) and python libraries.
+    odoo community and enterprise addons, which are brought by the Odoo dependency) 
+    and python libraries.
 
 Then, the addon can be deployed and packaged with usual ``setup.py``
 or ``pip`` commands such as:
@@ -138,6 +147,14 @@ For Odoo 8 or 9 start Odoo using the ``odoo-server-autodiscover`` or
 
 It is of course highly recommanded to run all this inside a virtualenv.
 
+  .. note:: Odoo 8, 9 namespace
+
+     Although the addons are packaged in the ``odoo_addons`` namespace,
+     the code can still import them using ``import odoo.addons....``.
+     ``odoo_addons`` must never appear in the code, it is just a packaging
+     peculiarity for Odoo 8 and 9 only, and does not require any change
+     to the addons source code.
+
 Packaging multiple addons
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -152,6 +169,7 @@ to the following structure:
 
   .. code::
 
+    # Odoo 10
     setup.py
     odoo/
     odoo/__init__.py
@@ -163,6 +181,17 @@ to the following structure:
     odoo/addons/<addon2_name>/
     odoo/addons/<addon2_name>/__manifest__.py
     odoo/addons/<addon2_name>/...
+
+    # Odoo 8, 9
+    setup.py
+    odoo_addons/
+    odoo_addons/__init__.py
+    odoo_addons/<addon1_name>/
+    odoo_addons/<addon1_name>/__openerp__.py
+    odoo_addons/<addon1_name>/...
+    odoo_addons/<addon2_name>/
+    odoo_addons/<addon2_name>/__openerp__.py
+    odoo_addons/<addon2_name>/...
 
 where setup.py has the following content:
 
@@ -179,10 +208,11 @@ where setup.py has the following content:
     )
 
 The following setup() keyword arguments are computed automatically from the
-Odoo manifest files (``__manifest__.py``) and contain:
+Odoo manifest files (``__manifest__.py`` or ``__openerp__.py``) and contain:
 
   * ``packages``: autodetected packages
-  * ``namespace_packages``: ``['odoo', 'odoo.addons']``
+  * ``namespace_packages``: ``['odoo', 'odoo.addons']`` (Odoo 10) or
+    ``['odoo_addons']`` (Odoo 8, 9)
   * ``zip_safe``: ``False``
   * ``include_package_data``: ``True``
   * ``install_requires``: dependencies on Odoo, any depending addon not found
@@ -240,6 +270,7 @@ creates a default ``setup.py`` for each addon according to the following structu
 
   .. code::
 
+    # Odoo 10
     setup/
     setup/addon1/
     setup/addon1/setup.py
@@ -259,6 +290,24 @@ creates a default ``setup.py`` for each addon according to the following structu
     <addon1_name>/...
     <addon2_name>/
     <addon2_name>/__manifest__.py
+    <addon2_name>/...
+
+    # Odoo 8, 9
+    setup/
+    setup/addon1/
+    setup/addon1/setup.py
+    setup/addon1/odoo_addons/
+    setup/addon1/odoo_addons/__init__.py
+    setup/addon1/odoo_addons/<addon1_name> -> ../../../../<addon1_name>
+    setup/addon2/setup.py
+    setup/addon2/odoo_addons/
+    setup/addon2/odoo_addons/__init__.py
+    setup/addon2/odoo_addons/<addon2_name> -> ../../../../<addon2_name>
+    <addon1_name>/
+    <addon1_name>/__openerp__.py
+    <addon1_name>/...
+    <addon2_name>/
+    <addon2_name>/__openerp__.py
     <addon2_name>/...
 
 Versioning
