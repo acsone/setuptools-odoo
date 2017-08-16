@@ -298,11 +298,11 @@ creates a default ``setup.py`` for each addon according to the following structu
     setup/addon1/setup.py
     setup/addon1/odoo_addons/
     setup/addon1/odoo_addons/__init__.py
-    setup/addon1/odoo_addons/<addon1_name> -> ../../../../<addon1_name>
+    setup/addon1/odoo_addons/<addon1_name> -> ../../../<addon1_name>
     setup/addon2/setup.py
     setup/addon2/odoo_addons/
     setup/addon2/odoo_addons/__init__.py
-    setup/addon2/odoo_addons/<addon2_name> -> ../../../../<addon2_name>
+    setup/addon2/odoo_addons/<addon2_name> -> ../../../<addon2_name>
     <addon1_name>/
     <addon1_name>/__openerp__.py
     <addon1_name>/...
