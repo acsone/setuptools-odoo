@@ -19,7 +19,7 @@ class TestPrepare(unittest.TestCase):
     """ Test the prepare... public api """
 
     def test_make_pkg_name(self):
-        pkg_name = make_pkg_name(ODOO_VERSION_INFO['8.0'], 'addon1', False)
+        pkg_name = make_pkg_name(ODOO_VERSION_INFO['8.0'], 'addon1')
         self.assertEquals(pkg_name, 'odoo8-addon-addon1')
 
     def test_make_pkg_requirement(self):

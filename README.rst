@@ -21,22 +21,6 @@ Odoo addons using standard python infrastructure (ie
 `wheel <https://pypi.python.org/pypi/wheel>`_,
 and `pypi <https://pypi.python.org>`_).
 
-.. Warning:: BACKWARD INCOMPATIBLE CHANGE
-
-  From version 1.0.0b7 onwards, the package name structure is
-  ``odoo<series>-addon-<addon_name>``. Before it was ``odoo-addon-<addon_name>``.
-  This backward-incompatible change was necessary to enable easier
-  publishing to pypi or other wheelhouses as discussed in `issue 6
-  <https://github.com/acsone/setuptools-odoo/issues/6>`_.
-
-  If you need to continue working with the previous
-  naming scheme for some time, set the following environment
-  variable ``SETUPTOOLS_ODOO_LEGACY_MODE=1``. This legacy scheme will
-  be supported until version 1.1.
-
-  It is highly recommanded to remove ``.eggs`` and ``*.egg-info``
-  directories from editable source directories before using this new version.
-
 .. contents::
 
 Requirements
