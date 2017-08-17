@@ -28,7 +28,7 @@ Requirements
 
 The following prerequisites apply:
 
-  * Odoo version 8, 9 and 10 are supported (see notes in the documentation 
+  * Odoo version 8, 9, 10 and 11 are supported (see notes in the documentation
     for implementation differences).
   * To install addons packaged with this tool, any pip version that
     supports the wheel package format should work (ie pip >= 1.4).
@@ -44,6 +44,14 @@ To be packaged with this library, the addon source code must have the
 following structure (assuming the addon is named ``<addon_name>``):
 
   .. code::
+
+    # Odoo 11
+    setup.py
+    odoo/
+    odoo/addons/
+    odoo/addons/<addon_name>/
+    odoo/addons/<addon_name>/__manifest__.py
+    odoo/addons/<addon_name>/...
 
     # Odoo 10
     setup.py
@@ -64,8 +72,8 @@ following structure (assuming the addon is named ``<addon_name>``):
     odoo_addons/<addon_name>/...
 
 where ``odoo/__init__.py``, ``odoo/addons/__init__.py``,
-and ``odoo_addons/__init__.py`` are standard python namespace package 
-declaration ``__init__.py``:
+and ``odoo_addons/__init__.py`` are standard python namespace package
+declaration ``__init__.py`` (note absent ``__init__.py`` for Odoo 11):
 
   .. code:: python
 
@@ -95,11 +103,11 @@ Odoo manifest file (``__manifest__.py`` or ``__openerp__.py``) and contain:
   * ``license``: the ``license`` key from the manifest
   * ``packages``: autodetected packages
   * ``namespace_packages``: ``['odoo', 'odoo.addons']`` (Odoo 10) or
-    ``['odoo_addons']`` (Odoo 8, 9)
+    ``['odoo_addons']`` (Odoo 8, 9), absent for Odoo 11
   * ``zip_safe``: ``False``
   * ``include_package_data``: ``True``
   * ``install_requires``: dependencies to Odoo, other addons (except official
-    odoo community and enterprise addons, which are brought by the Odoo dependency) 
+    odoo community and enterprise addons, which are brought by the Odoo dependency)
     and python libraries.
 
 Then, the addon can be deployed and packaged with usual ``setup.py``
@@ -110,9 +118,9 @@ or ``pip`` commands such as:
     python setup.py install
     python setup.py develop
     python setup.py bdist_wheel
-    pip install odoo<8|9|10>-addon-<addon name>
+    pip install odoo<8|9|10|11>-addon-<addon name>
     pip install -e .
-    pip install -e git+https://github.com/OCA/<repo>/<addon>#egg=odoo<8|9|10>-addon-<addon name>\&subdirectory=setup/<addon name>
+    pip install -e git+https://github.com/OCA/<repo>/<addon>#egg=odoo<8|9|10|11>-addon-<addon name>\&subdirectory=setup/<addon name>
 
 .. note::
 
@@ -121,7 +129,7 @@ or ``pip`` commands such as:
    The `-e` option has the huge advantage of letting `pip freeze` produce
    meaningful output.
 
-For Odoo 10, simply run Odoo normally with the ``odoo`` command. The
+For Odoo 10 or 11, simply run Odoo normally with the ``odoo`` command. The
 addons-path will be automatically populated with all places providing
 odoo addons installed with this method.
 
@@ -131,7 +139,7 @@ For Odoo 8 or 9 start Odoo using the ``odoo-server-autodiscover`` or
 
 It is of course highly recommanded to run all this inside a virtualenv.
 
-  .. note:: Odoo 8, 9 namespace
+  .. note:: Odoo 8, 9 namespace.
 
      Although the addons are packaged in the ``odoo_addons`` namespace,
      the code can still import them using ``import odoo.addons....``.
@@ -152,6 +160,17 @@ To be packaged with this library, your project must be structured according
 to the following structure:
 
   .. code::
+
+    # Odoo 11
+    setup.py
+    odoo/
+    odoo/addons/
+    odoo/addons/<addon1_name>/
+    odoo/addons/<addon1_name>/__manifest__.py
+    odoo/addons/<addon1_name>/...
+    odoo/addons/<addon2_name>/
+    odoo/addons/<addon2_name>/__manifest__.py
+    odoo/addons/<addon2_name>/...
 
     # Odoo 10
     setup.py
@@ -196,7 +215,7 @@ Odoo manifest files (``__manifest__.py`` or ``__openerp__.py``) and contain:
 
   * ``packages``: autodetected packages
   * ``namespace_packages``: ``['odoo', 'odoo.addons']`` (Odoo 10) or
-    ``['odoo_addons']`` (Odoo 8, 9)
+    ``['odoo_addons']`` (Odoo 8, 9), absent for Odoo 11
   * ``zip_safe``: ``False``
   * ``include_package_data``: ``True``
   * ``install_requires``: dependencies on Odoo, any depending addon not found
@@ -218,7 +237,7 @@ The following keys are supported:
     key, with value a dictionary mapping python external dependencies to
     python package requirement strings.
   * ``odoo_version_override``, used to specify which Odoo series to use
-    (8.0, 9.0, 10.0, etc) in case an addon version does not start with the Odoo
+    (8.0, 9.0, 10.0, 11.0) in case an addon version does not start with the Odoo
     series number. Use this only as a last resort, if you have no way to
     correct the addon version in its manifest.
 
@@ -253,6 +272,24 @@ an addon, this package provides the ``setuptools-odoo-make-default`` script whic
 creates a default ``setup.py`` for each addon according to the following structure:
 
   .. code::
+
+    # Odoo 11
+    setup/
+    setup/addon1/
+    setup/addon1/setup.py
+    setup/addon1/odoo/
+    setup/addon1/odoo/addons/
+    setup/addon1/odoo/addons/<addon1_name> -> ../../../../<addon1_name>
+    setup/addon2/setup.py
+    setup/addon1/odoo/
+    setup/addon2/odoo/addons/
+    setup/addon2/odoo/addons/<addon2_name> -> ../../../../<addon2_name>
+    <addon1_name>/
+    <addon1_name>/__manifest__.py
+    <addon1_name>/...
+    <addon2_name>/
+    <addon2_name>/__manifest__.py
+    <addon2_name>/...
 
     # Odoo 10
     setup/
@@ -304,7 +341,7 @@ git log of the addon subtree.
 If the last change to the addon corresponds to the version number in the manifest,
 it is used as is for the python package version. Otherwise a counter
 is incremented for each commit and the resulting version number has the following
-form: [8|9].0.x.y.z.99.devN, N being the number of git commits since
+form: [8|9|10|11].0.x.y.z.99.devN, N being the number of git commits since
 the version change.
 
 This scheme is compliant with the accepted python versioning scheme documented
@@ -337,7 +374,7 @@ Useful links
 - documentation: https://setuptools-odoo.readthedocs.io
 - code repository: https://github.com/acsone/setuptools-odoo
 - report issues at: https://github.com/acsone/setuptools-odoo/issues
-- see also odoo-autodiscover: https://pypi.python.org/pypi/odoo-autodiscover 
+- see also odoo-autodiscover: https://pypi.python.org/pypi/odoo-autodiscover
   (for Odoo 8 and 9 only)
 
 Credits
