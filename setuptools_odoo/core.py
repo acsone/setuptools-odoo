@@ -42,7 +42,7 @@ ODOO_VERSION_INFO = {
         'namespace_packages': ['odoo', 'odoo.addons'],
     },
     '11.0': {
-        'odoo_dep': 'odoo>=11.0a,<10.1dev',
+        'odoo_dep': 'odoo>=11.0a,<11.1dev',
         'base_addons': base_addons.odoo11,
         'pkg_name_pfx': 'odoo11-addon-',
         'addons_ns': 'odoo.addons',
