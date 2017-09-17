@@ -5,12 +5,12 @@ Changes
 .. ----------
 .. -
 
-1.1.0 (2017-??-??)
-------------------
+2.0.0b1 (2017-09-17)
+--------------------
 - [IMP] update base addons list for Odoo 10.0
 - [IMP] when setuptools extends a list-type keyword, prevent duplicate items
 - [IMP] make tests pass with python 3
-- [ADD] Odoo 11 support
+- [ADD] experimental Odoo 11 support
 - [IMP] BREAKING: remove LEGACY_MODE support
 
 1.0.1 (2017-04-08)
