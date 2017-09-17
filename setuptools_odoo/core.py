@@ -240,7 +240,7 @@ def _find_addons_dir():
 
 def _make_classifiers(manifest):
     classifiers = [
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python',
         'Framework :: Odoo',
     ]
     # commonly used licenses in OCA

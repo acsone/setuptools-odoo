@@ -37,7 +37,7 @@ class TestPrepare(unittest.TestCase):
                 'author': 'ACSONE SA/NV, Odoo Community Association (OCA)',
                 'author_email': 'support@odoo-community.org',
                 'classifiers': [
-                    'Programming Language :: Python :: 2.7',
+                    'Programming Language :: Python',
                     'Framework :: Odoo',
                     'License :: OSI Approved :: '
                     'GNU Affero General Public License v3',
@@ -62,7 +62,7 @@ class TestPrepare(unittest.TestCase):
             keywords = prepare_odoo_addon()
             self.assertEquals(keywords, {
                 'classifiers': [
-                    'Programming Language :: Python :: 2.7',
+                    'Programming Language :: Python',
                     'Framework :: Odoo',
                 ],
                 'description': 'addon 2 summary',

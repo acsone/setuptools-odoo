@@ -12,6 +12,8 @@ Changes
 - [IMP] make tests pass with python 3
 - [ADD] experimental Odoo 11 support
 - [IMP] BREAKING: remove LEGACY_MODE support
+- [CHG] In the classifiers, use Python instead of Python :: 2.7
+  since we now have install_requires that is more precise
 
 1.0.1 (2017-04-08)
 ------------------
