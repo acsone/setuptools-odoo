@@ -34,8 +34,10 @@ The following prerequisites apply:
     supports the wheel package format should work (ie pip >= 1.4).
   * For any advanced use such as installing from source, installing from
     git, packaging wheels etc, you need a recent version of pip (>= 9.0.1).
-  * For Odoo 10, you also need setuptools < 31 or apply `this Odoo patch
-    <https://github.com/odoo/odoo/pull/15718>`_.
+  * Finally, you need to install `odoo-autodiscover
+    <https://pypi.python.org/pypi/odoo-autodiscover>`_ 
+    (``pip install odoo-autodiscover``) to provide automatic extension
+    of the addons path (and workaround a bug with setuptools > 31 and Odoo 10).
 
 Packaging a single addon
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -129,15 +131,11 @@ or ``pip`` commands such as:
    The `-e` option has the huge advantage of letting `pip freeze` produce
    meaningful output.
 
-For Odoo 10 or 11, simply run Odoo normally with the ``odoo`` command. The
-addons-path will be automatically populated with all places providing
+When ``odoo-server-autodiscover`` is installed, The
+addons-path is automatically populated with all places providing
 odoo addons installed with this method.
 
-For Odoo 8 or 9 start Odoo using the ``odoo-server-autodiscover`` or
-``odoo-autodiscover.py`` scripts provided in the `odoo-autodiscover
-<https://pypi.python.org/pypi/odoo-autodiscover>`_ package.
-
-It is of course highly recommanded to run all this inside a virtualenv.
+It is of course highly recommanded to run in a virtualenv.
 
   .. note:: Odoo 8, 9 namespace.
 
@@ -375,7 +373,6 @@ Useful links
 - code repository: https://github.com/acsone/setuptools-odoo
 - report issues at: https://github.com/acsone/setuptools-odoo/issues
 - see also odoo-autodiscover: https://pypi.python.org/pypi/odoo-autodiscover
-  (for Odoo 8 and 9 only)
 
 Credits
 ~~~~~~~
