@@ -19,7 +19,7 @@ setuptools.setup(
         'License :: OSI Approved :: '
         'GNU Lesser General Public License v3 (LGPLv3)',
         'Operating System :: POSIX',  # because we use symlinks
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python',
         'Framework :: Odoo',
     ],
     license='LGPLv3',
@@ -33,6 +33,7 @@ setuptools.setup(
         'setuptools',
         'setuptools-git!=1.2',
     ],
+    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*',
     setup_requires=[
         'setuptools-scm',
     ],

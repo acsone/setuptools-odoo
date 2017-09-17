@@ -18,6 +18,7 @@ class TestInstallRequires(unittest.TestCase):
             'astropy',
             # we have a mix of addons version, so two versions of Odoo
             # are pulled here (not realistic but good enough for a test)
+            'odoo>=11.0a,<11.1dev',
             'odoo>=10.0,<10.1dev',
             'odoo>=8.0a,<9.0a',
             'python-dateutil']))

@@ -17,6 +17,10 @@ setuptools.setup(
 )
 """
 
+SETUP_CFG_UNIVERSAL = """[bdist_wheel]
+universal=1
+"""
+
 NS_INIT_PY = """__import__('pkg_resources').declare_namespace(__name__)
 """
 
@@ -82,6 +86,11 @@ def make_default_setup_addon(addon_setup_dir, addon_dir, force,
         os.remove(link_path)
     if not os.path.exists(link_path):
         os.symlink(os.path.relpath(addon_dir, odoo_addons_path), link_path)
+    # setup.cfg
+    if odoo_version_info['universal_wheel']:
+        setup_cfg_path = os.path.join(addon_setup_dir, 'setup.cfg')
+        with open(setup_cfg_path, 'w') as f:
+            f.write(SETUP_CFG_UNIVERSAL)
 
 
 def make_default_setup_addons_dir(addons_dir, force,

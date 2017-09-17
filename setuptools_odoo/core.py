@@ -19,6 +19,8 @@ ODOO_VERSION_INFO = {
         'pkg_name_pfx': 'openerp7-addon-',
         'addons_ns': 'openerp_addons',
         'namespace_packages': ['openerp_addons'],
+        'python_requires': '~=2.7',
+        'universal_wheel': False,
     },
     '8.0': {
         'odoo_dep': 'odoo>=8.0a,<9.0a',
@@ -26,6 +28,8 @@ ODOO_VERSION_INFO = {
         'pkg_name_pfx': 'odoo8-addon-',
         'addons_ns': 'odoo_addons',
         'namespace_packages': ['odoo_addons'],
+        'python_requires': '~=2.7',
+        'universal_wheel': False,
     },
     '9.0': {
         'odoo_dep': 'odoo>=9.0a,<9.1a',
@@ -33,6 +37,8 @@ ODOO_VERSION_INFO = {
         'pkg_name_pfx': 'odoo9-addon-',
         'addons_ns': 'odoo_addons',
         'namespace_packages': ['odoo_addons'],
+        'python_requires': '~=2.7',
+        'universal_wheel': False,
     },
     '10.0': {
         'odoo_dep': 'odoo>=10.0,<10.1dev',
@@ -40,6 +46,8 @@ ODOO_VERSION_INFO = {
         'pkg_name_pfx': 'odoo10-addon-',
         'addons_ns': 'odoo.addons',
         'namespace_packages': ['odoo', 'odoo.addons'],
+        'python_requires': '~=2.7',
+        'universal_wheel': False,
     },
     '11.0': {
         'odoo_dep': 'odoo>=11.0a,<11.1dev',
@@ -47,6 +55,11 @@ ODOO_VERSION_INFO = {
         'pkg_name_pfx': 'odoo11-addon-',
         'addons_ns': 'odoo.addons',
         'namespace_packages': None,
+        'python_requires': '''
+            >=2.7,
+            !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+        ''',
+        'universal_wheel': True,
     },
 }
 
@@ -317,6 +330,7 @@ def prepare_odoo_addon(depends_override={},
         'namespace_packages': odoo_version_info['namespace_packages'],
         'zip_safe': False,
         'install_requires': install_requires,
+        'python_requires': odoo_version_info['python_requires'],
         'author': _get_author(manifest),
         'author_email': _get_author_email(manifest),
         'classifiers': _make_classifiers(manifest)
@@ -345,6 +359,7 @@ def prepare_odoo_addons(depends_override={},
         'namespace_packages': odoo_version_info['namespace_packages'],
         'zip_safe': False,
         'install_requires': install_requires,
+        'python_requires': odoo_version_info['python_requires'],
     }
     # import pprint; pprint.pprint(setup_keywords)
     return {k: v for k, v in setup_keywords.items() if v is not None}
