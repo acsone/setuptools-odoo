@@ -111,6 +111,7 @@ Odoo manifest file (``__manifest__.py`` or ``__openerp__.py``) and contain:
   * ``install_requires``: dependencies to Odoo, other addons (except official
     odoo community and enterprise addons, which are brought by the Odoo dependency)
     and python libraries.
+  * ``python_requires``
 
 Then, the addon can be deployed and packaged with usual ``setup.py``
 or ``pip`` commands such as:
@@ -218,6 +219,7 @@ Odoo manifest files (``__manifest__.py`` or ``__openerp__.py``) and contain:
   * ``include_package_data``: ``True``
   * ``install_requires``: dependencies on Odoo, any depending addon not found
     in the addons directory, and external python dependencies.
+  * ``python_requires``
 
 Controlling setuptools-odoo behaviour
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -357,8 +359,6 @@ and x.y.z.devN is considered anterior to x.y.z.).
 
 Helper API
 ~~~~~~~~~~
-
-setuptools-odoo exposes the following public API.
 
 .. Note:: TODO
 
