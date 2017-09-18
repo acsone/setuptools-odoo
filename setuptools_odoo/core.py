@@ -12,50 +12,81 @@ from . import external_dependencies
 from .manifest import read_manifest, is_installable_addon
 from .git_postversion import get_git_postversion
 
-LEGACY_MODE = os.environ.get('SETUPTOOLS_ODOO_LEGACY_MODE')
-
-if LEGACY_MODE:
-    warn('SETUPTOOLS_ODOO_LEGACY_MODE support will be removed in '
-         'setuptools-odoo 1.1.0. Please switch to the '
-         'new package naming scheme.')
-
 ODOO_VERSION_INFO = {
     '7.0': {
         'odoo_dep': 'openerp>=7.0a,<8.0a',
         'base_addons': base_addons.openerp7,
-        'addon_dep_version': '' if not LEGACY_MODE else '>=7.0a,<8.0a',
-        'pkg_name_pfx': ('openerp7-addon-'
-                         if not LEGACY_MODE else 'openerp-addon-'),
+        'pkg_name_pfx': 'openerp7-addon-',
         'addons_ns': 'openerp_addons',
+        'namespace_packages': ['openerp_addons'],
+        'python_requires': '~=2.7',
+        'universal_wheel': False,
     },
     '8.0': {
         'odoo_dep': 'odoo>=8.0a,<9.0a',
         'base_addons': base_addons.odoo8,
-        'addon_dep_version': '' if not LEGACY_MODE else '>=8.0a,<9.0a',
-        'pkg_name_pfx': ('odoo8-addon-'
-                         if not LEGACY_MODE else 'odoo-addon-'),
+        'pkg_name_pfx': 'odoo8-addon-',
         'addons_ns': 'odoo_addons',
+        'namespace_packages': ['odoo_addons'],
+        'python_requires': '~=2.7',
+        'universal_wheel': False,
     },
     '9.0': {
         'odoo_dep': 'odoo>=9.0a,<9.1a',
         'base_addons': base_addons.odoo9,
-        'addon_dep_version': '' if not LEGACY_MODE else '>=9.0a,<9.1a',
-        'pkg_name_pfx': ('odoo9-addon-'
-                         if not LEGACY_MODE else 'odoo-addon-'),
+        'pkg_name_pfx': 'odoo9-addon-',
         'addons_ns': 'odoo_addons',
+        'namespace_packages': ['odoo_addons'],
+        'python_requires': '~=2.7',
+        'universal_wheel': False,
     },
     '10.0': {
         'odoo_dep': 'odoo>=10.0,<10.1dev',
         'base_addons': base_addons.odoo10,
-        'addon_dep_version': '',
         'pkg_name_pfx': 'odoo10-addon-',
         'addons_ns': 'odoo.addons',
+        'namespace_packages': ['odoo', 'odoo.addons'],
+        'python_requires': '~=2.7',
+        'universal_wheel': False,
+    },
+    '11.0': {
+        'odoo_dep': 'odoo>=11.0a,<11.1dev',
+        'base_addons': base_addons.odoo11,
+        'pkg_name_pfx': 'odoo11-addon-',
+        'addons_ns': 'odoo.addons',
+        'namespace_packages': None,
+        'python_requires': '''
+            >=2.7,
+            !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+        ''',
+        'universal_wheel': True,
     },
 }
 
 
+def _get_odoo_version_info(addons_dir, odoo_version_override=None):
+    """ Detect Odoo version from an addons directory """
+    odoo_version_info = None
+    addons = os.listdir(addons_dir)
+    for addon in addons:
+        addon_dir = os.path.join(addons_dir, addon)
+        if is_installable_addon(addon_dir):
+            manifest = read_manifest(addon_dir)
+            _, addon_odoo_version_info = _get_version(
+                addon_dir, manifest, odoo_version_override,
+                git_post_version=False)
+            if odoo_version_info is not None and \
+                    odoo_version_info != addon_odoo_version_info:
+                raise DistutilsSetupError("Not all addons are for the same "
+                                          "odoo version in %s (error detected "
+                                          "in %s)" % (addons_dir, addon))
+            odoo_version_info = addon_odoo_version_info
+    return odoo_version_info
+
+
 def _get_version(addon_dir, manifest, odoo_version_override=None,
                  git_post_version=True):
+    """ Get addon version information from an addon directory """
     version = manifest.get('version')
     if not version:
         warn("No version in manifest in %s" % addon_dir)
@@ -75,8 +106,6 @@ def _get_version(addon_dir, manifest, odoo_version_override=None,
     odoo_version_info = ODOO_VERSION_INFO[odoo_version]
     if git_post_version:
         version = get_git_postversion(addon_dir)
-    if LEGACY_MODE and not version.startswith(odoo_version + '.'):
-        version = odoo_version + '.' + version
     return version, odoo_version_info
 
 
@@ -102,10 +131,8 @@ def _get_author_email(manifest):
         return 'support@odoo-community.org'
 
 
-def make_pkg_name(odoo_version_info, addon_name, with_version):
+def make_pkg_name(odoo_version_info, addon_name):
     name = odoo_version_info['pkg_name_pfx'] + addon_name
-    if with_version:
-        name += odoo_version_info['addon_dep_version']
     return name
 
 
@@ -116,7 +143,7 @@ def make_pkg_requirement(addon_dir, odoo_version_override=None):
                                         manifest,
                                         odoo_version_override,
                                         git_post_version=False)
-    return make_pkg_name(odoo_version_info, addon_name, True)
+    return make_pkg_name(odoo_version_info, addon_name)
 
 
 def _get_install_requires(odoo_version_info,
@@ -138,7 +165,7 @@ def _get_install_requires(odoo_version_info,
         if depend in depends_override:
             install_require = depends_override[depend]
         else:
-            install_require = make_pkg_name(odoo_version_info, depend, True)
+            install_require = make_pkg_name(odoo_version_info, depend)
         if install_require:
             install_requires.append(install_require)
     # python external_dependencies
@@ -193,16 +220,6 @@ def get_install_requires_odoo_addons(addons_dir,
     return sorted(install_requires)
 
 
-def _ns_to_namespace_packages(ns):
-    res = []
-    for part in ns.split('.'):
-        if res:
-            res.append(res[-1] + '.' + part)
-        else:
-            res.append(part)
-    return res
-
-
 def _find_addons_dir():
     """ Try to find the addons dir / namespace package
 
@@ -223,7 +240,7 @@ def _find_addons_dir():
 
 def _make_classifiers(manifest):
     classifiers = [
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python',
         'Framework :: Odoo',
     ]
     # commonly used licenses in OCA
@@ -302,7 +319,7 @@ def prepare_odoo_addon(depends_override={},
         odoo_version_override=odoo_version_override,
     )
     setup_keywords = {
-        'name': make_pkg_name(odoo_version_info, addon_name, False),
+        'name': make_pkg_name(odoo_version_info, addon_name),
         'version': version,
         'description': _get_description(addon_dir, manifest),
         'long_description': _get_long_description(addon_dir, manifest),
@@ -310,9 +327,10 @@ def prepare_odoo_addon(depends_override={},
         'license': manifest.get('license'),
         'packages': setuptools.find_packages(),
         'include_package_data': True,
-        'namespace_packages': _ns_to_namespace_packages(addons_ns),
+        'namespace_packages': odoo_version_info['namespace_packages'],
         'zip_safe': False,
         'install_requires': install_requires,
+        'python_requires': odoo_version_info['python_requires'],
         'author': _get_author(manifest),
         'author_email': _get_author_email(manifest),
         'classifiers': _make_classifiers(manifest)
@@ -327,6 +345,8 @@ def prepare_odoo_addons(depends_override={},
                         external_dependencies_override={},
                         odoo_version_override=None):
     addons_dir, addons_ns = _find_addons_dir()
+    odoo_version_info = _get_odoo_version_info(
+        addons_dir, odoo_version_override)
     install_requires = get_install_requires_odoo_addons(
         addons_dir,
         depends_override=depends_override,
@@ -336,9 +356,10 @@ def prepare_odoo_addons(depends_override={},
     setup_keywords = {
         'packages': setuptools.find_packages(),
         'include_package_data': True,
-        'namespace_packages': _ns_to_namespace_packages(addons_ns),
+        'namespace_packages': odoo_version_info['namespace_packages'],
         'zip_safe': False,
         'install_requires': install_requires,
+        'python_requires': odoo_version_info['python_requires'],
     }
     # import pprint; pprint.pprint(setup_keywords)
     return {k: v for k, v in setup_keywords.items() if v is not None}

@@ -49,7 +49,7 @@ class TestMakeDefaultSetup(unittest.TestCase):
         tmpdir = tempfile.mkdtemp()
         try:
             d = make_default_setup.make_ns_pkg_dirs(
-                tmpdir, 'odoo_addons', False)
+                tmpdir, 'odoo_addons', False, True)
             self.assertEqual(d, opj(tmpdir, 'odoo_addons'))
             self.assertTrue(os.path.isdir(d))
             self.assertTrue(os.path.isfile(opj(d, '__init__.py')))
@@ -61,10 +61,26 @@ class TestMakeDefaultSetup(unittest.TestCase):
         tmpdir = tempfile.mkdtemp()
         try:
             d = make_default_setup.make_ns_pkg_dirs(
-                tmpdir, 'odoo.addons', False)
+                tmpdir, 'odoo.addons', False, True)
             self.assertEqual(d, opj(tmpdir, 'odoo', 'addons'))
             self.assertTrue(os.path.isdir(d))
+            self.assertTrue(
+                os.path.exists(opj(tmpdir, 'odoo', '__init__.py')))
             self.assertTrue(os.path.isfile(opj(d, '__init__.py')))
+        finally:
+            shutil.rmtree(tmpdir)
+
+    def test_make_ns_pkg_dirs_3(self):
+        opj = os.path.join
+        tmpdir = tempfile.mkdtemp()
+        try:
+            d = make_default_setup.make_ns_pkg_dirs(
+                tmpdir, 'odoo.addons', False, False)
+            self.assertEqual(d, opj(tmpdir, 'odoo', 'addons'))
+            self.assertTrue(os.path.isdir(d))
+            self.assertFalse(
+                os.path.exists(opj(tmpdir, 'odoo', '__init__.py')))
+            self.assertFalse(os.path.exists(opj(d, '__init__.py')))
         finally:
             shutil.rmtree(tmpdir)
 

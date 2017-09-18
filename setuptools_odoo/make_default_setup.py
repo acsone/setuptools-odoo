@@ -17,6 +17,10 @@ setuptools.setup(
 )
 """
 
+SETUP_CFG_UNIVERSAL = """[bdist_wheel]
+universal=1
+"""
+
 NS_INIT_PY = """__import__('pkg_resources').declare_namespace(__name__)
 """
 
@@ -41,15 +45,19 @@ def _load_ignore_file(ignore_path):
     return ignore
 
 
-def make_ns_pkg_dirs(root, pkgs, force):
+def make_ns_pkg_dirs(root, pkgs, force, with_ns_init_py):
     for pkg in pkgs.split('.'):
         root = os.path.join(root, pkg)
         if not os.path.isdir(root):
             os.mkdir(root)
         init_path = os.path.join(root, '__init__.py')
-        if not os.path.exists(init_path) or force:
-            with open(init_path, 'w') as f:
-                f.write(NS_INIT_PY)
+        if with_ns_init_py:
+            if not os.path.exists(init_path) or force:
+                with open(init_path, 'w') as f:
+                    f.write(NS_INIT_PY)
+        else:
+            if os.path.exists(init_path):
+                os.remove(init_path)
     return root
 
 
@@ -69,7 +77,8 @@ def make_default_setup_addon(addon_setup_dir, addon_dir, force,
         with open(setup_path, 'w') as f:
             f.write(SETUP_PY.format(odoo_addon=odoo_addon))
     odoo_addons_path = make_ns_pkg_dirs(
-        addon_setup_dir, odoo_version_info['addons_ns'], force)
+        addon_setup_dir, odoo_version_info['addons_ns'], force,
+        with_ns_init_py=bool(odoo_version_info['namespace_packages']))
     link_path = os.path.join(odoo_addons_path, addon_name)
     # symlink to the main addon directory so we have a canonical structure:
     # odoo_addons/addon_name/...
@@ -77,6 +86,11 @@ def make_default_setup_addon(addon_setup_dir, addon_dir, force,
         os.remove(link_path)
     if not os.path.exists(link_path):
         os.symlink(os.path.relpath(addon_dir, odoo_addons_path), link_path)
+    # setup.cfg
+    if odoo_version_info['universal_wheel']:
+        setup_cfg_path = os.path.join(addon_setup_dir, 'setup.cfg')
+        with open(setup_cfg_path, 'w') as f:
+            f.write(SETUP_CFG_UNIVERSAL)
 
 
 def make_default_setup_addons_dir(addons_dir, force,
