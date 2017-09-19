@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright © 2015 ACSONE SA/NV
+# Copyright © 2015-2017 ACSONE SA/NV
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 """ List of Odoo official addons which are not released as individual packages.
 They are therefore considered as installed as soon as the 'odoo' dependency
