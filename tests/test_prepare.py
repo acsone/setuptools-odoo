@@ -97,7 +97,7 @@ class TestPrepare(unittest.TestCase):
                                    '!=3.3.*, !=3.4.*',
                 'name': 'odoo11-addon-addon7',
                 'packages': ['odoo.addons'],
-                'version': '11.0.1.0.0',
+                'version': '11.0.1.0.1',
                 'zip_safe': False,
             })
 
