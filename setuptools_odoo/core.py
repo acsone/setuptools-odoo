@@ -55,10 +55,9 @@ ODOO_VERSION_INFO = {
         'pkg_name_pfx': 'odoo11-addon-',
         'addons_ns': 'odoo.addons',
         'namespace_packages': None,
-        'python_requires': '''
-            >=2.7,
-            !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
-        ''',
+        'python_requires': ', '.join([
+            '>=2.7', '!=3.0.*', '!=3.1.*', '!=3.2.*', '!=3.3.*', '!=3.4.*'
+        ]),
         'universal_wheel': True,
     },
 }
@@ -229,8 +228,10 @@ def _find_addons_dir():
     for odoo_version_info in ODOO_VERSION_INFO.values():
         addons_ns = odoo_version_info['addons_ns']
         addons_dir = os.path.join(*addons_ns.split('.'))
-        if os.path.isfile(os.path.join(addons_dir, '__init__.py')):
-            res.add((addons_dir, addons_ns))
+        if os.path.isdir(addons_dir):
+            if not odoo_version_info['namespace_packages'] or \
+                    os.path.isfile(os.path.join(addons_dir, '__init__.py')):
+                res.add((addons_dir, addons_ns))
     if len(res) == 0:
         raise RuntimeError("No addons namespace found.")
     if len(res) > 1:
@@ -284,6 +285,15 @@ def _make_classifiers(manifest):
     return classifiers
 
 
+def _setuptools_find_packages(odoo_version_info):
+    # setuptools.find_package() does not find namespace packages
+    # without __init__.py, apparently, so work around that
+    pkg = setuptools.find_packages()
+    if odoo_version_info['addons_ns'] not in pkg:
+        pkg.append(odoo_version_info['addons_ns'])
+    return pkg
+
+
 def prepare_odoo_addon(depends_override={},
                        external_dependencies_override={},
                        odoo_version_override=None):
@@ -325,7 +335,7 @@ def prepare_odoo_addon(depends_override={},
         'long_description': _get_long_description(addon_dir, manifest),
         'url': manifest.get('website'),
         'license': manifest.get('license'),
-        'packages': setuptools.find_packages(),
+        'packages': _setuptools_find_packages(odoo_version_info),
         'include_package_data': True,
         'namespace_packages': odoo_version_info['namespace_packages'],
         'zip_safe': False,
@@ -354,7 +364,7 @@ def prepare_odoo_addons(depends_override={},
         odoo_version_override=odoo_version_override,
     )
     setup_keywords = {
-        'packages': setuptools.find_packages(),
+        'packages': _setuptools_find_packages(odoo_version_info),
         'include_package_data': True,
         'namespace_packages': odoo_version_info['namespace_packages'],
         'zip_safe': False,
