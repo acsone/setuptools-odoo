@@ -5,6 +5,14 @@ Changes
 .. ----------
 .. -
 
+2.0.2 (2017-10-07)
+------------------
+- [IMP] update base addons list for Odoo 11 (CE and EE)
+
+2.0.1 (2017-10-02)
+------------------
+- [FIX] fix issue when odoo/addons has no __init__.py.
+
 2.0.0 (2017-09-19)
 ------------------
 - [IMP] update base addons list for Odoo 10.0
