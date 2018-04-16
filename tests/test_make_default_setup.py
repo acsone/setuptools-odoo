@@ -2,6 +2,7 @@
 # Copyright © 2015 ACSONE SA/NV
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
+import datetime
 import filecmp
 import os
 import shutil
@@ -81,6 +82,74 @@ class TestMakeDefaultSetup(unittest.TestCase):
             self.assertFalse(
                 os.path.exists(opj(tmpdir, 'odoo', '__init__.py')))
             self.assertFalse(os.path.exists(opj(d, '__init__.py')))
+        finally:
+            shutil.rmtree(tmpdir)
+
+    def test_make_default_setup_metapackage(self):
+        tmpdir = tempfile.mkdtemp()
+        source_addons_path = os.path.join(
+            os.getcwd(),
+            'tests', 'data', 'setup_custom_project', 'odoo_addons')
+        addons_path = os.path.join(tmpdir, 'tests')
+        metapackage_dir = os.path.join(addons_path, 'setup', '_metapackage')
+        setup_file = os.path.join(metapackage_dir, 'setup.py')
+        version_file = os.path.join(metapackage_dir, 'VERSION.txt')
+        today_date = datetime.date.today().strftime('%Y%m%d')
+        expected_version = '8.0.%s' % today_date
+        expected_setup_file = """
+
+import setuptools
+with open('VERSION.txt', 'r') as f:
+    version = f.read().strip()
+setuptools.setup(
+    name="odoo8-addons-tests",
+    description="Meta package for tests Odoo addons",
+    version=odoo_version,
+    install_requires=[
+        'odoo8-addon-addon1',
+        'odoo8-addon-addon2',
+    ],
+    classifiers=[
+        'Programming Language :: Python',
+        'Framework :: Odoo',
+    ]
+)
+
+"""
+
+        try:
+            shutil.copytree(source_addons_path, addons_path)
+            make_default_setup.make_default_setup_addons_dir(
+                addons_path, False, False)
+            make_default_setup.make_default_meta_package(
+                addons_path, 'tests')
+
+            with open(setup_file, 'r') as f:
+                setup_file_content = f.read()
+                self.assertEqual(
+                    setup_file_content.strip(),
+                    expected_setup_file.strip()
+                )
+
+            with open(version_file, 'r') as f:
+                version = f.read().strip()
+                self.assertEqual(version, expected_version)
+
+            # Create a new addon
+            addon1_path = os.path.join(addons_path, 'addon1')
+            new_addon_path = os.path.join(addons_path, 'addon99')
+            shutil.copytree(addon1_path, new_addon_path)
+
+            make_default_setup.make_default_setup_addons_dir(
+                addons_path, False, False)
+            make_default_setup.make_default_meta_package(
+                addons_path, 'tests')
+
+            with open(version_file, 'r') as f:
+                version = f.read().strip()
+                self.assertEqual(
+                    version, expected_version + '.1',
+                    msg="The version should have been incremented")
         finally:
             shutil.rmtree(tmpdir)
 
