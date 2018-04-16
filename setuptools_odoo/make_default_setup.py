@@ -7,6 +7,7 @@ import datetime
 import logging
 import os
 import re
+import subprocess
 
 from .core import is_installable_addon, _get_version, make_pkg_requirement
 from .manifest import read_manifest
@@ -141,7 +142,6 @@ def make_default_setup_addons_dir(addons_dir, force,
         make_default_setup_addon(addon_setup_dir, addon_dir, force,
                                  odoo_version_override)
 
-
 def make_default_meta_package(addons_dir, name):
     meta_install_requires = []
     new_version = False
@@ -229,6 +229,18 @@ def get_next_version(odoo_version, version_date, old_version=None):
     return new_version
 
 
+def make_default_setup_commit_files(addons_dir):
+    subprocess.check_call(['git', 'add', 'setup'], cwd=addons_dir)
+    commit_needed = subprocess.call([
+        'git', 'diff', '--quiet', '--cached',
+        '--exit-code', 'setup'
+    ], cwd=addons_dir) != 0
+    if commit_needed:
+        subprocess.check_call([
+            'git', 'commit', '-m', '[ADD] setup.py',
+        ], cwd=addons_dir)
+
+
 def main(args=None):
     parser = argparse.ArgumentParser(
         description='Generate default setup.py for all addons in an '
@@ -243,11 +255,17 @@ def main(args=None):
     parser.add_argument(
         '--metapackage', '-m',
         help="Create a metapackage using the given name.")
+    parser.add_argument(
+        '--commit',
+        action='store_true', help="Commit the changes if there is any.")
     args = parser.parse_args(args)
     make_default_setup_addons_dir(args.addons_dir, args.force,
                                   args.odoo_version_override)
     if args.metapackage:
         make_default_meta_package(args.addons_dir, args.metapackage)
+
+    if args.commit:
+        make_default_setup_commit_files(args.addons_dir)
 
 
 if __name__ == '__main__':
