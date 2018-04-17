@@ -37,5 +37,5 @@ def is_installable_addon(addon_dir, unless_auto_installable=False):
         if unless_auto_installable:
             r = r and not manifest.get('auto_install', False)
         return r
-    except:
+    except Exception:
         return False

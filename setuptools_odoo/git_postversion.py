@@ -70,7 +70,7 @@ def read_manifest_from_sha(sha, addon_dir):
             continue
         try:
             return parse_manifest(s)
-        except:
+        except Exception:
             # invalid manifest
             break
     raise NoManifestFound("no manifest found in %s:%s" % (sha, addon_dir))
