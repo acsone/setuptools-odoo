@@ -90,10 +90,10 @@ def make_ns_pkg_dirs(root, pkgs, force, with_ns_init_py):
 def make_default_setup_addon(addon_setup_dir, addon_dir, force,
                              odoo_version_override):
     manifest = read_manifest(addon_dir)
-    _, odoo_version_info = _get_version(addon_dir,
-                                        manifest,
-                                        odoo_version_override,
-                                        git_post_version=False)
+    _, _, odoo_version_info = _get_version(addon_dir,
+                                           manifest,
+                                           odoo_version_override,
+                                           git_post_version=False)
     addon_name = os.path.basename(os.path.realpath(addon_dir))
     setup_path = os.path.join(addon_setup_dir, 'setup.py')
     odoo_addon = 'True'
@@ -146,7 +146,7 @@ def make_default_setup_addons_dir(addons_dir, force,
                                  odoo_version_override)
 
 
-def make_default_meta_package(addons_dir, name):
+def make_default_meta_package(addons_dir, name, odoo_version_override):
     meta_install_requires = []
     new_version = False
     odoo_versions = set()
@@ -162,9 +162,10 @@ def make_default_meta_package(addons_dir, name):
             continue
         meta_install_requires.append(make_pkg_requirement(addon_dir))
         manifest = read_manifest(addon_dir)
-        version, odoo_version_info = _get_version(
-            addon_dir, manifest, git_post_version=False)
-        odoo_version = version.split('.')[0]
+        version, odoo_version, _ = _get_version(
+            addon_dir, manifest,
+            odoo_version_override=odoo_version_override,
+            git_post_version=False)
         odoo_versions.add(odoo_version)
     if len(odoo_versions) == 0:
         sys.stderr.write(
@@ -215,14 +216,14 @@ def make_default_meta_package(addons_dir, name):
 
 
 def get_next_version(odoo_version, version_date, old_version=None):
-    new_version = "%s.0.%s" % (odoo_version, version_date)
+    new_version = "%s.%s" % (odoo_version, version_date)
     use_counter = False
     index = 0
     if old_version:
         old_date = re.findall(
             r'[0-9]{8}', old_version)[0]
         old_index = re.sub(
-            r'' + odoo_version + '.0.[0-9]{8}(.)?', '', old_version)
+            r'' + odoo_version + '[0-9]{8}(.)?', '', old_version)
         if old_index:
             index = int(old_index)
         if old_date == version_date:
@@ -233,7 +234,7 @@ def get_next_version(odoo_version, version_date, old_version=None):
     return new_version
 
 
-def clean_setup_addons_dir(addons_dir):
+def clean_setup_addons_dir(addons_dir, odoo_version_override):
     paths_to_remove = []
 
     addons_setup_dir = os.path.join(addons_dir, 'setup')
@@ -270,9 +271,10 @@ def clean_setup_addons_dir(addons_dir):
             paths_to_remove.append(addon_setup_dir)
             continue
 
-        version, odoo_version_info = _get_version(
-            addon_dir, manifest, git_post_version=False)
-        odoo_version = int(version.split('.')[0])
+        version, odoo_version, _ = _get_version(
+            addon_dir, manifest,
+            odoo_version_override=odoo_version_override,
+            git_post_version=False)
 
         if odoo_version >= 10:
             paths_to_remove.append(
@@ -343,12 +345,12 @@ def main(args=None):
         args.addons_dir, args.force, args.odoo_version_override)
 
     if args.metapackage:
-        make_default_meta_package(args.addons_dir, args.metapackage)
+        make_default_meta_package(
+            args.addons_dir, args.metapackage, args.odoo_version_override)
 
     if args.commit:
         make_default_setup_commit_files(args.addons_dir)
 
 
 if __name__ == '__main__':
-    import sys
     main(sys.argv[1:])
