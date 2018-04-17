@@ -4,15 +4,13 @@
 
 import argparse
 import datetime
-import logging
 import os
 import re
 import subprocess
+import sys
 
 from .core import is_installable_addon, _get_version, make_pkg_requirement
 from .manifest import read_manifest, NoManifestFound
-
-_logger = logging.getLogger(__name__)
 
 SETUP_PY = """\
 import setuptools
@@ -169,8 +167,8 @@ def make_default_meta_package(addons_dir, name):
         odoo_version = version.split('.')[0]
         odoo_versions.add(odoo_version)
     if len(odoo_versions) == 0:
-        _logger.warning(
-            "Unable to determine the Odoo version in %s." % (addons_dir,))
+        sys.stderr.write(
+            "No installable addon found, not generating metapackage.\n")
         return
     if len(odoo_versions) > 1:
         raise RuntimeError("not all addon are for the same "
