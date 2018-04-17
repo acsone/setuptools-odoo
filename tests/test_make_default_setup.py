@@ -7,6 +7,7 @@ import filecmp
 import os
 import shutil
 import tempfile
+import textwrap
 import unittest
 
 from setuptools_odoo import make_default_setup
@@ -96,28 +97,26 @@ class TestMakeDefaultSetup(unittest.TestCase):
         version_file = os.path.join(metapackage_dir, 'VERSION.txt')
         today_date = datetime.date.today().strftime('%Y%m%d')
         expected_version = '8.0.%s' % today_date
-        expected_setup_file = """
+        expected_setup_file = textwrap.dedent("""\
+            import setuptools
 
-import setuptools
+            with open('VERSION.txt', 'r') as f:
+                version = f.read().strip()
 
-with open('VERSION.txt', 'r') as f:
-    version = f.read().strip()
-
-setuptools.setup(
-    name="odoo8-addons-tests",
-    description="Meta package for tests Odoo addons",
-    version=version,
-    install_requires=[
-        'odoo8-addon-addon1',
-        'odoo8-addon-addon2',
-    ],
-    classifiers=[
-        'Programming Language :: Python',
-        'Framework :: Odoo',
-    ]
-)
-
-"""
+            setuptools.setup(
+                name="odoo8-addons-tests",
+                description="Meta package for tests Odoo addons",
+                version=version,
+                install_requires=[
+                    'odoo8-addon-addon1',
+                    'odoo8-addon-addon2',
+                ],
+                classifiers=[
+                    'Programming Language :: Python',
+                    'Framework :: Odoo',
+                ]
+            )
+        """)
 
         try:
             shutil.copytree(source_addons_path, addons_path)
@@ -128,10 +127,7 @@ setuptools.setup(
 
             with open(setup_file, 'r') as f:
                 setup_file_content = f.read()
-                self.assertEqual(
-                    setup_file_content.strip(),
-                    expected_setup_file.strip()
-                )
+                self.assertEqual(setup_file_content, expected_setup_file)
 
             with open(version_file, 'r') as f:
                 version = f.read().strip()

@@ -13,7 +13,8 @@ from .manifest import read_manifest
 
 _logger = logging.getLogger(__name__)
 
-SETUP_PY = """import setuptools
+SETUP_PY = """\
+import setuptools
 
 setuptools.setup(
     setup_requires=['setuptools-odoo'],
@@ -21,7 +22,7 @@ setuptools.setup(
 )
 """
 
-SETUP_PY_METAPACKAGE = """
+SETUP_PY_METAPACKAGE = """\
 import setuptools
 
 with open('VERSION.txt', 'r') as f:
@@ -39,18 +40,22 @@ setuptools.setup(
 )
 """
 
-SETUP_CFG_UNIVERSAL = """[bdist_wheel]
+SETUP_CFG_UNIVERSAL = """\
+[bdist_wheel]
 universal=1
 """
 
-NS_INIT_PY = """__import__('pkg_resources').declare_namespace(__name__)
+NS_INIT_PY = """\
+__import__('pkg_resources').declare_namespace(__name__)
 """
 
-README = """To learn more about this directory, please visit
+README = """\
+To learn more about this directory, please visit
 https://pypi.python.org/pypi/setuptools-odoo
 """
 
-IGNORE = """# addons listed in this file are ignored by
+IGNORE = """\
+# addons listed in this file are ignored by
 # setuptools-odoo-make-default (one addon per line)
 """
 
@@ -172,10 +177,10 @@ def make_default_meta_package(addons_dir, name):
     odoo_version = list(odoo_versions)[0]
     install_requires_str = '[\n%s%s]' % (
         ''.join([
-            ' '*8 + '\'' + install_require + '\',\n'
+            ' ' * 8 + '\'' + install_require + '\',\n'
             for install_require in sorted(meta_install_requires)
         ]),
-        ' '*4,
+        ' ' * 4,
     )
 
     setup_py = SETUP_PY_METAPACKAGE.format(
