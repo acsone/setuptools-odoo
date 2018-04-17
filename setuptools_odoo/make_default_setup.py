@@ -28,7 +28,7 @@ with open('VERSION.txt', 'r') as f:
     version = f.read().strip()
 
 setuptools.setup(
-    name="odoo{odoo_version}-addons-{name}",
+    name="odoo{odoo_series}-addons-{name}",
     description="Meta package for {name} Odoo addons",
     version=version,
     install_requires={install_requires},
@@ -69,6 +69,10 @@ def _load_ignore_file(ignore_path):
                 continue
             ignore.add(line.strip())
     return ignore
+
+
+def _odoo_version_to_series(odoo_version):
+    return int(float(odoo_version))
 
 
 def make_ns_pkg_dirs(root, pkgs, force, with_ns_init_py):
@@ -150,7 +154,6 @@ def make_default_meta_package(addons_dir, name, odoo_version_override):
     meta_install_requires = []
     new_version = False
     odoo_versions = set()
-    version_date = datetime.date.today().strftime('%Y%m%d')
     metapackage_dir = os.path.join(addons_dir, 'setup', '_metapackage')
     meta_package_setup_file = os.path.join(metapackage_dir, 'setup.py')
     version_setup_file = os.path.join(metapackage_dir, 'VERSION.txt')
@@ -185,8 +188,7 @@ def make_default_meta_package(addons_dir, name, odoo_version_override):
 
     setup_py = SETUP_PY_METAPACKAGE.format(
         name=name,
-        odoo_version=list(odoo_versions)[0],
-        date=version_date,
+        odoo_series=_odoo_version_to_series(list(odoo_versions)[0]),
         install_requires=install_requires_str,
     )
 
@@ -205,7 +207,7 @@ def make_default_meta_package(addons_dir, name, odoo_version_override):
         with open(version_setup_file, 'r') as f:
             old_version = f.read().strip()
             new_version = get_next_version(
-                odoo_version, version_date, old_version)
+                odoo_version, old_version)
 
     if new_version:
         with open(version_setup_file, 'w') as f:
@@ -215,23 +217,20 @@ def make_default_meta_package(addons_dir, name, odoo_version_override):
         f.write(setup_py)
 
 
-def get_next_version(odoo_version, version_date, old_version=None):
-    new_version = "%s.%s" % (odoo_version, version_date)
-    use_counter = False
-    index = 0
+def get_next_version(odoo_version, old_version):
+    version_date = datetime.date.today().strftime('%Y%m%d')
     if old_version:
-        old_date = re.findall(
-            r'[0-9]{8}', old_version)[0]
-        old_index = re.sub(
-            r'' + odoo_version + '[0-9]{8}(.)?', '', old_version)
-        if old_index:
-            index = int(old_index)
-        if old_date == version_date:
-            use_counter = True
-        if use_counter:
-            index += 1
-            new_version = '%s.%s' % (new_version, index)
-    return new_version
+        version_re = r'^[0-9]{1,2}\.0.(?P<date>[0-9]{8})\.(?P<index>[0-9]+)$'
+        mo = re.match(version_re, old_version)
+        if not mo:
+            raise RuntimeError('Could not parse version %s' % (old_version, ))
+        if mo.group('date') == version_date:
+            index = int(mo.group('index')) + 1
+        else:
+            index = 0
+    else:
+        index = 0
+    return '{odoo_version}.{version_date}.{index}'.format(**locals())
 
 
 def clean_setup_addons_dir(addons_dir, odoo_version_override):

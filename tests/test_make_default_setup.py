@@ -96,7 +96,6 @@ class TestMakeDefaultSetup(unittest.TestCase):
         setup_file = os.path.join(metapackage_dir, 'setup.py')
         version_file = os.path.join(metapackage_dir, 'VERSION.txt')
         today_date = datetime.date.today().strftime('%Y%m%d')
-        expected_version = '8.0.%s' % today_date
         expected_setup_file = textwrap.dedent("""\
             import setuptools
 
@@ -123,7 +122,7 @@ class TestMakeDefaultSetup(unittest.TestCase):
             make_default_setup.make_default_setup_addons_dir(
                 addons_path, False, False)
             make_default_setup.make_default_meta_package(
-                addons_path, 'tests')
+                addons_path, 'tests', odoo_version_override=None)
 
             with open(setup_file, 'r') as f:
                 setup_file_content = f.read()
@@ -131,7 +130,7 @@ class TestMakeDefaultSetup(unittest.TestCase):
 
             with open(version_file, 'r') as f:
                 version = f.read().strip()
-                self.assertEqual(version, expected_version)
+                self.assertEqual(version, '8.0.%s.0' % today_date)
 
             # Create a new addon
             addon1_path = os.path.join(addons_path, 'addon1')
@@ -141,12 +140,12 @@ class TestMakeDefaultSetup(unittest.TestCase):
             make_default_setup.make_default_setup_addons_dir(
                 addons_path, False, False)
             make_default_setup.make_default_meta_package(
-                addons_path, 'tests')
+                addons_path, 'tests', odoo_version_override=None)
 
             with open(version_file, 'r') as f:
                 version = f.read().strip()
                 self.assertEqual(
-                    version, expected_version + '.1',
+                    version, '8.0.%s.1' % today_date,
                     msg="The version should have been incremented")
         finally:
             shutil.rmtree(tmpdir)
