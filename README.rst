@@ -331,6 +331,33 @@ creates a default ``setup.py`` for each addon according to the following structu
     <addon2_name>/__openerp__.py
     <addon2_name>/...
 
+Available options::
+
+  usage: setuptools-odoo-make-default [-h] --addons-dir ADDONS_DIR [--force]
+                                      [--odoo-version-override ODOO_VERSION_OVERRIDE]
+                                      [--metapackage METAPACKAGE] [--clean]
+                                      [--commit]
+
+  Generate default setup.py for all addons in an Odoo addons directory
+
+  optional arguments:
+    -h, --help            show this help message and exit
+    --addons-dir ADDONS_DIR, -d ADDONS_DIR
+    --force, -f
+    --odoo-version-override ODOO_VERSION_OVERRIDE
+                          Force Odoo version for situations where some addons
+                          versions do not start with the odoo version.
+    --metapackage METAPACKAGE, -m METAPACKAGE
+                          Create a metapackage using the given name. This
+                          package depends on all installable addons in
+                          ADDONS_DIR.
+    --clean, -c           Clean the setup directory: remove setups of
+                          uninstallable addons, remove files corresponding to
+                          other Odoo versions, remove metapackage setup if there
+                          are no installable addons.
+    --commit              Git commit changes, if any.
+    
+
 Versioning
 ~~~~~~~~~~
 

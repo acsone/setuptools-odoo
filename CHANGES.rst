@@ -5,6 +5,11 @@ Changes
 .. ----------
 .. -
 
+2.0.3 (unreleased)
+------------------
+- [IMP] add --clean, --commit and --metapackage options to
+  setuptools-odoo-make-default
+
 2.0.2 (2017-10-07)
 ------------------
 - [IMP] update base addons list for Odoo 11 (CE and EE)
