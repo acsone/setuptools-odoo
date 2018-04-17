@@ -21,6 +21,8 @@ setuptools.setup(
 )
 """
 
+METAPACKAGE_SETUP_DIR = '_metapackage'
+
 SETUP_PY_METAPACKAGE = """\
 import setuptools
 
@@ -154,7 +156,7 @@ def make_default_meta_package(addons_dir, name, odoo_version_override):
     meta_install_requires = []
     new_version = False
     odoo_versions = set()
-    metapackage_dir = os.path.join(addons_dir, 'setup', '_metapackage')
+    metapackage_dir = os.path.join(addons_dir, 'setup', METAPACKAGE_SETUP_DIR)
     meta_package_setup_file = os.path.join(metapackage_dir, 'setup.py')
     version_setup_file = os.path.join(metapackage_dir, 'VERSION.txt')
     original_file_content = None
@@ -235,8 +237,10 @@ def get_next_version(odoo_version, old_version):
 
 def clean_setup_addons_dir(addons_dir, odoo_version_override):
     paths_to_remove = []
+    empty = True
 
     addons_setup_dir = os.path.join(addons_dir, 'setup')
+
     for addon_name in os.listdir(addons_setup_dir):
         addon_setup_dir = os.path.join(addons_setup_dir, addon_name)
         addon_setup_file = os.path.join(addon_setup_dir, 'setup.py')
@@ -270,26 +274,37 @@ def clean_setup_addons_dir(addons_dir, odoo_version_override):
             paths_to_remove.append(addon_setup_dir)
             continue
 
-        version, odoo_version, _ = _get_version(
+        empty = False
+
+        _, odoo_version, _ = _get_version(
             addon_dir, manifest,
             odoo_version_override=odoo_version_override,
             git_post_version=False)
+        odoo_series = _odoo_version_to_series(odoo_version)
 
-        if odoo_version >= 10:
+        if odoo_series < 10:
+            paths_to_remove.append(
+                os.path.join(addon_setup_dir, 'odoo'))
+        if odoo_series >= 10:
             paths_to_remove.append(
                 os.path.join(addon_setup_dir, 'odoo_addons'))
-        if odoo_version >= 11:
+        if odoo_series >= 11:
             paths_to_remove.append(
                 os.path.join(addon_setup_dir, 'odoo', '__init__.py'))
             paths_to_remove.append(
                 os.path.join(addon_setup_dir, 'odoo', 'addons', '__init__.py'))
 
-    for path_to_remove in paths_to_remove:
-        path = os.path.abspath(path_to_remove)
-        if os.path.exists(path):
-            subprocess.check_call([
-                'git', 'rm', '-rf', path,
-            ])
+    if empty:
+        metapackage_dir = os.path.join(addons_setup_dir, METAPACKAGE_SETUP_DIR)
+        paths_to_remove.append(metapackage_dir)
+
+    paths_to_remove = [os.path.abspath(p) for p in paths_to_remove]
+    subprocess.check_call([
+        'rm', '-rf',
+    ] + paths_to_remove)
+    subprocess.check_call([
+        'git', 'rm', '--ignore-unmatch', '-rf',
+    ] + paths_to_remove)
 
 
 def make_default_setup_commit_files(addons_dir):
@@ -320,25 +335,21 @@ def main(args=None):
     parser.add_argument(
         '--metapackage', '-m',
         help="Create a metapackage using the given name. This "
-             "package depends on all installable addons in addons "
-             "dir.",
+             "package depends on all installable addons in ADDONS_DIR.",
     )
     parser.add_argument(
         '--clean', '-c',
         action='store_true',
-        help="Clean the setup directory to remove directories of not "
-             "installable addons. Also removes the old setup directories "
-             "corresponding to an old version of Odoo.",
+        help="Clean the setup directory: remove setups of uninstallable "
+             "addons, remove files corresponding to other Odoo versions, "
+             "remove metapackage setup if there are no installable addons.",
     )
     parser.add_argument(
         '--commit',
         action='store_true',
-        help="Commit the changes if there is any.",
+        help="Git commit changes, if any.",
     )
     args = parser.parse_args(args)
-
-    if args.clean:
-        clean_setup_addons_dir(args.addons_dir)
 
     make_default_setup_addons_dir(
         args.addons_dir, args.force, args.odoo_version_override)
@@ -346,6 +357,10 @@ def main(args=None):
     if args.metapackage:
         make_default_meta_package(
             args.addons_dir, args.metapackage, args.odoo_version_override)
+
+    if args.clean:
+        # clean after so an empty meta package is removed
+        clean_setup_addons_dir(args.addons_dir, args.odoo_version_override)
 
     if args.commit:
         make_default_setup_commit_files(args.addons_dir)
