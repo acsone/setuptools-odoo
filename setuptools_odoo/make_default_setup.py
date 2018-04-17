@@ -3,17 +3,39 @@
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
 import argparse
+import datetime
+import logging
 import os
+import re
 
-
-from .core import is_installable_addon, _get_version
+from .core import is_installable_addon, _get_version, make_pkg_requirement
 from .manifest import read_manifest
+
+_logger = logging.getLogger(__name__)
 
 SETUP_PY = """import setuptools
 
 setuptools.setup(
     setup_requires=['setuptools-odoo'],
     odoo_addon={odoo_addon},
+)
+"""
+
+SETUP_PY_METAPACKAGE = """
+import setuptools
+
+with open('VERSION.txt', 'r') as f:
+    version = f.read().strip()
+
+setuptools.setup(
+    name="odoo{odoo_version}-addons-{name}",
+    description="Meta package for {name} Odoo addons",
+    version=version,
+    install_requires={install_requires},
+    classifiers=[
+        'Programming Language :: Python',
+        'Framework :: Odoo',
+    ]
 )
 """
 
@@ -120,6 +142,93 @@ def make_default_setup_addons_dir(addons_dir, force,
                                  odoo_version_override)
 
 
+def make_default_meta_package(addons_dir, name):
+    meta_install_requires = []
+    new_version = False
+    odoo_versions = set()
+    version_date = datetime.date.today().strftime('%Y%m%d')
+    metapackage_dir = os.path.join(addons_dir, 'setup', '_metapackage')
+    meta_package_setup_file = os.path.join(metapackage_dir, 'setup.py')
+    version_setup_file = os.path.join(metapackage_dir, 'VERSION.txt')
+    original_file_content = None
+
+    for addon_name in os.listdir(addons_dir):
+        addon_dir = os.path.join(addons_dir, addon_name)
+        if not is_installable_addon(addon_dir):
+            continue
+        meta_install_requires.append(make_pkg_requirement(addon_dir))
+        manifest = read_manifest(addon_dir)
+        version, odoo_version_info = _get_version(
+            addon_dir, manifest, git_post_version=False)
+        odoo_version = version.split('.')[0]
+        odoo_versions.add(odoo_version)
+    if len(odoo_versions) == 0:
+        _logger.warning(
+            "Unable to determine the Odoo version in %s." % (addons_dir,))
+        return
+    if len(odoo_versions) > 1:
+        raise RuntimeError("not all addon are for the same "
+                           "Odoo version: %s" % (odoo_versions,))
+    odoo_version = list(odoo_versions)[0]
+    install_requires_str = '[\n%s%s]' % (
+        ''.join([
+            ' '*8 + '\'' + install_require + '\',\n'
+            for install_require in sorted(meta_install_requires)
+        ]),
+        ' '*4,
+    )
+
+    setup_py = SETUP_PY_METAPACKAGE.format(
+        name=name,
+        odoo_version=list(odoo_versions)[0],
+        date=version_date,
+        install_requires=install_requires_str,
+    )
+
+    if not os.path.exists(metapackage_dir):
+        os.mkdir(metapackage_dir)
+
+    if os.path.exists(meta_package_setup_file):
+        with open(meta_package_setup_file, 'r') as f:
+            original_file_content = f.read()
+
+    if not os.path.exists(version_setup_file):
+        with open(version_setup_file, 'w') as f:
+            pass
+
+    if original_file_content is None or original_file_content != setup_py:
+        with open(version_setup_file, 'r') as f:
+            old_version = f.read().strip()
+            new_version = get_next_version(
+                odoo_version, version_date, old_version)
+
+    if new_version:
+        with open(version_setup_file, 'w') as f:
+            f.write(new_version)
+
+    with open(meta_package_setup_file, 'w') as f:
+        f.write(setup_py)
+
+
+def get_next_version(odoo_version, version_date, old_version=None):
+    new_version = "%s.0.%s" % (odoo_version, version_date)
+    use_counter = False
+    index = 0
+    if old_version:
+        old_date = re.findall(
+            r'[0-9]{8}', old_version)[0]
+        old_index = re.sub(
+            r'' + odoo_version + '.0.[0-9]{8}(.)?', '', old_version)
+        if old_index:
+            index = int(old_index)
+        if old_date == version_date:
+            use_counter = True
+        if use_counter:
+            index += 1
+            new_version = '%s.%s' % (new_version, index)
+    return new_version
+
+
 def main(args=None):
     parser = argparse.ArgumentParser(
         description='Generate default setup.py for all addons in an '
@@ -131,9 +240,14 @@ def main(args=None):
                         help="Force Odoo version for situations where some "
                              "addons versions do not start with the odoo "
                              "version")
+    parser.add_argument(
+        '--metapackage', '-m',
+        help="Create a metapackage using the given name.")
     args = parser.parse_args(args)
     make_default_setup_addons_dir(args.addons_dir, args.force,
                                   args.odoo_version_override)
+    if args.metapackage:
+        make_default_meta_package(args.addons_dir, args.metapackage)
 
 
 if __name__ == '__main__':
