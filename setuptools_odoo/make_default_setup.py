@@ -302,9 +302,6 @@ def clean_setup_addons_dir(addons_dir, odoo_version_override):
     subprocess.check_call([
         'rm', '-rf',
     ] + paths_to_remove)
-    subprocess.check_call([
-        'git', 'rm', '--ignore-unmatch', '-rf',
-    ] + paths_to_remove)
 
 
 def make_default_setup_commit_files(addons_dir):
