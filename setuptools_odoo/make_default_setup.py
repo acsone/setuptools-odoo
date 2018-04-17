@@ -310,23 +310,30 @@ def main(args=None):
     )
     parser.add_argument('--addons-dir', '-d', required=True)
     parser.add_argument('--force', '-f', action='store_true')
-    parser.add_argument('--odoo-version-override',
-                        help="Force Odoo version for situations where some "
-                             "addons versions do not start with the odoo "
-                             "version")
+    parser.add_argument(
+        '--odoo-version-override',
+        help="Force Odoo version for situations where some "
+             "addons versions do not start with the odoo "
+             "version.",
+    )
     parser.add_argument(
         '--metapackage', '-m',
-        help="Create a metapackage using the given name.")
+        help="Create a metapackage using the given name. This "
+             "package depends on all installable addons in addons "
+             "dir.",
+    )
     parser.add_argument(
         '--clean', '-c',
         action='store_true',
         help="Clean the setup directory to remove directories of not "
              "installable addons. Also removes the old setup directories "
-             "corresponding to an old version of Odoo."
+             "corresponding to an old version of Odoo.",
     )
     parser.add_argument(
         '--commit',
-        action='store_true', help="Commit the changes if there is any.")
+        action='store_true',
+        help="Commit the changes if there is any.",
+    )
     args = parser.parse_args(args)
 
     if args.clean:
