@@ -10,9 +10,6 @@ import re
 import subprocess
 
 from .core import is_installable_addon, _get_version, make_pkg_requirement
-from .manifest import read_manifest
-
-from .core import is_installable_addon, _get_version
 from .manifest import read_manifest, NoManifestFound
 
 _logger = logging.getLogger(__name__)
@@ -145,6 +142,7 @@ def make_default_setup_addons_dir(addons_dir, force,
         make_default_setup_addon(addon_setup_dir, addon_dir, force,
                                  odoo_version_override)
 
+
 def make_default_meta_package(addons_dir, name):
     meta_install_requires = []
     new_version = False
@@ -235,19 +233,40 @@ def get_next_version(odoo_version, version_date, old_version=None):
 def clean_setup_addons_dir(addons_dir):
     paths_to_remove = []
 
-    for addon_name in os.listdir(addons_dir):
+    addons_setup_dir = os.path.join(addons_dir, 'setup')
+    for addon_name in os.listdir(addons_setup_dir):
+        addon_setup_dir = os.path.join(addons_setup_dir, addon_name)
+        addon_setup_file = os.path.join(addon_setup_dir, 'setup.py')
+        odoo_lt_10_module_link = os.path.join(
+            addon_setup_dir, 'odoo_addons', addon_name)
+        odoo_gt_10_module_link = os.path.join(
+            addon_setup_dir, 'odoo', 'addons', addon_name)
+
+        is_setup_dir = (
+            os.path.exists(addon_setup_file) and
+            (
+                os.path.islink(odoo_lt_10_module_link) or
+                os.path.islink(odoo_gt_10_module_link)
+            )
+        )
+        if not is_setup_dir:
+            # The entry will be skipped in case it's a file or
+            # if the directory is not considered as a setup directory for an
+            # addon
+            continue
+
         addon_dir = os.path.join(addons_dir, addon_name)
         is_installable = is_installable_addon(addon_dir)
         try:
             # File or directory is not an addon. Skip it
             manifest = read_manifest(addon_dir)
         except NoManifestFound:
-            continue
+            manifest = None
 
-        addon_setup_dir = os.path.join(addons_dir, 'setup', addon_name)
-        if not is_installable:
+        if not is_installable or not manifest:
             paths_to_remove.append(addon_setup_dir)
             continue
+
         version, odoo_version_info = _get_version(
             addon_dir, manifest, git_post_version=False)
         odoo_version = int(version.split('.')[0])
