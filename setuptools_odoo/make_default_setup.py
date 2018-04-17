@@ -4,11 +4,14 @@
 
 import argparse
 import datetime
+import logging
 import os
 import re
 
 from .core import is_installable_addon, _get_version, make_pkg_requirement
 from .manifest import read_manifest
+
+_logger = logging.getLogger(__name__)
 
 SETUP_PY = """import setuptools
 
@@ -20,12 +23,14 @@ setuptools.setup(
 
 SETUP_PY_METAPACKAGE = """
 import setuptools
+
 with open('VERSION.txt', 'r') as f:
     version = f.read().strip()
+
 setuptools.setup(
     name="odoo{odoo_version}-addons-{name}",
     description="Meta package for {name} Odoo addons",
-    version=odoo_version,
+    version=version,
     install_requires={install_requires},
     classifiers=[
         'Programming Language :: Python',
@@ -147,17 +152,6 @@ def make_default_meta_package(addons_dir, name):
     version_setup_file = os.path.join(metapackage_dir, 'VERSION.txt')
     original_file_content = None
 
-    if not os.path.exists(metapackage_dir):
-        os.mkdir(metapackage_dir)
-
-    if os.path.exists(meta_package_setup_file):
-        with open(meta_package_setup_file, 'r') as f:
-            original_file_content = f.read()
-
-    if not os.path.exists(version_setup_file):
-        with open(version_setup_file, 'w+') as f:
-            pass
-
     for addon_name in os.listdir(addons_dir):
         addon_dir = os.path.join(addons_dir, addon_name)
         if not is_installable_addon(addon_dir):
@@ -169,6 +163,8 @@ def make_default_meta_package(addons_dir, name):
         odoo_version = version.split('.')[0]
         odoo_versions.add(odoo_version)
     if len(odoo_versions) == 0:
+        _logger.warning(
+            "Unable to determine the Odoo version in %s." % (addons_dir,))
         return
     if len(odoo_versions) > 1:
         raise RuntimeError("not all addon are for the same "
@@ -189,8 +185,19 @@ def make_default_meta_package(addons_dir, name):
         install_requires=install_requires_str,
     )
 
+    if not os.path.exists(metapackage_dir):
+        os.mkdir(metapackage_dir)
+
+    if os.path.exists(meta_package_setup_file):
+        with open(meta_package_setup_file, 'r') as f:
+            original_file_content = f.read()
+
+    if not os.path.exists(version_setup_file):
+        with open(version_setup_file, 'w') as f:
+            pass
+
     if original_file_content is None or original_file_content != setup_py:
-        with open(version_setup_file, 'r+') as f:
+        with open(version_setup_file, 'r') as f:
             old_version = f.read().strip()
             new_version = get_next_version(
                 odoo_version, version_date, old_version)

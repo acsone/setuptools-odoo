@@ -99,12 +99,14 @@ class TestMakeDefaultSetup(unittest.TestCase):
         expected_setup_file = """
 
 import setuptools
+
 with open('VERSION.txt', 'r') as f:
     version = f.read().strip()
+
 setuptools.setup(
     name="odoo8-addons-tests",
     description="Meta package for tests Odoo addons",
-    version=odoo_version,
+    version=version,
     install_requires=[
         'odoo8-addon-addon1',
         'odoo8-addon-addon2',
