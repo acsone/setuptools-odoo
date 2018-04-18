@@ -154,7 +154,6 @@ def make_default_setup_addons_dir(addons_dir, force,
 
 def make_default_meta_package(addons_dir, name, odoo_version_override):
     meta_install_requires = []
-    new_version = False
     odoo_versions = set()
     metapackage_dir = os.path.join(addons_dir, 'setup', METAPACKAGE_SETUP_DIR)
     meta_package_setup_file = os.path.join(metapackage_dir, 'setup.py')
@@ -208,10 +207,7 @@ def make_default_meta_package(addons_dir, name, odoo_version_override):
     if original_file_content is None or original_file_content != setup_py:
         with open(version_setup_file, 'r') as f:
             old_version = f.read().strip()
-            new_version = get_next_version(
-                odoo_version, old_version)
-
-    if new_version:
+        new_version = get_next_version(odoo_version, old_version)
         with open(version_setup_file, 'w') as f:
             f.write(new_version)
 
@@ -304,6 +300,24 @@ def clean_setup_addons_dir(addons_dir, odoo_version_override):
     ] + paths_to_remove)
 
 
+def check_setup_dir_is_git_clean(addons_dir):
+    cmd = ['git', 'diff', '--exit-code', 'setup']
+    if subprocess.call(cmd, cwd=addons_dir) != 0:
+        return False
+    cmd = ['git', 'diff', '--exit-code', '--cached', 'setup']
+    if subprocess.call(cmd, cwd=addons_dir) != 0:
+        return False
+    cmd = [
+        'git', 'ls-files',
+        '--other', '--exclude-standard', '--directory',
+        'setup',
+    ]
+    out = subprocess.check_output(cmd, cwd=addons_dir)
+    if out:
+        return False
+    return True
+
+
 def make_default_setup_commit_files(addons_dir):
     subprocess.check_call(['git', 'add', 'setup'], cwd=addons_dir)
     commit_needed = subprocess.call([
@@ -347,6 +361,12 @@ def main(args=None):
         help="Git commit changes, if any.",
     )
     args = parser.parse_args(args)
+
+    if args.commit and not check_setup_dir_is_git_clean(args.addons_dir):
+        sys.stderr.write(
+            "You asked to git commit changes but the setup directory "
+            "already has uncommitted changes, aborting.\n")
+        sys.exit(1)
 
     make_default_setup_addons_dir(
         args.addons_dir, args.force, args.odoo_version_override)
