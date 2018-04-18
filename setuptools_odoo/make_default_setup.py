@@ -157,6 +157,7 @@ def make_default_meta_package(addons_dir, name, odoo_version_override):
     odoo_versions = set()
     metapackage_dir = os.path.join(addons_dir, 'setup', METAPACKAGE_SETUP_DIR)
     setup_py_file = os.path.join(metapackage_dir, 'setup.py')
+    setup_cfg_file = os.path.join(metapackage_dir, 'setup.cfg')
     version_txt_file = os.path.join(metapackage_dir, 'VERSION.txt')
 
     for addon_name in os.listdir(addons_dir):
@@ -165,7 +166,7 @@ def make_default_meta_package(addons_dir, name, odoo_version_override):
             continue
         meta_install_requires.append(make_pkg_requirement(addon_dir))
         manifest = read_manifest(addon_dir)
-        version, odoo_version, _ = _get_version(
+        _, odoo_version, odoo_version_info = _get_version(
             addon_dir, manifest,
             odoo_version_override=odoo_version_override,
             git_post_version=False)
@@ -217,6 +218,10 @@ def make_default_meta_package(addons_dir, name, odoo_version_override):
 
     with open(setup_py_file, 'w') as f:
         f.write(setup_py)
+
+    if odoo_version_info['universal_wheel']:
+        with open(setup_cfg_file, 'w') as f:
+            f.write(SETUP_CFG_UNIVERSAL)
 
 
 def get_next_version(odoo_version, old_version):
