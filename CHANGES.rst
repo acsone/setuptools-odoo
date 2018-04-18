@@ -5,6 +5,11 @@ Changes
 .. ----------
 .. -
 
+2.0.4 (2018-04-18)
+------------------
+- [FIX] setuptools-odoo-make-default: make metapackage a universal
+  wheel for Odoo 11
+
 2.0.3 (2018-04-18)
 ------------------
 - [IMP] add --clean, --commit and --metapackage options to
