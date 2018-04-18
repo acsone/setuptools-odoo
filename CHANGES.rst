@@ -5,7 +5,7 @@ Changes
 .. ----------
 .. -
 
-2.0.3 (unreleased)
+2.0.3 (2018-04-18)
 ------------------
 - [IMP] add --clean, --commit and --metapackage options to
   setuptools-odoo-make-default
