@@ -281,7 +281,7 @@ def clean_setup_addons_dir(addons_dir, odoo_version_override):
 
         empty = False
 
-        _, odoo_version, _ = _get_version(
+        _, odoo_version, odoo_version_info = _get_version(
             addon_dir, manifest,
             odoo_version_override=odoo_version_override,
             git_post_version=False)
@@ -298,10 +298,15 @@ def clean_setup_addons_dir(addons_dir, odoo_version_override):
                 os.path.join(addon_setup_dir, 'odoo', '__init__.py'))
             paths_to_remove.append(
                 os.path.join(addon_setup_dir, 'odoo', 'addons', '__init__.py'))
+        if not odoo_version_info['universal_wheel']:
+            paths_to_remove.append(
+                os.path.join(addon_setup_dir, 'setup.cfg'))
 
     if empty:
         metapackage_dir = os.path.join(addons_setup_dir, METAPACKAGE_SETUP_DIR)
         paths_to_remove.append(metapackage_dir)
+
+    # XXX we may want to clean metapackage_dir/setup.cfg if not universal_wheel
 
     paths_to_remove = [os.path.abspath(p) for p in paths_to_remove]
     subprocess.check_call([
