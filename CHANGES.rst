@@ -5,6 +5,10 @@ Changes
 .. ----------
 .. -
 
+2.0.5 (unreleased)
+------------------
+- [IMP] update base addons list for Odoo 11.0
+
 2.0.4 (2018-04-18)
 ------------------
 - [FIX] setuptools-odoo-make-default: make metapackage a universal
