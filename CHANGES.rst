@@ -5,8 +5,12 @@ Changes
 .. ----------
 .. -
 
-2.0.5 (unreleased)
+2.1.0 (unreleased)
 ------------------
+- [FIX] give precedence to PKG-INFO over manifest to get version,
+  so the git post version obtained when generating an sdist is
+  preserved (before it would fall back in the manifest version
+  when trying to build from an sdist outside of git)
 - [IMP] update base addons list for Odoo 11.0
 
 2.0.4 (2018-04-18)

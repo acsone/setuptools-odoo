@@ -7,6 +7,7 @@ import os
 import shutil
 import subprocess
 import sys
+import tarfile
 import tempfile
 import unittest
 from zipfile import ZipFile
@@ -36,6 +37,39 @@ class TestSetupKeywords(unittest.TestCase):
             self.assertEquals(dist.version, "8.0.1.0.0.99.dev2")
         finally:
             shutil.rmtree(egg_info_dir)
+
+    def test_odoo_addon1_sdist(self):
+        addon1_dir = os.path.join(DATA_DIR, 'setup_reusable_addons', 'addon1')
+        dist_dir = tempfile.mkdtemp()
+        assert os.path.isdir(dist_dir)
+        try:
+            subprocess.check_call([
+                sys.executable, 'setup.py', 'sdist', '-d', dist_dir,
+            ], cwd=addon1_dir)
+            sdist_file = os.path.join(
+                dist_dir,
+                'odoo8-addon-addon1-8.0.1.0.0.99.dev2.tar.gz')
+            assert os.path.isfile(sdist_file)
+            # dist from the tar file, must produce an identical tar file
+            with tarfile.open(sdist_file, 'r') as tf:
+                tar_dir = tempfile.mkdtemp()
+                try:
+                    tar_setup_dir = os.path.join(
+                        tar_dir, 'odoo8-addon-addon1-8.0.1.0.0.99.dev2')
+                    tf.extractall(tar_dir)
+                    subprocess.check_call([
+                        sys.executable, 'setup.py', 'sdist',
+                    ], cwd=tar_setup_dir)
+                    sdist_file2 = os.path.join(
+                        tar_setup_dir, 'dist',
+                        'odoo8-addon-addon1-8.0.1.0.0.99.dev2.tar.gz')
+                    assert os.path.isfile(sdist_file2)
+                    with tarfile.open(sdist_file2, 'r') as tf2:
+                        assert sorted(tf.getnames()) == sorted(tf2.getnames())
+                finally:
+                    shutil.rmtree(tar_dir)
+        finally:
+            shutil.rmtree(dist_dir)
 
     def test_odoo_addon2(self):
         addon2_dir = os.path.join(DATA_DIR, 'setup_reusable_addons', 'addon2')
