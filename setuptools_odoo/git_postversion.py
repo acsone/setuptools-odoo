@@ -11,8 +11,8 @@ from .manifest import (
 )
 
 
-def _run_git_command_exit_code(args, cwd=None):
-    return subprocess.call(['git'] + args, cwd=cwd)
+def _run_git_command_exit_code(args, cwd=None, stderr=None):
+    return subprocess.call(['git'] + args, cwd=cwd, stderr=stderr)
 
 
 def _run_git_command_bytes(args, cwd=None):
@@ -27,7 +27,9 @@ def _run_git_command_lines(args, cwd=None):
 
 
 def is_git_controlled(path):
-    return 0 == _run_git_command_exit_code(['rev-parse'], cwd=path)
+    with open('/dev/null', 'w') as stderr:
+        r = _run_git_command_exit_code(['rev-parse'], cwd=path, stderr=stderr)
+        return r == 0
 
 
 def get_git_uncommitted(path):
