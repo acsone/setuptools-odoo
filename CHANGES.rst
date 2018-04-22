@@ -5,7 +5,7 @@ Changes
 .. ----------
 .. -
 
-2.1.0 (unreleased)
+2.1.0 (2018-04-22)
 ------------------
 - [FIX] give precedence to PKG-INFO over manifest to get version,
   so the git post version obtained when generating an sdist is
