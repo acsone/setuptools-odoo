@@ -3,6 +3,9 @@
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
 import os
+import shutil
+import tempfile
+import textwrap
 import unittest
 
 from setuptools_odoo import git_postversion
@@ -50,6 +53,21 @@ class TestGitPostversion(unittest.TestCase):
             assert version == '8.0.1.0.0.99.dev3'
         finally:
             open(manifest_path, "w").write(manifest)
+
+    def test_no_git(self):
+        """ get version outisde of git repo, get it from manifest """
+        tmp_addon_dir = tempfile.mkdtemp()
+        try:
+            with open(os.path.join(tmp_addon_dir, '__openerp__.py'), 'w') as f:
+                f.write(textwrap.dedent("""\
+                    {
+                       'version': '10.0.1.2.3',
+                    }
+                """))
+            version = git_postversion.get_git_postversion(tmp_addon_dir)
+            assert version == '10.0.1.2.3'
+        finally:
+            shutil.rmtree(tmp_addon_dir)
 
     def test_no_manifest(self):
         with self.assertRaises(manifest.NoManifestFound):
