@@ -3,6 +3,7 @@
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
 import email.parser
+import io
 import os
 import setuptools
 from distutils.core import DistutilsSetupError
@@ -320,8 +321,8 @@ def prepare_odoo_addon(depends_override={},
     addon_dir = os.path.join(addons_dir, addon_name)
     manifest = read_manifest(addon_dir)
     if os.path.exists('PKG-INFO'):
-        with open('PKG-INFO', 'rb') as fp:
-            pkg_info = email.parser.Parser().parse(fp)
+        with io.open('PKG-INFO', encoding='utf-8') as fp:
+            pkg_info = email.parser.HeaderParser().parse(fp)
             version = pkg_info['Version']
         _, _, odoo_version_info = _get_version(
             addon_dir, manifest, odoo_version_override, git_post_version=False)
