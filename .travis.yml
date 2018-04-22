@@ -29,3 +29,4 @@ deploy:
     repo: acsone/setuptools-odoo
     branch: master
     tags: true
+    python: 2.7
