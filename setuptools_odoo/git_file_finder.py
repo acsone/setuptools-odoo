@@ -14,6 +14,10 @@ def _git_toplevel(path):
         ], cwd=(path or '.'), universal_newlines=True)
         return os.path.realpath(out.strip())
     except subprocess.CalledProcessError:
+        # git returned error, we are not in a git repo
+        return None
+    except OSError:
+        # git command not found, probably
         return None
 
 
