@@ -47,7 +47,7 @@ setuptools.setup(
             "odoo_addons = setuptools_odoo.setup_keywords:odoo_addons",
         ],
         "setuptools.file_finders": [
-            "setuptools-odoo = setuptools_odoo.git_file_finder:find_files",
+            "setuptools-odoo-git = setuptools_odoo.git_file_finder:find_files",
         ],
     },
 )

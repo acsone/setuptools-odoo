@@ -5,6 +5,13 @@ Changes
 .. ----------
 .. -
 
+2.2.0 (unreleased)
+------------------
+- [CHG] implement our own git file finder, hence removing
+  the setuptools-git dependency, which was unmaintained; pypa
+  recommends setuptools-scm for that, but it `does not support
+  symlinks <https://github.com/pypa/setuptools_scm/issues/245>`_
+
 2.1.0 (2018-04-22)
 ------------------
 - [FIX] give precedence to PKG-INFO over manifest to get version,
