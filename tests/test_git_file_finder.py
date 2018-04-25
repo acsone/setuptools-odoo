@@ -47,20 +47,31 @@ def test_basic(ingitdir):
     }
 
 
-def test_symlinks(ingitdir):
-    (Path('adir') / 'file1link').symlink_to('../file1')
-    (Path('adir') / 'bdirlink').symlink_to('../bdir')
+def test_symlink_dir(ingitdir):
+    (Path('adir') / 'bdirlink').\
+        symlink_to('../bdir', target_is_directory=True)
+    subprocess.check_call(['git', 'add', '.'])
+    subprocess.check_call(['git', 'commit', '-m', '...'])
+    assert set(find_files('adir')) == {
+        'adir/filea',
+        'adir/bdirlink/fileb',
+    }
+
+
+def test_symlink_file(ingitdir):
+    (Path('adir') / 'file1link').\
+        symlink_to('../file1', target_is_directory=False)
     subprocess.check_call(['git', 'add', '.'])
     subprocess.check_call(['git', 'commit', '-m', '...'])
     assert set(find_files('adir')) == {
         'adir/filea',
         'adir/file1link',
-        'adir/bdirlink/fileb',
     }
 
 
 def test_symlink_loop(ingitdir):
-    (Path('adir') / 'loop').symlink_to('../adir')
+    (Path('adir') / 'loop').\
+        symlink_to('../adir', target_is_directory=True)
     subprocess.check_call(['git', 'add', '.'])
     subprocess.check_call(['git', 'commit', '-m', '...'])
     assert set(find_files('adir')) == {
@@ -68,9 +79,19 @@ def test_symlink_loop(ingitdir):
     }
 
 
-def test_symlink_out_of_git(ingitdir):
-    (Path('adir') / 'outsidefilelink').symlink_to(__file__)
-    (Path('adir') / 'outsidedirlink').symlink_to(Path(__file__) / '..')
+def test_symlink_dir_out_of_git(ingitdir):
+    (Path('adir') / 'outsidedirlink').\
+        symlink_to(Path(__file__) / '..', target_is_directory=True)
+    subprocess.check_call(['git', 'add', '.'])
+    subprocess.check_call(['git', 'commit', '-m', '...'])
+    assert set(find_files('adir')) == {
+        'adir/filea',
+    }
+
+
+def test_symlink_file_out_of_git(ingitdir):
+    (Path('adir') / 'outsidefilelink').\
+        symlink_to(__file__, target_is_directory=False)
     subprocess.check_call(['git', 'add', '.'])
     subprocess.check_call(['git', 'commit', '-m', '...'])
     assert set(find_files('adir')) == {
