@@ -21,7 +21,16 @@ def _git_ls_files_and_dirs(toplevel):
         'git', 'ls-files',
     ], cwd=toplevel, universal_newlines=True)
     git_files = {os.path.join(toplevel, f) for f in out.split()}
-    git_dirs = {os.path.dirname(f) for f in git_files}
+    git_dirs = set()
+    for git_file in git_files:
+        dirname = os.path.dirname(git_file)
+        while True:
+            if len(dirname) < len(toplevel):
+                break
+            if dirname in git_dirs:
+                break
+            git_dirs.add(dirname)
+            dirname = os.path.dirname(dirname)
     return git_files, git_dirs
 
 

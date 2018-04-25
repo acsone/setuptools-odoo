@@ -72,3 +72,24 @@ def test_symlink_out_of_git(ingitdir):
     assert set(find_files('adir')) == {
         'adir/filea',
     }
+
+
+def test_empty_root(ingitdir):
+    subdir = Path('cdir') / 'subdir'
+    subdir.mkdir(parents=True)
+    (subdir / 'filec').touch()
+    subprocess.check_call(['git', 'add', '.'])
+    assert set(find_files('cdir')) == {
+        'cdir/subdir/filec',
+    }
+
+
+def test_empty_subdir(ingitdir):
+    subdir = Path('adir') / 'emptysubdir' / 'subdir'
+    subdir.mkdir(parents=True)
+    (subdir / 'xfile').touch()
+    subprocess.check_call(['git', 'add', '.'])
+    assert set(find_files('adir')) == {
+        'adir/filea',
+        'adir/emptysubdir/subdir/xfile',
+    }
