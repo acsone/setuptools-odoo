@@ -4,6 +4,7 @@
 
 import os
 import subprocess
+import tarfile
 
 
 def _git_toplevel(path):
@@ -17,20 +18,19 @@ def _git_toplevel(path):
 
 
 def _git_ls_files_and_dirs(toplevel):
-    out = subprocess.check_output([
-        'git', 'ls-files',
-    ], cwd=toplevel, universal_newlines=True)
-    git_files = {os.path.join(toplevel, f) for f in out.split()}
-    git_dirs = set()
-    for git_file in git_files:
-        dirname = os.path.dirname(git_file)
-        while True:
-            if len(dirname) < len(toplevel):
-                break
-            if dirname in git_dirs:
-                break
-            git_dirs.add(dirname)
-            dirname = os.path.dirname(dirname)
+    # use git archive instead of git ls-file to honor
+    # export-ignore git attribute
+    prefix = os.path.join(toplevel, '')
+    cmd = ['git', 'archive', '--prefix', prefix, 'HEAD']
+    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, cwd=toplevel)
+    tf = tarfile.open(fileobj=proc.stdout, mode='r|*')
+    git_files = set()
+    git_dirs = set([toplevel])
+    for member in tf.getmembers():
+        if member.type == tarfile.DIRTYPE:
+            git_dirs.add(member.name)
+        else:
+            git_files.add(member.name)
     return git_files, git_dirs
 
 

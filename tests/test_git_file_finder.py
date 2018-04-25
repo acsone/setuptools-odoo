@@ -25,6 +25,7 @@ def ingitdir(tmpdir):
         bdir.mkdir()
         (bdir / 'fileb').touch()
         subprocess.check_call(['git', 'add', '.'])
+        subprocess.check_call(['git', 'commit', '-m', '...'])
         yield
     finally:
         os.chdir(cwd)
@@ -50,6 +51,7 @@ def test_symlinks(ingitdir):
     (Path('adir') / 'file1link').symlink_to('../file1')
     (Path('adir') / 'bdirlink').symlink_to('../bdir')
     subprocess.check_call(['git', 'add', '.'])
+    subprocess.check_call(['git', 'commit', '-m', '...'])
     assert set(find_files('adir')) == {
         'adir/filea',
         'adir/file1link',
@@ -60,6 +62,7 @@ def test_symlinks(ingitdir):
 def test_symlink_loop(ingitdir):
     (Path('adir') / 'loop').symlink_to('../adir')
     subprocess.check_call(['git', 'add', '.'])
+    subprocess.check_call(['git', 'commit', '-m', '...'])
     assert set(find_files('adir')) == {
         'adir/filea',
     }
@@ -69,6 +72,7 @@ def test_symlink_out_of_git(ingitdir):
     (Path('adir') / 'outsidefilelink').symlink_to(__file__)
     (Path('adir') / 'outsidedirlink').symlink_to(Path(__file__) / '..')
     subprocess.check_call(['git', 'add', '.'])
+    subprocess.check_call(['git', 'commit', '-m', '...'])
     assert set(find_files('adir')) == {
         'adir/filea',
     }
@@ -79,6 +83,7 @@ def test_empty_root(ingitdir):
     subdir.mkdir(parents=True)
     (subdir / 'filec').touch()
     subprocess.check_call(['git', 'add', '.'])
+    subprocess.check_call(['git', 'commit', '-m', '...'])
     assert set(find_files('cdir')) == {
         'cdir/subdir/filec',
     }
@@ -89,6 +94,7 @@ def test_empty_subdir(ingitdir):
     subdir.mkdir(parents=True)
     (subdir / 'xfile').touch()
     subprocess.check_call(['git', 'add', '.'])
+    subprocess.check_call(['git', 'commit', '-m', '...'])
     assert set(find_files('adir')) == {
         'adir/filea',
         'adir/emptysubdir/subdir/xfile',
