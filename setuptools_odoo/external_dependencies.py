@@ -13,4 +13,5 @@ EXTERNAL_DEPENDENCIES_MAP = {
     'serial': 'pyserial',
     'stdnum': 'python-stdnum',
     'Crypto.Cipher.DES3': 'pycrypto',
+    'OpenSSL': 'pyOpenSSL',
 }
