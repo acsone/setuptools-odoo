@@ -5,6 +5,11 @@ Changes
 .. ----------
 .. -
 
+2.2.0 (unreleased)
+------------------
+- [CHG] use setuptools_scm instead of setuptools-git for the
+  git file finder
+
 2.1.0 (2018-04-22)
 ------------------
 - [FIX] give precedence to PKG-INFO over manifest to get version,
