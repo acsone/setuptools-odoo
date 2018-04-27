@@ -31,6 +31,7 @@ setuptools.setup(
     ],
     install_requires=[
         'setuptools',
+        'setuptools_scm>=2.1',  # for the git file finder
     ],
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*',
     setup_requires=[
@@ -45,9 +46,6 @@ setuptools.setup(
         "distutils.setup_keywords": [
             "odoo_addon = setuptools_odoo.setup_keywords:odoo_addon",
             "odoo_addons = setuptools_odoo.setup_keywords:odoo_addons",
-        ],
-        "setuptools.file_finders": [
-            "setuptools-odoo-git = setuptools_odoo.git_file_finder:find_files",
         ],
     },
 )
