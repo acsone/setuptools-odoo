@@ -5,9 +5,10 @@
 import email.parser
 import io
 import os
-import setuptools
 from distutils.core import DistutilsSetupError
 from warnings import warn
+
+import setuptools
 
 from . import base_addons
 from . import external_dependencies
