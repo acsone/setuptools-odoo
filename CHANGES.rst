@@ -9,6 +9,9 @@ Changes
 ------------------
 - [IMP] silence some useless git warnings when looking for manifst
   in git history
+- [IMP] when searching for manifest, look for __manifest__.py before
+  __openerp__.py, this should slightly improve performance for what
+  is becoming the most common case in recent Odoo versions
 
 2.1.0 (2018-04-22)
 ------------------
