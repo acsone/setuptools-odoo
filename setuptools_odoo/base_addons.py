@@ -9,12 +9,8 @@ from pkg_resources import resource_string
 
 
 def _addons(suffix):
-    try:
-        b = resource_string('setuptools_odoo', 'addons-%s.txt' % suffix)
-    except Exception:
-        return set()
-    else:
-        return set(b.decode('ascii').split())
+    b = resource_string('setuptools_odoo', 'addons-%s.txt' % suffix)
+    return set(b.decode('ascii').split())
 
 
 openerp7 = _addons('7c')
