@@ -20,7 +20,7 @@ def _list_addons(addons_dir, add_base):
         yield 'base'
     for addon_name in os.listdir(addons_dir):
         addon_dir = os.path.join(addons_dir, addon_name)
-        if manifest.is_installable_addon(addon_dir):
+        if manifest.get_manifest_path(addon_dir):
             yield addon_name
 
 

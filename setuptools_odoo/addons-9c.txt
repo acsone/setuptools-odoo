@@ -5,11 +5,13 @@ account_asset
 account_bank_statement_import
 account_budget
 account_cancel
+account_cash_basis_base_account
 account_check_printing
 account_extra_reports
 account_full_reconcile
 account_tax_adjustments
 account_tax_cash_basis
+account_tax_exigible
 account_tax_python
 account_test
 account_voucher
@@ -70,6 +72,7 @@ hw_posbox_upgrade
 hw_proxy
 hw_scale
 hw_scanner
+hw_screen
 im_livechat
 im_odoo_support
 l10n_ae
@@ -100,8 +103,11 @@ l10n_es
 l10n_et
 l10n_eu_service
 l10n_fr
+l10n_fr_certification
 l10n_fr_fec
 l10n_fr_hr_payroll
+l10n_fr_pos_cert
+l10n_fr_sale_closing
 l10n_generic_coa
 l10n_gr
 l10n_gt
@@ -110,6 +116,7 @@ l10n_hr
 l10n_hu
 l10n_in
 l10n_in_hr_payroll
+l10n_in_schedule6
 l10n_it
 l10n_jp
 l10n_lu

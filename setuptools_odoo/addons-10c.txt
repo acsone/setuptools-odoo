@@ -5,6 +5,7 @@ account_asset
 account_bank_statement_import
 account_budget
 account_cancel
+account_cash_basis_base_account
 account_check_printing
 account_tax_cash_basis
 account_tax_python
@@ -50,6 +51,7 @@ hr
 hr_attendance
 hr_contract
 hr_expense
+hr_expense_check
 hr_gamification
 hr_holidays
 hr_maintenance
@@ -97,8 +99,11 @@ l10n_es
 l10n_et
 l10n_eu_service
 l10n_fr
+l10n_fr_certification
 l10n_fr_fec
 l10n_fr_hr_payroll
+l10n_fr_pos_cert
+l10n_fr_sale_closing
 l10n_generic_coa
 l10n_gr
 l10n_gt
@@ -107,6 +112,7 @@ l10n_hr
 l10n_hu
 l10n_in
 l10n_in_hr_payroll
+l10n_in_schedule6
 l10n_it
 l10n_jp
 l10n_lu

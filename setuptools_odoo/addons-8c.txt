@@ -18,6 +18,7 @@ account_voucher
 analytic
 analytic_contract_hr_expense
 analytic_user_function
+anglo_saxon_dropshipping
 anonymization
 association
 auth_crypt
@@ -76,12 +77,14 @@ hr_recruitment
 hr_timesheet
 hr_timesheet_invoice
 hr_timesheet_sheet
+hw_blackbox_be
 hw_escpos
 hw_posbox_homepage
 hw_posbox_upgrade
 hw_proxy
 hw_scale
 hw_scanner
+hw_screen
 im_chat
 im_livechat
 im_odoo_support
