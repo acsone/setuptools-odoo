@@ -29,6 +29,9 @@ setuptools.setup(
     packages=[
         'setuptools_odoo',
     ],
+    package_data={
+        'setuptools_odoo': ['addons-*.txt'],
+    },
     install_requires=[
         'setuptools',
         'setuptools-git!=1.2',
