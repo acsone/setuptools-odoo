@@ -5,6 +5,11 @@ Changes
 .. ----------
 .. -
 
+2.2.0 (unreleased)
+------------------
+- [IMP] silence some useless git warnings when looking for manifst
+  in git history
+
 2.1.0 (2018-04-22)
 ------------------
 - [FIX] give precedence to PKG-INFO over manifest to get version,

@@ -15,14 +15,14 @@ def _run_git_command_exit_code(args, cwd=None, stderr=None):
     return subprocess.call(['git'] + args, cwd=cwd, stderr=stderr)
 
 
-def _run_git_command_bytes(args, cwd=None):
+def _run_git_command_bytes(args, cwd=None, stderr=None):
     output = subprocess.check_output(
-        ['git'] + args, cwd=cwd, universal_newlines=True)
+        ['git'] + args, cwd=cwd, universal_newlines=True, stderr=stderr)
     return output.strip()
 
 
-def _run_git_command_lines(args, cwd=None):
-    output = _run_git_command_bytes(args, cwd=cwd)
+def _run_git_command_lines(args, cwd=None, stderr=None):
+    output = _run_git_command_bytes(args, cwd=cwd, stderr=stderr)
     return output.split('\n')
 
 
@@ -66,8 +66,10 @@ def read_manifest_from_sha(sha, addon_dir):
     for manifest_name in MANIFEST_NAMES:
         manifest_path = os.path.join(rel_addon_dir, manifest_name)
         try:
-            s = _run_git_command_bytes(['show', sha + ':' + manifest_path],
-                                       cwd=git_root)
+            with open('/dev/null', 'w') as stderr:
+                s = _run_git_command_bytes([
+                    'show', sha + ':' + manifest_path,
+                ], cwd=git_root, stderr=stderr)
         except subprocess.CalledProcessError:
             continue
         try:
