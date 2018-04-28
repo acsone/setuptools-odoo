@@ -12,7 +12,7 @@ Changes
 - [IMP] when searching for manifest, look for __manifest__.py before
   __openerp__.py, this should slightly improve performance for what
   is becoming the most common case in recent Odoo versions
-- [IMP] update base addons list for Odoo 7, 8, 9, 10
+- [IMP] update base addons list for Odoo 8, 9, 10
 - [IMP] load base addons list from resource files, making it easier
   to maintain these lists (using the udpated mk_base_addons script)
 - [IMP] add pyOpenSSL in external dependencies map
