@@ -11,6 +11,7 @@ EXTERNAL_DEPENDENCIES_MAP = {
     'dateutil': 'python-dateutil',
     'ldap': 'python-ldap',
     'serial': 'pyserial',
+    'suds': 'suds-jurko',
     'stdnum': 'python-stdnum',
     'Crypto.Cipher.DES3': 'pycrypto',
     'OpenSSL': 'pyOpenSSL',
