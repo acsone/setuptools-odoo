@@ -27,8 +27,8 @@ def _run_git_command_lines(args, cwd=None, stderr=None):
 
 
 def is_git_controlled(path):
-    with open('/dev/null', 'w') as stderr:
-        r = _run_git_command_exit_code(['rev-parse'], cwd=path, stderr=stderr)
+    with open(os.devnull, 'w') as devnull:
+        r = _run_git_command_exit_code(['rev-parse'], cwd=path, stderr=devnull)
         return r == 0
 
 
@@ -66,10 +66,10 @@ def read_manifest_from_sha(sha, addon_dir):
     for manifest_name in MANIFEST_NAMES:
         manifest_path = os.path.join(rel_addon_dir, manifest_name)
         try:
-            with open('/dev/null', 'w') as stderr:
+            with open(os.devnull, 'w') as devnull:
                 s = _run_git_command_bytes([
                     'show', sha + ':' + manifest_path,
-                ], cwd=git_root, stderr=stderr)
+                ], cwd=git_root, stderr=devnull)
         except subprocess.CalledProcessError:
             continue
         try:
