@@ -101,6 +101,27 @@ class TestPrepare(unittest.TestCase):
                 'zip_safe': False,
             })
 
+    def test_addon8(self):
+        self.maxDiff = None
+        addon_dir = os.path.join(DATA_DIR, 'setup_reusable_addons', 'addon8')
+        with working_directory_keeper:
+            os.chdir(addon_dir)
+            keywords = prepare_odoo_addon()
+            self.assertEquals(keywords, {
+                'classifiers': [
+                    'Programming Language :: Python',
+                    'Framework :: Odoo',
+                ],
+                'description': 'addon 8 summary',
+                'include_package_data': True,
+                'install_requires': ['odoo>=12.0a,<12.1dev'],
+                'python_requires': '>=3.5',
+                'name': 'odoo12-addon-addon8',
+                'packages': ['odoo.addons'],
+                'version': '12.0.1.0.1',
+                'zip_safe': False,
+            })
+
     def test_addons_dir(self):
         addons_dir = os.path.join(DATA_DIR, 'setup_custom_project')
         with working_directory_keeper:
