@@ -63,6 +63,15 @@ ODOO_VERSION_INFO = {
         ]),
         'universal_wheel': True,
     },
+    '12.0': {
+        'odoo_dep': 'odoo>=12.0a,<12.1dev',
+        'base_addons': base_addons.odoo12,
+        'pkg_name_pfx': 'odoo12-addon-',
+        'addons_ns': 'odoo.addons',
+        'namespace_packages': None,
+        'python_requires': '>=3.5',
+        'universal_wheel': False,
+    },
 }
 
 
