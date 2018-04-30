@@ -5,7 +5,7 @@ Changes
 .. ----------
 .. -
 
-2.2.0 (unreleased)
+2.2.0 (2018-04-30)
 ------------------
 - [IMP] silence some useless git warnings when looking for manifst
   in git history
