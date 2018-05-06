@@ -27,7 +27,8 @@ def read_manifest(addon_dir):
     manifest_path = get_manifest_path(addon_dir)
     if not manifest_path:
         raise NoManifestFound("no Odoo manifest found in %s" % addon_dir)
-    return parse_manifest(open(manifest_path).read())
+    with open(manifest_path) as mf:
+        return parse_manifest(mf.read())
 
 
 def is_installable_addon(addon_dir, unless_auto_installable=False):
