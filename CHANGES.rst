@@ -5,6 +5,10 @@ Changes
 .. ----------
 .. -
 
+2.2.1 (unreleased)
+------------------
+- [FIX] issue with make-default-setup --commit in empty directory
+
 2.2.0 (2018-04-30)
 ------------------
 - [IMP] silence some useless git warnings when looking for manifst

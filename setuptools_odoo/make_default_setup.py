@@ -315,16 +315,16 @@ def clean_setup_addons_dir(addons_dir, odoo_version_override):
 
 
 def check_setup_dir_is_git_clean(addons_dir):
-    cmd = ['git', 'diff', '--exit-code', 'setup']
+    cmd = ['git', 'diff', '--quiet', '--exit-code', '--', 'setup']
     if subprocess.call(cmd, cwd=addons_dir) != 0:
         return False
-    cmd = ['git', 'diff', '--exit-code', '--cached', 'setup']
+    cmd = ['git', 'diff', '--quiet', '--exit-code', '--cached', '--', 'setup']
     if subprocess.call(cmd, cwd=addons_dir) != 0:
         return False
     cmd = [
         'git', 'ls-files',
         '--other', '--exclude-standard', '--directory',
-        'setup',
+        '--', 'setup',
     ]
     out = subprocess.check_output(cmd, cwd=addons_dir)
     if out:
@@ -335,12 +335,12 @@ def check_setup_dir_is_git_clean(addons_dir):
 def make_default_setup_commit_files(addons_dir):
     subprocess.check_call(['git', 'add', 'setup'], cwd=addons_dir)
     commit_needed = subprocess.call([
-        'git', 'diff', '--quiet', '--cached',
-        '--exit-code', 'setup'
+        'git', 'diff', '--quiet', '--cached', '--exit-code',
+        '--', 'setup',
     ], cwd=addons_dir) != 0
     if commit_needed:
         subprocess.check_call([
-            'git', 'commit', '-m', '[ADD] setup.py',
+            'git', 'commit', '-m', '[ADD] setup.py', '--', 'setup',
         ], cwd=addons_dir)
 
 

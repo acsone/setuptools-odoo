@@ -6,6 +6,7 @@ import datetime
 import filecmp
 import os
 import shutil
+import subprocess
 import tempfile
 import textwrap
 import unittest
@@ -149,6 +150,17 @@ class TestMakeDefaultSetup(unittest.TestCase):
                     msg="The version should have been incremented")
         finally:
             shutil.rmtree(tmpdir)
+
+
+def test_make_default_setup_commit(tmpdir):
+    with tmpdir.as_cwd():
+        subprocess.check_call(['git', 'init'])
+        make_default_setup.main(['--addons-dir', '.', '--commit'])
+        out = subprocess.check_output(['git', 'ls-files'])
+        assert out == textwrap.dedent("""\
+            setup/.setuptools-odoo-make-default-ignore
+            setup/README
+        """)
 
 
 if __name__ == '__main__':
