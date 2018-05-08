@@ -156,7 +156,8 @@ def test_make_default_setup_commit(tmpdir):
     with tmpdir.as_cwd():
         subprocess.check_call(['git', 'init'])
         make_default_setup.main(['--addons-dir', '.', '--commit'])
-        out = subprocess.check_output(['git', 'ls-files'])
+        out = subprocess.check_output(
+            ['git', 'ls-files'], universal_newlines=True)
         assert out == textwrap.dedent("""\
             setup/.setuptools-odoo-make-default-ignore
             setup/README
