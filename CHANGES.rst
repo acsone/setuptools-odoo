@@ -5,7 +5,7 @@ Changes
 .. ----------
 .. -
 
-2.2.1 (unreleased)
+2.2.1 (2018-05-08)
 ------------------
 - [FIX] issue with make-default-setup --commit in empty directory
 
