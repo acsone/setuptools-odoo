@@ -30,7 +30,7 @@ class TestPrepare(unittest.TestCase):
     def test_addon1(self):
         self.maxDiff = None
         addon_dir = os.path.join(DATA_DIR, 'setup_reusable_addons', 'addon1')
-        with working_directory_keeper:
+        with working_directory_keeper():
             os.chdir(addon_dir)
             keywords = prepare_odoo_addon()
             self.assertEquals(keywords, {
@@ -59,7 +59,7 @@ class TestPrepare(unittest.TestCase):
 
     def test_addon2(self):
         addon_dir = os.path.join(DATA_DIR, 'setup_reusable_addons', 'addon2')
-        with working_directory_keeper:
+        with working_directory_keeper():
             os.chdir(addon_dir)
             keywords = prepare_odoo_addon()
             self.assertEquals(keywords, {
@@ -83,7 +83,7 @@ class TestPrepare(unittest.TestCase):
     def test_addon7(self):
         self.maxDiff = None
         addon_dir = os.path.join(DATA_DIR, 'setup_reusable_addons', 'addon7')
-        with working_directory_keeper:
+        with working_directory_keeper():
             os.chdir(addon_dir)
             keywords = prepare_odoo_addon()
             self.assertEquals(keywords, {
@@ -105,7 +105,7 @@ class TestPrepare(unittest.TestCase):
     def test_addon8(self):
         self.maxDiff = None
         addon_dir = os.path.join(DATA_DIR, 'setup_reusable_addons', 'addon8')
-        with working_directory_keeper:
+        with working_directory_keeper():
             os.chdir(addon_dir)
             keywords = prepare_odoo_addon()
             self.assertEquals(keywords, {
@@ -125,7 +125,7 @@ class TestPrepare(unittest.TestCase):
 
     def test_addons_dir(self):
         addons_dir = os.path.join(DATA_DIR, 'setup_custom_project')
-        with working_directory_keeper:
+        with working_directory_keeper():
             os.chdir(addons_dir)
             keywords = prepare_odoo_addons()
             self.assertEquals(keywords, {
