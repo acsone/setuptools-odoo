@@ -256,6 +256,7 @@ def _make_classifiers(manifest):
         'Programming Language :: Python',
         'Framework :: Odoo',
     ]
+
     # commonly used licenses in OCA
     LICENSES = {
         'agpl-3':
@@ -294,6 +295,23 @@ def _make_classifiers(manifest):
         license_classifier = LICENSES.get(license.lower())
         if license_classifier:
             classifiers.append(license_classifier)
+
+    # commonly used development status in OCA
+    DEVELOPMENT_STATUSES = {
+        'alpha': 'Development Status :: 3 - Alpha',
+        'beta': 'Development Status :: 4 - Beta',
+        'production/stable': 'Development Status :: 5 - Production/Stable',
+        'stable': 'Development Status :: 5 - Production/Stable',
+        'production': 'Development Status :: 5 - Production/Stable',
+        'mature': 'Development Status :: 6 - Mature',
+    }
+    development_status = manifest.get('development_status')
+    if development_status:
+        development_status_classifer = \
+            DEVELOPMENT_STATUSES.get(development_status.lower())
+        if development_status_classifer:
+            classifiers.append(development_status_classifer)
+
     return classifiers
 
 

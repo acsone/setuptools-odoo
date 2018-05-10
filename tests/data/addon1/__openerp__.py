@@ -9,4 +9,5 @@
     ],
     'license': 'AGPL-3',
     'website': 'https://acsone.eu/',
+    'development_status': 'Beta',
 }

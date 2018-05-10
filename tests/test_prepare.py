@@ -41,6 +41,7 @@ class TestPrepare(unittest.TestCase):
                     'Framework :: Odoo',
                     'License :: OSI Approved :: '
                     'GNU Affero General Public License v3',
+                    'Development Status :: 4 - Beta',
                 ],
                 'description': 'addon 1 summary',
                 'include_package_data': True,
@@ -52,7 +53,7 @@ class TestPrepare(unittest.TestCase):
                 'namespace_packages': ['odoo_addons'],
                 'packages': ['odoo_addons'],
                 'url': 'https://acsone.eu/',
-                'version': '8.0.1.0.0.99.dev2',
+                'version': '8.0.1.0.0.99.dev3',
                 'zip_safe': False,
             })
 
