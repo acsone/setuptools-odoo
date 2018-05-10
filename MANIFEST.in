@@ -1,3 +1,9 @@
 include LICENSE
 include *.rst
 include mk_base_addons
+exclude .travis.yml
+exclude .gitignore
+# exclude tests from sdist because they don't work
+# outside of git, and with missing symlinks
+exclude tests/**
+exclude tox.ini

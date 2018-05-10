@@ -7,6 +7,8 @@ Changes
 
 2.2.2 (unreleased)
 ------------------
+- [FIX] remove tests from sdist (they work only within a proper
+  git clone)
 - [IMP] support development_status manifest key to generate
   corresponding pypi classifers
 
