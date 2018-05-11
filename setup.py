@@ -5,14 +5,19 @@
 
 import setuptools
 
+
+long_description = []
+with open('README.rst') as f:
+    long_description.append(f.read())
+with open('CHANGES.rst') as f:
+    long_description.append(f.read())
+
+
 setuptools.setup(
     name='setuptools-odoo',
     use_scm_version=True,
     description='A library to help package Odoo addons with setuptools',
-    long_description='\n'.join((
-        open('README.rst').read(),
-        open('CHANGES.rst').read(),
-    )),
+    long_description='\n'.join(long_description),
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',

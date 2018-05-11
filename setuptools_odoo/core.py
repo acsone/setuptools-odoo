@@ -127,7 +127,8 @@ def _get_description(addon_dir, manifest):
 def _get_long_description(addon_dir, manifest):
     readme_path = os.path.join(addon_dir, 'README.rst')
     if os.path.exists(readme_path):
-        return open(readme_path).read()
+        with open(readme_path) as rf:
+            return rf.read()
     else:
         return manifest.get('description')
 
