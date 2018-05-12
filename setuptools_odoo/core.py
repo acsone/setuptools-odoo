@@ -380,8 +380,6 @@ def prepare_odoo_addon(depends_override={},
         'author': _get_author(manifest),
         'author_email': _get_author_email(manifest),
         'classifiers': _make_classifiers(manifest)
-        # TODO: more classifiers: development status, ...
-        # TODO: keywords
     }
     # import pprint; pprint.pprint(setup_keywords)
     return {k: v for k, v in setup_keywords.items() if v is not None}
