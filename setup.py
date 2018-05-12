@@ -36,6 +36,7 @@ setuptools.setup(
     ],
     include_package_data=True,
     install_requires=[
+        'packaging',
         'setuptools',
         'setuptools-git!=1.2',
     ],

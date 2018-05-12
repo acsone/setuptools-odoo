@@ -2,12 +2,25 @@
 # Copyright © 2015-2018 ACSONE SA/NV
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
+import sys
 import warnings
+
+from distutils.errors import DistutilsError
+from packaging.specifiers import SpecifierSet
 
 from .core import (
     prepare_odoo_addon,
     prepare_odoo_addons,
 )
+
+
+def _check_python_requires(python_requires):
+    s = SpecifierSet(python_requires)
+    python_version = '.'.join([str(v) for v in sys.version_info[:2]])
+    if python_version not in s:
+        raise DistutilsError("Python version %s does not match "
+                             "requirements %s." %
+                             (python_version, python_requires))
 
 
 def _set_dist_keyword(dist, key, val):
@@ -25,6 +38,8 @@ def _set_dist_keyword(dist, key, val):
 
 
 def _set_dist_keywords(dist, setup_keywords):
+    if 'python_requires' in setup_keywords:
+        _check_python_requires(setup_keywords['python_requires'])
     # got this trick from pbr
     for key, val in setup_keywords.items():
         if hasattr(dist.metadata, key):
