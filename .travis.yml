@@ -7,6 +7,11 @@ python:
   - "3.6"
   - "3.7-dev"
 
+matrix:
+  include:
+    - python: 3.5
+      env: TOXENV=check_readme
+
 install:
   - pip install tox-travis
   - pip install coveralls
