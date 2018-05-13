@@ -60,8 +60,7 @@ def git_log_iterator(path):
             break
 
 
-def read_manifest_from_sha(sha, addon_dir):
-    git_root = get_git_root(addon_dir)
+def read_manifest_from_sha(sha, addon_dir, git_root):
     rel_addon_dir = os.path.relpath(addon_dir, git_root)
     for manifest_name in MANIFEST_NAMES:
         manifest_path = os.path.join(rel_addon_dir, manifest_name)
@@ -109,9 +108,10 @@ def get_git_postversion(addon_dir):
         uncommitted = False
         count = 0
     last_sha = None
+    git_root = get_git_root(addon_dir)
     for sha in git_log_iterator(addon_dir):
         try:
-            manifest = read_manifest_from_sha(sha, addon_dir)
+            manifest = read_manifest_from_sha(sha, addon_dir, git_root)
         except NoManifestFound:
             break
         version = manifest.get('version', '0.0.0')
