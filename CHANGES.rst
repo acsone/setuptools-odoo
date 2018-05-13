@@ -5,12 +5,14 @@ Changes
 .. ----------
 .. -
 
-2.2.2 (unreleased)
+2.3.0 (2018-05-13)
 ------------------
 - [FIX] remove tests from sdist (they work only within a proper
   git clone)
 - [IMP] support development_status manifest key to generate
   corresponding pypi classifers
+- [IMP] use pypa/setuptools_scm instead of the unmaintained
+  setuptools-git as git file finder
 
 2.2.1 (2018-05-08)
 ------------------
