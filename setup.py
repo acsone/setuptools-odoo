@@ -1,15 +1,17 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Copyright © 2015-2017 ACSONE SA/NV
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
+import os
 import setuptools
 
 
+here = os.path.abspath(os.path.dirname(__file__))
+
 long_description = []
-with open('README.rst') as f:
+with open(os.path.join('README.rst')) as f:
     long_description.append(f.read())
-with open('CHANGES.rst') as f:
+with open(os.path.join('CHANGES.rst')) as f:
     long_description.append(f.read())
 
 
