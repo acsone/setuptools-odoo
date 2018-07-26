@@ -9,6 +9,7 @@ account_cash_basis_base_account
 account_check_printing
 account_extra_reports
 account_full_reconcile
+account_lock
 account_tax_adjustments
 account_tax_cash_basis
 account_tax_exigible

@@ -105,5 +105,6 @@ website_helpdesk_livechat
 website_helpdesk_slides
 website_portal_followup
 website_sale_account_taxcloud
+website_sale_taxcloud_delivery
 website_sign
 website_version

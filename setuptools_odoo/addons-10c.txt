@@ -7,6 +7,7 @@ account_budget
 account_cancel
 account_cash_basis_base_account
 account_check_printing
+account_lock
 account_tax_cash_basis
 account_tax_python
 account_test

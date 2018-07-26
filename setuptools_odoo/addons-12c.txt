@@ -6,6 +6,7 @@ account_budget
 account_cancel
 account_check_printing
 account_invoicing
+account_lock
 account_payment
 account_tax_python
 account_test
@@ -13,7 +14,6 @@ account_voucher
 analytic
 anonymization
 association
-auth_crypt
 auth_ldap
 auth_oauth
 auth_signup
@@ -42,6 +42,7 @@ crm_phone_validation
 crm_project
 decimal_precision
 delivery
+digest
 document
 event
 event_sale
@@ -79,6 +80,7 @@ hw_scanner
 hw_screen
 iap
 im_livechat
+im_support
 l10n_ae
 l10n_ar
 l10n_at
@@ -87,7 +89,6 @@ l10n_be
 l10n_be_hr_payroll
 l10n_be_hr_payroll_account
 l10n_be_hr_payroll_fleet
-l10n_be_intrastat
 l10n_be_invoice_bba
 l10n_bo
 l10n_br
@@ -180,7 +181,6 @@ phone_validation
 point_of_sale
 portal
 pos_cache
-pos_data_drinks
 pos_discount
 pos_mercury
 pos_reprint
@@ -196,9 +196,9 @@ project_timesheet_holidays
 purchase
 purchase_mrp
 purchase_requisition
+purchase_stock
 rating
 repair
-report_intrastat
 resource
 sale
 sale_crm
@@ -212,6 +212,7 @@ sale_stock
 sale_timesheet
 sales_team
 sms
+snailmail
 social_media
 stock
 stock_account

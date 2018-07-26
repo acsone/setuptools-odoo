@@ -15,6 +15,7 @@ account_sepa
 account_sepa_direct_debit
 account_taxcloud
 account_yodlee
+barcodes_mobile
 base_automation_hr_contract
 currency_rate_live
 delivery_barcode
@@ -56,6 +57,10 @@ l10n_jp_reports
 l10n_lu_reports
 l10n_ma_reports
 l10n_mx_edi
+l10n_mx_edi_customs
+l10n_mx_edi_external_trade
+l10n_mx_edi_landing
+l10n_mx_edi_payment
 l10n_mx_reports
 l10n_nl_reports
 l10n_no_reports
@@ -121,6 +126,7 @@ website_helpdesk_slides
 website_quote_subscription
 website_sale_account_taxcloud
 website_sale_coupon
+website_sale_taxcloud_delivery
 website_sign
 website_studio
 website_version
