@@ -5,14 +5,13 @@ account_bank_statement_import
 account_budget
 account_cancel
 account_check_printing
-account_invoicing
+account_facturx
 account_lock
 account_payment
 account_tax_python
 account_test
 account_voucher
 analytic
-anonymization
 association
 auth_ldap
 auth_oauth
@@ -30,7 +29,6 @@ base_import_module
 base_setup
 base_sparse_field
 base_vat
-base_vat_autocomplete
 board
 bus
 calendar
@@ -40,6 +38,7 @@ crm
 crm_livechat
 crm_phone_validation
 crm_project
+crm_reveal
 decimal_precision
 delivery
 digest
@@ -71,6 +70,7 @@ hr_timesheet
 hr_timesheet_attendance
 http_routing
 hw_blackbox_be
+hw_drivers
 hw_escpos
 hw_posbox_homepage
 hw_posbox_upgrade
@@ -80,6 +80,7 @@ hw_scanner
 hw_screen
 iap
 im_livechat
+im_livechat_mail_bot
 im_support
 l10n_ae
 l10n_ar
@@ -96,6 +97,7 @@ l10n_ca
 l10n_ch
 l10n_cl
 l10n_cn
+l10n_cn_city
 l10n_cn_small_business
 l10n_cn_standard
 l10n_co
@@ -155,10 +157,13 @@ l10n_vn
 link_tracker
 lunch
 mail
+mail_bot
 maintenance
 mass_mailing
+mass_mailing_crm
 mass_mailing_event
 mass_mailing_event_track
+mass_mailing_sale
 membership
 mrp
 mrp_bom_cost
@@ -167,6 +172,8 @@ note
 note_pad
 pad
 pad_project
+partner_autocomplete
+partner_autocomplete_address_extended
 payment
 payment_adyen
 payment_authorize
@@ -206,19 +213,21 @@ sale_expense
 sale_management
 sale_margin
 sale_mrp
-sale_order_dates
-sale_payment
+sale_purchase
+sale_quotation_builder
 sale_stock
 sale_timesheet
 sales_team
 sms
 snailmail
+snailmail_account
 social_media
 stock
 stock_account
 stock_dropshipping
 stock_landed_costs
 stock_picking_batch
+stock_zebra
 survey
 survey_crm
 test_mail
@@ -233,6 +242,7 @@ web_editor
 web_kanban_gauge
 web_settings_dashboard
 web_tour
+web_unsplash
 website
 website_blog
 website_crm
@@ -246,7 +256,6 @@ website_event_track
 website_form
 website_form_project
 website_forum
-website_forum_doc
 website_gengo
 website_google_map
 website_hr
@@ -259,7 +268,6 @@ website_mass_mailing
 website_membership
 website_partner
 website_payment
-website_quote
 website_rating
 website_sale
 website_sale_comparison
@@ -267,9 +275,7 @@ website_sale_delivery
 website_sale_digital
 website_sale_link_tracker
 website_sale_management
-website_sale_options
 website_sale_stock
-website_sale_stock_options
 website_sale_wishlist
 website_slides
 website_survey
