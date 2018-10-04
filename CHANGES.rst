@@ -5,7 +5,7 @@ Changes
 .. ----------
 .. -
 
-2.3.0 (2018-10-04)
+2.4.0 (2018-10-04)
 ------------------
 - [IMP] update base addons lists, including Odoo 12
 
