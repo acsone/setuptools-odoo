@@ -1,8 +1,6 @@
 account
 account_analytic_default
-account_asset
 account_bank_statement_import
-account_budget
 account_cancel
 account_check_printing
 account_facturx
@@ -15,6 +13,8 @@ analytic
 association
 auth_ldap
 auth_oauth
+auth_password_policy
+auth_password_policy_signup
 auth_signup
 barcodes
 base
@@ -231,6 +231,7 @@ stock_zebra
 survey
 survey_crm
 test_mail
+test_mass_mailing
 theme_bootswatch
 theme_default
 transifex

@@ -1,12 +1,13 @@
 account_3way_match
 account_accountant
+account_asset
 account_bank_statement_import_camt
 account_bank_statement_import_csv
 account_bank_statement_import_ofx
 account_bank_statement_import_qif
 account_batch_payment
+account_budget
 account_deferred_revenue
-account_extension
 account_intrastat
 account_invoice_extract
 account_online_sync
@@ -104,7 +105,9 @@ mrp_workorder
 mrp_zebra
 ocn_client
 pos_blackbox_be
+pos_iot
 pos_loyalty
+pos_restaurant_iot
 project_forecast
 project_timesheet_forecast
 project_timesheet_forecast_sale
