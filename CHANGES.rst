@@ -5,6 +5,10 @@ Changes
 .. ----------
 .. -
 
+2.3.0 (2018-10-04)
+------------------
+- [IMP] update base addons lists, including Odoo 12
+
 2.3.0 (2018-05-13)
 ------------------
 - [FIX] remove tests from sdist (they work only within a proper
