@@ -155,12 +155,17 @@ def make_default_setup_addons_dir(addons_dir, force,
 def make_default_meta_package(addons_dir, name, odoo_version_override):
     meta_install_requires = []
     odoo_versions = set()
-    metapackage_dir = os.path.join(addons_dir, 'setup', METAPACKAGE_SETUP_DIR)
+    addons_setup_dir = os.path.join(addons_dir, 'setup')
+    metapackage_dir = os.path.join(addons_setup_dir, METAPACKAGE_SETUP_DIR)
     setup_py_file = os.path.join(metapackage_dir, 'setup.py')
     setup_cfg_file = os.path.join(metapackage_dir, 'setup.cfg')
     version_txt_file = os.path.join(metapackage_dir, 'VERSION.txt')
 
+    ignore_path = os.path.join(addons_setup_dir, IGNORE_FILENAME)
+    ignore = _load_ignore_file(ignore_path)
     for addon_name in os.listdir(addons_dir):
+        if addon_name in ignore:
+            continue
         addon_dir = os.path.join(addons_dir, addon_name)
         if not is_installable_addon(addon_dir):
             continue

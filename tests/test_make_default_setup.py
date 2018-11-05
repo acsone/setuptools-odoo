@@ -109,7 +109,6 @@ class TestMakeDefaultSetup(unittest.TestCase):
                 version=version,
                 install_requires=[
                     'odoo8-addon-addon1',
-                    'odoo8-addon-addon2',
                 ],
                 classifiers=[
                     'Programming Language :: Python',
@@ -122,6 +121,15 @@ class TestMakeDefaultSetup(unittest.TestCase):
             shutil.copytree(source_addons_path, addons_path)
             make_default_setup.make_default_setup_addons_dir(
                 addons_path, False, False)
+            with open(
+                os.path.join(
+                    addons_path,
+                    'setup',
+                    '.setuptools-odoo-make-default-ignore',
+                ),
+                'a',
+            ) as f:
+                f.write("addon2\n")
             make_default_setup.make_default_meta_package(
                 addons_path, 'tests', odoo_version_override=None)
 
@@ -155,6 +163,10 @@ class TestMakeDefaultSetup(unittest.TestCase):
 def test_make_default_setup_commit(tmpdir):
     with tmpdir.as_cwd():
         subprocess.check_call(['git', 'init'])
+        subprocess.check_call(['git', 'config', 'user.name', 'test'])
+        subprocess.check_call([
+            'git', 'config', 'user.email', 'test@example.com'
+        ])
         make_default_setup.main(['--addons-dir', '.', '--commit'])
         out = subprocess.check_output(
             ['git', 'ls-files'], universal_newlines=True)

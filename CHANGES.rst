@@ -5,6 +5,11 @@ Changes
 .. ----------
 .. -
 
+2.4.1 (2018-11-05)
+------------------
+- [FIX] issue with make-default-setup metapackage generator
+  now honors .setuptools-odoo-make-default-ignore
+
 2.4.0 (2018-10-04)
 ------------------
 - [IMP] update base addons lists, including Odoo 12
