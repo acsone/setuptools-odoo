@@ -14,7 +14,7 @@ class TestInstallRequires(unittest.TestCase):
 
     def test_addons_dir(self):
         r = setuptools_odoo.get_install_requires_odoo_addons(DATA_DIR)
-        self.assertEquals(set(r), set([
+        self.assertEqual(set(r), set([
             'astropy',
             # we have a mix of addons version, so two versions of Odoo
             # are pulled here (not realistic but good enough for a test)
@@ -27,14 +27,14 @@ class TestInstallRequires(unittest.TestCase):
     def test_addon1(self):
         addon_dir = os.path.join(DATA_DIR, 'addon1')
         r = setuptools_odoo.get_install_requires_odoo_addon(addon_dir)
-        self.assertEquals(r, ['odoo>=8.0a,<9.0a'])
+        self.assertEqual(r, ['odoo>=8.0a,<9.0a'])
 
     def test_addon2(self):
         addon_dir = os.path.join(DATA_DIR, 'addon2')
         r = setuptools_odoo.get_install_requires_odoo_addon(addon_dir)
-        self.assertEquals(r, ['odoo8-addon-addon1',
-                              'odoo>=8.0a,<9.0a',
-                              'python-dateutil'])
+        self.assertEqual(r, ['odoo8-addon-addon1',
+                             'odoo>=8.0a,<9.0a',
+                             'python-dateutil'])
 
 
 if __name__ == '__main__':

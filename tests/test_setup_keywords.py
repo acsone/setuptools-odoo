@@ -29,12 +29,12 @@ class TestSetupKeywords(unittest.TestCase):
         assert os.path.isdir(egg_info_dir)
         try:
             dist = next(pkg_resources.find_distributions(addon1_dir))
-            self.assertEquals(dist.key, 'odoo8-addon-addon1')
-            self.assertEquals(dist.requires(),
-                              [pkg_resources.Requirement.parse(r) for r in
-                               ['odoo>=8.0a,<9.0a']])
+            self.assertEqual(dist.key, 'odoo8-addon-addon1')
+            self.assertEqual(dist.requires(),
+                             [pkg_resources.Requirement.parse(r) for r in
+                              ['odoo>=8.0a,<9.0a']])
             self.assertTrue(dist.has_metadata('not-zip-safe'))
-            self.assertEquals(dist.version, "8.0.1.0.0.99.dev3")
+            self.assertEqual(dist.version, "8.0.1.0.0.99.dev3")
         finally:
             shutil.rmtree(egg_info_dir)
 
@@ -80,14 +80,14 @@ class TestSetupKeywords(unittest.TestCase):
         assert os.path.isdir(egg_info_dir)
         try:
             dist = next(pkg_resources.find_distributions(addon2_dir))
-            self.assertEquals(dist.key, 'odoo8-addon-addon2')
-            self.assertEquals(dist.requires(),
-                              [pkg_resources.Requirement.parse(r) for r in
-                               ['odoo8-addon-addon1',
-                                'odoo>=8.0a,<9.0a',
-                                'python-dateutil']])
+            self.assertEqual(dist.key, 'odoo8-addon-addon2')
+            self.assertEqual(dist.requires(),
+                             [pkg_resources.Requirement.parse(r) for r in
+                              ['odoo8-addon-addon1',
+                               'odoo>=8.0a,<9.0a',
+                               'python-dateutil']])
             self.assertTrue(dist.has_metadata('not-zip-safe'))
-            self.assertEquals(dist.version, "8.0.1.0.1")
+            self.assertEqual(dist.version, "8.0.1.0.1")
         finally:
             shutil.rmtree(egg_info_dir)
 
@@ -100,15 +100,15 @@ class TestSetupKeywords(unittest.TestCase):
         assert os.path.isdir(egg_info_dir)
         try:
             dist = next(pkg_resources.find_distributions(addon4_dir))
-            self.assertEquals(dist.key, 'odoo8-addon-addon4')
-            self.assertEquals(dist.requires(),
-                              [pkg_resources.Requirement.parse(r) for r in
-                               ['astropy>=1.0',
-                                'odoo8-addon-addon1>=8.0.3.0.0',
-                                'odoo>=8.0a,<9.0a',
-                                'python-dateutil']])
+            self.assertEqual(dist.key, 'odoo8-addon-addon4')
+            self.assertEqual(dist.requires(),
+                             [pkg_resources.Requirement.parse(r) for r in
+                              ['astropy>=1.0',
+                               'odoo8-addon-addon1>=8.0.3.0.0',
+                               'odoo>=8.0a,<9.0a',
+                               'python-dateutil']])
             self.assertTrue(dist.has_metadata('not-zip-safe'))
-            self.assertEquals(dist.version, "8.0.2.0.0")
+            self.assertEqual(dist.version, "8.0.2.0.0")
         finally:
             shutil.rmtree(egg_info_dir)
 
@@ -121,7 +121,7 @@ class TestSetupKeywords(unittest.TestCase):
         assert os.path.isdir(egg_info_dir)
         try:
             dist = next(pkg_resources.find_distributions(addon5_dir))
-            self.assertEquals(dist.key, 'odoo8-addon-addon5')
+            self.assertEqual(dist.key, 'odoo8-addon-addon5')
         finally:
             shutil.rmtree(egg_info_dir)
 
@@ -177,11 +177,11 @@ class TestSetupKeywords(unittest.TestCase):
                                     'test_custom_project.egg-info')
         assert os.path.isdir(egg_info_dir)
         dist = next(pkg_resources.find_distributions(project_dir))
-        self.assertEquals(dist.requires(),
-                          [pkg_resources.Requirement.parse(r) for r in
-                           ['pyflakes',
-                            'odoo>=8.0a,<9.0a',
-                            'python-dateutil']])
+        self.assertEqual(dist.requires(),
+                         [pkg_resources.Requirement.parse(r) for r in
+                          ['pyflakes',
+                           'odoo>=8.0a,<9.0a',
+                           'python-dateutil']])
         self.assertFalse(dist.has_metadata('not-zip-safe'))
         shutil.rmtree(egg_info_dir)
 
