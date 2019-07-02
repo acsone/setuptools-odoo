@@ -41,6 +41,7 @@ crm_project
 crm_reveal
 decimal_precision
 delivery
+delivery_hs_code
 digest
 document
 event
