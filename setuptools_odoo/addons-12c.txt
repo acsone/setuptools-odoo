@@ -41,6 +41,7 @@ crm_project
 crm_reveal
 decimal_precision
 delivery
+delivery_hs_code
 digest
 document
 event
@@ -130,9 +131,11 @@ l10n_in_sale
 l10n_in_schedule6
 l10n_in_stock
 l10n_it
+l10n_it_edi
 l10n_jp
 l10n_lu
 l10n_ma
+l10n_mn
 l10n_multilang
 l10n_mx
 l10n_nl
@@ -149,11 +152,13 @@ l10n_si
 l10n_syscohada
 l10n_th
 l10n_tr
+l10n_ua
 l10n_uk
 l10n_us
 l10n_uy
 l10n_ve
 l10n_vn
+l10n_za
 link_tracker
 lunch
 mail
@@ -232,6 +237,7 @@ survey
 survey_crm
 test_mail
 test_mass_mailing
+test_website
 theme_bootswatch
 theme_default
 transifex

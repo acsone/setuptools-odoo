@@ -59,6 +59,7 @@ l10n_sg_reports
 l10n_si_reports
 l10n_th_reports
 l10n_uk_reports
+l10n_uk_reports_hmrc
 l10n_us_check_printing
 l10n_uy_reports
 l10n_vn_reports

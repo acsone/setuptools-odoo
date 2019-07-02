@@ -61,7 +61,11 @@ l10n_mx_edi_customs
 l10n_mx_edi_external_trade
 l10n_mx_edi_landing
 l10n_mx_edi_payment
+l10n_mx_edi_payment_bank
+l10n_mx_edi_sale_coupon
 l10n_mx_reports
+l10n_mx_reports_closing
+l10n_mx_tax_cash_basis
 l10n_nl_reports
 l10n_no_reports
 l10n_pl_reports
@@ -70,6 +74,7 @@ l10n_sg_reports
 l10n_si_reports
 l10n_th_reports
 l10n_uk_reports
+l10n_uk_reports_hmrc
 l10n_us_check_printing
 l10n_us_reports
 l10n_uy_reports
