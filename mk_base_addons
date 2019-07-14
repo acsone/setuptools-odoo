@@ -6,7 +6,8 @@ import subprocess
 from setuptools_odoo import manifest
 
 SERIES = [
-    # branch, enterprise
+    # branch, suffix, enterprise
+    ('master', '13', True),
     ('12.0', '12', True),
     ('11.0', '11', True),
     ('10.0', '10', True),
@@ -31,10 +32,15 @@ def _write_addons_list(addons_dir, suffix, add_base):
             print(addon_name, file=f)
 
 
+def check_call(cmd):
+    print(" ".join(cmd))
+    subprocess.check_call(cmd)
+
+
 def main():
     for branch, suffix, enterprise in SERIES:
         with tempfile.TemporaryDirectory() as tmpdir:
-            subprocess.check_call([
+            check_call([
                 'git', 'clone',
                 '--branch', branch,
                 '--depth', '1',
@@ -45,7 +51,7 @@ def main():
             _write_addons_list(addons_dir, suffix + 'c', add_base=True)
         if enterprise:
             with tempfile.TemporaryDirectory() as tmpdir:
-                subprocess.check_call([
+                check_call([
                     'git', 'clone',
                     '--branch', branch,
                     '--depth', '1',
