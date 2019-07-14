@@ -45,7 +45,6 @@ def main():
             check_call([
                 'git', 'clone',
                 '--branch', branch,
-                '--depth', '1',
                 'https://github.com/odoo/odoo',
                 tmpdir,
             ])
@@ -56,7 +55,6 @@ def main():
                 check_call([
                     'git', 'clone',
                     '--branch', branch,
-                    '--depth', '1',
                     'git@github.com:odoo/enterprise',
                     tmpdir,
                 ])
