@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 import os
-import tempfile
 import subprocess
+import tempfile
+import time
 
 from setuptools_odoo import manifest
 
@@ -28,6 +29,7 @@ def _list_addons(addons_dir, add_base):
 
 def _write_addons_list(addons_dir, suffix, add_base):
     with open('addons-%s.txt' % suffix, 'w') as f:
+        print("# generated on", time.asctime(), file=f)
         for addon_name in sorted(_list_addons(addons_dir, add_base)):
             print(addon_name, file=f)
 
@@ -55,7 +57,7 @@ def main():
                     'git', 'clone',
                     '--branch', branch,
                     '--depth', '1',
-                    'ssh://git@github.com/odoo/enterprise',
+                    'git@github.com:odoo/enterprise',
                     tmpdir,
                 ])
                 addons_dir = tmpdir

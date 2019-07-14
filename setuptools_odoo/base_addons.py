@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright © 2015-2018 ACSONE SA/NV
+# Copyright © 2015-2019 ACSONE SA/NV
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 """ List of Odoo official addons which are not released as individual packages.
 They are therefore considered as installed as soon as the 'odoo' dependency
@@ -10,7 +10,9 @@ from pkg_resources import resource_string
 
 def _addons(suffix):
     b = resource_string('setuptools_odoo', 'addons-%s.txt' % suffix)
-    return set(b.decode('ascii').split())
+    return set(
+        a for a in b.decode('ascii').split('\n') if not a.startswith('#')
+    )
 
 
 openerp7 = _addons('7c')
