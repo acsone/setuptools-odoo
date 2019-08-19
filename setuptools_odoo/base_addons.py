@@ -34,3 +34,7 @@ odoo11 = odoo11c | odoo11e
 odoo12c = _addons('12c')
 odoo12e = _addons('12e')
 odoo12 = odoo12c | odoo12e
+
+odoo13c = _addons('13c')
+odoo13e = _addons('13e')
+odoo13 = odoo13c | odoo13e

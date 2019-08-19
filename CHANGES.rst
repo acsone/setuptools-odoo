@@ -9,6 +9,7 @@ Changes
 ------------------
 - [IMP] new git autoversioning strategy (increase last digit instead of
   appending .99)
+- [IMP] preliminary Odoo 13 support
 
 2.4.1 (2018-11-05)
 ------------------

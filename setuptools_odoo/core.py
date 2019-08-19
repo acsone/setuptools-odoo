@@ -14,7 +14,7 @@ from . import base_addons
 from . import external_dependencies
 from .manifest import read_manifest, is_installable_addon
 from .git_postversion import (
-    get_git_postversion, STRATEGY_99_DEVN
+    get_git_postversion, STRATEGY_99_DEVN, STRATEGY_P1_DEVN
 )
 
 ODOO_VERSION_INFO = {
@@ -79,6 +79,16 @@ ODOO_VERSION_INFO = {
         'python_requires': '>=3.5',
         'universal_wheel': False,
         'git_postversion_strategy': STRATEGY_99_DEVN,
+    },
+    '13.0': {
+        'odoo_dep': 'odoo>=13.0a,<13.1dev',
+        'base_addons': base_addons.odoo13,
+        'pkg_name_pfx': 'odoo13-addon-',
+        'addons_ns': 'odoo.addons',
+        'namespace_packages': None,
+        'python_requires': '>=3.5',
+        'universal_wheel': False,
+        'git_postversion_strategy': STRATEGY_P1_DEVN,
     },
 }
 
