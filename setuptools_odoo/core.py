@@ -403,7 +403,7 @@ def get_addon_setuptools_keywords(
     external_dependencies_override={},
     odoo_version_override=None
 ):
-    addon_name = os.path.basename(addon_dir)
+    addon_name = os.path.basename(os.path.abspath(addon_dir))
     manifest = read_manifest(addon_dir)
     if os.path.exists('PKG-INFO'):
         with io.open('PKG-INFO', encoding='utf-8') as fp:
