@@ -13,7 +13,9 @@ import setuptools
 from . import base_addons
 from . import external_dependencies
 from .manifest import read_manifest, is_installable_addon
-from .git_postversion import get_git_postversion
+from .git_postversion import (
+    get_git_postversion, STRATEGY_99_DEVN
+)
 
 ODOO_VERSION_INFO = {
     '7.0': {
@@ -24,6 +26,7 @@ ODOO_VERSION_INFO = {
         'namespace_packages': ['openerp_addons'],
         'python_requires': '~=2.7',
         'universal_wheel': False,
+        'git_postversion_strategy': STRATEGY_99_DEVN,
     },
     '8.0': {
         'odoo_dep': 'odoo>=8.0a,<9.0a',
@@ -33,6 +36,7 @@ ODOO_VERSION_INFO = {
         'namespace_packages': ['odoo_addons'],
         'python_requires': '~=2.7',
         'universal_wheel': False,
+        'git_postversion_strategy': STRATEGY_99_DEVN,
     },
     '9.0': {
         'odoo_dep': 'odoo>=9.0a,<9.1a',
@@ -42,6 +46,7 @@ ODOO_VERSION_INFO = {
         'namespace_packages': ['odoo_addons'],
         'python_requires': '~=2.7',
         'universal_wheel': False,
+        'git_postversion_strategy': STRATEGY_99_DEVN,
     },
     '10.0': {
         'odoo_dep': 'odoo>=10.0,<10.1dev',
@@ -51,6 +56,7 @@ ODOO_VERSION_INFO = {
         'namespace_packages': ['odoo', 'odoo.addons'],
         'python_requires': '~=2.7',
         'universal_wheel': False,
+        'git_postversion_strategy': STRATEGY_99_DEVN,
     },
     '11.0': {
         'odoo_dep': 'odoo>=11.0a,<11.1dev',
@@ -62,6 +68,7 @@ ODOO_VERSION_INFO = {
             '>=2.7', '!=3.0.*', '!=3.1.*', '!=3.2.*', '!=3.3.*', '!=3.4.*'
         ]),
         'universal_wheel': True,
+        'git_postversion_strategy': STRATEGY_99_DEVN,
     },
     '12.0': {
         'odoo_dep': 'odoo>=12.0a,<12.1dev',
@@ -71,6 +78,7 @@ ODOO_VERSION_INFO = {
         'namespace_packages': None,
         'python_requires': '>=3.5',
         'universal_wheel': False,
+        'git_postversion_strategy': STRATEGY_99_DEVN,
     },
 }
 
@@ -116,7 +124,9 @@ def _get_version(addon_dir, manifest, odoo_version_override=None,
                                   (odoo_version, addon_dir))
     odoo_version_info = ODOO_VERSION_INFO[odoo_version]
     if git_post_version:
-        version = get_git_postversion(addon_dir)
+        version = get_git_postversion(
+            addon_dir, odoo_version_info['git_postversion_strategy']
+        )
     return version, odoo_version, odoo_version_info
 
 

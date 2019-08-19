@@ -10,6 +10,9 @@ from .manifest import (
     MANIFEST_NAMES, read_manifest, parse_manifest, NoManifestFound
 )
 
+STRATEGY_99_DEVN = 1
+STRATEGY_P1_DEVN = 2
+
 
 def _run_git_command_exit_code(args, cwd=None, stderr=None):
     return subprocess.call(['git'] + args, cwd=cwd, stderr=stderr)
@@ -79,17 +82,27 @@ def read_manifest_from_sha(sha, addon_dir, git_root):
     raise NoManifestFound("no manifest found in %s:%s" % (sha, addon_dir))
 
 
-def get_git_postversion(addon_dir):
+def _bump_last(version):
+    int_version = [int(i) for i in version.split(".")]
+    int_version[-1] += 1
+    return ".".join(str(i) for i in int_version)
+
+
+def get_git_postversion(addon_dir, strategy):
     """ return the addon version number, with a developmental version increment
     if there were git commits in the addon_dir after the last version change.
 
     If the last change to the addon correspond to the version number in the
     manifest it is used as is for the python package version. Otherwise a
     counter is incremented for each commit and resulting version number has
-    the following form: [8|9].0.x.y.z.1devN, N being the number of git
-    commits since the version change.
+    the following form, depending on the strategy (N being the number of git
+    commits since the version change):
 
-    Note: we use .99.devN because:
+    * STRATEGY_99_DEVN: [8|9].0.x.y.z.99.devN
+    * STRATEGY_P1_DEVN: [series].0.x.y.(z+1).devN
+
+    Notes:
+
     * pip ignores .postN  by design (https://github.com/pypa/pip/issues/2872)
     * x.y.z.devN is anterior to x.y.z
 
@@ -125,7 +138,12 @@ def get_git_postversion(addon_dir):
     if not count:
         return last_version
     if last_sha:
-        return last_version + ".99.dev%s" % count
+        if strategy == STRATEGY_99_DEVN:
+            return last_version + ".99.dev%s" % count
+        elif strategy == STRATEGY_P1_DEVN:
+            return _bump_last(last_version) + ".dev%s" % count
+        else:
+            raise RuntimeError("Unknown postversion strategy: %s" % strategy)
     if uncommitted:
         return last_version + ".dev1"
     # if everything is committed, the last commit

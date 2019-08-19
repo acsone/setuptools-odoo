@@ -5,6 +5,11 @@ Changes
 .. ----------
 .. -
 
+2.5.0 (unreleased)
+------------------
+- [IMP] new git autoversioning strategy (increase last digit instead of
+  appending .99)
+
 2.4.1 (2018-11-05)
 ------------------
 - [FIX] issue with make-default-setup metapackage generator

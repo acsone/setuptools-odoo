@@ -7,7 +7,9 @@ import textwrap
 
 import pytest
 
-from setuptools_odoo import git_postversion
+from setuptools_odoo.git_postversion import (
+    get_git_postversion, STRATEGY_99_DEVN, STRATEGY_P1_DEVN
+)
 from setuptools_odoo import manifest
 
 from . import DATA_DIR
@@ -16,14 +18,18 @@ from . import DATA_DIR
 def test_addon1():
     """ addon1 has 2 commit after version 8.0.1.0.0 """
     addon1_dir = os.path.join(DATA_DIR, 'addon1')
-    version = git_postversion.get_git_postversion(addon1_dir)
+    version = get_git_postversion(addon1_dir, STRATEGY_99_DEVN)
     assert version == '8.0.1.0.0.99.dev3'
+    version = get_git_postversion(addon1_dir, STRATEGY_P1_DEVN)
+    assert version == '8.0.1.0.1.dev3'
 
 
 def test_addon2():
     """ addon2 has not changed since 8.0.1.0.1 """
     addon2_dir = os.path.join(DATA_DIR, 'addon2')
-    version = git_postversion.get_git_postversion(addon2_dir)
+    version = get_git_postversion(addon2_dir, STRATEGY_99_DEVN)
+    assert version == '8.0.1.0.1'
+    version = get_git_postversion(addon2_dir, STRATEGY_P1_DEVN)
     assert version == '8.0.1.0.1'
 
 
@@ -36,7 +42,9 @@ def test_addon2_uncommitted_version_change():
     try:
         with open(manifest_path, "w") as f:
             f.write(manifest.replace("8.0.1.0.1", "8.0.1.0.2"))
-        version = git_postversion.get_git_postversion(addon2_dir)
+        version = get_git_postversion(addon2_dir, STRATEGY_99_DEVN)
+        assert version == '8.0.1.0.2.dev1'
+        version = get_git_postversion(addon2_dir, STRATEGY_P1_DEVN)
         assert version == '8.0.1.0.2.dev1'
     finally:
         with open(manifest_path, "w") as f:
@@ -52,8 +60,10 @@ def test_addon1_uncommitted_change():
     try:
         with open(manifest_path, "w") as f:
             f.write(manifest.replace("summary", "great summary"))
-        version = git_postversion.get_git_postversion(addon1_dir)
+        version = get_git_postversion(addon1_dir, STRATEGY_99_DEVN)
         assert version == '8.0.1.0.0.99.dev4'
+        version = get_git_postversion(addon1_dir, STRATEGY_P1_DEVN)
+        assert version == '8.0.1.0.1.dev4'
     finally:
         with open(manifest_path, "w") as f:
             f.write(manifest)
@@ -66,10 +76,13 @@ def test_no_git(tmpdir):
            'version': '10.0.1.2.3',
         }
     """))
-    version = git_postversion.get_git_postversion(str(tmpdir))
+    version = get_git_postversion(str(tmpdir), STRATEGY_99_DEVN)
+    assert version == '10.0.1.2.3'
+    version = get_git_postversion(str(tmpdir), STRATEGY_P1_DEVN)
     assert version == '10.0.1.2.3'
 
 
 def test_no_manifest():
     with pytest.raises(manifest.NoManifestFound):
-        git_postversion.get_git_postversion(DATA_DIR)
+        get_git_postversion(DATA_DIR, STRATEGY_99_DEVN)
+        get_git_postversion(DATA_DIR, STRATEGY_P1_DEVN)
