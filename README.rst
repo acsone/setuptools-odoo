@@ -384,13 +384,14 @@ and x.y.z.devN is considered anterior to x.y.z.).
   for pip to install a developmental version, it must be invoked with the --pre
   option.
 
-Helper API
+Public API
 ~~~~~~~~~~
 
-.. Note:: TODO
+The ``setuptools_odoo`` package exposes a provisional public API.
 
-  Should you have a use case for using the setuptools-odoo internals,
-  get in touch so we can review your needs and expose a clean API.
+* ``get_addon_metadata(addon_dir, ...)`` returns an ``email.message.Message``
+  compliant with `PEP 566 -- Metadata for Python Software Packages 2.1
+  <https://www.python.org/dev/peps/pep-0566/>`_.
 
 Useful links
 ~~~~~~~~~~~~

@@ -7,9 +7,11 @@ Changes
 
 2.5.0 (unreleased)
 ------------------
-- [IMP] new git autoversioning strategy (increase last digit instead of
-  appending .99)
-- [IMP] preliminary Odoo 13 support
+- [ADD] new git autoversioning strategy (increase last digit instead of
+  appending .99), will be used for Odoo 13
+- [ADD] preliminary Odoo 13 support
+- [ADD] new provisional public API that returns Python Package Metada 2.1 for
+  and Odoo addon
 
 2.4.1 (2018-11-05)
 ------------------

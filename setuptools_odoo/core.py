@@ -2,6 +2,7 @@
 # Copyright © 2015-2018 ACSONE SA/NV
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
+from email.message import Message
 import email.parser
 import io
 import os
@@ -140,8 +141,15 @@ def _get_version(addon_dir, manifest, odoo_version_override=None,
     return version, odoo_version, odoo_version_info
 
 
+def _no_nl(s):
+    if not s:
+        return s
+    return " ".join(s.split())
+
+
 def _get_description(addon_dir, manifest):
-    return manifest.get('summary', '').strip() or manifest.get('name').strip()
+    s = manifest.get('summary', '').strip() or manifest.get('name').strip()
+    return _no_nl(s)
 
 
 def _get_long_description(addon_dir, manifest):
@@ -154,7 +162,7 @@ def _get_long_description(addon_dir, manifest):
 
 
 def _get_author(manifest):
-    return manifest.get('author')
+    return _no_nl(manifest.get('author'))
 
 
 def _get_author_email(manifest):
@@ -345,29 +353,57 @@ def _setuptools_find_packages(odoo_version_info):
     return pkg
 
 
-def prepare_odoo_addon(depends_override={},
-                       external_dependencies_override={},
-                       odoo_version_override=None):
-    addons_dir, addons_ns = _find_addons_dir()
-    potential_addons = os.listdir(addons_dir)
-    # list installable addons, except auto-installable ones
-    # in case we want to combine an addon and it's glue modules
-    # in a package named after the main addon
-    addons = [a for a in potential_addons
-              if is_installable_addon(os.path.join(addons_dir, a),
-                                      unless_auto_installable=True)]
-    if len(addons) == 0:
-        # if no addon is found, it may mean we are trying to package
-        # a single module that is marked auto-install, so let's try
-        # listing all installable modules
-        addons = [a for a in potential_addons
-                  if is_installable_addon(os.path.join(addons_dir, a))]
-    if len(addons) != 1:
-        raise DistutilsSetupError('%s must contain exactly one '
-                                  'installable Odoo addon dir, found %s' %
-                                  (os.path.abspath(addons_dir), addons))
-    addon_name = addons[0]
-    addon_dir = os.path.join(addons_dir, addon_name)
+def get_addon_metadata(
+    addon_dir,
+    depends_override={},
+    external_dependencies_override={},
+    odoo_version_override=None,
+):
+    """
+    Return Python Package Metadata 2.1 for an Odoo addon as an
+    email.message.Message.
+
+    The Description field is absent and is stored in the message payload.
+    All values are guaranteed to not contain newline characters, except for
+    the payload. On python 3, all values are str. On python 2 the value types
+    can be str or unicode depending on the python manifests.
+    """
+    smeta = get_addon_setuptools_keywords(addon_dir)
+    meta = Message()
+
+    def _set(name, sname):
+        svalue = smeta.get(sname)
+        if svalue:
+            if not isinstance(svalue, list):
+                svalue = [svalue]
+            for item in svalue:
+                meta[name] = item
+
+    meta["Metadata-Version"] = "2.1"
+    _set("Name", "name")
+    _set("Version", "version")
+    _set("Requires-Python", "python_requires")
+    _set("Requires-Dist", "install_requires")
+    _set("Summary", "description")
+    _set("Home-page", "url")
+    _set("License", "license")
+    _set("Author", "author")
+    _set("Author-email", "author_email")
+    _set("Classifier", "classifiers")
+    long_description = smeta.get("long_description")
+    if long_description:
+        meta.set_payload(long_description)
+
+    return meta
+
+
+def get_addon_setuptools_keywords(
+    addon_dir,
+    depends_override={},
+    external_dependencies_override={},
+    odoo_version_override=None
+):
+    addon_name = os.path.basename(addon_dir)
     manifest = read_manifest(addon_dir)
     if os.path.exists('PKG-INFO'):
         with io.open('PKG-INFO', encoding='utf-8') as fp:
@@ -403,6 +439,37 @@ def prepare_odoo_addon(depends_override={},
     }
     # import pprint; pprint.pprint(setup_keywords)
     return {k: v for k, v in setup_keywords.items() if v is not None}
+
+
+def prepare_odoo_addon(depends_override={},
+                       external_dependencies_override={},
+                       odoo_version_override=None):
+    addons_dir, addons_ns = _find_addons_dir()
+    potential_addons = os.listdir(addons_dir)
+    # list installable addons, except auto-installable ones
+    # in case we want to combine an addon and it's glue modules
+    # in a package named after the main addon
+    addons = [a for a in potential_addons
+              if is_installable_addon(os.path.join(addons_dir, a),
+                                      unless_auto_installable=True)]
+    if len(addons) == 0:
+        # if no addon is found, it may mean we are trying to package
+        # a single module that is marked auto-install, so let's try
+        # listing all installable modules
+        addons = [a for a in potential_addons
+                  if is_installable_addon(os.path.join(addons_dir, a))]
+    if len(addons) != 1:
+        raise DistutilsSetupError('%s must contain exactly one '
+                                  'installable Odoo addon dir, found %s' %
+                                  (os.path.abspath(addons_dir), addons))
+    addon_name = addons[0]
+    addon_dir = os.path.join(addons_dir, addon_name)
+    return get_addon_setuptools_keywords(
+        addon_dir,
+        depends_override,
+        external_dependencies_override,
+        odoo_version_override,
+    )
 
 
 def prepare_odoo_addons(depends_override={},

@@ -16,12 +16,12 @@ from . import DATA_DIR
 
 
 def test_addon1():
-    """ addon1 has 2 commit after version 8.0.1.0.0 """
+    """ addon1 has 4 commit after version 8.0.1.0.0 """
     addon1_dir = os.path.join(DATA_DIR, 'addon1')
     version = get_git_postversion(addon1_dir, STRATEGY_99_DEVN)
-    assert version == '8.0.1.0.0.99.dev3'
+    assert version == '8.0.1.0.0.99.dev4'
     version = get_git_postversion(addon1_dir, STRATEGY_P1_DEVN)
-    assert version == '8.0.1.0.1.dev3'
+    assert version == '8.0.1.0.1.dev4'
 
 
 def test_addon2():
@@ -61,9 +61,9 @@ def test_addon1_uncommitted_change():
         with open(manifest_path, "w") as f:
             f.write(manifest.replace("summary", "great summary"))
         version = get_git_postversion(addon1_dir, STRATEGY_99_DEVN)
-        assert version == '8.0.1.0.0.99.dev4'
+        assert version == '8.0.1.0.0.99.dev5'
         version = get_git_postversion(addon1_dir, STRATEGY_P1_DEVN)
-        assert version == '8.0.1.0.1.dev4'
+        assert version == '8.0.1.0.1.dev5'
     finally:
         with open(manifest_path, "w") as f:
             f.write(manifest)

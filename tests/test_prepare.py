@@ -50,7 +50,7 @@ def test_addon1():
             'namespace_packages': ['odoo_addons'],
             'packages': ['odoo_addons'],
             'url': 'https://acsone.eu/',
-            'version': '8.0.1.0.0.99.dev3',
+            'version': '8.0.1.0.0.99.dev4',
             'zip_safe': False,
         }
 

@@ -34,7 +34,7 @@ class TestSetupKeywords(unittest.TestCase):
                              [pkg_resources.Requirement.parse(r) for r in
                               ['odoo>=8.0a,<9.0a']])
             self.assertTrue(dist.has_metadata('not-zip-safe'))
-            self.assertEqual(dist.version, "8.0.1.0.0.99.dev3")
+            self.assertEqual(dist.version, "8.0.1.0.0.99.dev4")
         finally:
             shutil.rmtree(egg_info_dir)
 
@@ -48,21 +48,21 @@ class TestSetupKeywords(unittest.TestCase):
             ], cwd=addon1_dir)
             sdist_file = os.path.join(
                 dist_dir,
-                'odoo8-addon-addon1-8.0.1.0.0.99.dev3.tar.gz')
+                'odoo8-addon-addon1-8.0.1.0.0.99.dev4.tar.gz')
             assert os.path.isfile(sdist_file)
             # dist from the tar file, must produce an identical tar file
             with tarfile.open(sdist_file, 'r') as tf:
                 tar_dir = tempfile.mkdtemp()
                 try:
                     tar_setup_dir = os.path.join(
-                        tar_dir, 'odoo8-addon-addon1-8.0.1.0.0.99.dev3')
+                        tar_dir, 'odoo8-addon-addon1-8.0.1.0.0.99.dev4')
                     tf.extractall(tar_dir)
                     subprocess.check_call([
                         sys.executable, 'setup.py', 'sdist',
                     ], cwd=tar_setup_dir)
                     sdist_file2 = os.path.join(
                         tar_setup_dir, 'dist',
-                        'odoo8-addon-addon1-8.0.1.0.0.99.dev3.tar.gz')
+                        'odoo8-addon-addon1-8.0.1.0.0.99.dev4.tar.gz')
                     assert os.path.isfile(sdist_file2)
                     with tarfile.open(sdist_file2, 'r') as tf2:
                         assert sorted(tf.getnames()) == sorted(tf2.getnames())

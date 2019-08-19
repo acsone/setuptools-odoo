@@ -4,20 +4,10 @@
 
 
 from .core import (
-    prepare_odoo_addon,
-    prepare_odoo_addons,
-    get_install_requires_odoo_addon,
-    get_install_requires_odoo_addons,
-    make_pkg_name,
-    make_pkg_requirement,
+    get_addon_metadata
 )
 
 
 __all__ = [
-    prepare_odoo_addon.__name__,
-    prepare_odoo_addons.__name__,
-    get_install_requires_odoo_addon.__name__,
-    get_install_requires_odoo_addons.__name__,
-    make_pkg_name.__name__,
-    make_pkg_requirement.__name__,
+    get_addon_metadata.__name__
 ]
