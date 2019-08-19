@@ -1,4 +1,4 @@
-# generated on Sun Jul 14 13:26:29 2019
+# generated on Mon Aug 19 13:08:39 2019
 account_3way_match
 account_accountant
 account_asset
@@ -80,6 +80,7 @@ l10n_lu_reports
 l10n_ma_reports
 l10n_mn_reports
 l10n_mx_edi
+l10n_mx_edi_cancellation
 l10n_mx_edi_customs
 l10n_mx_edi_external_trade
 l10n_mx_edi_landing

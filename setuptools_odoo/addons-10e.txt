@@ -1,4 +1,4 @@
-# generated on Sun Jul 14 13:28:11 2019
+# generated on Mon Aug 19 13:09:33 2019
 account_bank_statement_import_camt
 account_bank_statement_import_csv
 account_bank_statement_import_ofx
