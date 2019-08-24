@@ -368,7 +368,12 @@ def get_addon_metadata(
     the payload. On python 3, all values are str. On python 2 the value types
     can be str or unicode depending on the python manifests.
     """
-    smeta = get_addon_setuptools_keywords(addon_dir)
+    smeta = get_addon_setuptools_keywords(
+        addon_dir,
+        depends_override=depends_override,
+        external_dependencies_override=external_dependencies_override,
+        odoo_version_override=odoo_version_override,
+    )
     meta = Message()
 
     def _set(name, sname):
