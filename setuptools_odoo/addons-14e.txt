@@ -1,15 +1,13 @@
-# generated on Fri Oct  4 09:51:30 2019
+# generated on Fri Oct  4 09:51:04 2019
 account_3way_match
 account_accountant
 account_asset
-account_auto_transfer
 account_bank_statement_import_camt
 account_bank_statement_import_csv
 account_bank_statement_import_ofx
 account_bank_statement_import_qif
 account_batch_payment
 account_budget
-account_consolidation
 account_followup
 account_intrastat
 account_invoice_extract
@@ -27,7 +25,6 @@ analytic_enterprise
 approvals
 barcodes_mobile
 base_automation_hr_contract
-contacts_enterprise
 crm_enterprise
 crm_helpdesk
 currency_rate_live
@@ -65,6 +62,7 @@ hr_appraisal
 hr_contract_reports
 hr_contract_salary
 hr_contract_sign
+hr_documents
 hr_holidays_gantt
 hr_payroll
 hr_payroll_account
@@ -86,7 +84,6 @@ l10n_be_hr_payroll_account
 l10n_be_hr_payroll_fleet
 l10n_be_intrastat
 l10n_be_reports
-l10n_be_us_consolidation_demo
 l10n_ca_check_printing
 l10n_ch_reports
 l10n_cl_reports
@@ -97,10 +94,8 @@ l10n_es_real_estates
 l10n_es_reports
 l10n_fr_hr_payroll
 l10n_fr_reports
-l10n_generic_auto_transfer_demo
 l10n_in_hr_payroll
 l10n_in_reports
-l10n_lu_reports
 l10n_mn_reports
 l10n_mx_edi
 l10n_mx_edi_landing
@@ -114,6 +109,7 @@ l10n_us_check_printing
 l10n_us_reports
 mail_enterprise
 mail_github
+map_view_contact
 marketing_automation
 marketing_automation_sms
 mass_mailing_themes
@@ -162,13 +158,6 @@ sale_subscription_taxcloud
 sale_timesheet_enterprise
 sign
 snailmail_account_followup
-social
-social_crm
-social_facebook
-social_linkedin
-social_push_notifications
-social_sale
-social_twitter
 stock_account_enterprise
 stock_barcode
 stock_barcode_mobile
