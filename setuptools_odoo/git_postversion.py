@@ -42,8 +42,7 @@ def get_git_uncommitted(path):
 
 
 def get_git_root(path):
-    git_dir = _run_git_command_bytes(['rev-parse', '--git-dir'], cwd=path)
-    return os.path.abspath(os.path.join(git_dir, '..'))
+    return _run_git_command_bytes(['rev-parse', '--show-toplevel'], cwd=path)
 
 
 def git_log_iterator(path):
