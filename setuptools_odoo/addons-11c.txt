@@ -1,4 +1,4 @@
-# generated on Mon Aug 19 13:08:58 2019
+# generated on Sun Nov  3 13:13:31 2019
 account
 account_analytic_default
 account_asset
@@ -178,6 +178,7 @@ payment_paypal
 payment_payumoney
 payment_sips
 payment_stripe
+payment_stripe_sca
 payment_transfer
 phone_validation
 point_of_sale

@@ -1,4 +1,4 @@
-# generated on Fri Oct  4 09:51:23 2019
+# generated on Sun Nov  3 12:50:57 2019
 account
 account_analytic_default
 account_analytic_default_hr_expense
@@ -123,6 +123,7 @@ l10n_hn
 l10n_hr
 l10n_hu
 l10n_ie
+l10n_il
 l10n_in
 l10n_in_pos
 l10n_in_purchase
@@ -135,6 +136,7 @@ l10n_it_edi
 l10n_jp
 l10n_latam_base
 l10n_latam_invoice_document
+l10n_lt
 l10n_lu
 l10n_ma
 l10n_mn
@@ -262,6 +264,7 @@ test_mail_full
 test_mass_mailing
 test_website
 test_website_slides_full
+test_xlsx_export
 theme_bootswatch
 theme_default
 transifex

@@ -1,4 +1,4 @@
-# generated on Mon Aug 19 13:09:27 2019
+# generated on Sun Nov  3 13:13:56 2019
 account
 account_accountant
 account_analytic_default
@@ -165,6 +165,7 @@ payment_paypal
 payment_payumoney
 payment_sips
 payment_stripe
+payment_stripe_sca
 payment_transfer
 point_of_sale
 portal

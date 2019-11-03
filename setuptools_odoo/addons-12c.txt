@@ -1,4 +1,4 @@
-# generated on Fri Oct  4 09:51:49 2019
+# generated on Sun Nov  3 12:51:24 2019
 account
 account_analytic_default
 account_bank_statement_import
@@ -134,6 +134,7 @@ l10n_in_stock
 l10n_it
 l10n_it_edi
 l10n_jp
+l10n_lt
 l10n_lu
 l10n_ma
 l10n_mn

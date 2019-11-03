@@ -1,10 +1,8 @@
-# generated on Fri Oct  4 09:50:46 2019
+# generated on Sun Nov  3 12:50:28 2019
 account
 account_analytic_default
 account_analytic_default_hr_expense
 account_analytic_default_purchase
-account_bank_statement_import
-account_cancel
 account_check_printing
 account_facturx
 account_lock
@@ -102,7 +100,6 @@ l10n_cl
 l10n_cn
 l10n_cn_city
 l10n_cn_small_business
-l10n_cn_standard
 l10n_co
 l10n_cr
 l10n_de
@@ -114,10 +111,8 @@ l10n_es
 l10n_et
 l10n_eu_service
 l10n_fr
-l10n_fr_certification
 l10n_fr_fec
 l10n_fr_pos_cert
-l10n_fr_sale_closing
 l10n_generic_coa
 l10n_gr
 l10n_gt
@@ -126,16 +121,20 @@ l10n_hn
 l10n_hr
 l10n_hu
 l10n_ie
+l10n_il
 l10n_in
 l10n_in_pos
 l10n_in_purchase
+l10n_in_purchase_stock
 l10n_in_sale
+l10n_in_sale_stock
 l10n_in_stock
 l10n_it
 l10n_it_edi
 l10n_jp
 l10n_latam_base
 l10n_latam_invoice_document
+l10n_lt
 l10n_lu
 l10n_ma
 l10n_mn
@@ -170,13 +169,16 @@ maintenance
 mass_mailing
 mass_mailing_crm
 mass_mailing_event
+mass_mailing_event_sms
 mass_mailing_event_track
+mass_mailing_event_track_sms
 mass_mailing_sale
 mass_mailing_slides
 mass_mailing_sms
 membership
 mrp
 mrp_account
+mrp_product_expiry
 mrp_subcontracting
 mrp_subcontracting_account
 mrp_subcontracting_dropshipping
@@ -261,6 +263,7 @@ test_mail_full
 test_mass_mailing
 test_website
 test_website_slides_full
+test_xlsx_export
 theme_bootswatch
 theme_default
 transifex

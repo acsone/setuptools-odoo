@@ -1,4 +1,4 @@
-# generated on Mon Aug 19 13:09:06 2019
+# generated on Sun Nov  3 13:13:37 2019
 account_3way_match
 account_accountant
 account_bank_statement_import_camt
@@ -11,6 +11,7 @@ account_extension
 account_online_sync
 account_plaid
 account_reports
+account_reports_cash_flow
 account_reports_followup
 account_sepa
 account_sepa_direct_debit
