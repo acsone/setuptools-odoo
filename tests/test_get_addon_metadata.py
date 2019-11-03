@@ -3,14 +3,15 @@
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
 import os
-try:
-    from itertools import zip_longest
-except ImportError:  # py27
-    from itertools import izip_longest as zip_longest
 
 from setuptools_odoo import get_addon_metadata
 
 from . import DATA_DIR
+
+try:
+    from itertools import zip_longest
+except ImportError:  # py27
+    from itertools import izip_longest as zip_longest
 
 
 def _assert_msg(msg, expected_items, expected_payload=None):
@@ -40,8 +41,7 @@ def test_addon1():
             ("Classifier", "Framework :: Odoo"),
             (
                 "Classifier",
-                "License :: OSI Approved :: "
-                "GNU Affero General Public License v3",
+                "License :: OSI Approved :: " "GNU Affero General Public License v3",
             ),
             ("Classifier", "Development Status :: 4 - Beta"),
         ],

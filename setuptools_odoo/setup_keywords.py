@@ -4,10 +4,7 @@
 
 import warnings
 
-from .core import (
-    prepare_odoo_addon,
-    prepare_odoo_addons,
-)
+from .core import prepare_odoo_addon, prepare_odoo_addons
 
 
 def _set_dist_keyword(dist, key, val):
@@ -32,7 +29,7 @@ def _set_dist_keywords(dist, setup_keywords):
         elif hasattr(dist, key):
             _set_dist_keyword(dist, key, val)
         else:
-            msg = 'Unknown distribution option: %s' % repr(key)
+            msg = "Unknown distribution option: %s" % repr(key)
             warnings.warn(msg)
 
 
@@ -41,22 +38,18 @@ def _parse_options(value):
     external_dependencies_override = {}
     odoo_version_override = None
     if isinstance(value, dict):
-        depends_override = \
-            value.get('depends_override', {})
-        external_dependencies_override = \
-            value.get('external_dependencies_override', {})
-        odoo_version_override = \
-            value.get('odoo_version_override')
-    return (
-        depends_override,
-        external_dependencies_override,
-        odoo_version_override,
-    )
+        depends_override = value.get("depends_override", {})
+        external_dependencies_override = value.get("external_dependencies_override", {})
+        odoo_version_override = value.get("odoo_version_override")
+    return (depends_override, external_dependencies_override, odoo_version_override)
 
 
 def odoo_addon(dist, attr, value):
-    depends_override, external_dependencies_override, odoo_version_override = \
-        _parse_options(value)
+    (
+        depends_override,
+        external_dependencies_override,
+        odoo_version_override,
+    ) = _parse_options(value)
     setup_keywords = prepare_odoo_addon(
         depends_override=depends_override,
         external_dependencies_override=external_dependencies_override,
@@ -66,8 +59,11 @@ def odoo_addon(dist, attr, value):
 
 
 def odoo_addons(dist, attr, value):
-    depends_override, external_dependencies_override, odoo_version_override = \
-        _parse_options(value)
+    (
+        depends_override,
+        external_dependencies_override,
+        odoo_version_override,
+    ) = _parse_options(value)
     setup_keywords = prepare_odoo_addons(
         depends_override=depends_override,
         external_dependencies_override=external_dependencies_override,

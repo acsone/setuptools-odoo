@@ -4,45 +4,44 @@
 
 import os
 import subprocess
+
 from pkg_resources import parse_version
 
-from .manifest import (
-    MANIFEST_NAMES, read_manifest, parse_manifest, NoManifestFound
-)
+from .manifest import MANIFEST_NAMES, NoManifestFound, parse_manifest, read_manifest
 
 STRATEGY_99_DEVN = 1
 STRATEGY_P1_DEVN = 2
 
 
 def _run_git_command_exit_code(args, cwd=None, stderr=None):
-    return subprocess.call(['git'] + args, cwd=cwd, stderr=stderr)
+    return subprocess.call(["git"] + args, cwd=cwd, stderr=stderr)
 
 
 def _run_git_command_bytes(args, cwd=None, stderr=None):
     output = subprocess.check_output(
-        ['git'] + args, cwd=cwd, universal_newlines=True, stderr=stderr)
+        ["git"] + args, cwd=cwd, universal_newlines=True, stderr=stderr
+    )
     return output.strip()
 
 
 def _run_git_command_lines(args, cwd=None, stderr=None):
     output = _run_git_command_bytes(args, cwd=cwd, stderr=stderr)
-    return output.split('\n')
+    return output.split("\n")
 
 
 def is_git_controlled(path):
-    with open(os.devnull, 'w') as devnull:
-        r = _run_git_command_exit_code(['rev-parse'], cwd=path, stderr=devnull)
+    with open(os.devnull, "w") as devnull:
+        r = _run_git_command_exit_code(["rev-parse"], cwd=path, stderr=devnull)
         return r == 0
 
 
 def get_git_uncommitted(path):
-    r = _run_git_command_exit_code(['diff', '--quiet', '--exit-code', '.'],
-                                   cwd=path)
+    r = _run_git_command_exit_code(["diff", "--quiet", "--exit-code", "."], cwd=path)
     return r != 0
 
 
 def get_git_root(path):
-    return _run_git_command_bytes(['rev-parse', '--show-toplevel'], cwd=path)
+    return _run_git_command_bytes(["rev-parse", "--show-toplevel"], cwd=path)
 
 
 def git_log_iterator(path):
@@ -50,12 +49,12 @@ def git_log_iterator(path):
     N = 10
     count = 0
     while True:
-        lines = _run_git_command_lines(['log', '--oneline',
-                                        '-n', str(N),
-                                        '--skip', str(count),
-                                        '--', '.'], cwd=path)
+        lines = _run_git_command_lines(
+            ["log", "--oneline", "-n", str(N), "--skip", str(count), "--", "."],
+            cwd=path,
+        )
         for line in lines:
-            sha = line.split(' ', 1)[0]
+            sha = line.split(" ", 1)[0]
             count += 1
             yield sha
         if len(lines) < N:
@@ -67,10 +66,10 @@ def read_manifest_from_sha(sha, addon_dir, git_root):
     for manifest_name in MANIFEST_NAMES:
         manifest_path = os.path.join(rel_addon_dir, manifest_name)
         try:
-            with open(os.devnull, 'w') as devnull:
-                s = _run_git_command_bytes([
-                    'show', sha + ':' + manifest_path,
-                ], cwd=git_root, stderr=devnull)
+            with open(os.devnull, "w") as devnull:
+                s = _run_git_command_bytes(
+                    ["show", sha + ":" + manifest_path], cwd=git_root, stderr=devnull
+                )
         except subprocess.CalledProcessError:
             continue
         try:
@@ -78,7 +77,7 @@ def read_manifest_from_sha(sha, addon_dir, git_root):
         except Exception:
             # invalid manifest
             break
-    raise NoManifestFound("no manifest found in %s:%s" % (sha, addon_dir))
+    raise NoManifestFound("no manifest found in {}:{}".format(sha, addon_dir))
 
 
 def _bump_last(version):
@@ -109,7 +108,7 @@ def get_git_postversion(addon_dir, strategy):
     this is not PEP 440 compliant and is therefore misinterpreted by pip.
     """
     addon_dir = os.path.realpath(addon_dir)
-    last_version = read_manifest(addon_dir).get('version', '0.0.0')
+    last_version = read_manifest(addon_dir).get("version", "0.0.0")
     last_version_parsed = parse_version(last_version)
     if not is_git_controlled(addon_dir):
         return last_version
@@ -126,7 +125,7 @@ def get_git_postversion(addon_dir, strategy):
             manifest = read_manifest_from_sha(sha, addon_dir, git_root)
         except NoManifestFound:
             break
-        version = manifest.get('version', '0.0.0')
+        version = manifest.get("version", "0.0.0")
         version_parsed = parse_version(version)
         if version_parsed != last_version_parsed:
             break

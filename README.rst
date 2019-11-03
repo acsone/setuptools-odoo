@@ -35,7 +35,7 @@ The following prerequisites apply:
   * For any advanced use such as installing from source, installing from
     git, packaging wheels etc, you need a recent version of pip (>= 9.0.1).
   * Finally, you need to install `odoo-autodiscover
-    <https://pypi.python.org/pypi/odoo-autodiscover>`_ 
+    <https://pypi.python.org/pypi/odoo-autodiscover>`_
     (``pip install odoo-autodiscover``) to provide automatic extension
     of the addons path (and workaround a bug with setuptools > 31 and Odoo 10).
 
@@ -356,7 +356,7 @@ Available options::
                           other Odoo versions, remove metapackage setup if there
                           are no installable addons.
     --commit              Git commit changes, if any.
-    
+
 
 Versioning
 ~~~~~~~~~~

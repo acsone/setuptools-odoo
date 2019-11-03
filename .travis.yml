@@ -1,16 +1,21 @@
-sudo: false
 language: python
+cache:
+  directories:
+  - $HOME/.cache/pip
+  - $HOME/.cache/pre-commit
 
 python:
   - "2.7"
   - "3.5"
   - "3.6"
-  - "3.7-dev"
+  - "3.7"
 
 matrix:
   include:
-    - python: 3.5
+    - python: 3.7
       env: TOXENV=check_readme
+    - python: 3.7
+      env: TOXENV=pre_commit
 
 install:
   - pip install tox-travis

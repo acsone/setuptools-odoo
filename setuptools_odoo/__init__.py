@@ -3,11 +3,7 @@
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
 
-from .core import (
-    get_addon_metadata
-)
+from .core import get_addon_metadata
 
 
-__all__ = [
-    get_addon_metadata.__name__
-]
+__all__ = [get_addon_metadata.__name__]

@@ -9,32 +9,30 @@ from pkg_resources import resource_string
 
 
 def _addons(suffix):
-    b = resource_string('setuptools_odoo', 'addons-%s.txt' % suffix)
-    return set(
-        a for a in b.decode('ascii').split('\n') if not a.startswith('#')
-    )
+    b = resource_string("setuptools_odoo", "addons-%s.txt" % suffix)
+    return {a for a in b.decode("ascii").split("\n") if not a.startswith("#")}
 
 
-openerp7 = _addons('7c')
+openerp7 = _addons("7c")
 
-odoo8 = _addons('8c')
+odoo8 = _addons("8c")
 
-odoo9c = _addons('9c')
-odoo9e = _addons('9e')
+odoo9c = _addons("9c")
+odoo9e = _addons("9e")
 odoo9 = odoo9c | odoo9e
 
-odoo10c = _addons('10c')
-odoo10e = _addons('10e')
+odoo10c = _addons("10c")
+odoo10e = _addons("10e")
 odoo10 = odoo10c | odoo10e
 
-odoo11c = _addons('11c')
-odoo11e = _addons('11e')
+odoo11c = _addons("11c")
+odoo11e = _addons("11e")
 odoo11 = odoo11c | odoo11e
 
-odoo12c = _addons('12c')
-odoo12e = _addons('12e')
+odoo12c = _addons("12c")
+odoo12e = _addons("12e")
 odoo12 = odoo12c | odoo12e
 
-odoo13c = _addons('13c')
-odoo13e = _addons('13e')
+odoo13c = _addons("13c")
+odoo13e = _addons("13e")
 odoo13 = odoo13c | odoo13e
