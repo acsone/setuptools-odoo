@@ -192,9 +192,9 @@ def make_pkg_requirement(addon_dir, odoo_version_override=None):
 def _get_install_requires(
     odoo_version_info,
     manifest,
-    no_depends=[],
-    depends_override={},
-    external_dependencies_override={},
+    no_depends=None,
+    depends_override=None,
+    external_dependencies_override=None,
 ):
     install_requires = []
     # dependency on Odoo
@@ -205,9 +205,9 @@ def _get_install_requires(
     for depend in manifest.get("depends", []):
         if depend in odoo_version_info["base_addons"]:
             continue
-        if depend in no_depends:
+        if no_depends and depend in no_depends:
             continue
-        if depend in depends_override:
+        if depends_override and depend in depends_override:
             install_require = depends_override[depend]
         else:
             install_require = make_pkg_name(odoo_version_info, depend)
@@ -215,7 +215,10 @@ def _get_install_requires(
             install_requires.append(install_require)
     # python external_dependencies
     for dep in manifest.get("external_dependencies", {}).get("python", []):
-        if dep in external_dependencies_override.get("python", {}):
+        if (
+            external_dependencies_override
+            and dep in external_dependencies_override.get("python", {})
+        ):
             dep = external_dependencies_override.get("python", {})[dep]
         else:
             dep = external_dependencies.EXTERNAL_DEPENDENCIES_MAP.get(dep, dep)
@@ -225,9 +228,9 @@ def _get_install_requires(
 
 def get_install_requires_odoo_addon(
     addon_dir,
-    no_depends=[],
-    depends_override={},
-    external_dependencies_override={},
+    no_depends=None,
+    depends_override=None,
+    external_dependencies_override=None,
     odoo_version_override=None,
 ):
     """ Get the list of requirements for an addon """
@@ -246,8 +249,8 @@ def get_install_requires_odoo_addon(
 
 def get_install_requires_odoo_addons(
     addons_dir,
-    depends_override={},
-    external_dependencies_override={},
+    depends_override=None,
+    external_dependencies_override=None,
     odoo_version_override=None,
 ):
     """ Get the list of requirements for a directory containing addons """
@@ -351,8 +354,8 @@ def _setuptools_find_packages(odoo_version_info):
 
 def get_addon_metadata(
     addon_dir,
-    depends_override={},
-    external_dependencies_override={},
+    depends_override=None,
+    external_dependencies_override=None,
     odoo_version_override=None,
 ):
     """
@@ -400,8 +403,8 @@ def get_addon_metadata(
 
 def get_addon_setuptools_keywords(
     addon_dir,
-    depends_override={},
-    external_dependencies_override={},
+    depends_override=None,
+    external_dependencies_override=None,
     odoo_version_override=None,
 ):
     addon_name = os.path.basename(os.path.abspath(addon_dir))
@@ -445,7 +448,9 @@ def get_addon_setuptools_keywords(
 
 
 def prepare_odoo_addon(
-    depends_override={}, external_dependencies_override={}, odoo_version_override=None
+    depends_override=None,
+    external_dependencies_override=None,
+    odoo_version_override=None,
 ):
     addons_dir, addons_ns = _find_addons_dir()
     potential_addons = os.listdir(addons_dir)
@@ -485,7 +490,9 @@ def prepare_odoo_addon(
 
 
 def prepare_odoo_addons(
-    depends_override={}, external_dependencies_override={}, odoo_version_override=None
+    depends_override=None,
+    external_dependencies_override=None,
+    odoo_version_override=None,
 ):
     addons_dir, addons_ns = _find_addons_dir()
     odoo_version_info = _get_odoo_version_info(addons_dir, odoo_version_override)
