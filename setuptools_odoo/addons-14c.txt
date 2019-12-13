@@ -1,4 +1,4 @@
-# generated on Sun Nov  3 12:50:28 2019
+# generated on Fri Dec 13 14:41:15 2019
 account
 account_analytic_default
 account_analytic_default_hr_expense
@@ -48,6 +48,7 @@ event_sale
 event_sms
 fetchmail
 fleet
+fleet_account
 gamification
 gamification_sale_crm
 google_account
@@ -105,6 +106,7 @@ l10n_cr
 l10n_de
 l10n_de_skr03
 l10n_de_skr04
+l10n_dk
 l10n_do
 l10n_ec
 l10n_es
@@ -120,6 +122,7 @@ l10n_hk
 l10n_hn
 l10n_hr
 l10n_hu
+l10n_id
 l10n_ie
 l10n_il
 l10n_in
@@ -204,6 +207,7 @@ payment_transfer
 phone_validation
 point_of_sale
 portal
+portal_rating
 pos_adyen
 pos_cache
 pos_discount
@@ -244,6 +248,7 @@ sale_product_matrix
 sale_purchase
 sale_quotation_builder
 sale_stock
+sale_stock_margin
 sale_timesheet
 sale_timesheet_purchase
 sales_team
@@ -258,6 +263,7 @@ stock_landed_costs
 stock_picking_batch
 stock_sms
 survey
+test_base_automation
 test_mail
 test_mail_full
 test_mass_mailing
@@ -300,7 +306,6 @@ website_membership
 website_partner
 website_payment
 website_profile
-website_rating
 website_sale
 website_sale_comparison
 website_sale_coupon
@@ -317,5 +322,4 @@ website_slides
 website_slides_forum
 website_slides_survey
 website_sms
-website_theme_install
 website_twitter

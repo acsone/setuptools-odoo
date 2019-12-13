@@ -1,4 +1,4 @@
-# generated on Sun Nov  3 12:50:40 2019
+# generated on Fri Dec 13 14:41:24 2019
 account_3way_match
 account_accountant
 account_accountant_check_printing
@@ -27,6 +27,8 @@ account_winbooks_import
 account_yodlee
 analytic_enterprise
 approvals
+approvals_purchase
+approvals_purchase_stock
 barcodes_mobile
 base_automation_hr_contract
 contacts_enterprise
@@ -55,6 +57,7 @@ documents_sign
 event_barcode
 event_barcode_mobile
 event_enterprise
+fleet_dashboard
 helpdesk
 helpdesk_account
 helpdesk_fsm
@@ -73,10 +76,16 @@ hr_payroll
 hr_payroll_account
 hr_payroll_account_sepa
 hr_payroll_expense
+hr_payroll_holidays
+hr_recruitment_reports
 hr_referral
+hr_work_entry_contract
+hr_work_entry_holidays
 im_livechat_enterprise
 industry_fsm
 industry_fsm_report
+industry_fsm_sale
+industry_fsm_sale_report
 industry_fsm_stock
 inter_company_rules
 iot
@@ -96,6 +105,7 @@ l10n_cl_reports
 l10n_co_edi
 l10n_co_reports
 l10n_de_reports
+l10n_dk_reports
 l10n_es_real_estates
 l10n_es_reports
 l10n_fr_hr_payroll
@@ -103,6 +113,7 @@ l10n_fr_reports
 l10n_generic_auto_transfer_demo
 l10n_in_hr_payroll
 l10n_in_reports
+l10n_lt_reports
 l10n_lu_reports
 l10n_mn_reports
 l10n_mx_edi
@@ -169,6 +180,7 @@ sign
 snailmail_account_followup
 social
 social_crm
+social_demo
 social_facebook
 social_linkedin
 social_push_notifications

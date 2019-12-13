@@ -353,11 +353,12 @@ def _setuptools_find_packages(odoo_version_info):
 
 
 def get_addon_metadata(
-    addon_dir,
-    depends_override=None,
-    external_dependencies_override=None,
-    odoo_version_override=None,
+    addon_dir,  # type: str
+    depends_override=None,  # type: Dict[str, str]
+    external_dependencies_override=None,  # type: Dict[str: Dict[str: str]]
+    odoo_version_override=None,  # type: str
 ):
+    # type: (...) -> Message
     """
     Return Python Package Metadata 2.1 for an Odoo addon as an
     email.message.Message.

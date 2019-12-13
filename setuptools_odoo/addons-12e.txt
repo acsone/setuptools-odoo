@@ -1,4 +1,4 @@
-# generated on Sun Nov  3 12:51:31 2019
+# generated on Fri Dec 13 14:42:17 2019
 account_3way_match
 account_accountant
 account_asset
@@ -65,8 +65,10 @@ l10n_ca_check_printing
 l10n_ch_reports
 l10n_cl_reports
 l10n_co_edi
+l10n_co_edi_ubl_2_1
 l10n_co_reports
 l10n_de_reports
+l10n_dk_reports
 l10n_do_reports
 l10n_es_real_estates
 l10n_es_reports
@@ -123,6 +125,7 @@ pos_enterprise
 pos_iot
 pos_loyalty
 pos_restaurant_iot
+product_unspsc
 project_enterprise
 project_forecast
 project_timesheet_forecast
