@@ -354,8 +354,8 @@ def _setuptools_find_packages(odoo_version_info):
 
 def get_addon_metadata(
     addon_dir,  # type: str
-    depends_override=None,  # type: Dict[str, str]
-    external_dependencies_override=None,  # type: Dict[str: Dict[str: str]]
+    depends_override=None,  # type: dict[str, str]
+    external_dependencies_override=None,  # type: dict[str: dict[str: str]]
     odoo_version_override=None,  # type: str
 ):
     # type: (...) -> Message
