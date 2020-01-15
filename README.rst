@@ -357,6 +357,17 @@ Available options::
                           are no installable addons.
     --commit              Git commit changes, if any.
 
+``setuptools-odoo-make-default`` is also available as a `pre-commit
+<https://pre-commit.com/>`_ hook. To use it, you can add such an entry
+in your `.pre-commit-config.yaml`:
+
+.. code:: yaml
+
+  repos:
+    - repo: https://github.com/acsone/setuptools-odoo
+      rev: 2.5.2
+      hooks:
+        - id: setuptools-odoo-make-default
 
 Versioning
 ~~~~~~~~~~

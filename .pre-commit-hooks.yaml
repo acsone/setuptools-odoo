@@ -1,0 +1,7 @@
+- id: setuptools-odoo-make-default
+  name: Generate default setup.py for an addons directory
+  always_run: true
+  entry: setuptools-odoo-make-default
+  args: ["--addons-dir=.", "--clean"]
+  language: python
+  pass_filenames: false
