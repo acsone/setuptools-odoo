@@ -28,16 +28,17 @@ Requirements
 
 The following prerequisites apply:
 
-  * Odoo version 8, 9, 10 and 11 are supported (see notes in the documentation
-    for implementation differences).
+  * Odoo version 8, 9, 10, 11, 12 and 13 are supported (see notes in the
+    documentation for implementation differences).
   * To install addons packaged with this tool, any pip version that
     supports the wheel package format should work (ie pip >= 1.4).
   * For any advanced use such as installing from source, installing from
     git, packaging wheels etc, you need a recent version of pip (>= 9.0.1).
-  * Finally, you need to install `odoo-autodiscover
-    <https://pypi.python.org/pypi/odoo-autodiscover>`_
+  * Finally, if you are using Odoo 8, 9 or 10, you need to install
+    `odoo-autodiscover <https://pypi.python.org/pypi/odoo-autodiscover>`_
     (``pip install odoo-autodiscover``) to provide automatic extension
     of the addons path (and workaround a bug with setuptools > 31 and Odoo 10).
+    odoo-autodiscover is *not* necessary for Odoo >= 11.
 
 Packaging a single addon
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,7 +48,7 @@ following structure (assuming the addon is named ``<addon_name>``):
 
   .. code::
 
-    # Odoo 11
+    # Odoo >= 11
     setup.py
     odoo/
     odoo/addons/
@@ -75,7 +76,7 @@ following structure (assuming the addon is named ``<addon_name>``):
 
 where ``odoo/__init__.py``, ``odoo/addons/__init__.py``,
 and ``odoo_addons/__init__.py`` are standard python namespace package
-declaration ``__init__.py`` (note absent ``__init__.py`` for Odoo 11):
+declaration ``__init__.py`` (note ``__init__.py`` is absent for Odoo >= 11):
 
   .. code:: python
 
@@ -121,9 +122,9 @@ or ``pip`` commands such as:
     python setup.py install
     python setup.py develop
     python setup.py bdist_wheel
-    pip install odoo<8|9|10|11>-addon-<addon name>
+    pip install odoo<8|9|10|11|12|13>-addon-<addon name>
     pip install -e .
-    pip install -e git+https://github.com/OCA/<repo>/<addon>#egg=odoo<8|9|10|11>-addon-<addon name>\&subdirectory=setup/<addon name>
+    pip install -e git+https://github.com/OCA/<repo>/<addon>#egg=odoo<8|9|10|11|12|13>-addon-<addon name>\&subdirectory=setup/<addon name>
 
 .. note::
 
@@ -160,7 +161,7 @@ to the following structure:
 
   .. code::
 
-    # Odoo 11
+    # Odoo >= 11
     setup.py
     odoo/
     odoo/addons/
@@ -273,7 +274,7 @@ creates a default ``setup.py`` for each addon according to the following structu
 
   .. code::
 
-    # Odoo 11
+    # Odoo >= 11
     setup/
     setup/addon1/
     setup/addon1/setup.py
@@ -379,7 +380,7 @@ git log of the addon subtree.
 If the last change to the addon corresponds to the version number in the manifest,
 it is used as is for the python package version. Otherwise a counter
 is incremented for each commit and the resulting version number has the following
-form: [8|9|10|11].0.x.y.z.99.devN, N being the number of git commits since
+form: [8|9|10|11|12|13].0.x.y.z.99.devN, N being the number of git commits since
 the version change.
 
 This scheme is compliant with the accepted python versioning scheme documented
