@@ -1,4 +1,4 @@
-# generated on Fri Dec 13 14:41:15 2019
+# generated on Thu Jan 16 22:06:59 2020
 account
 account_analytic_default
 account_analytic_default_hr_expense
@@ -100,7 +100,6 @@ l10n_ch
 l10n_cl
 l10n_cn
 l10n_cn_city
-l10n_cn_small_business
 l10n_co
 l10n_cr
 l10n_de
@@ -190,7 +189,6 @@ note_pad
 pad
 pad_project
 partner_autocomplete
-partner_autocomplete_address_extended
 payment
 payment_adyen
 payment_alipay
@@ -245,6 +243,7 @@ sale_margin
 sale_mrp
 sale_product_configurator
 sale_product_matrix
+sale_project
 sale_purchase
 sale_quotation_builder
 sale_stock

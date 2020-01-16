@@ -1,4 +1,4 @@
-# generated on Fri Dec 13 14:41:52 2019
+# generated on Thu Jan 16 22:07:46 2020
 account_3way_match
 account_accountant
 account_asset
@@ -13,6 +13,7 @@ account_consolidation
 account_followup
 account_intrastat
 account_invoice_extract
+account_invoice_extract_purchase
 account_online_sync
 account_plaid
 account_ponto
@@ -151,6 +152,8 @@ sale_account_taxcloud
 sale_amazon
 sale_amazon_delivery
 sale_amazon_taxcloud
+sale_coupon_taxcloud
+sale_coupon_taxcloud_delivery
 sale_ebay
 sale_enterprise
 sale_intrastat

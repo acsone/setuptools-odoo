@@ -1,4 +1,4 @@
-# generated on Fri Dec 13 14:42:17 2019
+# generated on Thu Jan 16 22:08:24 2020
 account_3way_match
 account_accountant
 account_asset
@@ -11,6 +11,7 @@ account_budget
 account_deferred_revenue
 account_intrastat
 account_invoice_extract
+account_invoice_extract_purchase
 account_online_sync
 account_plaid
 account_ponto
@@ -141,6 +142,8 @@ quality_mrp_workorder
 sale_account_taxcloud
 sale_coupon
 sale_coupon_delivery
+sale_coupon_taxcloud
+sale_coupon_taxcloud_delivery
 sale_ebay
 sale_enterprise
 sale_intrastat

@@ -1,4 +1,4 @@
-# generated on Fri Dec 13 14:41:43 2019
+# generated on Thu Jan 16 22:07:37 2020
 account
 account_analytic_default
 account_analytic_default_hr_expense
@@ -213,6 +213,7 @@ pos_discount
 pos_epson_printer
 pos_epson_printer_restaurant
 pos_hr
+pos_kitchen_printer
 pos_mercury
 pos_reprint
 pos_restaurant

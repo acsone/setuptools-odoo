@@ -1,4 +1,4 @@
-# generated on Fri Dec 13 14:42:42 2019
+# generated on Thu Jan 16 22:09:01 2020
 account_3way_match
 account_accountant
 account_bank_statement_import_camt
@@ -105,6 +105,8 @@ quality_mrp
 sale_account_taxcloud
 sale_coupon
 sale_coupon_delivery
+sale_coupon_taxcloud
+sale_coupon_taxcloud_delivery
 sale_ebay
 sale_subscription
 sale_subscription_asset
