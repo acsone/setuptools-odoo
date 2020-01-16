@@ -5,7 +5,17 @@ Changes
 .. ----------
 .. -
 
-2.5.0 (unreleased)
+2.5.2 (2020-01-16)
+------------------
+- [UPD] update base addons lists
+- [ADD] pre-commit hook for setuptools-odoo-make-default
+
+2.5.1 (2019-12-13)
+------------------
+- [FIX] Better detection of git repo root
+- [UPD] update base addons lists
+
+2.5.0 (2019-10-04)
 ------------------
 - [ADD] new git autoversioning strategy (increase last digit instead of
   appending .99), will be used for Odoo 13
