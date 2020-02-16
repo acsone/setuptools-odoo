@@ -1,4 +1,4 @@
-# generated on Thu Jan 16 22:07:46 2020
+# generated on Sun Feb 16 16:05:20 2020
 account_3way_match
 account_accountant
 account_asset
@@ -78,6 +78,7 @@ industry_fsm_report
 industry_fsm_stock
 inter_company_rules
 iot
+l10n_ar_edi
 l10n_ar_reports
 l10n_at_reports
 l10n_au_aba
@@ -87,11 +88,13 @@ l10n_be_hr_payroll_account
 l10n_be_hr_payroll_fleet
 l10n_be_intrastat
 l10n_be_reports
+l10n_be_sale_intrastat
 l10n_be_us_consolidation_demo
 l10n_ca_check_printing
 l10n_ch_reports
 l10n_cl_reports
 l10n_co_edi
+l10n_co_edi_ubl_2_1
 l10n_co_reports
 l10n_de_reports
 l10n_dk_reports
@@ -104,6 +107,7 @@ l10n_in_hr_payroll
 l10n_in_reports
 l10n_lt_reports
 l10n_lu_reports
+l10n_lu_reports_electronic
 l10n_mn_reports
 l10n_mx_edi
 l10n_mx_edi_landing
@@ -131,9 +135,11 @@ payment_sepa_direct_debit
 planning
 pos_blackbox_be
 pos_enterprise
+pos_hr_l10n_be
 pos_iot
 pos_loyalty
 pos_restaurant_iot
+product_unspsc
 project_enterprise
 project_forecast
 project_timesheet_forecast

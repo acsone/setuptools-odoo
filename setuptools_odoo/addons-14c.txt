@@ -1,4 +1,4 @@
-# generated on Thu Jan 16 22:06:59 2020
+# generated on Sun Feb 16 16:04:42 2020
 account
 account_analytic_default
 account_analytic_default_hr_expense
@@ -80,7 +80,6 @@ hw_blackbox_be
 hw_drivers
 hw_escpos
 hw_posbox_homepage
-hw_posbox_upgrade
 hw_proxy
 iap
 im_livechat
@@ -245,6 +244,7 @@ sale_product_configurator
 sale_product_matrix
 sale_project
 sale_purchase
+sale_purchase_stock
 sale_quotation_builder
 sale_stock
 sale_stock_margin
@@ -266,11 +266,13 @@ test_base_automation
 test_mail
 test_mail_full
 test_mass_mailing
+test_timer
 test_website
 test_website_slides_full
 test_xlsx_export
 theme_bootswatch
 theme_default
+timer
 transifex
 uom
 utm
