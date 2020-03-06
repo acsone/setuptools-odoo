@@ -1,4 +1,4 @@
-# generated on Sun Feb 16 16:05:40 2020
+# generated on Fri Mar  6 11:55:17 2020
 account
 account_analytic_default
 account_bank_statement_import
@@ -75,11 +75,7 @@ hw_blackbox_be
 hw_drivers
 hw_escpos
 hw_posbox_homepage
-hw_posbox_upgrade
 hw_proxy
-hw_scale
-hw_scanner
-hw_screen
 iap
 im_livechat
 im_livechat_mail_bot
@@ -198,6 +194,7 @@ phone_validation
 point_of_sale
 portal
 pos_cache
+pos_cash_rounding
 pos_discount
 pos_mercury
 pos_reprint

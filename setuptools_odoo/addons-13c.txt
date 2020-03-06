@@ -1,4 +1,4 @@
-# generated on Sun Feb 16 16:05:13 2020
+# generated on Fri Mar  6 11:54:53 2020
 account
 account_analytic_default
 account_analytic_default_hr_expense
@@ -102,6 +102,7 @@ l10n_cn_city
 l10n_cn_small_business
 l10n_cn_standard
 l10n_co
+l10n_co_pos
 l10n_cr
 l10n_de
 l10n_de_skr03
@@ -152,6 +153,7 @@ l10n_pl
 l10n_pt
 l10n_ro
 l10n_sa
+l10n_se
 l10n_sg
 l10n_si
 l10n_syscohada
@@ -218,6 +220,7 @@ pos_mercury
 pos_reprint
 pos_restaurant
 pos_sale
+pos_six
 procurement_jit
 product
 product_email_template

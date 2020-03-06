@@ -1,4 +1,4 @@
-# generated on Sun Feb 16 16:06:14 2020
+# generated on Fri Mar  6 11:55:48 2020
 account_3way_match
 account_accountant
 account_bank_statement_import_camt
