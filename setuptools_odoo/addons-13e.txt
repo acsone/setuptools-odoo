@@ -1,4 +1,4 @@
-# generated on Fri Mar  6 11:55:00 2020
+# generated on Wed Apr 22 18:56:14 2020
 account_3way_match
 account_accountant
 account_asset
@@ -20,6 +20,7 @@ account_ponto
 account_predictive_bills
 account_reports
 account_reports_cash_basis
+account_saft
 account_sepa
 account_sepa_direct_debit
 account_taxcloud
@@ -68,6 +69,7 @@ hr_contract_reports
 hr_contract_salary
 hr_contract_sign
 hr_holidays_gantt
+hr_holidays_gantt_calendar
 hr_payroll
 hr_payroll_account
 hr_payroll_account_sepa
@@ -109,6 +111,7 @@ l10n_in_reports
 l10n_lt_reports
 l10n_lu_reports
 l10n_lu_reports_electronic
+l10n_lu_saft
 l10n_mn_reports
 l10n_mx_edi
 l10n_mx_edi_landing
@@ -116,6 +119,7 @@ l10n_mx_reports
 l10n_mx_reports_closing
 l10n_nl_intrastat
 l10n_nl_reports
+l10n_no_saft
 l10n_se_reports
 l10n_sg_reports
 l10n_uk_reports
@@ -133,6 +137,7 @@ mrp_plm
 mrp_workorder
 mrp_workorder_iot
 ocn_client
+partner_commission
 payment_sepa_direct_debit
 planning
 pos_blackbox_be
@@ -179,6 +184,7 @@ social
 social_crm
 social_facebook
 social_linkedin
+social_linkedin_company_support
 social_push_notifications
 social_sale
 social_twitter
@@ -191,6 +197,7 @@ stock_intrastat
 test_l10n_be_hr_payroll_account
 test_mail_enterprise
 test_marketing_automation
+test_web_cohort
 timesheet_grid
 voip
 voip_crm

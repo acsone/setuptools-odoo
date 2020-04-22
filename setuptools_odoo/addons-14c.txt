@@ -1,4 +1,4 @@
-# generated on Fri Mar  6 11:54:26 2020
+# generated on Wed Apr 22 18:55:38 2020
 account
 account_analytic_default
 account_analytic_default_hr_expense
@@ -8,6 +8,7 @@ account_debit_note
 account_facturx
 account_lock
 account_payment
+account_qr_code_sepa
 account_tax_python
 account_test
 analytic
@@ -168,6 +169,7 @@ link_tracker
 lunch
 mail
 mail_bot
+mail_bot_hr
 maintenance
 mass_mailing
 mass_mailing_crm
@@ -181,12 +183,14 @@ mass_mailing_sms
 membership
 mrp
 mrp_account
+mrp_landed_costs
 mrp_product_expiry
 mrp_subcontracting
 mrp_subcontracting_account
 mrp_subcontracting_dropshipping
 note
 note_pad
+odoo_referral
 pad
 pad_project
 partner_autocomplete
@@ -217,6 +221,7 @@ pos_mercury
 pos_reprint
 pos_restaurant
 pos_sale
+pos_six
 procurement_jit
 product
 product_email_template

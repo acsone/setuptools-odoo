@@ -1,4 +1,4 @@
-# generated on Fri Mar  6 11:55:42 2020
+# generated on Wed Apr 22 18:56:59 2020
 account
 account_analytic_default
 account_asset
@@ -184,6 +184,7 @@ phone_validation
 point_of_sale
 portal
 pos_cache
+pos_cash_rounding
 pos_data_drinks
 pos_discount
 pos_mercury
