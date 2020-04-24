@@ -5,6 +5,18 @@ Changes
 .. ----------
 .. -
 
+2.5.6 (2020-04-24)
+------------------
+- [UPD] update base addons lists
+
+2.5.5 (2020-03-06)
+------------------
+- [UPD] update base addons lists
+
+2.5.4 (2020-02-16)
+------------------
+- [UPD] update base addons lists
+
 2.5.3 (2020-01-16)
 ------------------
 - [IMP] update documentation for Odoo 12 and 13
