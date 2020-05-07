@@ -5,6 +5,10 @@ Changes
 .. ----------
 .. -
 
+2.5.7 (2020-05-07)
+------------------
+- [UPD] update base addons lists
+
 2.5.6 (2020-04-24)
 ------------------
 - [UPD] update base addons lists
