@@ -1,4 +1,4 @@
-# generated on Wed Apr 22 18:56:14 2020
+# generated on Thu May  7 09:39:19 2020
 account_3way_match
 account_accountant
 account_asset
@@ -103,6 +103,7 @@ l10n_de_reports
 l10n_dk_reports
 l10n_es_real_estates
 l10n_es_reports
+l10n_fi_reports
 l10n_fr_hr_payroll
 l10n_fr_reports
 l10n_generic_auto_transfer_demo

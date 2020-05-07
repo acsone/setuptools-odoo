@@ -1,4 +1,4 @@
-# generated on Wed Apr 22 18:55:49 2020
+# generated on Thu May  7 09:38:59 2020
 account_3way_match
 account_accountant
 account_accountant_check_printing
@@ -84,6 +84,7 @@ hr_contract_sign
 hr_expense_extract
 hr_expense_predict_product
 hr_holidays_gantt
+hr_mobile
 hr_payroll
 hr_payroll_account
 hr_payroll_account_sepa
@@ -124,6 +125,7 @@ l10n_de_reports
 l10n_dk_reports
 l10n_es_real_estates
 l10n_es_reports
+l10n_fi_reports
 l10n_fr_hr_payroll
 l10n_fr_reports
 l10n_generic_auto_transfer_demo

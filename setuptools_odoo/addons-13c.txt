@@ -1,4 +1,4 @@
-# generated on Wed Apr 22 18:56:07 2020
+# generated on Thu May  7 09:39:10 2020
 account
 account_analytic_default
 account_analytic_default_hr_expense
@@ -114,6 +114,7 @@ l10n_ec
 l10n_es
 l10n_et
 l10n_eu_service
+l10n_fi
 l10n_fr
 l10n_fr_fec
 l10n_fr_pos_cert
