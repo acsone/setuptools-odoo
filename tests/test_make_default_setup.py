@@ -18,13 +18,13 @@ from . import DATA_DIR
 
 class TestMakeDefaultSetup(unittest.TestCase):
     def _assert_no_diff(self, dc):
-        def _filter(l):
+        def _filter(names):
             return [
-                i
-                for i in l
-                if not i.endswith(".pyc")
-                and not i.endswith(".egg-info")
-                and not i.endswith(".eggs")
+                name
+                for name in names
+                if not name.endswith(".pyc")
+                and not name.endswith(".egg-info")
+                and not name.endswith(".eggs")
             ]
 
         if dc.right.endswith("addon4"):
