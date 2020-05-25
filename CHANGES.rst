@@ -5,6 +5,11 @@ Changes
 .. ----------
 .. -
 
+2.5.8 (2020-05-25)
+------------------
+- [FIX] avoid depending on broken setuptools_scm 4.0.0
+
+
 2.5.7 (2020-05-07)
 ------------------
 - [UPD] update base addons lists
