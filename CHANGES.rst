@@ -5,6 +5,10 @@ Changes
 .. ----------
 .. -
 
+2.5.9 (2020-05-25)
+------------------
+- [FIX] further avoid depending on broken setuptools_scm 4.0.0
+
 2.5.8 (2020-05-25)
 ------------------
 - [FIX] avoid depending on broken setuptools_scm 4.0.0
