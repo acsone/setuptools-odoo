@@ -9,12 +9,13 @@ python:
   - "3.5"
   - "3.6"
   - "3.7"
+  - "3.8"
 
 matrix:
   include:
-    - python: 3.7
+    - python: 3.8
       env: TOXENV=check_readme
-    - python: 3.7
+    - python: 3.8
       env: TOXENV=pre_commit
 
 install:
