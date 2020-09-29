@@ -28,7 +28,7 @@ Requirements
 
 The following prerequisites apply:
 
-  * Odoo version 8, 9, 10, 11, 12 and 13 are supported (see notes in the
+  * Odoo version 8, 9, 10, 11, 12, 13 and 14 are supported (see notes in the
     documentation for implementation differences).
   * To install addons packaged with this tool, any pip version that
     supports the wheel package format should work (ie pip >= 1.4).
@@ -122,9 +122,9 @@ or ``pip`` commands such as:
     python setup.py install
     python setup.py develop
     python setup.py bdist_wheel
-    pip install odoo<8|9|10|11|12|13>-addon-<addon name>
+    pip install odoo<8|9|10|11|12|13|14>-addon-<addon name>
     pip install -e .
-    pip install -e git+https://github.com/OCA/<repo>/<addon>#egg=odoo<8|9|10|11|12|13>-addon-<addon name>\&subdirectory=setup/<addon name>
+    pip install -e git+https://github.com/OCA/<repo>/<addon>#egg=odoo<8|9|10|11|12|13|14>-addon-<addon name>\&subdirectory=setup/<addon name>
 
 .. note::
 
@@ -380,7 +380,7 @@ git log of the addon subtree.
 If the last change to the addon corresponds to the version number in the manifest,
 it is used as is for the python package version. Otherwise a counter
 is incremented for each commit and the resulting version number has the following
-form: [8|9|10|11|12|13].0.x.y.z.99.devN, N being the number of git commits since
+form: [8|9|10|11|12|13|14].0.x.y.z.99.devN, N being the number of git commits since
 the version change.
 
 This scheme is compliant with the accepted python versioning scheme documented

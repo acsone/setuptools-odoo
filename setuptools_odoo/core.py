@@ -88,6 +88,16 @@ ODOO_VERSION_INFO = {
         "universal_wheel": False,
         "git_postversion_strategy": STRATEGY_P1_DEVN,
     },
+    "14.0": {
+        "odoo_dep": "odoo>=14.0a,<14.1dev",
+        "base_addons": base_addons.odoo14,
+        "pkg_name_pfx": "odoo14-addon-",
+        "addons_ns": "odoo.addons",
+        "namespace_packages": None,
+        "python_requires": ">=3.6",
+        "universal_wheel": False,
+        "git_postversion_strategy": STRATEGY_P1_DEVN,
+    },
 }
 
 
