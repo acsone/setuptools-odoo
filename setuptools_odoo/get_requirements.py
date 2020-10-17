@@ -68,7 +68,8 @@ def main(args=None):
     parser = argparse.ArgumentParser(
         description=(
             "Print external python dependencies for all addons in an "
-            "Odoo addons directory."
+            "Odoo addons directory. If dependencies overrides are declared "
+            "in setup/{addon}/setup.py, they are honored in the output. "
         )
     )
     parser.add_argument("--addons-dir", "-d", default=".")

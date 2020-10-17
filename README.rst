@@ -372,6 +372,27 @@ in your `.pre-commit-config.yaml`:
       hooks:
         - id: setuptools-odoo-make-default
 
+setuptools-odoo-get-requirements helper script
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Since it is a common practice in the Odoo world to have a file named
+``requirements.txt`` at the repository root, this script helps generating it
+from the external dependencies declared in addons manifests.
+
+..code::
+
+  usage: setuptools-odoo-get-requirements [-h] [--addons-dir ADDONS_DIR] [--output OUTPUT]
+
+  Print external python dependencies for all addons in an Odoo addons directory.
+  If dependencies overrides are declared in setup/{addon}/setup.py, they are
+  honored in the output.
+
+  optional arguments:
+    -h, --help            show this help message and exit
+    --addons-dir ADDONS_DIR, -d ADDONS_DIR
+    --output OUTPUT, -o OUTPUT
+
+
 Versioning
 ~~~~~~~~~~
 

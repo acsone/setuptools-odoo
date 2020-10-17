@@ -6,6 +6,8 @@ Changes
 .. -
 
 - [ADD] Support for post version strategy override
+- [ADD] setuptools-odoo-get-requirements to extract the list of external python
+  dependencies from addon manifests
 
 2.5.10 (2020-09-29)
 -------------------
