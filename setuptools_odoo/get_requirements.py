@@ -57,7 +57,7 @@ def get_requirements(
             if EXTERNAL_REQ_RE.match(install_require):
                 continue
             requirements.add(install_require)
-    return sorted(requirements)
+    return sorted(requirements, key=lambda s: s.lower())
 
 
 def main(args=None):
