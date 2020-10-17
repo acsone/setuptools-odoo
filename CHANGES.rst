@@ -5,6 +5,8 @@ Changes
 .. ----------
 .. -
 
+- [ADD] Support for post version strategy override
+
 2.5.10 (2020-09-29)
 -------------------
 - [UPD] update base addons lists

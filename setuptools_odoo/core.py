@@ -126,7 +126,11 @@ def _get_odoo_version_info(addons_dir, odoo_version_override=None):
 
 
 def _get_version(
-    addon_dir, manifest, odoo_version_override=None, git_post_version=True
+    addon_dir,
+    manifest,
+    odoo_version_override=None,
+    git_post_version=True,
+    post_version_strategy_override=None,
 ):
     """ Get addon version information from an addon directory """
     version = manifest.get("version")
@@ -150,7 +154,9 @@ def _get_version(
     odoo_version_info = ODOO_VERSION_INFO[odoo_version]
     if git_post_version:
         version = get_git_postversion(
-            addon_dir, odoo_version_info["git_postversion_strategy"]
+            addon_dir,
+            post_version_strategy_override
+            or odoo_version_info["git_postversion_strategy"],
         )
     return version, odoo_version, odoo_version_info
 
@@ -284,7 +290,7 @@ def get_install_requires_odoo_addons(
 
 
 def _find_addons_dir():
-    """ Try to find the addons dir / namespace package
+    """Try to find the addons dir / namespace package
 
     Returns addons_dir, addons_ns
     """
@@ -367,6 +373,7 @@ def get_addon_metadata(
     depends_override=None,  # type: dict[str, str]
     external_dependencies_override=None,  # type: dict[str: dict[str: str]]
     odoo_version_override=None,  # type: str
+    post_version_strategy_override=None,  # type: str
 ):
     # type: (...) -> Message
     """
@@ -383,6 +390,7 @@ def get_addon_metadata(
         depends_override=depends_override,
         external_dependencies_override=external_dependencies_override,
         odoo_version_override=odoo_version_override,
+        post_version_strategy_override=post_version_strategy_override,
     )
     meta = Message()
 
@@ -417,6 +425,7 @@ def get_addon_setuptools_keywords(
     depends_override=None,
     external_dependencies_override=None,
     odoo_version_override=None,
+    post_version_strategy_override=None,
 ):
     addon_name = os.path.basename(os.path.abspath(addon_dir))
     manifest = read_manifest(addon_dir)
@@ -429,7 +438,11 @@ def get_addon_setuptools_keywords(
         )
     else:
         version, _, odoo_version_info = _get_version(
-            addon_dir, manifest, odoo_version_override, git_post_version=True
+            addon_dir,
+            manifest,
+            odoo_version_override,
+            git_post_version=True,
+            post_version_strategy_override=post_version_strategy_override,
         )
     install_requires = get_install_requires_odoo_addon(
         addon_dir,
