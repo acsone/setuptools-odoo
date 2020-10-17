@@ -11,6 +11,7 @@ import re
 import sys
 
 from .core import get_addon_metadata
+from .git_postversion import STRATEGY_NONE
 from .manifest import is_installable_addon
 
 # ignore odoo and odoo addons dependencies
@@ -52,6 +53,9 @@ def get_requirements(
         if not is_installable_addon(addon_dir):
             continue
         overrides = get_metadata_overrides(addons_dir, addon_name)
+        # We don't care about the version here, so improve performance
+        # by skipping git post version lookup.
+        overrides["post_version_strategy_override"] = STRATEGY_NONE
         metadata = get_addon_metadata(addon_dir, **overrides)
         for install_require in metadata.get_all("Requires-Dist"):
             if EXTERNAL_REQ_RE.match(install_require):
