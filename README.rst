@@ -390,7 +390,10 @@ from the external dependencies declared in addons manifests.
   optional arguments:
     -h, --help            show this help message and exit
     --addons-dir ADDONS_DIR, -d ADDONS_DIR
+                          addons directory (default: .
     --output OUTPUT, -o OUTPUT
+                          output file (default: stdout)
+    --header HEADER       output file header
 
 
 Versioning

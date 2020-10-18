@@ -17,6 +17,14 @@ def test_get_requirements(tmp_path):
     assert reqs_path.read_text() == "astropy\npython-dateutil\n"
 
 
+def test_get_requirements_header(tmp_path):
+    reqs_path = tmp_path / "reqs.txt"
+    get_requirements.main(
+        ["--addons-dir", DATA_DIR, "-o", str(reqs_path), "--header", "# generated"]
+    )
+    assert reqs_path.read_text() == "# generated\nastropy\npython-dateutil\n"
+
+
 def test_get_requirements_with_setup_dir(tmp_path):
     generated_dir = os.path.join(DATA_DIR, "setup")
     make_default_setup.main(["--addons-dir", DATA_DIR, "-f"])

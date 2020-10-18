@@ -72,15 +72,25 @@ def main(args=None):
             "in setup/{addon}/setup.py, they are honored in the output. "
         )
     )
-    parser.add_argument("--addons-dir", "-d", default=".")
-    parser.add_argument("--output", "-o", default="-")
+    parser.add_argument(
+        "--addons-dir", "-d", default=".", help="addons directory (default: .)",
+    )
+    parser.add_argument(
+        "--output", "-o", default="-", help="output file (default: stdout)",
+    )
+    parser.add_argument(
+        "--header", help="output file header",
+    )
     args = parser.parse_args(args)
-    requirements = "\n".join(get_requirements(args.addons_dir))
+    requirements = get_requirements(args.addons_dir)
+    if args.header:
+        requirements.insert(0, args.header)
+    requirements_str = "\n".join(requirements)
     if args.output == "-":
-        print(requirements)
+        print(requirements_str)
     else:
         with open(args.output, "w") as f:
-            print(requirements, file=f)
+            print(requirements_str, file=f)
 
 
 if __name__ == "__main__":
