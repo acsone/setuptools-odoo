@@ -73,13 +73,20 @@ def main(args=None):
         )
     )
     parser.add_argument(
-        "--addons-dir", "-d", default=".", help="addons directory (default: .)",
+        "--addons-dir",
+        "-d",
+        default=".",
+        help="addons directory (default: .)",
     )
     parser.add_argument(
-        "--output", "-o", default="-", help="output file (default: stdout)",
+        "--output",
+        "-o",
+        default="-",
+        help="output file (default: stdout)",
     )
     parser.add_argument(
-        "--header", help="output file header",
+        "--header",
+        help="output file header",
     )
     args = parser.parse_args(args)
     requirements = get_requirements(args.addons_dir)

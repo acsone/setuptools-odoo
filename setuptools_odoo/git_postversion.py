@@ -88,7 +88,7 @@ def _bump_last(version):
 
 
 def get_git_postversion(addon_dir, strategy):
-    """ return the addon version number, with a developmental version increment
+    """return the addon version number, with a developmental version increment
     if there were git commits in the addon_dir after the last version change.
 
     If the last change to the addon correspond to the version number in the
