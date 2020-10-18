@@ -37,3 +37,9 @@ def test_get_requirements_override(tmp_path):
         ),
     )
     assert reqs == ["astropy>=1.0", "python-dateutil"]
+
+
+def test_get_requirements_empty(tmp_path):
+    reqs_path = tmp_path / "reqs.txt"
+    get_requirements.main(["--addons-dir", str(tmp_path), "-o", str(reqs_path)])
+    assert reqs_path.read_text() == "\n"
