@@ -50,4 +50,28 @@ def test_get_requirements_override(tmp_path):
 def test_get_requirements_empty(tmp_path):
     reqs_path = tmp_path / "reqs.txt"
     get_requirements.main(["--addons-dir", str(tmp_path), "-o", str(reqs_path)])
-    assert reqs_path.read_text() == "\n"
+    assert not reqs_path.exists()
+
+
+def test_get_requirements_empty_with_header(tmp_path):
+    reqs_path = tmp_path / "reqs.txt"
+    get_requirements.main(
+        ["--addons-dir", str(tmp_path), "-o", str(reqs_path), "--header", "# header"]
+    )
+    assert not reqs_path.exists()
+
+
+def test_get_requirements_empty_pre_exist(tmp_path):
+    reqs_path = tmp_path / "reqs.txt"
+    reqs_path.touch()
+    get_requirements.main(["--addons-dir", str(tmp_path), "-o", str(reqs_path)])
+    assert reqs_path.read_text() == ""
+
+
+def test_get_requirements_empty_pre_exist_with_header(tmp_path):
+    reqs_path = tmp_path / "reqs.txt"
+    reqs_path.touch()
+    get_requirements.main(
+        ["--addons-dir", str(tmp_path), "-o", str(reqs_path), "--header", "# header"]
+    )
+    assert reqs_path.read_text() == "# header\n"

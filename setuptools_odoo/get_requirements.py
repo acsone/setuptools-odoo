@@ -64,6 +64,13 @@ def _get_requirements(
     return sorted(requirements, key=lambda s: s.lower())
 
 
+def _render(requirements, header, fp):
+    if header:
+        print(header, file=fp)
+    for requirement in requirements:
+        print(requirement, file=fp)
+
+
 def main(args=None):
     parser = argparse.ArgumentParser(
         description=(
@@ -90,14 +97,12 @@ def main(args=None):
     )
     args = parser.parse_args(args)
     requirements = _get_requirements(args.addons_dir)
-    if args.header:
-        requirements.insert(0, args.header)
-    requirements_str = "\n".join(requirements)
     if args.output == "-":
-        print(requirements_str)
+        _render(requirements, args.header, sys.stdout)
     else:
-        with open(args.output, "w") as f:
-            print(requirements_str, file=f)
+        if os.path.exists(args.output) or requirements:
+            with open(args.output, "w") as fp:
+                _render(requirements, args.header, fp)
 
 
 if __name__ == "__main__":
