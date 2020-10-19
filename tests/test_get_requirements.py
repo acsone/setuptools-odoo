@@ -37,10 +37,10 @@ def test_get_requirements_with_setup_dir(tmp_path):
 
 
 def test_get_requirements_override(tmp_path):
-    reqs = get_requirements.get_requirements(
+    reqs = get_requirements._get_requirements(
         DATA_DIR,
         get_metadata_overrides=partial(
-            get_requirements.get_metadata_overrides_from_setup_dir,
+            get_requirements._get_metadata_overrides_from_setup_dir,
             setup_dir="setup_reusable_addons",
         ),
     )

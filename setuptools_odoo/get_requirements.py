@@ -32,7 +32,7 @@ def _get_odoo_addon_keyword(setup_py_path):
     return None
 
 
-def get_metadata_overrides_from_setup_dir(addons_dir, addon_name, setup_dir="setup"):
+def _get_metadata_overrides_from_setup_dir(addons_dir, addon_name, setup_dir="setup"):
     """Return a dictionary of metadata override keys, suitable for passing
     as kwargs to get_addon_metadata()."""
     overrides = {}
@@ -44,8 +44,8 @@ def get_metadata_overrides_from_setup_dir(addons_dir, addon_name, setup_dir="set
     return overrides
 
 
-def get_requirements(
-    addons_dir, get_metadata_overrides=get_metadata_overrides_from_setup_dir
+def _get_requirements(
+    addons_dir, get_metadata_overrides=_get_metadata_overrides_from_setup_dir
 ):
     requirements = set()
     for addon_name in os.listdir(addons_dir):
@@ -89,7 +89,7 @@ def main(args=None):
         help="output file header",
     )
     args = parser.parse_args(args)
-    requirements = get_requirements(args.addons_dir)
+    requirements = _get_requirements(args.addons_dir)
     if args.header:
         requirements.insert(0, args.header)
     requirements_str = "\n".join(requirements)
