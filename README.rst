@@ -377,9 +377,7 @@ setuptools-odoo-get-requirements helper script
 
 Since it is a common practice in the Odoo world to have a file named
 ``requirements.txt`` at the repository root, this script helps generating it
-from the external dependencies declared in addons manifests.
-
-..code::
+from the external dependencies declared in addons manifests.::
 
   usage: setuptools-odoo-get-requirements [-h] [--addons-dir ADDONS_DIR] [--output OUTPUT]
 
