@@ -238,9 +238,11 @@ The following keys are supported:
     key, with value a dictionary mapping python external dependencies to
     python package requirement strings.
   * ``odoo_version_override``, used to specify which Odoo series to use
-    (8.0, 9.0, 10.0, 11.0) in case an addon version does not start with the Odoo
+    (8.0, 9.0, 10.0, 11.0, ...) in case an addon version does not start with the Odoo
     series number. Use this only as a last resort, if you have no way to
     correct the addon version in its manifest.
+  * ``post_version_strategy_override``, used to specify how the git commits are used
+    to amend the version found in the manifest (see the Versioning_ section below).
 
 For instance, if your module requires at least version 10.0.3.2.0 of
 the connector addon, as well as at least version 0.5.5 of py-Asterisk,
@@ -370,26 +372,53 @@ in your `.pre-commit-config.yaml`:
       hooks:
         - id: setuptools-odoo-make-default
 
+setuptools-odoo-get-requirements helper script
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Since it is a common practice in the Odoo world to have a file named
+``requirements.txt`` at the repository root, this script helps generating it
+from the external dependencies declared in addons manifests.
+
+..code::
+
+  usage: setuptools-odoo-get-requirements [-h] [--addons-dir ADDONS_DIR] [--output OUTPUT]
+
+  Print external python dependencies for all addons in an Odoo addons directory.
+  If dependencies overrides are declared in setup/{addon}/setup.py, they are
+  honored in the output.
+
+  optional arguments:
+    -h, --help            show this help message and exit
+    --addons-dir ADDONS_DIR, -d ADDONS_DIR
+                          addons directory (default: .
+    --output OUTPUT, -o OUTPUT
+                          output file (default: stdout)
+    --header HEADER       output file header
+
+
 Versioning
 ~~~~~~~~~~
 
-setuptools-odoo does its best to detect if an addon has changed compared
-to the version indicated in it's manifest. To this end it explores the
+By default, setuptools-odoo does its best to detect if an addon has changed
+compared to the version indicated in it's manifest. To this end it explores the
 git log of the addon subtree.
 
 If the last change to the addon corresponds to the version number in the manifest,
 it is used as is for the python package version. Otherwise a counter
-is incremented for each commit and the resulting version number has the following
-form: [8|9|10|11|12|13|14].0.x.y.z.99.devN, N being the number of git commits since
-the version change.
+is incremented for each commit and the resulting version number includes that counter.
 
-This scheme is compliant with the accepted python versioning scheme documented
+The default strategy depends on the Odoo series. It has the following form,
+N being the number of git commits since the version change.
+
+- Strategy ``.99.devN`` is the default for series 8 to 12 and yields
+  ``[8|9|10|11|12].0.x.y.z.99.devN``.
+- Strategy ``+1.devN`` is the default for series 13 and 14 and yields
+  ``[13|14].0.x.y.z+1.devN``.
+- Strategy ``none`` is not used by default and disables the post
+  versioning mechanism, yielding the version found in the manifest.
+
+This schemes are compliant with the accepted python versioning scheme documented
 in `PEP 440 <https://www.python.org/dev/peps/pep-0440/#developmental-releases>`_.
-
-The 99 suffix is there to make sure it is considered as posterior to x.y.z.
-(.postN is ignored by pip, as `specified in PEP 440
-<https://www.python.org/dev/peps/pep-0440/#exclusive-ordered-comparison>`_,
-and x.y.z.devN is considered anterior to x.y.z.).
 
 .. Note::
 

@@ -10,6 +10,7 @@ import pytest
 from setuptools_odoo import manifest
 from setuptools_odoo.git_postversion import (
     STRATEGY_99_DEVN,
+    STRATEGY_NONE,
     STRATEGY_P1_DEVN,
     get_git_postversion,
 )
@@ -24,6 +25,8 @@ def test_addon1():
     assert version == "8.0.1.0.0.99.dev4"
     version = get_git_postversion(addon1_dir, STRATEGY_P1_DEVN)
     assert version == "8.0.1.0.1.dev4"
+    version = get_git_postversion(addon1_dir, STRATEGY_NONE)
+    assert version == "8.0.1.0.0"
 
 
 def test_addon2():

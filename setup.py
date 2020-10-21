@@ -40,7 +40,8 @@ setuptools.setup(
     test_suite="tests",
     entry_points={
         "console_scripts": [
-            "setuptools-odoo-make-default=" "setuptools_odoo.make_default_setup:main"
+            "setuptools-odoo-make-default=" "setuptools_odoo.make_default_setup:main",
+            "setuptools-odoo-get-requirements=" "setuptools_odoo.get_requirements:main",
         ],
         "distutils.setup_keywords": [
             "odoo_addon = setuptools_odoo.setup_keywords:odoo_addon",

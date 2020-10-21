@@ -9,8 +9,9 @@ from pkg_resources import parse_version
 
 from .manifest import MANIFEST_NAMES, NoManifestFound, parse_manifest, read_manifest
 
-STRATEGY_99_DEVN = 1
-STRATEGY_P1_DEVN = 2
+STRATEGY_NONE = "none"
+STRATEGY_99_DEVN = ".99.devN"
+STRATEGY_P1_DEVN = "+1.devN"
 
 
 def _run_git_command_exit_code(args, cwd=None, stderr=None):
@@ -87,7 +88,7 @@ def _bump_last(version):
 
 
 def get_git_postversion(addon_dir, strategy):
-    """ return the addon version number, with a developmental version increment
+    """return the addon version number, with a developmental version increment
     if there were git commits in the addon_dir after the last version change.
 
     If the last change to the addon correspond to the version number in the
@@ -96,6 +97,7 @@ def get_git_postversion(addon_dir, strategy):
     the following form, depending on the strategy (N being the number of git
     commits since the version change):
 
+    * STRATEGY_NONE: return the version in the manifest as is
     * STRATEGY_99_DEVN: [8|9].0.x.y.z.99.devN
     * STRATEGY_P1_DEVN: [series].0.x.y.(z+1).devN
 
@@ -109,6 +111,8 @@ def get_git_postversion(addon_dir, strategy):
     """
     addon_dir = os.path.realpath(addon_dir)
     last_version = read_manifest(addon_dir).get("version", "0.0.0")
+    if strategy == STRATEGY_NONE:
+        return last_version
     last_version_parsed = parse_version(last_version)
     if not is_git_controlled(addon_dir):
         return last_version
