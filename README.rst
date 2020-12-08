@@ -416,7 +416,7 @@ N being the number of git commits since the version change.
 - Strategy ``none`` is not used by default and disables the post
   versioning mechanism, yielding the version found in the manifest.
 
-This schemes are compliant with the accepted python versioning scheme documented
+These schemes are compliant with the accepted python versioning scheme documented
 in `PEP 440 <https://www.python.org/dev/peps/pep-0440/#developmental-releases>`_.
 
 .. Note::
@@ -452,7 +452,7 @@ Author:
 Contributors
 
   - Benjamin Willig
-    Matteo Bilotta
+  - Matteo Bilotta
 
 Many thanks to Daniel Reis who cleared the path, and Laurent Mignon who convinced
 me it was possible to do it using standard Python setup tools and had the idea of
