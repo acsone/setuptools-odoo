@@ -1,4 +1,4 @@
-# generated on Tue Sep 29 11:54:25 2020
+# generated on Tue Dec  8 17:53:42 2020
 account_3way_match
 account_accountant
 account_accountant_check_printing
@@ -20,11 +20,13 @@ account_intrastat
 account_invoice_extract
 account_invoice_extract_purchase
 account_online_sync
+account_online_synchronization
 account_plaid
 account_ponto
 account_predictive_bills
 account_reports
 account_reports_cash_basis
+account_reports_tax
 account_saft
 account_sepa
 account_sepa_direct_debit
@@ -99,6 +101,7 @@ hr_mobile
 hr_payroll
 hr_payroll_account
 hr_payroll_account_sepa
+hr_payroll_edit_lines
 hr_payroll_expense
 hr_payroll_holidays
 hr_recruitment_reports
@@ -124,12 +127,16 @@ l10n_be_hr_contract_salary
 l10n_be_hr_payroll
 l10n_be_hr_payroll_account
 l10n_be_hr_payroll_fleet
+l10n_be_hr_payroll_posted_employee
+l10n_be_hr_payroll_proration
+l10n_be_hr_payroll_variable_revenue
 l10n_be_intrastat
 l10n_be_reports
 l10n_be_sale_intrastat
 l10n_be_us_consolidation_demo
 l10n_ca_check_printing
 l10n_ch_reports
+l10n_cl_edi
 l10n_cl_reports
 l10n_co_edi
 l10n_co_reports
@@ -154,6 +161,7 @@ l10n_mx_edi_landing
 l10n_mx_reports
 l10n_mx_reports_closing
 l10n_nl_intrastat
+l10n_nl_report_intrastat
 l10n_nl_reports
 l10n_no_saft
 l10n_se_reports
@@ -222,6 +230,7 @@ sale_subscription
 sale_subscription_dashboard
 sale_subscription_sepa_direct_debit
 sale_subscription_taxcloud
+sale_subscription_timesheet
 sale_timesheet_enterprise
 sign
 snailmail_account_followup

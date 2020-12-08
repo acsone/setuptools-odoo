@@ -1,4 +1,4 @@
-# generated on Tue Sep 29 11:55:19 2020
+# generated on Tue Dec  8 17:54:42 2020
 account
 account_analytic_default
 account_asset

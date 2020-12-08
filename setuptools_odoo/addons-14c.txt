@@ -1,4 +1,4 @@
-# generated on Tue Sep 29 11:54:17 2020
+# generated on Tue Dec  8 17:53:29 2020
 account
 account_check_printing
 account_debit_note
@@ -11,6 +11,7 @@ account_payment
 account_qr_code_sepa
 account_tax_python
 account_test
+adyen_platforms
 analytic
 association
 attachment_indexation
@@ -27,7 +28,6 @@ base
 base_address_city
 base_address_extended
 base_automation
-base_gengo
 base_geolocalize
 base_iban
 base_import
@@ -212,7 +212,9 @@ payment_adyen
 payment_alipay
 payment_authorize
 payment_buckaroo
+payment_fix_register_token
 payment_ingenico
+payment_odoo_by_adyen
 payment_paypal
 payment_payulatam
 payment_payumoney
@@ -321,7 +323,6 @@ website_event_track_quiz
 website_form
 website_form_project
 website_forum
-website_gengo
 website_google_map
 website_hr_recruitment
 website_jitsi

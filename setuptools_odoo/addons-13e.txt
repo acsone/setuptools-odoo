@@ -1,4 +1,4 @@
-# generated on Tue Sep 29 11:54:49 2020
+# generated on Tue Dec  8 17:54:06 2020
 account_3way_match
 account_accountant
 account_asset
@@ -121,6 +121,7 @@ l10n_mx_edi_landing
 l10n_mx_reports
 l10n_mx_reports_closing
 l10n_nl_intrastat
+l10n_nl_report_intrastat
 l10n_nl_reports
 l10n_no_saft
 l10n_se_reports
@@ -182,6 +183,7 @@ sale_subscription
 sale_subscription_dashboard
 sale_subscription_sepa_direct_debit
 sale_subscription_taxcloud
+sale_subscription_timesheet
 sale_timesheet_enterprise
 sign
 snailmail_account_followup
