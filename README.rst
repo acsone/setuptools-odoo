@@ -412,6 +412,7 @@ N being the number of git commits since the version change.
   ``[8|9|10|11|12].0.x.y.z.99.devN``.
 - Strategy ``+1.devN`` is the default for series 13 and 14 and yields
   ``[13|14].0.x.y.z+1.devN``.
+- Strategy ``.N`` adds a digit, typically yielding ``[series].0.x.y.z.N``.
 - Strategy ``none`` is not used by default and disables the post
   versioning mechanism, yielding the version found in the manifest.
 
