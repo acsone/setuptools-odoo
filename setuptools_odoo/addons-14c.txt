@@ -1,4 +1,4 @@
-# generated on Tue Dec  8 17:53:29 2020
+# generated on Wed Jan 13 16:44:09 2021
 account
 account_check_printing
 account_debit_note
@@ -271,6 +271,7 @@ sale_quotation_builder
 sale_stock
 sale_stock_margin
 sale_timesheet
+sale_timesheet_edit
 sale_timesheet_purchase
 sales_team
 sms
