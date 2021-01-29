@@ -5,6 +5,10 @@ Changes
 .. ----------
 .. -
 
+2.6.3 (2021-01-29)
+------------------
+- [UPD] update base addons lists
+
 2.6.2 (2021-01-13)
 ------------------
 - Fixed build system by opting-in to PEP 517

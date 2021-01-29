@@ -1,4 +1,4 @@
-# generated on Wed Jan 13 16:44:26 2021
+# generated on Fri Jan 29 09:52:18 2021
 account_3way_match
 account_accountant
 account_accountant_check_printing
@@ -122,6 +122,7 @@ l10n_ar_edi
 l10n_ar_reports
 l10n_at_reports
 l10n_au_aba
+l10n_au_keypay
 l10n_au_reports
 l10n_be_coda
 l10n_be_disallowed_expenses
@@ -131,6 +132,7 @@ l10n_be_hr_payroll_273S_274
 l10n_be_hr_payroll_273S_274_account
 l10n_be_hr_payroll_account
 l10n_be_hr_payroll_fleet
+l10n_be_hr_payroll_impulsion
 l10n_be_hr_payroll_posted_employee
 l10n_be_hr_payroll_proration
 l10n_be_hr_payroll_variable_revenue
@@ -157,6 +159,7 @@ l10n_in_reports
 l10n_lt_reports
 l10n_lu_reports
 l10n_lu_reports_electronic
+l10n_lu_reports_electronic_xml_2_0
 l10n_lu_saft
 l10n_mn_reports
 l10n_mx_edi
@@ -168,6 +171,7 @@ l10n_nl_intrastat
 l10n_nl_report_intrastat
 l10n_nl_reports
 l10n_no_saft
+l10n_pe_edi
 l10n_se_reports
 l10n_sg_reports
 l10n_uk_reports

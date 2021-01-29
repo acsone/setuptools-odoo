@@ -1,8 +1,9 @@
-# generated on Wed Jan 13 16:44:09 2021
+# generated on Fri Jan 29 09:52:04 2021
 account
 account_check_printing
 account_debit_note
 account_edi
+account_edi_extended
 account_edi_facturx
 account_edi_ubl
 account_fleet
