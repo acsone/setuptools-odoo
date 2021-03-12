@@ -1,4 +1,4 @@
-# generated on Fri Jan 29 09:52:04 2021
+# generated on Sat Mar 13 00:11:36 2021
 account
 account_check_printing
 account_debit_note
@@ -144,6 +144,7 @@ l10n_in_sale_stock
 l10n_in_stock
 l10n_it
 l10n_it_edi
+l10n_it_stock_ddt
 l10n_jp
 l10n_latam_base
 l10n_latam_invoice_document

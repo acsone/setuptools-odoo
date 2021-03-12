@@ -9,6 +9,7 @@ Changes
 ------------------
 - [ADD] add new ``.N`` git post version strategy that adds a 6th digit with the
   number of commit since the latest manifest version change
+- [UPD] update base addons lists
 
 2.6.3 (2021-01-29)
 ------------------

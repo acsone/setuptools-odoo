@@ -1,4 +1,4 @@
-# generated on Fri Jan 29 09:52:18 2021
+# generated on Sat Mar 13 00:11:47 2021
 account_3way_match
 account_accountant
 account_accountant_check_printing
@@ -143,6 +143,7 @@ l10n_be_us_consolidation_demo
 l10n_ca_check_printing
 l10n_ch_reports
 l10n_cl_edi
+l10n_cl_edi_stock
 l10n_cl_reports
 l10n_co_edi
 l10n_co_reports

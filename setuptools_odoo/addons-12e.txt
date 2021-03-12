@@ -1,4 +1,4 @@
-# generated on Fri Jan 29 09:53:13 2021
+# generated on Sat Mar 13 00:12:30 2021
 account_3way_match
 account_accountant
 account_asset
@@ -13,6 +13,7 @@ account_intrastat
 account_invoice_extract
 account_invoice_extract_purchase
 account_online_sync
+account_online_synchronization
 account_plaid
 account_ponto
 account_predictive_bills
