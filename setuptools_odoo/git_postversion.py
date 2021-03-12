@@ -12,6 +12,7 @@ from .manifest import MANIFEST_NAMES, NoManifestFound, parse_manifest, read_mani
 STRATEGY_NONE = "none"
 STRATEGY_99_DEVN = ".99.devN"
 STRATEGY_P1_DEVN = "+1.devN"
+STRATEGY_DOT_N = ".N"
 
 
 def _run_git_command_exit_code(args, cwd=None, stderr=None):
@@ -100,6 +101,7 @@ def get_git_postversion(addon_dir, strategy):
     * STRATEGY_NONE: return the version in the manifest as is
     * STRATEGY_99_DEVN: [8|9].0.x.y.z.99.devN
     * STRATEGY_P1_DEVN: [series].0.x.y.(z+1).devN
+    * STRATEGY_DOT_N: [series].0.x.y.z.N
 
     Notes:
 
@@ -144,6 +146,8 @@ def get_git_postversion(addon_dir, strategy):
             return last_version + ".99.dev%s" % count
         elif strategy == STRATEGY_P1_DEVN:
             return _bump_last(last_version) + ".dev%s" % count
+        elif strategy == STRATEGY_DOT_N:
+            return last_version + ".%s" % count
         else:
             raise RuntimeError("Unknown postversion strategy: %s" % strategy)
     if uncommitted:

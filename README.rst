@@ -412,10 +412,11 @@ N being the number of git commits since the version change.
   ``[8|9|10|11|12].0.x.y.z.99.devN``.
 - Strategy ``+1.devN`` is the default for series 13 and 14 and yields
   ``[13|14].0.x.y.z+1.devN``.
+- Strategy ``.N`` adds a digit, typically yielding ``[series].0.x.y.z.N``.
 - Strategy ``none`` is not used by default and disables the post
   versioning mechanism, yielding the version found in the manifest.
 
-This schemes are compliant with the accepted python versioning scheme documented
+These schemes are compliant with the accepted python versioning scheme documented
 in `PEP 440 <https://www.python.org/dev/peps/pep-0440/#developmental-releases>`_.
 
 .. Note::
@@ -451,7 +452,7 @@ Author:
 Contributors
 
   - Benjamin Willig
-    Matteo Bilotta
+  - Matteo Bilotta
 
 Many thanks to Daniel Reis who cleared the path, and Laurent Mignon who convinced
 me it was possible to do it using standard Python setup tools and had the idea of
