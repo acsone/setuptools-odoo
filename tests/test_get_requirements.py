@@ -17,6 +17,22 @@ def test_get_requirements(tmp_path):
     assert reqs_path.read_text() == "astropy\npython-dateutil\n"
 
 
+def test_get_requirements_include_addons(tmp_path):
+    reqs_path = tmp_path / "reqs.txt"
+    get_requirements.main(
+        [
+            "--addons-dir",
+            os.path.join(DATA_DIR, "setup_custom_project", "odoo_addons"),
+            "-o",
+            str(reqs_path),
+            "--include-addons",
+        ]
+    )
+    assert reqs_path.read_text() == (
+        "odoo8-addon-addon1\nodoo>=8.0a,<9.0a\npython-dateutil\n"
+    )
+
+
 def test_get_requirements_header(tmp_path):
     reqs_path = tmp_path / "reqs.txt"
     get_requirements.main(
