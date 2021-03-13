@@ -419,9 +419,15 @@ N being the number of git commits since the version change.
 These schemes are compliant with the accepted python versioning scheme documented
 in `PEP 440 <https://www.python.org/dev/peps/pep-0440/#developmental-releases>`_.
 
+The default strategy can be overridden using the
+``post_version_strategy_override`` keyword or the
+``SETUPTOOLS_ODOO_POST_VERSION_STRATEGY_OVERRIDE`` environment variable. If set
+and not empty, the environment variable has priority over the ``setup.py``
+keyword.
+
 .. Note::
 
-  for pip to install a developmental version, it must be invoked with the --pre
+  For ``pip`` to install a developmental version, it must be invoked with the ``--pre``
   option.
 
 Public API

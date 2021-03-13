@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright © 2015-2018 ACSONE SA/NV
+# Copyright © 2015-2021 ACSONE SA/NV
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
 import email.parser
@@ -475,6 +475,7 @@ def prepare_odoo_addon(
     depends_override=None,
     external_dependencies_override=None,
     odoo_version_override=None,
+    post_version_strategy_override=None,
 ):
     addons_dir, addons_ns = _find_addons_dir()
     potential_addons = os.listdir(addons_dir)
@@ -510,6 +511,7 @@ def prepare_odoo_addon(
         depends_override,
         external_dependencies_override,
         odoo_version_override,
+        post_version_strategy_override,
     )
 
 
