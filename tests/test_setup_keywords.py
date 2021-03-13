@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright © 2015-2018 ACSONE SA/NV
+# Copyright © 2015-2021 ACSONE SA/NV
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
 import glob
@@ -34,6 +34,23 @@ class TestSetupKeywords(unittest.TestCase):
             )
             self.assertTrue(dist.has_metadata("not-zip-safe"))
             self.assertEqual(dist.version, "8.0.1.0.0.99.dev4")
+        finally:
+            shutil.rmtree(egg_info_dir)
+
+    def test_odoo_addon1_post_version_override_env(self):
+        """Test post version strategy override via environment variable."""
+        addon1_dir = os.path.join(DATA_DIR, "setup_reusable_addons", "addon1")
+        subprocess.check_call(
+            [sys.executable, "setup.py", "egg_info"],
+            cwd=addon1_dir,
+            env=dict(os.environ, SETUPTOOLS_ODOO_POST_VERSION_STRATEGY_OVERRIDE="none"),
+        )
+        egg_info_dir = os.path.join(addon1_dir, "odoo8_addon_addon1.egg-info")
+        assert os.path.isdir(egg_info_dir)
+        try:
+            dist = next(pkg_resources.find_distributions(addon1_dir))
+            self.assertEqual(dist.key, "odoo8-addon-addon1")
+            self.assertEqual(dist.version, "8.0.1.0.0")
         finally:
             shutil.rmtree(egg_info_dir)
 

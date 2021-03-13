@@ -9,6 +9,10 @@ Changes
 ------------------
 - [ADD] add new ``.N`` git post version strategy that adds a 6th digit with the
   number of commit since the latest manifest version change
+- [ADD] implement the ``post_version_strategy_override`` keyword that was documented
+  but not effective
+- [ADD] allow overriding the post version strategy using the
+  ``SETUPTOOLS_ODOO_POST_VERSION_STRATEGY_OVERRIDE`` environment variable
 - [UPD] update base addons lists
 
 2.6.3 (2021-01-29)
