@@ -13,6 +13,8 @@ Changes
   but not effective
 - [ADD] allow overriding the post version strategy using the
   ``SETUPTOOLS_ODOO_POST_VERSION_STRATEGY_OVERRIDE`` environment variable
+- [ADD] add ``--include-addons`` option to ``setuptools-odoo-get-requirements``,
+  to output addon packages and odoo in addition to python external dependencies
 - [UPD] update base addons lists
 
 2.6.3 (2021-01-29)

@@ -15,7 +15,7 @@ from .git_postversion import STRATEGY_NONE
 from .manifest import is_installable_addon
 
 # ignore odoo and odoo addons dependencies
-EXTERNAL_REQ_RE = re.compile("^(odoo[^A-Za-z0-9-_]|odoo[0-9]*-addon-)")
+ODOO_REQ_RE = re.compile("^(odoo[^A-Za-z0-9-_]|odoo[0-9]*-addon-)")
 
 
 def _get_odoo_addon_keyword(setup_py_path):
@@ -45,7 +45,9 @@ def _get_metadata_overrides_from_setup_dir(addons_dir, addon_name, setup_dir="se
 
 
 def _get_requirements(
-    addons_dir, get_metadata_overrides=_get_metadata_overrides_from_setup_dir
+    addons_dir,
+    get_metadata_overrides=_get_metadata_overrides_from_setup_dir,
+    include_addons=False,
 ):
     requirements = set()
     for addon_name in os.listdir(addons_dir):
@@ -58,7 +60,7 @@ def _get_requirements(
         overrides["post_version_strategy_override"] = STRATEGY_NONE
         metadata = get_addon_metadata(addon_dir, **overrides)
         for install_require in metadata.get_all("Requires-Dist"):
-            if EXTERNAL_REQ_RE.match(install_require):
+            if not include_addons and ODOO_REQ_RE.match(install_require):
                 continue
             requirements.add(install_require)
     return sorted(requirements, key=lambda s: s.lower())
@@ -95,8 +97,18 @@ def main(args=None):
         "--header",
         help="output file header",
     )
+    parser.add_argument(
+        "--include-addons",
+        action="store_true",
+        help=(
+            "Include addons and odoo requirements in addition to "
+            "python external dependencies (default: false)"
+        ),
+    )
     args = parser.parse_args(args)
-    requirements = _get_requirements(args.addons_dir)
+    requirements = _get_requirements(
+        args.addons_dir, include_addons=args.include_addons
+    )
     if args.output == "-":
         _render(requirements, args.header, sys.stdout)
     else:
