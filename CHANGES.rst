@@ -5,7 +5,7 @@ Changes
 .. ----------
 .. -
 
-2.7.0 (unreleased)
+2.7.0 (2021-03-13)
 ------------------
 - [ADD] add new ``.N`` git post version strategy that adds a 6th digit with the
   number of commit since the latest manifest version change
