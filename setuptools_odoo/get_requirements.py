@@ -50,6 +50,7 @@ def _get_requirements(
     include_addons=False,
 ):
     requirements = set()
+    local_addons = set()
     for addon_name in os.listdir(addons_dir):
         addon_dir = os.path.join(addons_dir, addon_name)
         if not is_installable_addon(addon_dir):
@@ -59,10 +60,15 @@ def _get_requirements(
         # by skipping git post version lookup.
         overrides["post_version_strategy_override"] = STRATEGY_NONE
         metadata = get_addon_metadata(addon_dir, **overrides)
+        local_addons.add(metadata.get("Name"))
         for install_require in metadata.get_all("Requires-Dist"):
             if not include_addons and ODOO_REQ_RE.match(install_require):
                 continue
             requirements.add(install_require)
+    if include_addons:
+        # Exclude local addons as they cannot be considered to be dependencies
+        # of addons in addons_dir.
+        requirements -= local_addons
     return sorted(requirements, key=lambda s: s.lower())
 
 

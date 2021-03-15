@@ -5,6 +5,11 @@ Changes
 .. ----------
 .. -
 
+2.7.1 (2021-03-15)
+------------------
+- ``setuptools-odoo-get-requirements --include-addons`` does not output
+  local addons, as it is meant to list third party dependencies
+
 2.7.0 (2021-03-13)
 ------------------
 - [ADD] add new ``.N`` git post version strategy that adds a 6th digit with the

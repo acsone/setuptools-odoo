@@ -28,9 +28,7 @@ def test_get_requirements_include_addons(tmp_path):
             "--include-addons",
         ]
     )
-    assert reqs_path.read_text() == (
-        "odoo8-addon-addon1\nodoo>=8.0a,<9.0a\npython-dateutil\n"
-    )
+    assert reqs_path.read_text() == "odoo>=8.0a,<9.0a\npython-dateutil\n"
 
 
 def test_get_requirements_header(tmp_path):
