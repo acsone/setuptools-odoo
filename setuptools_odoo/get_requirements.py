@@ -48,6 +48,7 @@ def _get_requirements(
     addons_dir,
     get_metadata_overrides=_get_metadata_overrides_from_setup_dir,
     include_addons=False,
+    odoo_version_override=None,
 ):
     requirements = set()
     local_addons = set()
@@ -59,6 +60,8 @@ def _get_requirements(
         # We don't care about the version here, so improve performance
         # by skipping git post version lookup.
         overrides["post_version_strategy_override"] = STRATEGY_NONE
+        if odoo_version_override:
+            overrides['odoo_version_override'] = odoo_version_override
         metadata = get_addon_metadata(addon_dir, **overrides)
         local_addons.add(metadata.get("Name"))
         for install_require in metadata.get_all("Requires-Dist"):
@@ -94,6 +97,12 @@ def main(args=None):
         help="addons directory (default: .)",
     )
     parser.add_argument(
+        "--odoo-version-override",
+        help="Force Odoo version for situations where some "
+             "addons versions do not start with the odoo "
+             "version.",
+    )
+    parser.add_argument(
         "--output",
         "-o",
         default="-",
@@ -113,7 +122,8 @@ def main(args=None):
     )
     args = parser.parse_args(args)
     requirements = _get_requirements(
-        args.addons_dir, include_addons=args.include_addons
+        args.addons_dir, include_addons=args.include_addons,
+        odoo_version_override=args.odoo_version_override
     )
     if args.output == "-":
         _render(requirements, args.header, sys.stdout)
