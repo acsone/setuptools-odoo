@@ -40,6 +40,7 @@ def test_addon1():
             ("Author-email", "support@odoo-community.org"),
             ("Classifier", "Programming Language :: Python"),
             ("Classifier", "Framework :: Odoo"),
+            ("Classifier", "Framework :: Odoo :: 8.0"),
             (
                 "Classifier",
                 "License :: OSI Approved :: " "GNU Affero General Public License v3",

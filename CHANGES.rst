@@ -15,6 +15,7 @@ Changes
   version, depending on the installed Odoo version. The default git postversion strategy
   for Odoo 15 addons is now ``.N``, which means it adds a 6th digit to the version
   number with the number of commit since the last version bump in the addon manifest.
+- Add support for the new Odoo series trove classifers.
 
 2.7.1 (2021-03-15)
 ------------------

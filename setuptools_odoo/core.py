@@ -338,8 +338,12 @@ def _find_addons_dir():
     return res.pop()
 
 
-def _make_classifiers(manifest):
-    classifiers = ["Programming Language :: Python", "Framework :: Odoo"]
+def _make_classifiers(odoo_version, manifest):
+    classifiers = [
+        "Programming Language :: Python",
+        "Framework :: Odoo",
+        "Framework :: Odoo :: {}".format(odoo_version),
+    ]
 
     # commonly used licenses in OCA
     LICENSES = {
@@ -477,12 +481,12 @@ def get_addon_setuptools_keywords(
             pkg_info = email.parser.HeaderParser().parse(fp)
             addon_name = _addon_name_from_metadata_name(pkg_info["Name"])
             version = pkg_info["Version"]
-        _, _, odoo_version_info = _get_version(
+        _, odoo_version, odoo_version_info = _get_version(
             addon_dir, manifest, odoo_version_override, git_post_version=False
         )
     else:
         addon_name = os.path.basename(os.path.abspath(addon_dir))
-        version, _, odoo_version_info = _get_version(
+        version, odoo_version, odoo_version_info = _get_version(
             addon_dir,
             manifest,
             odoo_version_override,
@@ -510,7 +514,7 @@ def get_addon_setuptools_keywords(
         "python_requires": odoo_version_info["python_requires"],
         "author": _get_author(manifest),
         "author_email": _get_author_email(manifest),
-        "classifiers": _make_classifiers(manifest),
+        "classifiers": _make_classifiers(odoo_version, manifest),
     }
     # import pprint; pprint.pprint(setup_keywords)
     return {k: v for k, v in setup_keywords.items() if v is not None}

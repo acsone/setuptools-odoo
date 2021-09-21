@@ -36,6 +36,7 @@ def test_addon1():
             "classifiers": [
                 "Programming Language :: Python",
                 "Framework :: Odoo",
+                "Framework :: Odoo :: 8.0",
                 "License :: OSI Approved :: " "GNU Affero General Public License v3",
                 "Development Status :: 4 - Beta",
             ],
@@ -60,7 +61,11 @@ def test_addon2():
         os.chdir(addon_dir)
         keywords = prepare_odoo_addon()
         assert keywords == {
-            "classifiers": ["Programming Language :: Python", "Framework :: Odoo"],
+            "classifiers": [
+                "Programming Language :: Python",
+                "Framework :: Odoo",
+                "Framework :: Odoo :: 8.0",
+            ],
             "description": "addon 2 summary",
             "include_package_data": True,
             "install_requires": [
@@ -83,7 +88,11 @@ def test_addon7():
         os.chdir(addon_dir)
         keywords = prepare_odoo_addon()
         assert keywords == {
-            "classifiers": ["Programming Language :: Python", "Framework :: Odoo"],
+            "classifiers": [
+                "Programming Language :: Python",
+                "Framework :: Odoo",
+                "Framework :: Odoo :: 11.0",
+            ],
             "description": "addon 7 summary",
             "include_package_data": True,
             "install_requires": ["odoo>=11.0a,<11.1dev"],
@@ -101,7 +110,11 @@ def test_addon8():
         os.chdir(addon_dir)
         keywords = prepare_odoo_addon()
         assert keywords == {
-            "classifiers": ["Programming Language :: Python", "Framework :: Odoo"],
+            "classifiers": [
+                "Programming Language :: Python",
+                "Framework :: Odoo",
+                "Framework :: Odoo :: 12.0",
+            ],
             "description": "addon 8 summary",
             "include_package_data": True,
             "install_requires": ["odoo>=12.0a,<12.1dev"],
