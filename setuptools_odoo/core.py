@@ -13,7 +13,12 @@ from warnings import warn
 import setuptools
 
 from . import base_addons, external_dependencies
-from .git_postversion import STRATEGY_99_DEVN, STRATEGY_P1_DEVN, get_git_postversion
+from .git_postversion import (
+    STRATEGY_99_DEVN,
+    STRATEGY_DOT_N,
+    STRATEGY_P1_DEVN,
+    get_git_postversion,
+)
 from .manifest import is_installable_addon, read_manifest
 
 METADATA_NAME_RE = re.compile(r"^odoo(\d+)-addon-(?P<addon_name>.*)$")
@@ -101,6 +106,17 @@ ODOO_VERSION_INFO = {
         "python_requires": ">=3.6",
         "universal_wheel": False,
         "git_postversion_strategy": STRATEGY_P1_DEVN,
+    },
+    "15.0": {
+        "odoo_dep": "odoo>=15.0a,<15.1dev",
+        "base_addons": base_addons.odoo14,
+        "pkg_name_pfx": "odoo-addon-",
+        "pkg_version_specifier": ">=15.0dev,<15.1dev",
+        "addons_ns": "odoo.addons",
+        "namespace_packages": None,
+        "python_requires": ">=3.6",
+        "universal_wheel": False,
+        "git_postversion_strategy": STRATEGY_DOT_N,
     },
 }
 
@@ -200,13 +216,19 @@ def make_pkg_name(odoo_version_info, addon_name):
     return name
 
 
+def make_pkg_requirement_from_addon_name(odoo_version_info, addon_name):
+    pkg_name = make_pkg_name(odoo_version_info, addon_name)
+    pkg_version_specifier = odoo_version_info.get("pkg_version_specifier", "")
+    return pkg_name + pkg_version_specifier
+
+
 def make_pkg_requirement(addon_dir, odoo_version_override=None):
     manifest = read_manifest(addon_dir)
     addon_name = os.path.basename(addon_dir)
     _, _, odoo_version_info = _get_version(
         addon_dir, manifest, odoo_version_override, git_post_version=False
     )
-    return make_pkg_name(odoo_version_info, addon_name)
+    return make_pkg_requirement_from_addon_name(odoo_version_info, addon_name)
 
 
 def _get_install_requires(
@@ -230,7 +252,9 @@ def _get_install_requires(
         if depends_override and depend in depends_override:
             install_require = depends_override[depend]
         else:
-            install_require = make_pkg_name(odoo_version_info, depend)
+            install_require = make_pkg_requirement_from_addon_name(
+                odoo_version_info, depend
+            )
         if install_require:
             install_requires.append(install_require)
     # python external_dependencies

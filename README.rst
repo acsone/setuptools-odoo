@@ -28,7 +28,7 @@ Requirements
 
 The following prerequisites apply:
 
-  * Odoo version 8, 9, 10, 11, 12, 13 and 14 are supported (see notes in the
+  * Odoo version 8, 9, 10, 11, 12, 13, 14 and 15 are supported (see notes in the
     documentation for implementation differences).
   * To install addons packaged with this tool, any pip version that
     supports the wheel package format should work (ie pip >= 1.4).
@@ -215,7 +215,7 @@ Odoo manifest files (``__manifest__.py`` or ``__openerp__.py``) and contain:
 
   * ``packages``: autodetected packages
   * ``namespace_packages``: ``['odoo', 'odoo.addons']`` (Odoo 10) or
-    ``['odoo_addons']`` (Odoo 8, 9), absent for Odoo 11
+    ``['odoo_addons']`` (Odoo 8, 9), absent for Python 3 (Odoo 11 and later)
   * ``zip_safe``: ``False``
   * ``include_package_data``: ``True``
   * ``install_requires``: dependencies on Odoo, any depending addon not found
@@ -414,7 +414,8 @@ N being the number of git commits since the version change.
   ``[8|9|10|11|12].0.x.y.z.99.devN``.
 - Strategy ``+1.devN`` is the default for series 13 and 14 and yields
   ``[13|14].0.x.y.z+1.devN``.
-- Strategy ``.N`` adds a digit, typically yielding ``[series].0.x.y.z.N``.
+- Strategy ``.N`` is the default for series 15 and later, and
+  adds a digit, typically yielding ``[series].0.x.y.z.N``.
 - Strategy ``none`` is not used by default and disables the post
   versioning mechanism, yielding the version found in the manifest.
 
@@ -463,5 +464,5 @@ Contributors
   - Matteo Bilotta
 
 Many thanks to Daniel Reis who cleared the path, and Laurent Mignon who convinced
-me it was possible to do it using standard Python setup tools and had the idea of
+me it was possible to do it using standard Python packaging tools and had the idea of
 the odoo_addons namespace package.

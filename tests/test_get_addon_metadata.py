@@ -49,6 +49,26 @@ def test_addon1():
     )
 
 
+def test_addon9():
+    addon_dir = os.path.join(DATA_DIR, "addon9")
+    metadata = get_addon_metadata(addon_dir)
+    _assert_msg(
+        metadata,
+        [
+            ("Metadata-Version", "2.2"),
+            ("Name", "odoo-addon-addon9"),
+            ("Version", "15.0.1.0.0"),
+            ("Requires-Python", ">=3.6"),
+            ("Requires-Dist", "odoo-addon-another_addon>=15.0dev,<15.1dev"),
+            ("Requires-Dist", "odoo>=15.0a,<15.1dev"),
+            ("Summary", "Addon 9"),
+            ("Classifier", "Programming Language :: Python"),
+            ("Classifier", "Framework :: Odoo"),
+            ("Classifier", "Framework :: Odoo :: 15.0"),
+        ],
+    )
+
+
 def test_pkg_info(tmp_path):
     """Test that PKG-INFO is used to obtain name and version"""
     addon_dir = tmp_path / "odoo12-addon-test_addon-12.0.1.0.0.dev5"
