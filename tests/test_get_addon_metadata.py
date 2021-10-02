@@ -27,7 +27,7 @@ def test_addon1():
     _assert_msg(
         metadata,
         [
-            ("Metadata-Version", "2.1"),
+            ("Metadata-Version", "2.2"),
             ("Name", "odoo8-addon-addon1"),
             ("Version", "8.0.1.0.0.99.dev4"),
             ("Requires-Python", "~=2.7"),

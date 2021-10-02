@@ -402,7 +402,7 @@ def get_addon_metadata(
             for item in svalue:
                 meta[name] = item
 
-    meta["Metadata-Version"] = "2.1"
+    meta["Metadata-Version"] = "2.2"
     _set("Name", "name")
     _set("Version", "version")
     _set("Requires-Python", "python_requires")

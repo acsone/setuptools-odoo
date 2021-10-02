@@ -5,6 +5,11 @@ Changes
 .. ----------
 .. -
 
+3.0.0 (unreleased)
+------------------
+- Generate Metada-Version 2.2. Since metadata obtained from a sdist with PKG-INFO
+  is directly read from the PKG-INFO, all metadata is static by definition.
+
 2.7.1 (2021-03-15)
 ------------------
 - ``setuptools-odoo-get-requirements --include-addons`` does not output
