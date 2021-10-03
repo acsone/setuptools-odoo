@@ -9,6 +9,7 @@ Changes
 ------------------
 - Generate Metada-Version 2.2. Since metadata obtained from a sdist with PKG-INFO
   is directly read from the PKG-INFO, all metadata is static by definition.
+- Add a ``precomputed_metadata_path`` argument to ``get_addon_metadata``.
 
 2.7.1 (2021-03-15)
 ------------------
