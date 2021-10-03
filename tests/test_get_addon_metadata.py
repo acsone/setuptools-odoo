@@ -3,6 +3,7 @@
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
 import os
+import textwrap
 
 from setuptools_odoo import get_addon_metadata
 
@@ -46,3 +47,33 @@ def test_addon1():
             ("Classifier", "Development Status :: 4 - Beta"),
         ],
     )
+
+
+def test_pkg_info(tmp_path):
+    """Test that PKG-INFO is used to obtain name and version"""
+    addon_dir = tmp_path / "odoo12-addon-test_addon-12.0.1.0.0.dev5"
+    addon_dir.mkdir()
+    (addon_dir / "__manifest__.py").write_text(
+        textwrap.dedent(
+            u"""\
+                {
+                    "name": "test addon",
+                    "version": "12.0.1.0.0",
+                }
+            """
+        )
+    )
+    (addon_dir / "PKG-INFO").write_text(
+        textwrap.dedent(
+            u"""\
+                Name: odoo12-addon-test_addon
+                Version: 12.0.1.0.0.dev5
+            """
+        )
+    )
+    metadata = get_addon_metadata(
+        str(addon_dir), precomputed_metadata_path=str(addon_dir / "PKG-INFO")
+    )
+    assert metadata["Name"] == "odoo12-addon-test_addon"
+    assert metadata["Version"] == "12.0.1.0.0.dev5"
+    assert metadata["Requires-Dist"] == "odoo>=12.0a,<12.1dev"

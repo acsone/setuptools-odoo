@@ -5,6 +5,7 @@
 import email.parser
 import io
 import os
+import re
 from distutils.core import DistutilsSetupError
 from email.message import Message
 from warnings import warn
@@ -14,6 +15,9 @@ import setuptools
 from . import base_addons, external_dependencies
 from .git_postversion import STRATEGY_99_DEVN, STRATEGY_P1_DEVN, get_git_postversion
 from .manifest import is_installable_addon, read_manifest
+
+METADATA_NAME_RE = re.compile(r"^odoo(\d+)-addon-(?P<addon_name>.*)$")
+
 
 ODOO_VERSION_INFO = {
     "7.0": {
@@ -368,12 +372,22 @@ def _setuptools_find_packages(odoo_version_info):
     return pkg
 
 
+def _addon_name_from_metadata_name(metadata_name):
+    mo = METADATA_NAME_RE.match(metadata_name)
+    if not mo:
+        raise DistutilsSetupError(
+            "%s does not look like an Odoo addon package name" % metadata_name
+        )
+    return mo.group("addon_name")
+
+
 def get_addon_metadata(
     addon_dir,  # type: str
     depends_override=None,  # type: dict[str, str]
     external_dependencies_override=None,  # type: dict[str: dict[str: str]]
     odoo_version_override=None,  # type: str
     post_version_strategy_override=None,  # type: str
+    precomputed_metadata_path=None,  # type: str
 ):
     # type: (...) -> Message
     """
@@ -384,6 +398,10 @@ def get_addon_metadata(
     All values are guaranteed to not contain newline characters, except for
     the payload. On python 3, all values are str. On python 2 the value types
     can be str or unicode depending on the python manifests.
+
+    ``precomputed_metadata_path`` may point to a file containing pre-computed
+    metadata that will be used to obtain the Name and Version, instead of looking
+    at the addon directory name or manifest version + VCS, respectively.
     """
     smeta = get_addon_setuptools_keywords(
         addon_dir,
@@ -391,6 +409,7 @@ def get_addon_metadata(
         external_dependencies_override=external_dependencies_override,
         odoo_version_override=odoo_version_override,
         post_version_strategy_override=post_version_strategy_override,
+        precomputed_metadata_path=precomputed_metadata_path,
     )
     meta = Message()
 
@@ -426,17 +445,19 @@ def get_addon_setuptools_keywords(
     external_dependencies_override=None,
     odoo_version_override=None,
     post_version_strategy_override=None,
+    precomputed_metadata_path=None,
 ):
-    addon_name = os.path.basename(os.path.abspath(addon_dir))
     manifest = read_manifest(addon_dir)
-    if os.path.exists("PKG-INFO"):
-        with io.open("PKG-INFO", encoding="utf-8") as fp:
+    if precomputed_metadata_path and os.path.exists(precomputed_metadata_path):
+        with io.open(precomputed_metadata_path, encoding="utf-8") as fp:
             pkg_info = email.parser.HeaderParser().parse(fp)
+            addon_name = _addon_name_from_metadata_name(pkg_info["Name"])
             version = pkg_info["Version"]
         _, _, odoo_version_info = _get_version(
             addon_dir, manifest, odoo_version_override, git_post_version=False
         )
     else:
+        addon_name = os.path.basename(os.path.abspath(addon_dir))
         version, _, odoo_version_info = _get_version(
             addon_dir,
             manifest,
@@ -508,10 +529,11 @@ def prepare_odoo_addon(
     addon_dir = os.path.join(addons_dir, addon_name)
     return get_addon_setuptools_keywords(
         addon_dir,
-        depends_override,
-        external_dependencies_override,
-        odoo_version_override,
-        post_version_strategy_override,
+        depends_override=depends_override,
+        external_dependencies_override=external_dependencies_override,
+        odoo_version_override=odoo_version_override,
+        post_version_strategy_override=post_version_strategy_override,
+        precomputed_metadata_path="./PKG-INFO",
     )
 
 
