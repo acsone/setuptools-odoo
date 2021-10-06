@@ -109,7 +109,7 @@ ODOO_VERSION_INFO = {
     },
     "15.0": {
         "odoo_dep": "odoo>=15.0a,<15.1dev",
-        "base_addons": base_addons.odoo14,
+        "base_addons": base_addons.odoo15,
         "pkg_name_pfx": "odoo-addon-",
         "pkg_version_specifier": ">=15.0dev,<15.1dev",
         "addons_ns": "odoo.addons",

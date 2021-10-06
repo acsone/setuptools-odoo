@@ -10,6 +10,7 @@ from setuptools_odoo import manifest
 SERIES = [
     # branch, suffix, enterprise
     # ("master", "15", True),
+    ("15.0", "15", True),
     ("14.0", "14", True),
     ("13.0", "13", True),
     ("12.0", "12", True),
