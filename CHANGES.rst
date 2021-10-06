@@ -5,7 +5,7 @@ Changes
 .. ----------
 .. -
 
-3.0.0 (unreleased)
+3.0.0 (2021-10-06)
 ------------------
 - Generate Metada-Version 2.2. Since metadata obtained from a sdist with PKG-INFO
   is directly read from the PKG-INFO, all metadata is static by definition.
