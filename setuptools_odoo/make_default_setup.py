@@ -37,6 +37,7 @@ setuptools.setup(
     classifiers=[
         'Programming Language :: Python',
         'Framework :: Odoo',
+        'Framework :: Odoo :: {odoo_version}',
     ]
 )
 """
@@ -95,7 +96,7 @@ def make_ns_pkg_dirs(root, pkgs, force, with_ns_init_py):
 
 def make_default_setup_addon(addon_setup_dir, addon_dir, force, odoo_version_override):
     manifest = read_manifest(addon_dir)
-    _, _, odoo_version_info = _get_version(
+    _, odoo_version, odoo_version_info = _get_version(
         addon_dir, manifest, odoo_version_override, git_post_version=False
     )
     addon_name = os.path.basename(os.path.realpath(addon_dir))
@@ -202,7 +203,10 @@ def make_default_meta_package(addons_dir, name, odoo_version_override):
     )
 
     setup_py = SETUP_PY_METAPACKAGE.format(
-        name=name, odoo_series=odoo_series, install_requires=install_requires_str
+        name=name,
+        odoo_version=odoo_version,
+        odoo_series=odoo_series,
+        install_requires=install_requires_str,
     )
 
     if not os.path.exists(metapackage_dir):

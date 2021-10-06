@@ -40,11 +40,32 @@ def test_addon1():
             ("Author-email", "support@odoo-community.org"),
             ("Classifier", "Programming Language :: Python"),
             ("Classifier", "Framework :: Odoo"),
+            ("Classifier", "Framework :: Odoo :: 8.0"),
             (
                 "Classifier",
                 "License :: OSI Approved :: " "GNU Affero General Public License v3",
             ),
             ("Classifier", "Development Status :: 4 - Beta"),
+        ],
+    )
+
+
+def test_addon9():
+    addon_dir = os.path.join(DATA_DIR, "addon9")
+    metadata = get_addon_metadata(addon_dir)
+    _assert_msg(
+        metadata,
+        [
+            ("Metadata-Version", "2.2"),
+            ("Name", "odoo-addon-addon9"),
+            ("Version", "15.0.1.0.0"),
+            ("Requires-Python", ">=3.6"),
+            ("Requires-Dist", "odoo-addon-another_addon>=15.0dev,<15.1dev"),
+            ("Requires-Dist", "odoo>=15.0a,<15.1dev"),
+            ("Summary", "Addon 9"),
+            ("Classifier", "Programming Language :: Python"),
+            ("Classifier", "Framework :: Odoo"),
+            ("Classifier", "Framework :: Odoo :: 15.0"),
         ],
     )
 

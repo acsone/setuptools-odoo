@@ -116,6 +116,7 @@ class TestMakeDefaultSetup(unittest.TestCase):
                 classifiers=[
                     'Programming Language :: Python',
                     'Framework :: Odoo',
+                    'Framework :: Odoo :: 8.0',
                 ]
             )
         """

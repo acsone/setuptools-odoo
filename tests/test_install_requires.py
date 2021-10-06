@@ -28,6 +28,8 @@ class TestInstallRequires(unittest.TestCase):
                 "odoo>=10.0,<10.1dev",
                 "odoo>=8.0a,<9.0a",
                 "python-dateutil",
+                "odoo>=15.0a,<15.1dev",
+                "odoo-addon-another_addon>=15.0dev,<15.1dev",
             },
         )
 
