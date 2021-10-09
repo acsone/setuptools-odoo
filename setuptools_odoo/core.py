@@ -28,7 +28,7 @@ ODOO_VERSION_INFO = {
     "7.0": {
         "odoo_dep": "openerp>=7.0a,<8.0a",
         "base_addons": base_addons.openerp7,
-        "pkg_name_pfx": "openerp7-addon-",
+        "pkg_name_pfx": "openerp7-addon",
         "addons_ns": "openerp_addons",
         "namespace_packages": ["openerp_addons"],
         "python_requires": "~=2.7",
@@ -38,7 +38,7 @@ ODOO_VERSION_INFO = {
     "8.0": {
         "odoo_dep": "odoo>=8.0a,<9.0a",
         "base_addons": base_addons.odoo8,
-        "pkg_name_pfx": "odoo8-addon-",
+        "pkg_name_pfx": "odoo8-addon",
         "addons_ns": "odoo_addons",
         "namespace_packages": ["odoo_addons"],
         "python_requires": "~=2.7",
@@ -48,7 +48,7 @@ ODOO_VERSION_INFO = {
     "9.0": {
         "odoo_dep": "odoo>=9.0a,<9.1a",
         "base_addons": base_addons.odoo9,
-        "pkg_name_pfx": "odoo9-addon-",
+        "pkg_name_pfx": "odoo9-addon",
         "addons_ns": "odoo_addons",
         "namespace_packages": ["odoo_addons"],
         "python_requires": "~=2.7",
@@ -58,7 +58,7 @@ ODOO_VERSION_INFO = {
     "10.0": {
         "odoo_dep": "odoo>=10.0,<10.1dev",
         "base_addons": base_addons.odoo10,
-        "pkg_name_pfx": "odoo10-addon-",
+        "pkg_name_pfx": "odoo10-addon",
         "addons_ns": "odoo.addons",
         "namespace_packages": ["odoo", "odoo.addons"],
         "python_requires": "~=2.7",
@@ -68,7 +68,7 @@ ODOO_VERSION_INFO = {
     "11.0": {
         "odoo_dep": "odoo>=11.0a,<11.1dev",
         "base_addons": base_addons.odoo11,
-        "pkg_name_pfx": "odoo11-addon-",
+        "pkg_name_pfx": "odoo11-addon",
         "addons_ns": "odoo.addons",
         "namespace_packages": None,
         "python_requires": ", ".join(
@@ -80,7 +80,7 @@ ODOO_VERSION_INFO = {
     "12.0": {
         "odoo_dep": "odoo>=12.0a,<12.1dev",
         "base_addons": base_addons.odoo12,
-        "pkg_name_pfx": "odoo12-addon-",
+        "pkg_name_pfx": "odoo12-addon",
         "addons_ns": "odoo.addons",
         "namespace_packages": None,
         "python_requires": ">=3.5",
@@ -90,7 +90,7 @@ ODOO_VERSION_INFO = {
     "13.0": {
         "odoo_dep": "odoo>=13.0a,<13.1dev",
         "base_addons": base_addons.odoo13,
-        "pkg_name_pfx": "odoo13-addon-",
+        "pkg_name_pfx": "odoo13-addon",
         "addons_ns": "odoo.addons",
         "namespace_packages": None,
         "python_requires": ">=3.5",
@@ -100,7 +100,7 @@ ODOO_VERSION_INFO = {
     "14.0": {
         "odoo_dep": "odoo>=14.0a,<14.1dev",
         "base_addons": base_addons.odoo14,
-        "pkg_name_pfx": "odoo14-addon-",
+        "pkg_name_pfx": "odoo14-addon",
         "addons_ns": "odoo.addons",
         "namespace_packages": None,
         "python_requires": ">=3.6",
@@ -110,7 +110,7 @@ ODOO_VERSION_INFO = {
     "15.0": {
         "odoo_dep": "odoo>=15.0a,<15.1dev",
         "base_addons": base_addons.odoo15,
-        "pkg_name_pfx": "odoo-addon-",
+        "pkg_name_pfx": "odoo-addon",
         "pkg_version_specifier": ">=15.0dev,<15.1dev",
         "addons_ns": "odoo.addons",
         "namespace_packages": None,
@@ -212,7 +212,7 @@ def _get_author_email(manifest):
 
 
 def make_pkg_name(odoo_version_info, addon_name):
-    name = odoo_version_info["pkg_name_pfx"] + addon_name
+    name = odoo_version_info["pkg_name_pfx"] + "-" + addon_name
     return name
 
 

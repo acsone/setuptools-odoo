@@ -30,7 +30,7 @@ with open('VERSION.txt', 'r') as f:
     version = f.read().strip()
 
 setuptools.setup(
-    name="odoo{odoo_series}-addons-{name}",
+    name="{pkg_name_pfx}s-{name}",
     description="Meta package for {name} Odoo addons",
     version=version,
     install_requires={install_requires},
@@ -190,7 +190,6 @@ def make_default_meta_package(addons_dir, name, odoo_version_override):
         )
 
     odoo_version = list(odoo_versions)[0]
-    odoo_series = _odoo_version_to_series(odoo_version)
 
     install_requires_str = "[\n{}{}]".format(
         "".join(
@@ -205,7 +204,7 @@ def make_default_meta_package(addons_dir, name, odoo_version_override):
     setup_py = SETUP_PY_METAPACKAGE.format(
         name=name,
         odoo_version=odoo_version,
-        odoo_series=odoo_series,
+        pkg_name_pfx=odoo_version_info["pkg_name_pfx"],
         install_requires=install_requires_str,
     )
 
