@@ -1,9 +1,7 @@
 Changes
 ~~~~~~~
 
-.. Future (?)
-.. ----------
-.. -
+.. towncrier release notes start
 
 3.0.1 (2021-10-06)
 ------------------
