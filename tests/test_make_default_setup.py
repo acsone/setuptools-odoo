@@ -89,80 +89,77 @@ class TestMakeDefaultSetup(unittest.TestCase):
         finally:
             shutil.rmtree(tmpdir)
 
-    def test_make_default_setup_metapackage(self):
-        tmpdir = tempfile.mkdtemp()
-        source_addons_path = os.path.join(
-            os.getcwd(), "tests", "data", "setup_custom_project", "odoo_addons"
+
+def test_make_default_setup_metapackage():
+    tmpdir = tempfile.mkdtemp()
+    source_addons_path = os.path.join(
+        os.getcwd(), "tests", "data", "setup_custom_project", "odoo_addons"
+    )
+    addons_path = os.path.join(tmpdir, "tests")
+    metapackage_dir = os.path.join(addons_path, "setup", "_metapackage")
+    setup_file = os.path.join(metapackage_dir, "setup.py")
+    version_file = os.path.join(metapackage_dir, "VERSION.txt")
+    today_date = datetime.date.today().strftime("%Y%m%d")
+    expected_setup_file = textwrap.dedent(
+        """\
+        import setuptools
+
+        with open('VERSION.txt', 'r') as f:
+            version = f.read().strip()
+
+        setuptools.setup(
+            name="odoo8-addons-tests",
+            description="Meta package for tests Odoo addons",
+            version=version,
+            install_requires=[
+                'odoo8-addon-addon1',
+            ],
+            classifiers=[
+                'Programming Language :: Python',
+                'Framework :: Odoo',
+                'Framework :: Odoo :: 8.0',
+            ]
         )
-        addons_path = os.path.join(tmpdir, "tests")
-        metapackage_dir = os.path.join(addons_path, "setup", "_metapackage")
-        setup_file = os.path.join(metapackage_dir, "setup.py")
-        version_file = os.path.join(metapackage_dir, "VERSION.txt")
-        today_date = datetime.date.today().strftime("%Y%m%d")
-        expected_setup_file = textwrap.dedent(
-            """\
-            import setuptools
+    """
+    )
 
-            with open('VERSION.txt', 'r') as f:
-                version = f.read().strip()
-
-            setuptools.setup(
-                name="odoo8-addons-tests",
-                description="Meta package for tests Odoo addons",
-                version=version,
-                install_requires=[
-                    'odoo8-addon-addon1',
-                ],
-                classifiers=[
-                    'Programming Language :: Python',
-                    'Framework :: Odoo',
-                    'Framework :: Odoo :: 8.0',
-                ]
-            )
-        """
+    try:
+        shutil.copytree(source_addons_path, addons_path)
+        make_default_setup.make_default_setup_addons_dir(addons_path, False, False)
+        with open(
+            os.path.join(addons_path, "setup", ".setuptools-odoo-make-default-ignore"),
+            "a",
+        ) as f:
+            f.write("addon2\n")
+        make_default_setup.make_default_meta_package(
+            addons_path, "tests", odoo_version_override=None
         )
 
-        try:
-            shutil.copytree(source_addons_path, addons_path)
-            make_default_setup.make_default_setup_addons_dir(addons_path, False, False)
-            with open(
-                os.path.join(
-                    addons_path, "setup", ".setuptools-odoo-make-default-ignore"
-                ),
-                "a",
-            ) as f:
-                f.write("addon2\n")
-            make_default_setup.make_default_meta_package(
-                addons_path, "tests", odoo_version_override=None
-            )
+        with open(setup_file, "r") as f:
+            setup_file_content = f.read()
+            assert setup_file_content == expected_setup_file
 
-            with open(setup_file, "r") as f:
-                setup_file_content = f.read()
-                self.assertEqual(setup_file_content, expected_setup_file)
+        with open(version_file, "r") as f:
+            version = f.read().strip()
+            assert version == "8.0.%s.0" % today_date
 
-            with open(version_file, "r") as f:
-                version = f.read().strip()
-                self.assertEqual(version, "8.0.%s.0" % today_date)
+        # Create a new addon
+        addon1_path = os.path.join(addons_path, "addon1")
+        new_addon_path = os.path.join(addons_path, "addon99")
+        shutil.copytree(addon1_path, new_addon_path)
 
-            # Create a new addon
-            addon1_path = os.path.join(addons_path, "addon1")
-            new_addon_path = os.path.join(addons_path, "addon99")
-            shutil.copytree(addon1_path, new_addon_path)
+        make_default_setup.make_default_setup_addons_dir(addons_path, False, False)
+        make_default_setup.make_default_meta_package(
+            addons_path, "tests", odoo_version_override=None
+        )
 
-            make_default_setup.make_default_setup_addons_dir(addons_path, False, False)
-            make_default_setup.make_default_meta_package(
-                addons_path, "tests", odoo_version_override=None
-            )
-
-            with open(version_file, "r") as f:
-                version = f.read().strip()
-                self.assertEqual(
-                    version,
-                    "8.0.%s.1" % today_date,
-                    msg="The version should have been incremented",
-                )
-        finally:
-            shutil.rmtree(tmpdir)
+        with open(version_file, "r") as f:
+            version = f.read().strip()
+            assert (
+                version == "8.0.%s.1" % today_date
+            ), "The version should have been incremented"
+    finally:
+        shutil.rmtree(tmpdir)
 
 
 def test_make_default_setup_commit(tmpdir):
