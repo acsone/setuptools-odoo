@@ -3,6 +3,12 @@ Changes
 
 .. towncrier release notes start
 
+3.0.2 (2021-10-09)
+------------------
+
+- ``setuptools-odoo-make-default`` now uses the new naming scheme for the metapackage name. (`#64 <https://github.com/acsone/setuptools-odoo/issues/64>`_)
+
+
 3.0.1 (2021-10-06)
 ------------------
 - Generate Metada-Version 2.2. Since metadata obtained from a sdist with PKG-INFO
