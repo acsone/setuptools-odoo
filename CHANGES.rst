@@ -6,9 +6,6 @@ Changes
 3.0.3 (2021-10-18)
 ------------------
 
-Features
-~~~~~~~~
-
 - Odoo 15 addons now require python >= 3.8 by default. (`#65 <https://github.com/acsone/setuptools-odoo/issues/65>`_)
 
 
