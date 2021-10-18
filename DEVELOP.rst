@@ -21,7 +21,7 @@ To build it locally:
 How to release
 --------------
 
-* update changelog in CHANGES.rst, referring to the next version
+* update changelog in CHANGES.rst, by running ``towncrier --version <version>``
 * python setup.py check --restructuredtext
 * commit everything
 * make sure tests pass!
