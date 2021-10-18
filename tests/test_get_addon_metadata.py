@@ -59,7 +59,7 @@ def test_addon9():
             ("Metadata-Version", "2.2"),
             ("Name", "odoo-addon-addon9"),
             ("Version", "15.0.1.0.0"),
-            ("Requires-Python", ">=3.6"),
+            ("Requires-Python", ">=3.8"),
             ("Requires-Dist", "odoo-addon-another_addon>=15.0dev,<15.1dev"),
             ("Requires-Dist", "odoo>=15.0a,<15.1dev"),
             ("Summary", "Addon 9"),
