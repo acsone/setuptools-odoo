@@ -1,4 +1,4 @@
-# generated on Wed Oct  6 14:53:59 2021
+# generated on Sat Dec  4 11:31:37 2021
 account
 account_check_printing
 account_debit_note
@@ -139,6 +139,8 @@ l10n_fi
 l10n_fr
 l10n_fr_fec
 l10n_fr_pos_cert
+l10n_gcc_invoice
+l10n_gcc_pos
 l10n_generic_coa
 l10n_gr
 l10n_gt
@@ -181,6 +183,8 @@ l10n_pl
 l10n_pt
 l10n_ro
 l10n_sa
+l10n_sa_invoice
+l10n_sa_pos
 l10n_se
 l10n_sg
 l10n_si
