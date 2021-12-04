@@ -8,3 +8,6 @@ build-backend = "setuptools.build_meta"
     issue_format = "`#{issue} <https://github.com/acsone/setuptools-odoo/issues/{issue}>`_"
     directory = "newsfragments/"
     filename = "CHANGES.rst"
+
+[tool.isort]
+profile = 'black'

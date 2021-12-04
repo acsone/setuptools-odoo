@@ -122,7 +122,7 @@ ODOO_VERSION_INFO = {
 
 
 def _get_odoo_version_info(addons_dir, odoo_version_override=None):
-    """ Detect Odoo version from an addons directory """
+    """Detect Odoo version from an addons directory"""
     odoo_version_info = None
     addons = os.listdir(addons_dir)
     for addon in addons:
@@ -152,7 +152,7 @@ def _get_version(
     git_post_version=True,
     post_version_strategy_override=None,
 ):
-    """ Get addon version information from an addon directory """
+    """Get addon version information from an addon directory"""
     version = manifest.get("version")
     if not version:
         warn("No version in manifest in %s" % addon_dir)
@@ -277,7 +277,7 @@ def get_install_requires_odoo_addon(
     external_dependencies_override=None,
     odoo_version_override=None,
 ):
-    """ Get the list of requirements for an addon """
+    """Get the list of requirements for an addon"""
     manifest = read_manifest(addon_dir)
     _, _, odoo_version_info = _get_version(
         addon_dir, manifest, odoo_version_override, git_post_version=False
@@ -297,7 +297,7 @@ def get_install_requires_odoo_addons(
     external_dependencies_override=None,
     odoo_version_override=None,
 ):
-    """ Get the list of requirements for a directory containing addons """
+    """Get the list of requirements for a directory containing addons"""
     addon_dirs = []
     addons = os.listdir(addons_dir)
     for addon in addons:

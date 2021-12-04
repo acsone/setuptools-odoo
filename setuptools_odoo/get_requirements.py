@@ -19,7 +19,7 @@ ODOO_REQ_RE = re.compile("^(odoo[^A-Za-z0-9-_]|odoo[0-9]*-addon-)")
 
 
 def _get_odoo_addon_keyword(setup_py_path):
-    """Get the value of the odoo_addon keyword argument in a setup.py file """
+    """Get the value of the odoo_addon keyword argument in a setup.py file"""
     with open(setup_py_path) as f:
         parsed = ast.parse(f.read())
         for node in ast.walk(parsed):

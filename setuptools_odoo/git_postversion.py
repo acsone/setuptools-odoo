@@ -47,7 +47,7 @@ def get_git_root(path):
 
 
 def git_log_iterator(path):
-    """ yield commits using git log -- <dir> """
+    """yield commits using git log -- <dir>"""
     N = 10
     count = 0
     while True:

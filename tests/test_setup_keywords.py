@@ -18,7 +18,7 @@ from . import DATA_DIR
 
 
 class TestSetupKeywords(unittest.TestCase):
-    """ test the new setup() keywords (odoo_addon, odoo_addons) """
+    """test the new setup() keywords (odoo_addon, odoo_addons)"""
 
     def test_odoo_addon1(self):
         addon1_dir = os.path.join(DATA_DIR, "setup_reusable_addons", "addon1")

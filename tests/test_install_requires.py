@@ -13,7 +13,7 @@ from . import DATA_DIR
 
 
 class TestInstallRequires(unittest.TestCase):
-    """ Test the install_requires... public api """
+    """Test the install_requires... public api"""
 
     def test_addons_dir(self):
         r = get_install_requires_odoo_addons(DATA_DIR)
