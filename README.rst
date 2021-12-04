@@ -6,8 +6,9 @@ setuptools-odoo
    :alt: License: LGPL-3
 .. image:: https://badge.fury.io/py/setuptools-odoo.svg
     :target: http://badge.fury.io/py/setuptools-odoo
-.. image:: https://travis-ci.org/acsone/setuptools-odoo.svg?branch=master
-   :target: https://travis-ci.org/acsone/setuptools-odoo
+.. image:: https://results.pre-commit.ci/badge/github/acsone/setuptools-odoo/master.svg
+   :target: https://results.pre-commit.ci/latest/github/acsone/setuptools-odoo/master
+   :alt: pre-commit.ci status
 .. image:: https://coveralls.io/repos/acsone/setuptools-odoo/badge.svg?branch=master&service=github
    :target: https://coveralls.io/github/acsone/setuptools-odoo?branch=master
 
