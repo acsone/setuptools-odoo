@@ -406,7 +406,7 @@ def _addon_name_from_metadata_name(metadata_name):
         raise DistutilsSetupError(
             "%s does not look like an Odoo addon package name" % metadata_name
         )
-    return mo.group("addon_name") or mo.group("new_addon_name")
+    return mo.group("addon_name")
 
 
 def get_addon_metadata(
