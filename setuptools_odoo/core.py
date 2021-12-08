@@ -21,8 +21,9 @@ from .git_postversion import (
 )
 from .manifest import is_installable_addon, read_manifest
 
-METADATA_NAME_RE = re.compile(r"^odoo(\d+)-addon-(?P<addon_name>.*)$"
-                              r"|^odoo-addon-(?P<new_addon_name>.*)$")
+METADATA_NAME_RE = re.compile(
+    r"^odoo(\d+)-addon-(?P<addon_name>.*)$" r"|^odoo-addon-(?P<new_addon_name>.*)$"
+)
 
 
 ODOO_VERSION_INFO = {
