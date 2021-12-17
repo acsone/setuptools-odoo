@@ -3,6 +3,11 @@ Changes
 
 .. towncrier release notes start
 
+3.0.5 (2021-12-17)
+------------------
+
+- Fix reading PKG-INFO metadata for Odoo >= 15. (`#70 <https://github.com/acsone/setuptools-odoo/issues/70>`_)
+
 3.0.4 (2021-12-04)
 ------------------
 
