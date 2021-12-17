@@ -98,3 +98,33 @@ def test_pkg_info(tmp_path):
     assert metadata["Name"] == "odoo12-addon-test_addon"
     assert metadata["Version"] == "12.0.1.0.0.dev5"
     assert metadata["Requires-Dist"] == "odoo>=12.0a,<12.1dev"
+
+
+def test_pkg_info_v15(tmp_path):
+    """Test that PKG-INFO is used to obtain name and version"""
+    addon_dir = tmp_path / "odoo-addon-test_addon-15.0.1.0.0.dev5"
+    addon_dir.mkdir()
+    (addon_dir / "__manifest__.py").write_text(
+        textwrap.dedent(
+            u"""\
+                {
+                    "name": "test addon",
+                    "version": "15.0.1.0.0",
+                }
+            """
+        )
+    )
+    (addon_dir / "PKG-INFO").write_text(
+        textwrap.dedent(
+            u"""\
+                Name: odoo-addon-test_addon
+                Version: 15.0.1.0.0.dev5
+            """
+        )
+    )
+    metadata = get_addon_metadata(
+        str(addon_dir), precomputed_metadata_path=str(addon_dir / "PKG-INFO")
+    )
+    assert metadata["Name"] == "odoo-addon-test_addon"
+    assert metadata["Version"] == "15.0.1.0.0.dev5"
+    assert metadata["Requires-Dist"] == "odoo>=15.0a,<15.1dev"
