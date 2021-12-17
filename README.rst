@@ -440,8 +440,8 @@ Public API
 The ``setuptools_odoo`` package exposes a provisional public API.
 
 * ``get_addon_metadata(addon_dir, ...)`` returns an ``email.message.Message``
-  compliant with `PEP 566 -- Metadata for Python Software Packages 2.1
-  <https://www.python.org/dev/peps/pep-0566/>`_.
+  compliant with `Python Core metadata specifications
+  <https://packaging.python.org/en/latest/specifications/core-metadata/>`_.
 
 Useful links
 ~~~~~~~~~~~~
