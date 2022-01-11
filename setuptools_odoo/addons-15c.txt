@@ -1,4 +1,4 @@
-# generated on Sat Dec  4 11:31:37 2021
+# generated on Tue Jan 11 10:58:38 2022
 account
 account_check_printing
 account_debit_note
@@ -179,6 +179,7 @@ l10n_no_edi
 l10n_nz
 l10n_pa
 l10n_pe
+l10n_pk
 l10n_pl
 l10n_pt
 l10n_ro

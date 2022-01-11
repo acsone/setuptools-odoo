@@ -1,4 +1,4 @@
-# generated on Sat Dec  4 11:32:31 2021
+# generated on Tue Jan 11 10:59:30 2022
 account_3way_match
 account_accountant
 account_accountant_check_printing
@@ -171,6 +171,8 @@ l10n_mn_reports
 l10n_mx_edi
 l10n_mx_edi_extended
 l10n_mx_edi_landing
+l10n_mx_edi_stock
+l10n_mx_edi_stock_extended
 l10n_mx_reports
 l10n_mx_reports_closing
 l10n_mx_xml_polizas

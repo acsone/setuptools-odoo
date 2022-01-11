@@ -1,4 +1,4 @@
-# generated on Sat Dec  4 11:32:47 2021
+# generated on Tue Jan 11 10:59:48 2022
 account
 account_analytic_default
 account_analytic_default_hr_expense

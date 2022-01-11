@@ -1,4 +1,4 @@
-# generated on Sat Dec  4 11:31:58 2021
+# generated on Tue Jan 11 10:58:53 2022
 account_3way_match
 account_accountant
 account_accountant_batch_payment
@@ -138,6 +138,7 @@ l10n_be_hr_payroll_canteen
 l10n_be_hr_payroll_december
 l10n_be_hr_payroll_fleet
 l10n_be_hr_payroll_holiday_pay_recovery
+l10n_be_hr_payroll_report_measures
 l10n_be_intrastat
 l10n_be_reports
 l10n_be_reports_base_address_extended
@@ -173,6 +174,8 @@ l10n_mn_reports
 l10n_mx_edi
 l10n_mx_edi_extended
 l10n_mx_edi_landing
+l10n_mx_edi_stock
+l10n_mx_edi_stock_extended
 l10n_mx_reports
 l10n_mx_reports_closing
 l10n_mx_xml_polizas
@@ -182,6 +185,7 @@ l10n_nl_reports
 l10n_no_reports
 l10n_no_saft
 l10n_pe_edi
+l10n_pk_reports
 l10n_sa_hr_payroll
 l10n_sa_hr_payroll_account
 l10n_se_reports
