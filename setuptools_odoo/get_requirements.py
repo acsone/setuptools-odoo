@@ -15,7 +15,16 @@ from .git_postversion import STRATEGY_NONE
 from .manifest import is_installable_addon
 
 # ignore odoo and odoo addons dependencies
-ODOO_REQ_RE = re.compile("^(odoo[^A-Za-z0-9-_]|odoo[0-9]*-addon-)")
+ODOO_REQ_RE = re.compile("^(odoo|odoo[0-9]*[-_]addon[-_].*)$", re.IGNORECASE)
+REQ_NAME_RE = re.compile("^[A-Za-z0-9-._]+")
+
+
+def _canonicalize(requirement):
+    return requirement.lower().replace("-", "_")
+
+
+def _get_req_name(requirement):
+    return _canonicalize(REQ_NAME_RE.match(requirement).group(0))
 
 
 def _get_odoo_addon_keyword(setup_py_path):
@@ -55,20 +64,22 @@ def _get_requirements(
         addon_dir = os.path.join(addons_dir, addon_name)
         if not is_installable_addon(addon_dir):
             continue
+        # TODO this is a hack and we should run proper metadata preparation instead,
+        #      using build.utils.project_wheel_metadata()
         overrides = get_metadata_overrides(addons_dir, addon_name)
         # We don't care about the version here, so improve performance
         # by skipping git post version lookup.
         overrides["post_version_strategy_override"] = STRATEGY_NONE
         metadata = get_addon_metadata(addon_dir, **overrides)
-        local_addons.add(metadata.get("Name"))
+        local_addons.add(_canonicalize(metadata.get("Name")))
         for install_require in metadata.get_all("Requires-Dist"):
-            if not include_addons and ODOO_REQ_RE.match(install_require):
+            if not include_addons and ODOO_REQ_RE.match(_get_req_name(install_require)):
                 continue
             requirements.add(install_require)
     if include_addons:
         # Exclude local addons as they cannot be considered to be dependencies
         # of addons in addons_dir.
-        requirements -= local_addons
+        requirements = {r for r in requirements if _get_req_name(r) not in local_addons}
     return sorted(requirements, key=lambda s: s.lower())
 
 
