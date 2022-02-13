@@ -1,0 +1,2 @@
+setuptools-odoo-get-requirements: fixed a regression when using ``--include-addons``,
+where the addons of the local directory where reported as requirements.
