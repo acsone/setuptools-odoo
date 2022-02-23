@@ -223,6 +223,33 @@ Odoo manifest files (``__manifest__.py`` or ``__openerp__.py``) and contain:
     in the addons directory, and external python dependencies.
   * ``python_requires``
 
+Installing Odoo CE and EE addons
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``setuptools-odoo`` has built-in knowledge of the addons that are part of the Odoo
+Community and Enterprise editions. Dependencies on these addons are condidered to be
+satisfied by the ``odoo`` distribution.
+
+This means Odoo must be *installed* in your python environment.
+
+As of Odoo 8 to 15, a good way to install Odoo is in a virtual environment. There are
+several possibilities, but the following bash commands should get you started:
+
+.. code:: console
+
+  $ python3 -m venv ./venv
+  $ source ./venv/bin/activate
+  (venv) $ python3 -m pip install --upgrade pip wheel
+  (venv) $ python3 -m pip install -r ./odoo/requirements.txt
+  (venv) $ python3 -m pip install -e ./odoo
+
+After that, ``./venv/bin/pip list`` will show ``odoo`` as part of the installed
+projects, and running ``./venv/bin/odoo`` will start Odoo with a proper addons path.
+
+If you need to add the Odoo Enterprise addons, you can make them visible to Odoo using
+the ``--addons-path`` Odoo option, or package them in a multi-addons project that you
+pip install, as explained above.
+
 Controlling setuptools-odoo behaviour
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
