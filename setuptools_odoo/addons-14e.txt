@@ -1,4 +1,4 @@
-# generated on Tue Jan 11 10:59:30 2022
+# generated on Sat Feb 26 14:49:49 2022
 account_3way_match
 account_accountant
 account_accountant_check_printing
@@ -17,6 +17,7 @@ account_disallowed_expenses_fleet
 account_followup
 account_inter_company_rules
 account_intrastat
+account_intrastat_expiry
 account_invoice_extract
 account_invoice_extract_purchase
 account_online_sync
@@ -164,6 +165,7 @@ l10n_in_reports
 l10n_it_reports
 l10n_lt_reports
 l10n_lu_reports
+l10n_lu_reports_annual_vat
 l10n_lu_reports_electronic
 l10n_lu_reports_electronic_xml_2_0
 l10n_lu_saft

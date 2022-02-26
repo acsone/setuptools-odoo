@@ -1,4 +1,4 @@
-# generated on Tue Jan 11 10:59:16 2022
+# generated on Sat Feb 26 14:49:38 2022
 account
 account_check_printing
 account_debit_note
@@ -57,12 +57,14 @@ event_crm_sale
 event_sale
 event_sms
 fetchmail
+fetchmail_gmail
 fleet
 gamification
 gamification_sale_crm
 google_account
 google_calendar
 google_drive
+google_gmail
 google_recaptcha
 google_spreadsheet
 hr

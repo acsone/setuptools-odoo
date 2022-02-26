@@ -1,4 +1,4 @@
-# generated on Tue Jan 11 10:59:48 2022
+# generated on Sat Feb 26 14:50:03 2022
 account
 account_analytic_default
 account_analytic_default_hr_expense
@@ -49,12 +49,14 @@ event
 event_sale
 event_sms
 fetchmail
+fetchmail_gmail
 fleet
 gamification
 gamification_sale_crm
 google_account
 google_calendar
 google_drive
+google_gmail
 google_spreadsheet
 hr
 hr_attendance
