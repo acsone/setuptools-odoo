@@ -3,6 +3,13 @@ Changes
 
 .. towncrier release notes start
 
+3.0.7 (2022-02-26)
+------------------
+
+- setuptools-odoo-get-requirements: fixed a regression when using ``--include-addons``,
+  where the addons of the local directory where reported as requirements. (`#67 <https://github.com/acsone/setuptools-odoo/issues/67>`_)
+- Update Odoo base addons list.
+
 3.0.6 (2022-01-11)
 ------------------
 

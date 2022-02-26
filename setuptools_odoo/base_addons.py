@@ -44,3 +44,5 @@ odoo14 = odoo14c | odoo14e
 odoo15c = _addons("15c")
 odoo15e = _addons("15e")
 odoo15 = odoo15c | odoo15e
+
+all = openerp7 | odoo8 | odoo9 | odoo10 | odoo11 | odoo12 | odoo13 | odoo14 | odoo15
