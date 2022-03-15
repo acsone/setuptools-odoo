@@ -98,7 +98,7 @@ def test_get_requirements_include_addons_15(tmp_path):
     addon1_dir.mkdir()
     (addon1_dir / "__manifest__.py").write_text(
         textwrap.dedent(
-            u"""\
+            """\
                 {
                     "name": "addon1",
                     "version": "15.0.1.0.0",
@@ -112,7 +112,7 @@ def test_get_requirements_include_addons_15(tmp_path):
     addon2_dir.mkdir()
     (addon2_dir / "__manifest__.py").write_text(
         textwrap.dedent(
-            u"""\
+            """\
                 {
                     "name": "addon2",
                     "version": "15.0.1.0.0",
@@ -129,7 +129,7 @@ def test_get_requirements_include_addons_15(tmp_path):
         ["--addons-dir", str(tmp_path), "-o", str(reqs_path), "--include-addons"]
     )
     assert reqs_path.read_text() == textwrap.dedent(
-        u"""\
+        """\
             httpx
             odoo-addon-another_addon>=15.0dev,<15.1dev
             odoo>=15.0a,<15.1dev
