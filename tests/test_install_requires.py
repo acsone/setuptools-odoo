@@ -5,6 +5,8 @@ import os
 import unittest
 
 from setuptools_odoo.core import (
+    ODOO_VERSION_INFO,
+    _get_install_requires,
     get_install_requires_odoo_addon,
     get_install_requires_odoo_addons,
 )
@@ -44,6 +46,39 @@ class TestInstallRequires(unittest.TestCase):
         self.assertEqual(
             r, ["odoo8-addon-addon1", "odoo>=8.0a,<9.0a", "python-dateutil"]
         )
+
+
+def test__get_install_requires_one2many_override():
+    """Test external dependencies override one to many"""
+    manifest = {
+        "external_dependencies": {
+            "python": [
+                "mpld3",
+            ],
+        }
+    }
+    external_dependencies_override = {
+        "python": {
+            "mpld3": [
+                "mpld3==0.3",
+                "matplotlib==3.0.3; python_version < '3.7'",
+                "matplotlib==3.4.1; python_version >= '3.7'",
+            ],
+        },
+    }
+    install_requires = _get_install_requires(
+        ODOO_VERSION_INFO["12.0"],
+        manifest,
+        no_depends=None,
+        depends_override=None,
+        external_dependencies_override=external_dependencies_override,
+    )
+    assert install_requires == [
+        "matplotlib==3.0.3; python_version < '3.7'",
+        "matplotlib==3.4.1; python_version >= '3.7'",
+        "mpld3==0.3",
+        "odoo>=12.0a,<12.1dev",
+    ]
 
 
 if __name__ == "__main__":

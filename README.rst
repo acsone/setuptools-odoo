@@ -264,7 +264,7 @@ The following keys are supported:
   * ``external_dependencies_override``, used to precisely control python
     external dependencies. Its value must be a dictionary with one ``python``
     key, with value a dictionary mapping python external dependencies to
-    python package requirement strings.
+    a python package requirement specifier or list of specifiers.
   * ``odoo_version_override``, used to specify which Odoo series to use
     (8.0, 9.0, 10.0, 11.0, ...) in case an addon version does not start with the Odoo
     series number. Use this only as a last resort, if you have no way to
@@ -289,6 +289,10 @@ your setup.py would look like this:
             'external_dependencies_override': {
                 'python': {
                     'Asterisk': 'py-Asterisk>=0.5.5',
+                    'somepkg': [
+                      'somepkg<3 ; python_version < "3"',
+                      'somepkg>=3 ; python_version > "3"',
+                    ]
                 },
             },
         },
