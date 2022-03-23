@@ -266,7 +266,10 @@ def _get_install_requires(
             dep = external_dependencies_override.get("python", {})[dep]
         else:
             dep = external_dependencies.EXTERNAL_DEPENDENCIES_MAP.get(dep, dep)
-        install_requires.append(dep)
+        if isinstance(dep, list):
+            install_requires.extend(dep)
+        else:
+            install_requires.append(dep)
     return sorted(install_requires)
 
 
