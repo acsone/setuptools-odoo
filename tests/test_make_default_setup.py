@@ -138,16 +138,16 @@ def test_make_default_setup_metapackage(
     addon1_path = addons_path / "addon1"
     addon1_path.mkdir()
     (addon1_path / "__manifest__.py").write_text(
-        u"{{'version': '{series}.0.1.0.0'}}".format(series=series)
+        "{{'version': '{series}.0.1.0.0'}}".format(series=series)
     )
     addon2_path = addons_path / "addon2"
     addon2_path.mkdir()
     (addon2_path / "__manifest__.py").write_text(
-        u"{{'version': '{series}.0.1.0.0'}}".format(series=series)
+        "{{'version': '{series}.0.1.0.0'}}".format(series=series)
     )
     make_default_setup.make_default_setup_addons_dir(str(addons_path), False, False)
     (addons_path / "setup" / ".setuptools-odoo-make-default-ignore").write_text(
-        u"addon2\n"
+        "addon2\n"
     )
     make_default_setup.make_default_meta_package(
         str(addons_path), "tests", odoo_version_override=None
@@ -163,7 +163,7 @@ def test_make_default_setup_metapackage(
     new_addon_path = addons_path / "addon99"
     new_addon_path.mkdir()
     (new_addon_path / "__manifest__.py").write_text(
-        u"{{'version': '{series}.0.1.0.0'}}".format(series=series)
+        "{{'version': '{series}.0.1.0.0'}}".format(series=series)
     )
 
     make_default_setup.make_default_setup_addons_dir(str(addons_path), False, False)
