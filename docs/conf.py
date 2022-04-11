@@ -52,9 +52,9 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = u"setuptools-odoo"
-copyright = u"2015-{}, Stéphane Bidoul (ACSONE)".format(date.today().year)
-author = u"Stéphane Bidoul (ACSONE)"
+project = "setuptools-odoo"
+copyright = "2015-{}, Stéphane Bidoul (ACSONE)".format(date.today().year)
+author = "Stéphane Bidoul (ACSONE)"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -261,8 +261,8 @@ latex_documents = [
     (
         master_doc,
         "setuptools-odoo.tex",
-        u"setuptools-odoo Documentation",
-        u"Stéphane Bidoul (ACSONE)",
+        "setuptools-odoo Documentation",
+        "Stéphane Bidoul (ACSONE)",
         "manual",
     )
 ]
@@ -305,7 +305,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, "setuptools-odoo", u"setuptools-odoo Documentation", [author], 1)
+    (master_doc, "setuptools-odoo", "setuptools-odoo Documentation", [author], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -322,7 +322,7 @@ texinfo_documents = [
     (
         master_doc,
         "setuptools-odoo",
-        u"setuptools-odoo Documentation",
+        "setuptools-odoo Documentation",
         author,
         "setuptools-odoo",
         "One line description of project.",
