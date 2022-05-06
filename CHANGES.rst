@@ -3,6 +3,13 @@ Changes
 
 .. towncrier release notes start
 
+3.1.0 (2022-05-06)
+------------------
+
+- Preliminary Odoo 16 support (`#83 <https://github.com/acsone/setuptools-odoo/issues/83>`_)
+- Update Odoo base addons list.
+
+
 3.0.7 (2022-02-26)
 ------------------
 
