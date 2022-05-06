@@ -29,7 +29,7 @@ Requirements
 
 The following prerequisites apply:
 
-  * Odoo version 8, 9, 10, 11, 12, 13, 14 and 15 are supported (see notes in the
+  * Odoo version 8, 9, 10, 11, 12, 13, 14, 15 and 16 are supported (see notes in the
     documentation for implementation differences).
   * To install addons packaged with this tool, any pip version that
     supports the wheel package format should work (ie pip >= 1.4).
@@ -232,7 +232,7 @@ satisfied by the ``odoo`` distribution.
 
 This means Odoo must be *installed* in your python environment.
 
-As of Odoo 8 to 15, a good way to install Odoo is in a virtual environment. There are
+As of Odoo 8 to 16, a good way to install Odoo is in a virtual environment. There are
 several possibilities, but the following bash commands should get you started:
 
 .. code:: console

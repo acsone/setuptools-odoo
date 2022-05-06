@@ -45,4 +45,19 @@ odoo15c = _addons("15c")
 odoo15e = _addons("15e")
 odoo15 = odoo15c | odoo15e
 
-all = openerp7 | odoo8 | odoo9 | odoo10 | odoo11 | odoo12 | odoo13 | odoo14 | odoo15
+odoo16c = _addons("16c")
+odoo16e = _addons("16e")
+odoo16 = odoo16c | odoo16e
+
+all = (
+    openerp7
+    | odoo8
+    | odoo9
+    | odoo10
+    | odoo11
+    | odoo12
+    | odoo13
+    | odoo14
+    | odoo15
+    | odoo16
+)
