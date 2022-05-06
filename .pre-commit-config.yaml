@@ -6,8 +6,9 @@ repos:
   rev: 21.12b0
   hooks:
   - id: black
+    additional_dependencies: ["click<8.1.0"]
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.1.0
+  rev: v4.2.0
   hooks:
   - id: trailing-whitespace
   - id: end-of-file-fixer
@@ -28,7 +29,7 @@ repos:
   - id: flake8
     additional_dependencies: ["flake8-bugbear==21.4.3"]
 - repo: https://github.com/asottile/pyupgrade
-  rev: v2.31.0
+  rev: v2.32.1
   hooks:
   - id: pyupgrade
 - repo: https://github.com/PyCQA/isort
