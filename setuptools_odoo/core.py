@@ -153,6 +153,13 @@ def _get_odoo_version_info(addons_dir, odoo_version_override=None):
                     "in %s)" % (addons_dir, addon)
                 )
             odoo_version_info = addon_odoo_version_info
+    if odoo_version_info is None:
+        raise DistutilsSetupError(
+            "Could not determine Odoo version from {}, "
+            "probably because no installable addon was found. "
+            "Please use 'odoo_version_override' or "
+            "add an installable addon.".format(addons_dir)
+        )
     return odoo_version_info
 
 
