@@ -6,7 +6,9 @@ Changes
 3.1.0 (2022-05-06)
 ------------------
 
-- Support one to many external dependencies overrides. (`#81 <https://github.com/acsone/setuptools-odoo/pull/81>`)
+- Support overriding external dependencies with a list of requirements, enabling more
+  advanced use cases such as declaring environment markers.
+  (`#81 <https://github.com/acsone/setuptools-odoo/pull/81>`)
 - Preliminary Odoo 16 support (`#83 <https://github.com/acsone/setuptools-odoo/issues/83>`_)
 - Update Odoo base addons list.
 
