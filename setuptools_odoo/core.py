@@ -135,6 +135,13 @@ ODOO_VERSION_INFO = {
 def _get_odoo_version_info(addons_dir, odoo_version_override=None):
     """Detect Odoo version from an addons directory"""
     odoo_version_info = None
+    if odoo_version_override:
+        try:
+            odoo_version_info = ODOO_VERSION_INFO[odoo_version_override]
+        except KeyError:
+            raise DistutilsSetupError(
+                "Unsupported Odoo version: {}".format(odoo_version_override)
+            )
     addons = os.listdir(addons_dir)
     for addon in addons:
         addon_dir = os.path.join(addons_dir, addon)
