@@ -1,4 +1,4 @@
-# generated on Fri May  6 18:57:34 2022
+# generated on Tue May 17 16:54:20 2022
 account
 account_check_printing
 account_debit_note
@@ -102,6 +102,7 @@ iap_crm
 iap_mail
 im_livechat
 im_livechat_mail_bot
+knowledge
 l10n_ae
 l10n_ae_pos
 l10n_ar
@@ -169,6 +170,7 @@ l10n_it_edi
 l10n_it_edi_sdicoop
 l10n_it_stock_ddt
 l10n_jp
+l10n_ke
 l10n_latam_base
 l10n_latam_invoice_document
 l10n_lt
@@ -381,6 +383,7 @@ website_forum
 website_google_map
 website_hr_recruitment
 website_jitsi
+website_knowledge
 website_links
 website_livechat
 website_mail

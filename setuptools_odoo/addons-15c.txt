@@ -1,4 +1,4 @@
-# generated on Fri May  6 18:58:22 2022
+# generated on Tue May 17 16:54:43 2022
 account
 account_check_printing
 account_debit_note
@@ -99,6 +99,7 @@ hr_work_entry_holidays
 http_routing
 hw_drivers
 hw_escpos
+hw_l10n_eg_eta
 hw_posbox_homepage
 iap
 iap_crm
@@ -136,6 +137,7 @@ l10n_do
 l10n_dz
 l10n_ec
 l10n_eg
+l10n_eg_edi_eta
 l10n_es
 l10n_es_edi_sii
 l10n_et
@@ -171,6 +173,7 @@ l10n_it_edi
 l10n_it_edi_sdicoop
 l10n_it_stock_ddt
 l10n_jp
+l10n_ke
 l10n_latam_base
 l10n_latam_invoice_document
 l10n_lt
