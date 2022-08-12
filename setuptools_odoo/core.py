@@ -209,6 +209,8 @@ def _get_version(
 def _no_nl(s):
     if not s:
         return s
+    elif type(s) is list:
+        return " ".join(s)
     return " ".join(s.split())
 
 
