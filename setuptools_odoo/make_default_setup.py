@@ -171,7 +171,9 @@ def make_default_meta_package(addons_dir, name, odoo_version_override):
         addon_dir = os.path.join(addons_dir, addon_name)
         if not is_installable_addon(addon_dir):
             continue
-        meta_install_requires.append(make_pkg_requirement(addon_dir))
+        meta_install_requires.append(
+            make_pkg_requirement(addon_dir, odoo_version_override=odoo_version_override)
+        )
         manifest = read_manifest(addon_dir)
         _, odoo_version, odoo_version_info = _get_version(
             addon_dir,
