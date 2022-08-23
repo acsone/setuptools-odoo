@@ -49,6 +49,7 @@ crm_iap_mine
 crm_livechat
 crm_mail_plugin
 crm_sms
+data_recycle
 delivery
 delivery_mondialrelay
 delivery_stock_picking_batch
@@ -111,6 +112,7 @@ l10n_at
 l10n_au
 l10n_be
 l10n_be_edi
+l10n_bg
 l10n_bo
 l10n_br
 l10n_ca
@@ -337,6 +339,7 @@ test_discuss_full
 test_event_full
 test_mail
 test_mail_full
+test_mail_sms
 test_mass_mailing
 test_resource
 test_sale_product_configurators
