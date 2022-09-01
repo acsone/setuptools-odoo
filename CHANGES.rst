@@ -6,6 +6,14 @@ Changes
 3.1.3 (2022-09-01)
 ------------------
 
+Bug fixes
++++++++++
+
+- Properly handle odoo_version_override in setuptools-odoo-makedefault metapackage generation. (`#89 <https://github.com/acsone/setuptools-odoo/issues/89>`_)
+
+Features
+++++++++
+
 - Update Odoo base addons list.
 
 3.1.1 (2022-05-17)
