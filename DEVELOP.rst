@@ -21,11 +21,11 @@ To build it locally:
 How to release
 --------------
 
+* in the ``setuptools_odoo`` directory, run ``../mk_base_addons```
 * update changelog in CHANGES.rst, by running ``towncrier --version <version>``
 * python setup.py check --restructuredtext
 * commit everything
 * make sure tests pass!
-* git tag <version>, where <version> is PEP 440 compliant
-* git push --tags
+* create a release with a tag on GitHub, the CI will build and publish to PyPI
 
 Uploading of tagged versions to pypi will be taken care of by travis.
