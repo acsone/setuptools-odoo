@@ -1,4 +1,4 @@
-# generated on Tue May 17 16:55:38 2022
+# generated on Thu Sep  1 12:25:54 2022
 account_3way_match
 account_accountant
 account_asset
@@ -180,6 +180,7 @@ sale_account_taxcloud
 sale_amazon
 sale_amazon_authentication
 sale_amazon_delivery
+sale_amazon_spapi
 sale_amazon_taxcloud
 sale_coupon_taxcloud
 sale_coupon_taxcloud_delivery

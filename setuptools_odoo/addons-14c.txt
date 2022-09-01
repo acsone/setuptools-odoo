@@ -1,4 +1,4 @@
-# generated on Tue May 17 16:55:07 2022
+# generated on Thu Sep  1 12:25:39 2022
 account
 account_check_printing
 account_debit_note
@@ -7,6 +7,7 @@ account_edi_extended
 account_edi_facturx
 account_edi_proxy_client
 account_edi_ubl
+account_edi_ubl_cii
 account_fleet
 account_lock
 account_payment
@@ -96,6 +97,7 @@ iap_crm
 iap_mail
 im_livechat
 im_livechat_mail_bot
+l10n_account_edi_ubl_cii_tests
 l10n_ae
 l10n_ar
 l10n_ar_website_sale
@@ -134,6 +136,7 @@ l10n_eu_service
 l10n_fi
 l10n_fi_sale
 l10n_fr
+l10n_fr_facturx_chorus_pro
 l10n_fr_fec
 l10n_fr_pos_cert
 l10n_gcc_invoice
@@ -230,6 +233,7 @@ pad_project
 partner_autocomplete
 payment
 payment_adyen
+payment_adyen_paybylink
 payment_alipay
 payment_authorize
 payment_buckaroo

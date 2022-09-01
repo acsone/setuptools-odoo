@@ -1,4 +1,4 @@
-# generated on Tue May 17 16:55:30 2022
+# generated on Thu Sep  1 12:25:49 2022
 account
 account_analytic_default
 account_analytic_default_hr_expense
@@ -208,6 +208,7 @@ partner_autocomplete
 partner_autocomplete_address_extended
 payment
 payment_adyen
+payment_adyen_paybylink
 payment_alipay
 payment_authorize
 payment_buckaroo

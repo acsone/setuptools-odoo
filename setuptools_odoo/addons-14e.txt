@@ -1,4 +1,4 @@
-# generated on Tue May 17 16:55:18 2022
+# generated on Thu Sep  1 12:25:44 2022
 account_3way_match
 account_accountant
 account_accountant_check_printing
@@ -176,19 +176,25 @@ l10n_lu_reports_electronic_xml_2_0
 l10n_lu_saft
 l10n_mn_reports
 l10n_mx_edi
+l10n_mx_edi_40
 l10n_mx_edi_extended
+l10n_mx_edi_extended_40
 l10n_mx_edi_landing
 l10n_mx_edi_stock
+l10n_mx_edi_stock_40
 l10n_mx_edi_stock_extended
+l10n_mx_edi_stock_extended_40
 l10n_mx_reports
 l10n_mx_reports_closing
 l10n_mx_xml_polizas
+l10n_mx_xml_polizas_edi
 l10n_nl_intrastat
 l10n_nl_report_intrastat
 l10n_nl_reports
 l10n_no_reports
 l10n_no_saft
 l10n_pe_edi
+l10n_pe_edi_stock
 l10n_se_reports
 l10n_sg_reports
 l10n_uk_reports
@@ -240,6 +246,7 @@ sale_account_accountant
 sale_account_taxcloud
 sale_amazon
 sale_amazon_delivery
+sale_amazon_spapi
 sale_amazon_taxcloud
 sale_coupon_taxcloud
 sale_coupon_taxcloud_delivery
