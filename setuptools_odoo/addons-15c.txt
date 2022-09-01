@@ -1,4 +1,4 @@
-# generated on Tue May 17 16:54:43 2022
+# generated on Thu Sep  1 12:25:27 2022
 account
 account_check_printing
 account_debit_note
@@ -7,6 +7,7 @@ account_edi_facturx
 account_edi_proxy_client
 account_edi_ubl
 account_edi_ubl_bis3
+account_edi_ubl_cii
 account_fleet
 account_lock
 account_payment
@@ -106,6 +107,7 @@ iap_crm
 iap_mail
 im_livechat
 im_livechat_mail_bot
+l10n_account_edi_ubl_cii_tests
 l10n_ae
 l10n_ae_pos
 l10n_ar
@@ -114,6 +116,7 @@ l10n_at
 l10n_au
 l10n_be
 l10n_be_edi
+l10n_bg
 l10n_bo
 l10n_br
 l10n_ca
@@ -145,9 +148,11 @@ l10n_eu_oss
 l10n_fi
 l10n_fi_sale
 l10n_fr
+l10n_fr_facturx_chorus_pro
 l10n_fr_fec
 l10n_fr_pos_cert
 l10n_gcc_invoice
+l10n_gcc_invoice_stock_account
 l10n_gcc_pos
 l10n_generic_coa
 l10n_gr
@@ -399,6 +404,7 @@ website_sale_comparison_wishlist
 website_sale_coupon
 website_sale_coupon_delivery
 website_sale_delivery
+website_sale_delivery_giftcard
 website_sale_delivery_mondialrelay
 website_sale_digital
 website_sale_gift_card
