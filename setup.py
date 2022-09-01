@@ -37,6 +37,7 @@ setuptools.setup(
     include_package_data=True,
     install_requires=["setuptools", "setuptools_scm>=2.1,!=4.0.0"],
     python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
+    setup_requires=["setuptools-scm!=4.0.0"],
     test_suite="tests",
     entry_points={
         "console_scripts": [
