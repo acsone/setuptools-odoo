@@ -1,4 +1,4 @@
-# generated on Thu Sep  1 12:25:22 2022
+# generated on Wed Sep 14 14:47:55 2022
 account_3way_match
 account_accountant
 account_accountant_batch_payment
@@ -60,6 +60,7 @@ delivery_dhl
 delivery_easypost
 delivery_fedex
 delivery_iot
+delivery_sendcloud
 delivery_ups
 delivery_usps
 digest_enterprise
@@ -75,6 +76,7 @@ documents_hr_recruitment
 documents_l10n_be_hr_payroll
 documents_product
 documents_project
+documents_project_sale
 documents_project_sign
 documents_sign
 documents_spreadsheet
@@ -115,6 +117,7 @@ hr_expense_extract
 hr_expense_predict_product
 hr_gantt
 hr_holidays_gantt
+hr_homeworking
 hr_mobile
 hr_payroll
 hr_payroll_account
@@ -126,6 +129,7 @@ hr_payroll_holidays
 hr_payroll_planning
 hr_recruitment_extract
 hr_recruitment_reports
+hr_recruitment_sign
 hr_referral
 hr_work_entry_contract_attendance
 hr_work_entry_contract_enterprise
@@ -222,6 +226,7 @@ l10n_sa_hr_payroll
 l10n_sa_hr_payroll_account
 l10n_se_reports
 l10n_sg_reports
+l10n_si_reports
 l10n_tr_reports
 l10n_uk_reports
 l10n_us_1099
@@ -240,14 +245,16 @@ mrp_plm
 mrp_subcontracting_account_enterprise
 mrp_subcontracting_enterprise
 mrp_subcontracting_quality
+mrp_subcontracting_studio
 mrp_workorder
 mrp_workorder_expiry
+mrp_workorder_hr
+mrp_workorder_hr_account
 mrp_workorder_iot
 mrp_workorder_plm
 partner_commission
 payment_sepa_direct_debit
 planning
-planning_calendar
 planning_contract
 planning_holidays
 planning_hr_skills
@@ -312,6 +319,7 @@ sale_temporal
 sale_timesheet_account_budget
 sale_timesheet_enterprise
 sign
+sign_itsme
 snailmail_account_followup
 social
 social_crm
@@ -324,8 +332,11 @@ social_sale
 social_test_full
 social_twitter
 social_youtube
-spreadsheet
-spreadsheet_account
+spreadsheet_dashboard_account_accountant
+spreadsheet_dashboard_crm
+spreadsheet_dashboard_documents
+spreadsheet_dashboard_edition
+spreadsheet_dashboard_hr_contract
 spreadsheet_edition
 stock_account_enterprise
 stock_accountant
@@ -376,8 +387,10 @@ website_event_track_social
 website_event_twitter_wall
 website_helpdesk
 website_helpdesk_forum
+website_helpdesk_knowledge
 website_helpdesk_livechat
 website_helpdesk_slides
+website_helpdesk_slides_forum
 website_knowledge
 website_sale_account_avatax
 website_sale_account_taxcloud

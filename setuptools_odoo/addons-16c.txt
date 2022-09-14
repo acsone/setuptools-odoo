@@ -1,4 +1,4 @@
-# generated on Thu Sep  1 12:24:35 2022
+# generated on Wed Sep 14 14:47:48 2022
 account
 account_check_printing
 account_debit_note
@@ -74,6 +74,7 @@ hr_fleet
 hr_gamification
 hr_holidays
 hr_holidays_attendance
+hr_hourly_cost
 hr_maintenance
 hr_org_chart
 hr_presence
@@ -166,7 +167,6 @@ l10n_in_sale_stock
 l10n_in_stock
 l10n_it
 l10n_it_edi
-l10n_it_edi_sdicoop
 l10n_it_stock_ddt
 l10n_jp
 l10n_ke
@@ -243,6 +243,7 @@ mrp_subcontracting_purchase
 mrp_subcontracting_repair
 mrp_subonctracting_landed_costs
 note
+onboarding
 partner_autocomplete
 payment
 payment_adyen
@@ -251,6 +252,8 @@ payment_aps
 payment_asiapay
 payment_authorize
 payment_buckaroo
+payment_custom
+payment_demo
 payment_flutterwave
 payment_mercado_pago
 payment_mollie
@@ -258,10 +261,9 @@ payment_ogone
 payment_paypal
 payment_payulatam
 payment_payumoney
+payment_razorpay
 payment_sips
 payment_stripe
-payment_test
-payment_transfer
 phone_validation
 point_of_sale
 portal
@@ -278,6 +280,7 @@ pos_mercury
 pos_restaurant
 pos_restaurant_adyen
 pos_sale
+pos_sale_loyalty
 pos_sale_product_configurator
 pos_six
 pos_stripe
@@ -331,6 +334,14 @@ sms
 snailmail
 snailmail_account
 social_media
+spreadsheet
+spreadsheet_account
+spreadsheet_dashboard
+spreadsheet_dashboard_account
+spreadsheet_dashboard_event_sale
+spreadsheet_dashboard_hr_expense
+spreadsheet_dashboard_pos_hr
+spreadsheet_dashboard_sale
 stock
 stock_account
 stock_dropshipping
@@ -396,6 +407,7 @@ website_livechat
 website_mail
 website_mail_group
 website_mass_mailing
+website_mass_mailing_sms
 website_membership
 website_partner
 website_payment
