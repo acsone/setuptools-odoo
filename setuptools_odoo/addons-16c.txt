@@ -1,4 +1,4 @@
-# generated on Wed Sep 14 14:47:48 2022
+# generated on Wed Sep 21 14:59:33 2022
 account
 account_check_printing
 account_debit_note
@@ -33,6 +33,7 @@ base_geolocalize
 base_iban
 base_import
 base_import_module
+base_install_request
 base_setup
 base_sparse_field
 base_vat
@@ -279,6 +280,7 @@ pos_loyalty
 pos_mercury
 pos_restaurant
 pos_restaurant_adyen
+pos_restaurant_stripe
 pos_sale
 pos_sale_loyalty
 pos_sale_product_configurator
@@ -340,8 +342,16 @@ spreadsheet_dashboard
 spreadsheet_dashboard_account
 spreadsheet_dashboard_event_sale
 spreadsheet_dashboard_hr_expense
+spreadsheet_dashboard_hr_timesheet
+spreadsheet_dashboard_im_livechat
 spreadsheet_dashboard_pos_hr
+spreadsheet_dashboard_purchase
+spreadsheet_dashboard_purchase_stock
 spreadsheet_dashboard_sale
+spreadsheet_dashboard_sale_timesheet
+spreadsheet_dashboard_stock
+spreadsheet_dashboard_stock_account
+spreadsheet_dashboard_website_sale_slides
 stock
 stock_account
 stock_dropshipping
@@ -364,7 +374,6 @@ test_website_modules
 test_website_slides_full
 test_xlsx_export
 theme_default
-transifex
 uom
 utm
 web
