@@ -3,6 +3,14 @@ Changes
 
 .. towncrier release notes start
 
+3.1.5 (2022-09-21)
+------------------
+
+Features
+++++++++
+
+- Update Odoo base addons list.
+
 3.1.4 (2022-09-14)
 ------------------
 
