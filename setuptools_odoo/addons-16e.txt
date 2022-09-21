@@ -1,4 +1,4 @@
-# generated on Wed Sep 14 14:47:55 2022
+# generated on Wed Sep 21 14:59:57 2022
 account_3way_match
 account_accountant
 account_accountant_batch_payment
@@ -336,7 +336,11 @@ spreadsheet_dashboard_account_accountant
 spreadsheet_dashboard_crm
 spreadsheet_dashboard_documents
 spreadsheet_dashboard_edition
+spreadsheet_dashboard_helpdesk
 spreadsheet_dashboard_hr_contract
+spreadsheet_dashboard_hr_referral
+spreadsheet_dashboard_mrp_account
+spreadsheet_dashboard_sale_renting
 spreadsheet_edition
 stock_account_enterprise
 stock_accountant

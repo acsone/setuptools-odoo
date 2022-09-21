@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+import subprocess
+import tempfile
+import time
+from pathlib import Path
+from typing import Iterator
+
+from manifestoo_core.addon import Addon, AddonNotFound
+from manifestoo_core.odoo_series import OdooEdition
+
+SERIES = [
+    # branch,  enterprise, target
+    ("16.0", True, "16"),
+    ("15.0", True, "15"),
+    ("14.0", True, "14"),
+    ("13.0", True, "13"),
+    ("12.0", True, "12"),
+    # ("11.0", True, "11"),
+    # ('10.0', True, "10"),
+    # ('9.0', True, "9"),
+    # ('8.0', False, "8"),
+]
+
+
+def _list_addons(addons_dir: Path, add_base: bool) -> Iterator[str]:
+    if add_base:
+        yield "base"
+    for addon_dir in addons_dir.iterdir():
+        try:
+            yield Addon.from_addon_dir(addon_dir, allow_not_installable=True).name
+        except AddonNotFound:
+            pass
+
+
+def _write_addons_list(addons_dir: Path, suffix: str, add_base: bool) -> None:
+    list_path = Path(__file__).parent / "setuptools_odoo" / f"addons-{suffix}.txt"
+    with list_path.open("w") as f:
+        print("# generated on", time.asctime(), file=f)
+        for addon_name in sorted(_list_addons(addons_dir, add_base)):
+            print(addon_name, file=f)
+
+
+def check_call(*cmd: str) -> None:
+    print(" ".join(cmd))
+    subprocess.check_call(cmd)
+
+
+def check_output(*cmd: str) -> None:
+    print(" ".join(cmd))
+    return subprocess.check_output(cmd, text=True)
+
+
+def main() -> None:
+    for branch, enterprise, target in SERIES:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            check_call(
+                "git",
+                "clone",
+                "--depth=1",
+                "--branch",
+                branch,
+                "https://github.com/odoo/odoo",
+                tmpdir,
+            )
+            _write_addons_list(
+                Path(tmpdir) / "addons",
+                f"{target or branch}{OdooEdition.CE.value}",
+                add_base=True,
+            )
+        if enterprise:
+            with tempfile.TemporaryDirectory() as tmpdir:
+                check_call(
+                    "git",
+                    "clone",
+                    "--depth=1",
+                    "--branch",
+                    branch,
+                    "git@github.com:odoo/enterprise",
+                    tmpdir,
+                )
+                _write_addons_list(
+                    Path(tmpdir),
+                    f"{target or branch}{OdooEdition.EE.value}",
+                    add_base=False,
+                )
+
+
+def pr():
+    assert Path("newsfragments").is_dir()
+    check_call("git", "checkout", "-B", "update-core-addon-lists", "origin/master")
+    check_call("git", "add", "setuptools_odoo")
+    check_call("git", "commit", "-m", "Update core addon lists")
+    check_call("git", "push", "-f", "origin")
+    output = check_output(
+        "gh", "pr", "create", "--title", "Update core addon lists", "--body", ""
+    )
+    pr = output.strip().rpartition("/")[-1]
+    news_path = Path("newsfragments") / f"{pr}.feature"
+    news_path.write_text("Update core addon lists.\n")
+    check_call("git", "add", str(news_path))
+    check_call("git", "commit", "--amend", "--no-edit")
+    check_call("git", "push", "-f")
+
+
+if __name__ == "__main__":
+    main()
+    pr()
