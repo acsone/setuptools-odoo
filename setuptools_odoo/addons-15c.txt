@@ -1,4 +1,4 @@
-# generated on Wed Sep 21 15:00:34 2022
+# generated on Sun Oct  2 11:36:27 2022
 account
 account_check_printing
 account_debit_note
@@ -283,6 +283,7 @@ pos_mercury
 pos_restaurant
 pos_restaurant_adyen
 pos_sale
+pos_sale_margin
 pos_sale_product_configurator
 pos_six
 product

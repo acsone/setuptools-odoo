@@ -1,4 +1,4 @@
-# generated on Wed Sep 21 14:59:33 2022
+# generated on Sun Oct  2 11:35:32 2022
 account
 account_check_printing
 account_debit_note
@@ -283,6 +283,7 @@ pos_restaurant_adyen
 pos_restaurant_stripe
 pos_sale
 pos_sale_loyalty
+pos_sale_margin
 pos_sale_product_configurator
 pos_six
 pos_stripe
@@ -349,7 +350,6 @@ spreadsheet_dashboard_purchase
 spreadsheet_dashboard_purchase_stock
 spreadsheet_dashboard_sale
 spreadsheet_dashboard_sale_timesheet
-spreadsheet_dashboard_stock
 spreadsheet_dashboard_stock_account
 spreadsheet_dashboard_website_sale_slides
 stock
