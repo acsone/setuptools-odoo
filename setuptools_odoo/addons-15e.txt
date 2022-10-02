@@ -1,4 +1,4 @@
-# generated on Wed Sep 21 15:00:55 2022
+# generated on Sun Oct  2 11:36:46 2022
 account_3way_match
 account_accountant
 account_accountant_batch_payment
@@ -237,7 +237,6 @@ planning_hr_skills
 pos_account_reports
 pos_blackbox_be
 pos_enterprise
-pos_hr_l10n_be
 pos_hr_mobile
 pos_iot
 pos_l10n_se
