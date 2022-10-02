@@ -125,7 +125,7 @@ ODOO_VERSION_INFO = {
         "pkg_version_specifier": ">=16.0dev,<16.1dev",
         "addons_ns": "odoo.addons",
         "namespace_packages": None,
-        "python_requires": ">=3.8",
+        "python_requires": ">=3.10",
         "universal_wheel": False,
         "git_postversion_strategy": STRATEGY_DOT_N,
     },
