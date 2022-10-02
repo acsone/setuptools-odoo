@@ -3,6 +3,16 @@ Changes
 
 .. towncrier release notes start
 
+3.1.6 (2022-10-02)
+------------------
+
+Features
+++++++++
+
+- Require python 3.10 for Odoo 16. (`#93 <https://github.com/acsone/setuptools-odoo/issues/93>`_)
+- Update core addon lists. (`#94 <https://github.com/acsone/setuptools-odoo/issues/94>`_)
+
+
 3.1.5 (2022-09-21)
 ------------------
 
