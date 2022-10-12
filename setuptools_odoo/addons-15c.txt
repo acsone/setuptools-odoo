@@ -198,6 +198,7 @@ l10n_pk
 l10n_pl
 l10n_pt
 l10n_ro
+l10n_rs
 l10n_sa
 l10n_sa_invoice
 l10n_sa_pos
