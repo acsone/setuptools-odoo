@@ -1,4 +1,4 @@
-# generated on Sun Oct  2 11:35:56 2022
+# generated on Sun Oct 16 12:36:08 2022
 account_3way_match
 account_accountant
 account_accountant_batch_payment
@@ -87,7 +87,6 @@ event_barcode_mobile
 event_enterprise
 event_sale_dashboard
 event_social
-fleet_dashboard
 helpdesk
 helpdesk_account
 helpdesk_fsm
@@ -117,7 +116,6 @@ hr_expense_extract
 hr_expense_predict_product
 hr_gantt
 hr_holidays_gantt
-hr_homeworking
 hr_mobile
 hr_payroll
 hr_payroll_account
@@ -135,7 +133,6 @@ hr_work_entry_contract_attendance
 hr_work_entry_contract_enterprise
 hr_work_entry_contract_planning
 hr_work_entry_holidays_enterprise
-im_livechat_enterprise
 industry_fsm
 industry_fsm_forecast
 industry_fsm_report
@@ -285,7 +282,6 @@ project_timesheet_synchro
 purchase_enterprise
 purchase_intrastat
 purchase_mrp_workorder_quality
-purchase_stock_enterprise
 quality
 quality_control
 quality_control_iot
@@ -373,7 +369,6 @@ voip
 voip_crm
 voip_onsip
 web_cohort
-web_dashboard
 web_enterprise
 web_gantt
 web_grid
@@ -405,8 +400,8 @@ website_sale_renting_comparison
 website_sale_renting_product_configurator
 website_sale_renting_wishlist
 website_sale_stock_renting
+website_sale_subscription
 website_sale_taxcloud_delivery
-website_slides_enterprise
 website_studio
 website_twitter_wall
 worksheet

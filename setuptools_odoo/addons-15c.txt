@@ -1,4 +1,4 @@
-# generated on Sun Oct  2 11:36:27 2022
+# generated on Sun Oct 16 12:36:29 2022
 account
 account_check_printing
 account_debit_note
@@ -198,6 +198,7 @@ l10n_pk
 l10n_pl
 l10n_pt
 l10n_ro
+l10n_rs
 l10n_sa
 l10n_sa_invoice
 l10n_sa_pos
