@@ -1,4 +1,4 @@
-# generated on Sun Oct 16 12:36:08 2022
+# generated on Mon Oct 31 15:28:15 2022
 account_3way_match
 account_accountant
 account_accountant_batch_payment
@@ -219,11 +219,13 @@ l10n_pe_edi
 l10n_pe_edi_stock
 l10n_pk_reports
 l10n_pt_reports
+l10n_rs_reports
 l10n_sa_hr_payroll
 l10n_sa_hr_payroll_account
 l10n_se_reports
 l10n_sg_reports
 l10n_si_reports
+l10n_syscohada_reports
 l10n_tr_reports
 l10n_uk_reports
 l10n_us_1099
