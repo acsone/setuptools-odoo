@@ -9,7 +9,7 @@ Changes
 Features
 ++++++++
 
-- Update core addon lists. (`#96 <https://github.com/acsone/setuptools-odoo/issues/97>`_)
+- Update core addon lists. (`#97 <https://github.com/acsone/setuptools-odoo/issues/97>`_)
 
 
 3.1.7 (2022-10-16)
