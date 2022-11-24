@@ -1,4 +1,4 @@
-# generated on Mon Oct 31 15:27:55 2022
+# generated on Thu Nov 24 10:13:02 2022
 account
 account_check_printing
 account_debit_note
@@ -9,6 +9,7 @@ account_fleet
 account_lock
 account_payment
 account_qr_code_sepa
+account_sequence
 account_tax_python
 account_test
 analytic
@@ -171,6 +172,7 @@ l10n_it_edi
 l10n_it_stock_ddt
 l10n_jp
 l10n_ke
+l10n_latam_account_sequence
 l10n_latam_base
 l10n_latam_invoice_document
 l10n_lt
@@ -180,11 +182,13 @@ l10n_mn
 l10n_multilang
 l10n_mx
 l10n_mx_hr
+l10n_my
 l10n_nl
 l10n_no
 l10n_nz
 l10n_pa
 l10n_pe
+l10n_ph
 l10n_pk
 l10n_pl
 l10n_pt
@@ -321,6 +325,7 @@ sale_loyalty_delivery
 sale_management
 sale_margin
 sale_mrp
+sale_mrp_margin
 sale_product_configurator
 sale_product_matrix
 sale_project

@@ -1,4 +1,4 @@
-# generated on Mon Oct 31 15:28:15 2022
+# generated on Thu Nov 24 10:13:32 2022
 account_3way_match
 account_accountant
 account_accountant_batch_payment
@@ -196,6 +196,7 @@ l10n_ke_hr_payroll
 l10n_ke_hr_payroll_account
 l10n_ke_reports
 l10n_lt_reports
+l10n_lt_saft
 l10n_lu_hr_payroll
 l10n_lu_hr_payroll_account
 l10n_lu_reports
