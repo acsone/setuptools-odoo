@@ -1,4 +1,4 @@
-# generated on Mon Oct 31 15:28:20 2022
+# generated on Thu Nov 24 10:13:49 2022
 account
 account_check_printing
 account_debit_note
@@ -187,6 +187,7 @@ l10n_ma
 l10n_mn
 l10n_multilang
 l10n_mx
+l10n_my
 l10n_nl
 l10n_nl_edi
 l10n_no
@@ -194,6 +195,7 @@ l10n_no_edi
 l10n_nz
 l10n_pa
 l10n_pe
+l10n_ph
 l10n_pk
 l10n_pl
 l10n_pt
@@ -319,6 +321,7 @@ sale_gift_card
 sale_management
 sale_margin
 sale_mrp
+sale_mrp_margin
 sale_product_configurator
 sale_product_matrix
 sale_project
