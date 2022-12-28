@@ -125,7 +125,8 @@ or ``pip`` commands such as:
     python setup.py bdist_wheel
     pip install odoo<8|9|10|11|12|13|14>-addon-<addon name>
     pip install -e .
-    pip install -e git+https://github.com/OCA/<repo>/<addon>#egg=odoo<8|9|10|11|12|13|14>-addon-<addon name>\&subdirectory=setup/<addon name>
+    pip install -e git+https://github.com/OCA/<repo>#egg=odoo<8|9|10|11|12|13|14>-addon-<addon name>\&subdirectory=setup/<addon name>
+    pip install -e git+https://github.com/OCA/<repo>@<branch or reference>#egg=odoo<8|9|10|11|12|13|14>-addon-<addon name>\&subdirectory=setup/<addon name>
 
 .. note::
 
