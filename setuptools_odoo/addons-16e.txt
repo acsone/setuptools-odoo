@@ -1,4 +1,4 @@
-# generated on Thu Nov 24 10:13:32 2022
+# generated on Wed Dec 28 13:50:29 2022
 account_3way_match
 account_accountant
 account_accountant_batch_payment
@@ -174,6 +174,7 @@ l10n_cl_edi_stock
 l10n_cl_reports
 l10n_co_edi
 l10n_co_reports
+l10n_de_datev_reports
 l10n_de_pos_cert
 l10n_de_pos_res_cert
 l10n_de_reports
@@ -187,6 +188,7 @@ l10n_fr_hr_payroll
 l10n_fr_hr_payroll_account
 l10n_fr_reports
 l10n_generic_auto_transfer_demo
+l10n_hr_reports
 l10n_hu_reports
 l10n_in_hr_payroll
 l10n_in_hr_payroll_account
