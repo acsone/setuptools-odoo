@@ -1,4 +1,4 @@
-# generated on Thu Nov 24 10:13:02 2022
+# generated on Wed Dec 28 13:49:15 2022
 account
 account_check_printing
 account_debit_note
@@ -94,7 +94,6 @@ hr_work_entry_holidays
 http_routing
 hw_drivers
 hw_escpos
-hw_l10n_eg_eta
 hw_posbox_homepage
 iap
 iap_crm
@@ -154,6 +153,7 @@ l10n_gt
 l10n_hk
 l10n_hn
 l10n_hr
+l10n_hr_euro
 l10n_hu
 l10n_id
 l10n_id_efaktur
@@ -172,8 +172,10 @@ l10n_it_edi
 l10n_it_stock_ddt
 l10n_jp
 l10n_ke
+l10n_ke_edi_tremol
 l10n_latam_account_sequence
 l10n_latam_base
+l10n_latam_check
 l10n_latam_invoice_document
 l10n_lt
 l10n_lu
@@ -355,6 +357,7 @@ spreadsheet_dashboard_pos_hr
 spreadsheet_dashboard_purchase
 spreadsheet_dashboard_purchase_stock
 spreadsheet_dashboard_sale
+spreadsheet_dashboard_sale_expense
 spreadsheet_dashboard_sale_timesheet
 spreadsheet_dashboard_stock_account
 spreadsheet_dashboard_website_sale_slides

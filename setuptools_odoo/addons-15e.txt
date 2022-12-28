@@ -1,4 +1,4 @@
-# generated on Thu Nov 24 10:13:56 2022
+# generated on Wed Dec 28 13:52:54 2022
 account_3way_match
 account_accountant
 account_accountant_batch_payment
@@ -161,6 +161,7 @@ l10n_cl_edi_stock
 l10n_cl_reports
 l10n_co_edi
 l10n_co_reports
+l10n_de_datev_reports
 l10n_de_pos_cert
 l10n_de_pos_res_cert
 l10n_de_reports
@@ -204,6 +205,7 @@ l10n_no_reports
 l10n_no_saft
 l10n_pe_edi
 l10n_pe_edi_stock
+l10n_pe_edi_stock_20
 l10n_pk_reports
 l10n_pt_reports
 l10n_rs_reports

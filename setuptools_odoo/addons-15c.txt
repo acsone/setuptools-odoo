@@ -1,4 +1,4 @@
-# generated on Thu Nov 24 10:13:49 2022
+# generated on Wed Dec 28 13:51:56 2022
 account
 account_check_printing
 account_debit_note
@@ -179,6 +179,7 @@ l10n_it_edi_sdicoop
 l10n_it_stock_ddt
 l10n_jp
 l10n_ke
+l10n_ke_edi_tremol
 l10n_latam_base
 l10n_latam_invoice_document
 l10n_lt
