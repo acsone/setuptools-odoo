@@ -1,4 +1,4 @@
-# generated on Wed Dec 28 13:49:15 2022
+# generated on Wed Mar 15 13:35:46 2023
 account
 account_check_printing
 account_debit_note
@@ -8,6 +8,7 @@ account_edi_ubl_cii
 account_fleet
 account_lock
 account_payment
+account_payment_invoice_online_payment_patch
 account_qr_code_sepa
 account_sequence
 account_tax_python
@@ -161,14 +162,18 @@ l10n_ie
 l10n_il
 l10n_in
 l10n_in_edi
+l10n_in_edi_ewaybill
 l10n_in_pos
 l10n_in_purchase
 l10n_in_purchase_stock
 l10n_in_sale
 l10n_in_sale_stock
 l10n_in_stock
+l10n_in_tcs_tds
+l10n_in_upi
 l10n_it
 l10n_it_edi
+l10n_it_edi_withholding
 l10n_it_stock_ddt
 l10n_jp
 l10n_ke
@@ -179,6 +184,7 @@ l10n_latam_check
 l10n_latam_invoice_document
 l10n_lt
 l10n_lu
+l10n_lu_peppol_id
 l10n_ma
 l10n_mn
 l10n_multilang
@@ -278,6 +284,7 @@ portal
 portal_rating
 pos_adyen
 pos_cache
+pos_daily_sales_reports
 pos_discount
 pos_epson_printer
 pos_epson_printer_restaurant
@@ -311,6 +318,7 @@ project_sms
 project_timesheet_holidays
 purchase
 purchase_mrp
+purchase_price_diff
 purchase_product_matrix
 purchase_requisition
 purchase_requisition_stock
@@ -383,6 +391,7 @@ test_website_modules
 test_website_slides_full
 test_xlsx_export
 theme_default
+transifex
 uom
 utm
 web

@@ -1,4 +1,4 @@
-# generated on Wed Dec 28 13:54:41 2022
+# generated on Wed Mar 15 13:39:13 2023
 account
 account_check_printing
 account_debit_note
@@ -168,6 +168,7 @@ l10n_latam_base
 l10n_latam_invoice_document
 l10n_lt
 l10n_lu
+l10n_lu_peppol_id
 l10n_ma
 l10n_mn
 l10n_multilang

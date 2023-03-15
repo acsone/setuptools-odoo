@@ -1,4 +1,4 @@
-# generated on Wed Dec 28 13:55:50 2022
+# generated on Wed Mar 15 13:40:04 2023
 account_3way_match
 account_accountant
 account_accountant_check_printing
@@ -162,6 +162,7 @@ l10n_dk_reports
 l10n_es_real_estates
 l10n_es_reports
 l10n_es_reports_2021
+l10n_es_reports_2023
 l10n_fi_reports
 l10n_fr_hr_payroll
 l10n_fr_reports
@@ -172,6 +173,7 @@ l10n_it_reports
 l10n_lt_reports
 l10n_lu_reports
 l10n_lu_reports_annual_vat
+l10n_lu_reports_annual_vat_2023
 l10n_lu_reports_electronic
 l10n_lu_reports_electronic_xml_2_0
 l10n_lu_saft

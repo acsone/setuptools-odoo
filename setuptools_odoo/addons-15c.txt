@@ -1,4 +1,4 @@
-# generated on Wed Dec 28 13:51:56 2022
+# generated on Wed Mar 15 13:37:39 2023
 account
 account_check_printing
 account_debit_note
@@ -167,12 +167,14 @@ l10n_ie
 l10n_il
 l10n_in
 l10n_in_edi
+l10n_in_edi_ewaybill
 l10n_in_pos
 l10n_in_purchase
 l10n_in_purchase_stock
 l10n_in_sale
 l10n_in_sale_stock
 l10n_in_stock
+l10n_in_upi
 l10n_it
 l10n_it_edi
 l10n_it_edi_sdicoop
@@ -184,6 +186,7 @@ l10n_latam_base
 l10n_latam_invoice_document
 l10n_lt
 l10n_lu
+l10n_lu_peppol_id
 l10n_ma
 l10n_mn
 l10n_multilang
