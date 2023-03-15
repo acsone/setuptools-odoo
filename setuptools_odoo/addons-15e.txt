@@ -1,4 +1,4 @@
-# generated on Wed Dec 28 13:52:54 2022
+# generated on Wed Mar 15 13:38:24 2023
 account_3way_match
 account_accountant
 account_accountant_batch_payment
@@ -169,6 +169,7 @@ l10n_dk_reports
 l10n_es_real_estates
 l10n_es_reports
 l10n_es_reports_2021
+l10n_es_reports_2023
 l10n_eu_oss_reports
 l10n_fi_reports
 l10n_fr_fec_import
@@ -184,6 +185,7 @@ l10n_lt_reports
 l10n_lt_saft
 l10n_lu_reports
 l10n_lu_reports_annual_vat
+l10n_lu_reports_annual_vat_2023
 l10n_mn_reports
 l10n_mx_edi
 l10n_mx_edi_40
