@@ -3,6 +3,15 @@ Changes
 
 .. towncrier release notes start
 
+3.1.12 (2023-03-29)
+-------------------
+
+Features
+++++++++
+
+- Update core addon lists. (`#107 <https://github.com/acsone/setuptools-odoo/issues/107>`_)
+
+
 3.1.11 (2023-03-15)
 -------------------
 
