@@ -1,4 +1,4 @@
-# generated on Wed Mar 15 13:38:24 2023
+# generated on Wed Mar 29 12:27:42 2023
 account_3way_match
 account_accountant
 account_accountant_batch_payment
@@ -54,6 +54,7 @@ data_merge
 data_merge_crm
 data_merge_helpdesk
 data_merge_project
+data_merge_stock_account
 data_merge_utm
 delivery_barcode
 delivery_bpost
@@ -249,6 +250,7 @@ pos_iot
 pos_l10n_se
 pos_loyalty
 pos_restaurant_iot
+pos_sale_stock_renting
 pos_settle_due
 product_unspsc
 project_account_asset

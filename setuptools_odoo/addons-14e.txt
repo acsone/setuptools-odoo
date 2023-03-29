@@ -1,4 +1,4 @@
-# generated on Wed Mar 15 13:40:04 2023
+# generated on Wed Mar 29 12:28:02 2023
 account_3way_match
 account_accountant
 account_accountant_check_printing
@@ -53,6 +53,7 @@ currency_rate_live
 data_cleaning
 data_merge
 data_merge_crm
+data_merge_stock_account
 data_merge_utm
 delivery_barcode
 delivery_bpost
