@@ -320,7 +320,10 @@ def clean_setup_addons_dir(addons_dir, odoo_version_override):
 
     # XXX we may want to clean metapackage_dir/setup.cfg if not universal_wheel
     for p in paths_to_remove:
-        shutil.rmtree(os.path.abspath(p))
+        if os.path.isfile(p):
+            os.unlink(os.path.abspath(p))
+        else:
+            shutil.rmtree(os.path.abspath(p))
 
 
 def check_setup_dir_is_git_clean(addons_dir):
