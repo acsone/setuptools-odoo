@@ -1,0 +1,2 @@
+Open ``README.rst`` using utf-8 encoding to avoid decoding issues on platform
+where the default encoding is not utf-8.
