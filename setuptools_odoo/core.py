@@ -447,7 +447,7 @@ def get_addon_metadata(
 ):
     # type: (...) -> Message
     """
-    Return Python Package Metadata 2.2 for an Odoo addon as an
+    Return Python Package Metadata 2.1 for an Odoo addon as an
     email.message.Message.
 
     The Description field is absent and is stored in the message payload.
