@@ -1,4 +1,4 @@
-# generated on Mon Oct 31 15:28:47 2022
+# generated on Wed Mar 29 12:28:02 2023
 account_3way_match
 account_accountant
 account_accountant_check_printing
@@ -53,6 +53,7 @@ currency_rate_live
 data_cleaning
 data_merge
 data_merge_crm
+data_merge_stock_account
 data_merge_utm
 delivery_barcode
 delivery_bpost
@@ -154,6 +155,7 @@ l10n_cl_edi_stock
 l10n_cl_reports
 l10n_co_edi
 l10n_co_reports
+l10n_de_datev_reports
 l10n_de_pos_cert
 l10n_de_pos_res_cert
 l10n_de_reports
@@ -161,6 +163,7 @@ l10n_dk_reports
 l10n_es_real_estates
 l10n_es_reports
 l10n_es_reports_2021
+l10n_es_reports_2023
 l10n_fi_reports
 l10n_fr_hr_payroll
 l10n_fr_reports
@@ -171,6 +174,7 @@ l10n_it_reports
 l10n_lt_reports
 l10n_lu_reports
 l10n_lu_reports_annual_vat
+l10n_lu_reports_annual_vat_2023
 l10n_lu_reports_electronic
 l10n_lu_reports_electronic_xml_2_0
 l10n_lu_saft
@@ -195,6 +199,7 @@ l10n_no_reports
 l10n_no_saft
 l10n_pe_edi
 l10n_pe_edi_stock
+l10n_pe_edi_stock_20
 l10n_se_reports
 l10n_sg_reports
 l10n_uk_reports

@@ -220,7 +220,7 @@ def _get_description(addon_dir, manifest):
 def _get_long_description(addon_dir, manifest):
     readme_path = os.path.join(addon_dir, "README.rst")
     if os.path.exists(readme_path):
-        with open(readme_path) as rf:
+        with io.open(readme_path, encoding="utf-8") as rf:
             return rf.read()
     else:
         return manifest.get("description")
@@ -447,7 +447,7 @@ def get_addon_metadata(
 ):
     # type: (...) -> Message
     """
-    Return Python Package Metadata 2.2 for an Odoo addon as an
+    Return Python Package Metadata 2.1 for an Odoo addon as an
     email.message.Message.
 
     The Description field is absent and is stored in the message payload.
@@ -477,7 +477,7 @@ def get_addon_metadata(
             for item in svalue:
                 meta[name] = item
 
-    meta["Metadata-Version"] = "2.2"
+    meta["Metadata-Version"] = "2.1"
     _set("Name", "name")
     _set("Version", "version")
     _set("Requires-Python", "python_requires")

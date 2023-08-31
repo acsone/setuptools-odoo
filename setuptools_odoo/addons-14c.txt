@@ -1,4 +1,4 @@
-# generated on Mon Oct 31 15:28:39 2022
+# generated on Wed Mar 29 12:27:54 2023
 account
 account_check_printing
 account_debit_note
@@ -168,6 +168,7 @@ l10n_latam_base
 l10n_latam_invoice_document
 l10n_lt
 l10n_lu
+l10n_lu_peppol_id
 l10n_ma
 l10n_mn
 l10n_multilang
@@ -177,6 +178,7 @@ l10n_no
 l10n_nz
 l10n_pa
 l10n_pe
+l10n_ph
 l10n_pl
 l10n_pt
 l10n_ro
@@ -287,6 +289,7 @@ sale_expense
 sale_management
 sale_margin
 sale_mrp
+sale_mrp_margin
 sale_product_configurator
 sale_product_matrix
 sale_project

@@ -1,4 +1,4 @@
-# generated on Mon Oct 31 15:27:55 2022
+# generated on Wed Mar 29 12:27:06 2023
 account
 account_check_printing
 account_debit_note
@@ -8,7 +8,9 @@ account_edi_ubl_cii
 account_fleet
 account_lock
 account_payment
+account_payment_invoice_online_payment_patch
 account_qr_code_sepa
+account_sequence
 account_tax_python
 account_test
 analytic
@@ -93,7 +95,6 @@ hr_work_entry_holidays
 http_routing
 hw_drivers
 hw_escpos
-hw_l10n_eg_eta
 hw_posbox_homepage
 iap
 iap_crm
@@ -132,6 +133,7 @@ l10n_dk
 l10n_do
 l10n_dz
 l10n_ec
+l10n_ee
 l10n_eg
 l10n_eg_edi_eta
 l10n_es
@@ -153,6 +155,7 @@ l10n_gt
 l10n_hk
 l10n_hn
 l10n_hr
+l10n_hr_euro
 l10n_hu
 l10n_id
 l10n_id_efaktur
@@ -160,31 +163,42 @@ l10n_ie
 l10n_il
 l10n_in
 l10n_in_edi
+l10n_in_edi_ewaybill
 l10n_in_pos
 l10n_in_purchase
 l10n_in_purchase_stock
 l10n_in_sale
 l10n_in_sale_stock
 l10n_in_stock
+l10n_in_tcs_tds
+l10n_in_upi
 l10n_it
 l10n_it_edi
+l10n_it_edi_withholding
 l10n_it_stock_ddt
 l10n_jp
 l10n_ke
+l10n_ke_edi_tremol
+l10n_latam_account_sequence
 l10n_latam_base
+l10n_latam_check
 l10n_latam_invoice_document
 l10n_lt
 l10n_lu
+l10n_lu_peppol_id
 l10n_ma
 l10n_mn
 l10n_multilang
 l10n_mx
 l10n_mx_hr
+l10n_my
+l10n_mz
 l10n_nl
 l10n_no
 l10n_nz
 l10n_pa
 l10n_pe
+l10n_ph
 l10n_pk
 l10n_pl
 l10n_pt
@@ -272,6 +286,7 @@ portal
 portal_rating
 pos_adyen
 pos_cache
+pos_daily_sales_reports
 pos_discount
 pos_epson_printer
 pos_epson_printer_restaurant
@@ -305,6 +320,7 @@ project_sms
 project_timesheet_holidays
 purchase
 purchase_mrp
+purchase_price_diff
 purchase_product_matrix
 purchase_requisition
 purchase_requisition_stock
@@ -321,6 +337,7 @@ sale_loyalty_delivery
 sale_management
 sale_margin
 sale_mrp
+sale_mrp_margin
 sale_product_configurator
 sale_product_matrix
 sale_project
@@ -350,6 +367,7 @@ spreadsheet_dashboard_pos_hr
 spreadsheet_dashboard_purchase
 spreadsheet_dashboard_purchase_stock
 spreadsheet_dashboard_sale
+spreadsheet_dashboard_sale_expense
 spreadsheet_dashboard_sale_timesheet
 spreadsheet_dashboard_stock_account
 spreadsheet_dashboard_website_sale_slides
@@ -375,6 +393,7 @@ test_website_modules
 test_website_slides_full
 test_xlsx_export
 theme_default
+transifex
 uom
 utm
 web
