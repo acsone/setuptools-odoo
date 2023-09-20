@@ -1,4 +1,4 @@
-# generated on Wed Mar 29 12:27:06 2023
+# generated on Wed Sep 20 12:37:34 2023
 account
 account_check_printing
 account_debit_note
@@ -138,6 +138,7 @@ l10n_eg
 l10n_eg_edi_eta
 l10n_es
 l10n_es_edi_sii
+l10n_es_edi_tbai
 l10n_et
 l10n_eu_oss
 l10n_fi
@@ -174,6 +175,7 @@ l10n_in_tcs_tds
 l10n_in_upi
 l10n_it
 l10n_it_edi
+l10n_it_edi_pa
 l10n_it_edi_withholding
 l10n_it_stock_ddt
 l10n_jp
@@ -186,6 +188,7 @@ l10n_latam_invoice_document
 l10n_lt
 l10n_lu
 l10n_lu_peppol_id
+l10n_lv
 l10n_ma
 l10n_mn
 l10n_multilang
@@ -201,10 +204,14 @@ l10n_pe
 l10n_ph
 l10n_pk
 l10n_pl
+l10n_pl_jpk
+l10n_pl_sale_stock
 l10n_pt
 l10n_ro
 l10n_rs
 l10n_sa
+l10n_sa_edi
+l10n_sa_edi_pos
 l10n_sa_pos
 l10n_se
 l10n_sg
@@ -294,6 +301,7 @@ pos_hr
 pos_hr_restaurant
 pos_loyalty
 pos_mercury
+pos_mrp
 pos_restaurant
 pos_restaurant_adyen
 pos_restaurant_stripe

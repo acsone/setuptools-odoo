@@ -1,4 +1,4 @@
-# generated on Wed Mar 29 12:27:42 2023
+# generated on Wed Sep 20 12:38:46 2023
 account_3way_match
 account_accountant
 account_accountant_batch_payment
@@ -34,6 +34,7 @@ account_reports_tax_reminder
 account_saft
 account_sepa
 account_sepa_direct_debit
+account_sepa_pain_001_001_09
 account_taxcloud
 account_winbooks_import
 analytic_enterprise
@@ -114,6 +115,7 @@ hr_mobile
 hr_payroll
 hr_payroll_account
 hr_payroll_account_sepa
+hr_payroll_account_sepa_09
 hr_payroll_expense
 hr_payroll_holidays
 hr_recruitment_reports
@@ -171,6 +173,7 @@ l10n_es_real_estates
 l10n_es_reports
 l10n_es_reports_2021
 l10n_es_reports_2023
+l10n_es_reports_2023_2
 l10n_eu_oss_reports
 l10n_fi_reports
 l10n_fr_fec_import
@@ -211,6 +214,7 @@ l10n_pe_edi_stock
 l10n_pe_edi_stock_20
 l10n_pk_reports
 l10n_pt_reports
+l10n_ro_saft
 l10n_rs_reports
 l10n_sa_hr_payroll
 l10n_sa_hr_payroll_account
@@ -362,6 +366,7 @@ website_helpdesk_slides
 website_sale_account_avatax
 website_sale_account_taxcloud
 website_sale_dashboard
+website_sale_delivery_avatax
 website_sale_taxcloud_delivery
 website_studio
 website_twitter_wall
