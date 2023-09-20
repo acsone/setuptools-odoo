@@ -1,4 +1,4 @@
-# generated on Wed Mar 29 12:27:33 2023
+# generated on Wed Sep 20 12:38:23 2023
 account
 account_check_printing
 account_debit_note
@@ -206,6 +206,8 @@ l10n_pt
 l10n_ro
 l10n_rs
 l10n_sa
+l10n_sa_edi
+l10n_sa_edi_pos
 l10n_sa_invoice
 l10n_sa_pos
 l10n_se
@@ -287,6 +289,7 @@ pos_epson_printer_restaurant
 pos_gift_card
 pos_hr
 pos_mercury
+pos_mrp
 pos_restaurant
 pos_restaurant_adyen
 pos_sale
