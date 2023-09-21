@@ -3,6 +3,25 @@ Changes
 
 .. towncrier release notes start
 
+3.2.0 (2023-09-20)
+------------------
+
+Features
+++++++++
+
+- Generate python metadata version 2.1 instead 2.2. We are compatible with 2.1, and while
+  PyPI does not support 2.2 packages generated with such metadata can't be uploaded to
+  PyPI. (`#112 <https://github.com/acsone/setuptools-odoo/issues/112>`_)
+- Update core addon lists. (`#115 <https://github.com/acsone/setuptools-odoo/issues/115>`_)
+
+
+Bugfixes
+++++++++
+
+- Open ``README.rst`` using utf-8 encoding to avoid decoding issues on platform
+  where the default encoding is not utf-8. (`#108 <https://github.com/acsone/setuptools-odoo/issues/108>`_)
+
+
 3.1.12 (2023-03-29)
 -------------------
 
