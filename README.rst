@@ -12,6 +12,11 @@ setuptools-odoo
 .. image:: https://coveralls.io/repos/acsone/setuptools-odoo/badge.svg?branch=master&service=github
    :target: https://coveralls.io/github/acsone/setuptools-odoo?branch=master
 
+⚠️ This project is progressively being deprecated. Please consider using `whool
+<https://github.com/sbidoul/whool>`_ for packaging individual Odoo addons, and
+`hatch-odoo <https://github.com/acsone/hatch-odoo>`_ to build complete projects that
+include Odoo addons. ⚠️
+
 ``setuptools-odoo`` is a library to help packaging Odoo addons with setuptools.
 It mainly populates the usual ``setup.py`` keywords from the Odoo manifest files.
 
