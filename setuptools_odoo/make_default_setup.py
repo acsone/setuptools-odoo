@@ -322,7 +322,7 @@ def clean_setup_addons_dir(addons_dir, odoo_version_override):
     for p in paths_to_remove:
         if os.path.isdir(p):
             shutil.rmtree(p)
-        else:
+        elif os.path.exists(p):
             os.unlink(p)
 
 
