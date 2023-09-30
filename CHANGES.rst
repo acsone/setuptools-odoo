@@ -22,7 +22,7 @@ Features
   PyPI does not support 2.2 packages generated with such metadata can't be uploaded to
   PyPI. (`#112 <https://github.com/acsone/setuptools-odoo/issues/112>`_)
 - Update core addon lists. (`#115 <https://github.com/acsone/setuptools-odoo/issues/115>`_)
-
+- Improve setuptools-odoo-make-default Windows compatibility. (`#114 <https://github.com/acsone/setuptools-odoo/issues/114>`_)
 
 Bugfixes
 ++++++++
