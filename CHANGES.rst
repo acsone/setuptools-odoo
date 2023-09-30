@@ -3,6 +3,15 @@ Changes
 
 .. towncrier release notes start
 
+3.2.1 (2023-09-30)
+------------------
+
+Bugfixes
+++++++++
+
+- Fix ``FileNotFoundError`` regression in ``setuptools-odoo-make-default``. (`#116 <https://github.com/acsone/setuptools-odoo/issues/116>`_)
+
+
 3.2.0 (2023-09-20)
 ------------------
 

@@ -1,1 +1,0 @@
-Fix ``FileNotFoundError`` regression in ``setuptools-odoo-make-default``.
