@@ -21,7 +21,7 @@ To build it locally:
 How to release
 --------------
 
-* in the ``setuptools_odoo`` directory, run ``../mk_base_addons```
+* Install ``manifestoo-core`` and run ``./mk_core_addons``
 * update changelog in CHANGES.rst, by running ``towncrier --version <version>``
 * python setup.py check --restructuredtext
 * commit everything
