@@ -1,4 +1,4 @@
-# generated on Wed Sep 20 12:38:23 2023
+# generated on Sat Mar 16 14:22:26 2024
 account
 account_check_printing
 account_debit_note
@@ -178,6 +178,7 @@ l10n_in_upi
 l10n_it
 l10n_it_edi
 l10n_it_edi_sdicoop
+l10n_it_edi_website_sale
 l10n_it_stock_ddt
 l10n_jp
 l10n_ke
@@ -293,6 +294,7 @@ pos_mrp
 pos_restaurant
 pos_restaurant_adyen
 pos_sale
+pos_sale_gift_card
 pos_sale_margin
 pos_sale_product_configurator
 pos_six
