@@ -5,6 +5,7 @@
 import os
 import warnings
 
+from .commands import compat_editable_wheel
 from .core import prepare_odoo_addon, prepare_odoo_addons
 
 
@@ -70,6 +71,8 @@ def odoo_addon(dist, attr, value):
         post_version_strategy_override=post_version_strategy_override,
     )
     _set_dist_keywords(dist, setup_keywords)
+    if compat_editable_wheel is not None:
+        dist.cmdclass["editable_wheel"] = compat_editable_wheel
 
 
 def odoo_addons(dist, attr, value):

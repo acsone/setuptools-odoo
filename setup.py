@@ -48,5 +48,8 @@ setuptools.setup(
             "odoo_addon = setuptools_odoo.setup_keywords:odoo_addon",
             "odoo_addons = setuptools_odoo.setup_keywords:odoo_addons",
         ],
+        "distutils.commands": [
+            "editable_wheel = setuptools_odoo.commands:compat_editable_wheel",
+        ],
     },
 )
