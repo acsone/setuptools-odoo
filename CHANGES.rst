@@ -3,6 +3,16 @@ Changes
 
 .. towncrier release notes start
 
+3.3 (2024-03-16)
+----------------
+
+Features
+++++++++
+
+- Ensure the setuptools ``compat`` editable mode is used when installing in PEP 660 mode. (`#119 <https://github.com/acsone/setuptools-odoo/issues/119>`_)
+- Update core addon lists. (`#120 <https://github.com/acsone/setuptools-odoo/issues/120>`_)
+
+
 3.2.1 (2023-09-30)
 ------------------
 
