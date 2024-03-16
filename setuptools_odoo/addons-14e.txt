@@ -1,4 +1,4 @@
-# generated on Wed Sep 20 12:39:37 2023
+# generated on Sat Mar 16 14:23:27 2024
 account_3way_match
 account_accountant
 account_accountant_check_printing
@@ -62,6 +62,7 @@ delivery_easypost
 delivery_fedex
 delivery_iot
 delivery_ups
+delivery_ups_rest
 delivery_usps
 digest_enterprise
 documents

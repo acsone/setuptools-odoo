@@ -1,4 +1,4 @@
-# generated on Wed Sep 20 12:38:46 2023
+# generated on Sat Mar 16 14:22:42 2024
 account_3way_match
 account_accountant
 account_accountant_batch_payment
@@ -64,6 +64,7 @@ delivery_easypost
 delivery_fedex
 delivery_iot
 delivery_ups
+delivery_ups_rest
 delivery_usps
 digest_enterprise
 documents
@@ -197,8 +198,10 @@ l10n_mx_edi_extended
 l10n_mx_edi_extended_40
 l10n_mx_edi_landing
 l10n_mx_edi_stock
+l10n_mx_edi_stock_30
 l10n_mx_edi_stock_40
 l10n_mx_edi_stock_extended
+l10n_mx_edi_stock_extended_30
 l10n_mx_edi_stock_extended_40
 l10n_mx_reports
 l10n_mx_reports_closing
