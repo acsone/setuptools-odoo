@@ -1,1 +1,0 @@
-Update core addon lists.
