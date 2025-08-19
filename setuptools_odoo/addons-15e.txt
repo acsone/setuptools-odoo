@@ -1,4 +1,4 @@
-# generated on Sat Mar 16 14:22:42 2024
+# generated on Tue Aug 19 11:24:48 2025
 account_3way_match
 account_accountant
 account_accountant_batch_payment
@@ -34,6 +34,7 @@ account_reports_tax_reminder
 account_saft
 account_sepa
 account_sepa_direct_debit
+account_sepa_direct_debit_008_001_08
 account_sepa_pain_001_001_09
 account_taxcloud
 account_winbooks_import
@@ -154,6 +155,7 @@ l10n_be_intrastat
 l10n_be_reports
 l10n_be_reports_base_address_extended
 l10n_be_reports_post_wizard
+l10n_be_reports_prorata
 l10n_be_reports_sms
 l10n_be_us_consolidation_demo
 l10n_bg_reports
@@ -175,6 +177,7 @@ l10n_es_reports
 l10n_es_reports_2021
 l10n_es_reports_2023
 l10n_es_reports_2023_2
+l10n_es_reports_2024
 l10n_eu_oss_reports
 l10n_fi_reports
 l10n_fr_fec_import
@@ -202,6 +205,7 @@ l10n_mx_edi_stock_30
 l10n_mx_edi_stock_40
 l10n_mx_edi_stock_extended
 l10n_mx_edi_stock_extended_30
+l10n_mx_edi_stock_extended_31
 l10n_mx_edi_stock_extended_40
 l10n_mx_reports
 l10n_mx_reports_closing
