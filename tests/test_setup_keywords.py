@@ -62,16 +62,26 @@ class TestSetupKeywords(unittest.TestCase):
             subprocess.check_call(
                 [sys.executable, "setup.py", "sdist", "-d", dist_dir], cwd=addon1_dir
             )
-            sdist_file = os.path.join(
+            sdist_file1 = os.path.join(
                 dist_dir, "odoo8-addon-addon1-8.0.1.0.0.99.dev4.tar.gz"
             )
-            assert os.path.isfile(sdist_file)
+            sdist_file2 = os.path.join(
+                dist_dir, "odoo8_addon_addon1-8.0.1.0.0.99.dev4.tar.gz"
+            )
+            sdist_file = None
+            if os.path.isfile(sdist_file1):
+                sdist_file = sdist_file1
+                sdist_name = "odoo8-addon-addon1"
+            elif os.path.isfile(sdist_file2):
+                sdist_file = sdist_file2
+                sdist_name = "odoo8_addon_addon1"
+            assert sdist_file
             # dist from the tar file, must produce an identical tar file
             with tarfile.open(sdist_file, "r") as tf:
                 tar_dir = tempfile.mkdtemp()
                 try:
                     tar_setup_dir = os.path.join(
-                        tar_dir, "odoo8-addon-addon1-8.0.1.0.0.99.dev4"
+                        tar_dir, sdist_name + "-8.0.1.0.0.99.dev4"
                     )
                     tf.extractall(tar_dir)
                     subprocess.check_call(
@@ -80,7 +90,7 @@ class TestSetupKeywords(unittest.TestCase):
                     sdist_file2 = os.path.join(
                         tar_setup_dir,
                         "dist",
-                        "odoo8-addon-addon1-8.0.1.0.0.99.dev4.tar.gz",
+                        sdist_name + "-8.0.1.0.0.99.dev4.tar.gz",
                     )
                     assert os.path.isfile(sdist_file2)
                     with tarfile.open(sdist_file2, "r") as tf2:
