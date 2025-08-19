@@ -16,36 +16,31 @@ jobs:
       matrix:
         include:
           - python-version: "2.7"
-            machine: ubuntu-20.04
+            machine: ubuntu-latest
           - python-version: "3.5"
-            machine: ubuntu-20.04
+            machine: ubuntu-latest
           - python-version: "3.6"
-            machine: ubuntu-20.04
+            machine: ubuntu-latest
           - python-version: "3.7"
-            machine: ubuntu-22.04
+            machine: ubuntu-latest
           - python-version: "3.8"
-            machine: ubuntu-22.04
+            machine: ubuntu-latest
           - python-version: "3.9"
-            machine: ubuntu-22.04
+            machine: ubuntu-latest
           - python-version: "3.10"
-            machine: ubuntu-22.04
+            machine: ubuntu-latest
           - python-version: "3.11"
-            machine: ubuntu-22.04
+            machine: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           # some tests work on the git history so we need all of it!
           fetch-depth: 0
-      - uses: actions/setup-python@v4
+      - uses: jdx/mise-action@v2
         with:
-          python-version: "${{ matrix.python-version }}"
-        # use system python because setup-python@v4 doesn't work on 2.7
-        if: matrix.python-version != '2.7'
-      - name: Install pip
-        run: |-
-          curl -O https://bootstrap.pypa.io/pip/${{ matrix.python-version }}/get-pip.py
-          python${{ matrix.python-version }} get-pip.py
-        if: matrix.python-version == '2.7'
+          mise_toml: |
+            [tools]
+            python = "${{ matrix.python-version }}"
       - name: Install tox
         run: python${{ matrix.python-version }} -m pip install tox tox-gh-actions
       - name: Run tox
