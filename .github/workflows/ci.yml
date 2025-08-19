@@ -31,6 +31,8 @@ jobs:
             machine: ubuntu-latest
           - python-version: "3.11"
             machine: ubuntu-latest
+          - python-version: "3.12"
+            machine: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
