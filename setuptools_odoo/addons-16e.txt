@@ -1,4 +1,4 @@
-# generated on Sat Mar 16 14:21:57 2024
+# generated on Tue Aug 19 11:23:52 2025
 account_3way_match
 account_accountant
 account_accountant_batch_payment
@@ -27,12 +27,14 @@ account_invoice_extract
 account_invoice_extract_purchase
 account_online_synchronization
 account_predictive_bills
+account_reconcile_wizard
 account_reports
 account_reports_cash_basis
 account_reports_tax_reminder
 account_saft
 account_sepa
 account_sepa_direct_debit
+account_sepa_direct_debit_008_001_08
 account_sepa_pain_001_001_09
 account_taxcloud
 account_winbooks_import
@@ -60,14 +62,17 @@ data_merge_stock_account
 data_merge_utm
 delivery_bpost
 delivery_dhl
+delivery_dhl_rest
 delivery_easypost
 delivery_fedex
+delivery_fedex_rest
 delivery_iot
 delivery_sendcloud
 delivery_shiprocket
 delivery_ups
 delivery_ups_rest
 delivery_usps
+delivery_usps_rest
 digest_enterprise
 documents
 documents_account
@@ -167,6 +172,7 @@ l10n_be_hr_payroll_fleet
 l10n_be_intrastat
 l10n_be_reports
 l10n_be_reports_post_wizard
+l10n_be_reports_prorata
 l10n_be_reports_sms
 l10n_be_soda
 l10n_be_us_consolidation_demo
@@ -185,6 +191,7 @@ l10n_cl_reports
 l10n_co_edi
 l10n_co_reports
 l10n_de_datev_reports
+l10n_de_intrastat
 l10n_de_pos_cert
 l10n_de_pos_res_cert
 l10n_de_reports
@@ -198,6 +205,7 @@ l10n_ec_reports_ats
 l10n_ee_reports
 l10n_es_real_estates
 l10n_es_reports
+l10n_es_reports_2024
 l10n_eu_oss_reports
 l10n_fi_reports
 l10n_fr_fec_import
@@ -214,9 +222,11 @@ l10n_in_hr_payroll
 l10n_in_hr_payroll_account
 l10n_in_reports
 l10n_in_reports_gstr
+l10n_in_reports_gstr_document_summary
 l10n_in_reports_gstr_pos
 l10n_in_reports_gstr_spreadsheet
 l10n_it_reports
+l10n_it_riba
 l10n_ke_hr_payroll
 l10n_ke_hr_payroll_account
 l10n_ke_hr_payroll_bik
@@ -239,6 +249,7 @@ l10n_mx_edi_stock_30
 l10n_mx_edi_stock_40
 l10n_mx_edi_stock_extended
 l10n_mx_edi_stock_extended_30
+l10n_mx_edi_stock_extended_31
 l10n_mx_edi_stock_extended_40
 l10n_mx_reports
 l10n_mx_reports_closing
@@ -248,6 +259,8 @@ l10n_nl_intrastat
 l10n_nl_reports
 l10n_nl_reports_sbr
 l10n_nl_reports_sbr_icp
+l10n_nl_reports_sbr_ob_nummer
+l10n_nl_reports_sbr_status_info
 l10n_no_reports
 l10n_no_saft
 l10n_pe_edi

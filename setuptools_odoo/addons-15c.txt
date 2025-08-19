@@ -1,4 +1,4 @@
-# generated on Sat Mar 16 14:22:26 2024
+# generated on Tue Aug 19 11:24:34 2025
 account
 account_check_printing
 account_debit_note
@@ -15,6 +15,7 @@ account_qr_code_sepa
 account_sale_timesheet
 account_tax_python
 account_test
+account_update_tax_tags
 analytic
 association
 attachment_indexation
@@ -150,6 +151,7 @@ l10n_fi_sale
 l10n_fr
 l10n_fr_facturx_chorus_pro
 l10n_fr_fec
+l10n_fr_invoice_addr
 l10n_fr_pos_cert
 l10n_gcc_invoice
 l10n_gcc_invoice_stock_account

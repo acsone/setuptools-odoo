@@ -1,10 +1,11 @@
-# generated on Sat Mar 16 14:21:40 2024
+# generated on Tue Aug 19 11:23:20 2025
 account
 account_check_printing
 account_debit_note
 account_edi
 account_edi_proxy_client
 account_edi_ubl_cii
+account_edi_ubl_cii_tax_extension
 account_fleet
 account_lock
 account_payment
@@ -13,6 +14,7 @@ account_qr_code_sepa
 account_sequence
 account_tax_python
 account_test
+account_update_tax_tags
 analytic
 association
 attachment_indexation
@@ -115,6 +117,7 @@ l10n_bo
 l10n_br
 l10n_ca
 l10n_ch
+l10n_ch_pos
 l10n_cl
 l10n_cn
 l10n_cn_city
@@ -134,12 +137,14 @@ l10n_dk
 l10n_do
 l10n_dz
 l10n_ec
+l10n_ec_stock
 l10n_ee
 l10n_eg
 l10n_eg_edi_eta
 l10n_es
 l10n_es_edi_sii
 l10n_es_edi_tbai
+l10n_es_edi_tbai_multi_refund
 l10n_et
 l10n_eu_oss
 l10n_fi
@@ -147,6 +152,7 @@ l10n_fi_sale
 l10n_fr
 l10n_fr_facturx_chorus_pro
 l10n_fr_fec
+l10n_fr_invoice_addr
 l10n_fr_pos_cert
 l10n_gcc_invoice
 l10n_gcc_invoice_stock_account
@@ -161,6 +167,7 @@ l10n_hr_euro
 l10n_hu
 l10n_id
 l10n_id_efaktur
+l10n_id_efaktur_coretax
 l10n_ie
 l10n_il
 l10n_in
@@ -176,6 +183,7 @@ l10n_in_tcs_tds
 l10n_in_upi
 l10n_it
 l10n_it_edi
+l10n_it_edi_doi
 l10n_it_edi_pa
 l10n_it_edi_website_sale
 l10n_it_edi_withholding
@@ -193,6 +201,7 @@ l10n_lu_peppol_id
 l10n_lv
 l10n_ma
 l10n_mn
+l10n_mt_pos
 l10n_multilang
 l10n_mx
 l10n_mx_hr
