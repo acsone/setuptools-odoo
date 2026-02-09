@@ -3,6 +3,15 @@ Changes
 
 .. towncrier release notes start
 
+3.3.2 (2026-02-09)
+------------------
+
+Features
+++++++++
+
+- Pin setuptools<82 in order to have ``pkg_resources`` which was removed in setuptools 82. (`#125 <https://github.com/acsone/setuptools-odoo/issues/125>`_)
+
+
 3.3.1 (2025-08-19)
 ------------------
 
