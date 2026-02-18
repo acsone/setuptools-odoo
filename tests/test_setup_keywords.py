@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright © 2015-2021 ACSONE SA/NV
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
@@ -15,6 +14,13 @@ from zipfile import ZipFile
 import pkg_resources
 
 from . import DATA_DIR
+
+# TODO: replace pkg_resources by:
+# try:
+#    from importlib.metadata import distributions
+# except ImportError:
+#    # Fallback for Python < 3.8
+#    from importlib_metadata import distributions
 
 
 class TestSetupKeywords(unittest.TestCase):

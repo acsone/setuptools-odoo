@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
 # Copyright © 2015-2017 ACSONE SA/NV
 # License LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0-standalone.html)
 
-import io
 import os
 
 import setuptools
@@ -10,9 +8,9 @@ import setuptools
 here = os.path.abspath(os.path.dirname(__file__))
 
 long_description = []
-with io.open(os.path.join("README.rst"), encoding="utf-8") as f:
+with open(os.path.join("README.rst"), encoding="utf-8") as f:
     long_description.append(f.read())
-with io.open(os.path.join("CHANGES.rst"), encoding="utf-8") as f:
+with open(os.path.join("CHANGES.rst"), encoding="utf-8") as f:
     long_description.append(f.read())
 
 
@@ -35,8 +33,15 @@ setuptools.setup(
     url="http://github.com/acsone/setuptools-odoo",
     packages=["setuptools_odoo"],
     include_package_data=True,
-    install_requires=["setuptools<82", "setuptools_scm>=2.1,!=4.0.0"],
-    python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
+    install_requires=[
+        # TODO: for when tests deprecate pkg_resources
+        # "importlib_metadata; python_version < '3.8'",
+        "importlib_resources; python_version < '3.9'",
+        "packaging",
+        "setuptools",
+        "setuptools_scm>=2.1,!=4.0.0",
+    ],
+    python_requires=">= 3.5",
     setup_requires=["setuptools-scm!=4.0.0"],
     test_suite="tests",
     entry_points={
