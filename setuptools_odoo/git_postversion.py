@@ -5,7 +5,7 @@
 import os
 import subprocess
 
-from pkg_resources import parse_version
+import packaging
 
 from .manifest import MANIFEST_NAMES, NoManifestFound, parse_manifest, read_manifest
 
@@ -115,7 +115,7 @@ def get_git_postversion(addon_dir, strategy):
     last_version = read_manifest(addon_dir).get("version", "0.0.0")
     if strategy == STRATEGY_NONE:
         return last_version
-    last_version_parsed = parse_version(last_version)
+    last_version_parsed = packaging.version.parse(last_version)
     if not is_git_controlled(addon_dir):
         return last_version
     if get_git_uncommitted(addon_dir):
@@ -132,7 +132,7 @@ def get_git_postversion(addon_dir, strategy):
         except NoManifestFound:
             break
         version = manifest.get("version", "0.0.0")
-        version_parsed = parse_version(version)
+        version_parsed = packaging.version.parse(version)
         if version_parsed != last_version_parsed:
             break
         if last_sha is None:
