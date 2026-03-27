@@ -14,8 +14,11 @@ setuptools-odoo
 
 ⚠️ This project is progressively being deprecated. Please consider using `whool
 <https://github.com/sbidoul/whool>`_ for packaging individual Odoo addons, and
-`hatch-odoo <https://github.com/acsone/hatch-odoo>`_ to build complete projects that
-include Odoo addons. ⚠️
+`hatch-odoo <https://github.com/acsone/hatch-odoo>`_ to build complete projects
+that include Odoo addons. A replacement for the
+`setuptools-odoo-get-requirements` script is `oca-gen-external-dependencies
+<https://github.com/OCA/maintainer-tools/blob/master/tools/gen_external_dependencies.py>`_.
+⚠️
 
 ``setuptools-odoo`` is a library to help packaging Odoo addons with setuptools.
 It mainly populates the usual ``setup.py`` keywords from the Odoo manifest files.
