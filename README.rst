@@ -268,6 +268,14 @@ The following keys are supported:
     external dependencies. Its value must be a dictionary with one ``python``
     key, with value a dictionary mapping python external dependencies to
     a python package requirement specifier or list of specifiers.
+  * ``additional_dependencies``, used to specify additional dependencies that are not
+    declared in the addons manifests. Its value must be a list of package requirement
+    specifiers. A typical use case is when you want to ensure that an auto installable
+    addon linked to your addon is installed into the python path at the same time as
+    your addon, but you don't want to declare it as a dependency in the manifest to
+    avoid it being installed in Odoo. In this way you ensure that it all the
+    dependencies of the auto installed addon are satisfied, it will be available
+    and installed in Odoo.
   * ``odoo_version_override``, used to specify which Odoo series to use
     (8.0, 9.0, 10.0, 11.0, ...) in case an addon version does not start with the Odoo
     series number. Use this only as a last resort, if you have no way to

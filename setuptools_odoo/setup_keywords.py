@@ -40,11 +40,13 @@ def _parse_options(value):
     external_dependencies_override = {}
     odoo_version_override = None
     post_version_strategy_override = None
+    additional_dependencies = None
     if isinstance(value, dict):
         depends_override = value.get("depends_override", {})
         external_dependencies_override = value.get("external_dependencies_override", {})
         odoo_version_override = value.get("odoo_version_override")
         post_version_strategy_override = value.get("post_version_strategy_override")
+        additional_dependencies = value.get("additional_dependencies", None)
     if os.environ.get("SETUPTOOLS_ODOO_POST_VERSION_STRATEGY_OVERRIDE"):
         post_version_strategy_override = os.environ[
             "SETUPTOOLS_ODOO_POST_VERSION_STRATEGY_OVERRIDE"
@@ -54,6 +56,7 @@ def _parse_options(value):
         external_dependencies_override,
         odoo_version_override,
         post_version_strategy_override,
+        additional_dependencies,
     )
 
 
@@ -63,12 +66,14 @@ def odoo_addon(dist, attr, value):
         external_dependencies_override,
         odoo_version_override,
         post_version_strategy_override,
+        additional_dependencies,
     ) = _parse_options(value)
     setup_keywords = prepare_odoo_addon(
         depends_override=depends_override,
         external_dependencies_override=external_dependencies_override,
         odoo_version_override=odoo_version_override,
         post_version_strategy_override=post_version_strategy_override,
+        additional_dependencies=additional_dependencies,
     )
     _set_dist_keywords(dist, setup_keywords)
     if compat_editable_wheel is not None:
@@ -80,6 +85,7 @@ def odoo_addons(dist, attr, value):
         depends_override,
         external_dependencies_override,
         odoo_version_override,
+        _,
         _,
     ) = _parse_options(value)
     setup_keywords = prepare_odoo_addons(

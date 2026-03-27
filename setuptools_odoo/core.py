@@ -262,6 +262,7 @@ def _get_install_requires(
     no_depends=None,
     depends_override=None,
     external_dependencies_override=None,
+    additional_dependencies=None,
 ):
     install_requires = []
     # dependency on Odoo
@@ -295,6 +296,9 @@ def _get_install_requires(
             install_requires.extend(dep)
         else:
             install_requires.append(dep)
+    # additional dependencies passed as options
+    if additional_dependencies:
+        install_requires.extend(additional_dependencies)
     return sorted(install_requires)
 
 
@@ -304,6 +308,7 @@ def get_install_requires_odoo_addon(
     depends_override=None,
     external_dependencies_override=None,
     odoo_version_override=None,
+    additional_dependencies=None,
 ):
     """Get the list of requirements for an addon"""
     manifest = read_manifest(addon_dir)
@@ -316,6 +321,7 @@ def get_install_requires_odoo_addon(
         no_depends,
         depends_override,
         external_dependencies_override,
+        additional_dependencies,
     )
 
 
@@ -444,6 +450,7 @@ def get_addon_metadata(
     odoo_version_override=None,  # type: str
     post_version_strategy_override=None,  # type: str
     precomputed_metadata_path=None,  # type: str
+    additional_dependencies=None,  # type: list[str]
 ):
     # type: (...) -> Message
     """
@@ -466,6 +473,7 @@ def get_addon_metadata(
         odoo_version_override=odoo_version_override,
         post_version_strategy_override=post_version_strategy_override,
         precomputed_metadata_path=precomputed_metadata_path,
+        additional_dependencies=additional_dependencies,
     )
     meta = Message()
 
@@ -502,6 +510,7 @@ def get_addon_setuptools_keywords(
     odoo_version_override=None,
     post_version_strategy_override=None,
     precomputed_metadata_path=None,
+    additional_dependencies=None,
 ):
     manifest = read_manifest(addon_dir)
     if precomputed_metadata_path and os.path.exists(precomputed_metadata_path):
@@ -526,6 +535,7 @@ def get_addon_setuptools_keywords(
         depends_override=depends_override,
         external_dependencies_override=external_dependencies_override,
         odoo_version_override=odoo_version_override,
+        additional_dependencies=additional_dependencies,
     )
     setup_keywords = {
         "name": make_pkg_name(odoo_version_info, addon_name),
@@ -553,6 +563,7 @@ def prepare_odoo_addon(
     external_dependencies_override=None,
     odoo_version_override=None,
     post_version_strategy_override=None,
+    additional_dependencies=None,
 ):
     addons_dir, addons_ns = _find_addons_dir()
     potential_addons = os.listdir(addons_dir)
@@ -590,6 +601,7 @@ def prepare_odoo_addon(
         odoo_version_override=odoo_version_override,
         post_version_strategy_override=post_version_strategy_override,
         precomputed_metadata_path="./PKG-INFO",
+        additional_dependencies=additional_dependencies,
     )
 
 

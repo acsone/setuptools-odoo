@@ -11,5 +11,6 @@ setuptools.setup(
                 'astropy': 'astropy>=1.0',
             },
         },
+        'additional_dependencies': ['odoo8-addon-addon4-extra-dep>=8.0.1.0.0']
     },
 )

@@ -139,6 +139,7 @@ class TestSetupKeywords(unittest.TestCase):
                     for r in [
                         "astropy>=1.0",
                         "odoo8-addon-addon1>=8.0.3.0.0",
+                        "odoo8-addon-addon4-extra-dep>=8.0.1.0.0",
                         "odoo>=8.0a,<9.0a",
                         "python-dateutil",
                     ]
