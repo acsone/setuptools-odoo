@@ -16,7 +16,7 @@ setuptools-odoo
 <https://github.com/sbidoul/whool>`_ for packaging individual Odoo addons, and
 `hatch-odoo <https://github.com/acsone/hatch-odoo>`_ to build complete projects
 that include Odoo addons. A replacement for the
-`setuptools-odoo-get-requirements` script is `oca-gen-external-dependencies
+``setuptools-odoo-get-requirements`` script is `oca-gen-external-dependencies
 <https://github.com/OCA/maintainer-tools/blob/master/tools/gen_external_dependencies.py>`_.
 ⚠️
 
