@@ -85,9 +85,9 @@ def _get_requirements(
 
 def _render(requirements, header, fp):
     if header:
-        print(header, file=fp)
+        print(header, file=fp, end='\n')
     for requirement in requirements:
-        print(requirement, file=fp)
+        print(requirement, file=fp, end='\n')
 
 
 def main(args=None):
@@ -130,7 +130,7 @@ def main(args=None):
         _render(requirements, args.header, sys.stdout)
     else:
         if os.path.exists(args.output) or requirements:
-            with open(args.output, "w") as fp:
+            with open(args.output, "w", newline='') as fp:
                 _render(requirements, args.header, fp)
 
 
