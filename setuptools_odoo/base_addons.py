@@ -5,12 +5,17 @@
 They are therefore considered as installed as soon as the 'odoo' dependency
 is satisfied. """
 
-from pkg_resources import resource_string
+try:
+    from importlib.resources import files
+except ImportError:
+    # Fallback for Python < 3.9
+    from importlib_resources import files
 
 
 def _addons(suffix):
-    b = resource_string("setuptools_odoo", "addons-%s.txt" % suffix)
-    return {a for a in b.decode("ascii").split("\n") if not a.startswith("#")}
+    _file = files("setuptools_odoo").joinpath("addons-%s.txt" % suffix)
+    t = _file.read_text(encoding="ascii")
+    return {a for a in t.split("\n") if not a.startswith("#")}
 
 
 openerp7 = _addons("7c")

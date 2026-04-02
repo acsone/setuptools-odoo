@@ -16,6 +16,13 @@ import pkg_resources
 
 from . import DATA_DIR
 
+# TODO: replace pkg_resources by:
+# try:
+#    from importlib.metadata import distributions
+# except ImportError:
+#    # Fallback for Python < 3.8
+#    from importlib_metadata import distributions
+
 
 class TestSetupKeywords(unittest.TestCase):
     """test the new setup() keywords (odoo_addon, odoo_addons)"""
